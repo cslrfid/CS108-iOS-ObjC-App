@@ -928,20 +928,34 @@
 - (void)decodePacketsInBufferAsync;
 {
     CSLBlePacket* packet;
-    NSString* payload;
-    NSData* payloadInBytes;
+    NSString* payload;      //payload in hex string
+    NSData* payloadInBytes; //payload in bytes
     filteredBuffer=[[NSMutableArray alloc] init];
     BOOL isAborted=false;
+    BOOL isAppendPacket=false;
     
     int datalen;
     while (!(isAborted && ([self.recvQueue count] == 0)))
     {
         if ([self.recvQueue count] > 0)
         {
+            //dequque the next packet received
             packet=((CSLBlePacket *)[self.recvQueue deqObject]);
-            payloadInBytes = packet.payload;
-            payload=packet.getPacketPayloadInHexString;
             
+            //if we recieved a partial RFID packet on the previosu loop that to be combined with the current packet
+            if (isAppendPacket && [[packet.getPacketPayloadInHexString substringWithRange:NSMakeRange(0, 4)] isEqualToString:@"8100"]) { //append to the previous packet
+                
+                NSMutableData * combinedData=[payloadInBytes mutableCopy];
+                [combinedData appendData:[packet.payload subdataWithRange:NSMakeRange(2, [packet.payload length]-2)]];
+                payloadInBytes=combinedData;
+                
+                [payload stringByAppendingString:[packet.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, packet.getPacketPayloadInHexString.length-4)]];
+            }
+            else {
+                payloadInBytes = packet.payload;
+                payload=packet.getPacketPayloadInHexString;
+            }
+
             NSLog(@"[decodePacketsInBufferAsync] Payload to be decoded: %@", payload);
             
             //select only the RFID firmware response packet
@@ -1002,16 +1016,28 @@
                             [filteredBuffer replaceObjectAtIndex:findIndex withObject:tag];
                         }
                         
-                        //for the case the the abort response is being appended to a tag response packet
-                        if ((ptr >= (datalen + 10)) && ([payloadInBytes length] >= (datalen + 10 /* 10 bytes of header*/ + 8 /* 8 bytes for the abort command response*/)))
+                        //for the cases where we reaches the end of the RFID reponse packet but there are still data within the bluetooth reader packet.
+                        // (1) user is aborting the operation so that the abort command reponse
+                        if ((ptr >= (datalen + 10)) && ([payloadInBytes length] >= (datalen + 10 /* 8 bytes of bluetooth packet header + 2 byte for the payload reply */ + 8 /* 8 bytes for the abort command response or other RFID command reponse*/)))
                         {
-                            NSLog(@"[decodePacketsInBufferAsync] Decoding the special commands appended to the end of the packet: %@", [payload substringWithRange:NSMakeRange(ptr * 2, ([payloadInBytes length] - ptr) * 2)] );
+                            NSLog(@"[decodePacketsInBufferAsync] Decoding the data appended to the end of the 8100 packet: %@", [payload substringWithRange:NSMakeRange(ptr * 2, ([payloadInBytes length] - ptr) * 2)] );
                             if ([[payload substringWithRange:NSMakeRange(ptr * 2, ([payloadInBytes length] - ptr) * 2)] containsString:@"4003BFFCBFFCBFFC"]) {
                                 isAborted=true;
                                 break;
                             }
+                            //check if we are getting the beginning of another 8100 packet.  If so, decode the beinginning of the next RFID response
+                            else if ([[payload substringWithRange:NSMakeRange((ptr * 2)  + 4, 2)] isEqualToString:@"04"] && [[payload substringWithRange:NSMakeRange((ptr * 2)+8, 4)] isEqualToString:@"0580"])
+                            {
+                                datalen=((Byte *)[payloadInBytes bytes])[ptr+6] + (((((Byte *)[payloadInBytes bytes])[ptr+7] << 8) & 0xFF00)) ;
+                                payloadInBytes = [payloadInBytes subdataWithRange:NSMakeRange(ptr + 8, [payloadInBytes length]-ptr-8)];
+                                payload=[payload substringWithRange:NSMakeRange((ptr * 2) + 16, [payload length]-(ptr * 2)-16)];
+                                isAppendPacket=true;
+                            }
+                            else
+                                isAppendPacket=false;
                         }
                         
+                        //return when pointer reaches the end of the RFID response packet.
                         if (ptr >= (datalen + 10))
                             break;
                     }
