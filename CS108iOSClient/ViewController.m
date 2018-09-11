@@ -77,7 +77,9 @@
         
         //update tag rate
         NSLog(@"Total Tag Count: %ld, time elapsed: %ld", ((long)reader.rangingTagCount), (long)[[NSDate date] timeIntervalSinceDate:tagRangingStartTime]);
-        txtTagRate.text = [NSString stringWithFormat: @"%ld", ((long)reader.rangingTagCount) / (long)[[NSDate date] timeIntervalSinceDate:tagRangingStartTime]];
+        //txtTagRate.text = [NSString stringWithFormat: @"%ld", ((long)reader.rangingTagCount) / (long)[[NSDate date] timeIntervalSinceDate:tagRangingStartTime]];
+        txtTagRate.text = [NSString stringWithFormat: @"%ld", ((long)reader.rangingTagCount)];
+        reader.rangingTagCount =0;
         
     }
 }

@@ -29,13 +29,13 @@
     NSMutableArray * filteredBuffer;   //after duplicate eliminations durinng async inventory
     CSLCircularQueue * cmdRespQueue;     //Buffer for storing response packet(s) after issuing a command synchronously
     
-    NSInteger * rangingTagCount;
+    NSInteger rangingTagCount;
 }
 
 @property NSMutableArray * filteredBuffer;
 @property CSLCircularQueue * cmdRespQueue;
 @property (nonatomic, weak) id <CSLBleReaderDelegate> readerDelegate; //define CSLBleReaderDelegate as delegate
-@property NSInteger * rangingTagCount;
+@property NSInteger rangingTagCount;
 
 - (id)init;
 - (void)dealloc;

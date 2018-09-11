@@ -1490,7 +1490,7 @@
         }
         if (connectStatus != CONNECTED)
         {
-            NSLog(@"Abort command response failure.  Try #%d", j);
+            NSLog(@"Abort command response failure.  Try #%d", j+1);
             continue;
         }
         else
@@ -1626,7 +1626,7 @@
                             datalen=((Byte *)[payloadInBytes bytes])[6] + (((((Byte *)[payloadInBytes bytes])[7] << 8) & 0xFF00)) ;
                             
                             //iterate through all the tag data
-                            int ptr=10;
+                            int ptr=10;     //starting point of the tag data
                             while(TRUE)
                             {
                                 CSLBleTag* tag=[[CSLBleTag alloc] init];
