@@ -63,18 +63,11 @@
                                    selector:@selector(refreshTagListing)
                                    userInfo:nil
                                     repeats:YES];
-    
-    //timer event on reading trigger key
-    [NSTimer scheduledTimerWithTimeInterval:0.5
-                                     target:self
-                                   selector:@selector(readTriggerKey)
-                                   userInfo:nil
-                                    repeats:YES];
 }
 
 //Selector for timer event on updating UI
 - (void)refreshTagListing {
-    if (reader.connectStatus==BUSY)
+    if (reader.connectStatus==TAG_OPERATIONS)
     {
         //update table
         [tagListing reloadData];
@@ -89,32 +82,6 @@
     }
 }
 
-//Selector for timer event on reading trigger key
-- (void)readTriggerKey {
-    
-    static BOOL stoppedByKey=false;
-    
-    if (reader.connectStatus==CONNECTED)
-    {
-        BOOL keyState=false;
-        if ([reader getTriggerKeyStatus:&keyState])
-        {
-            if (keyState) {
-                [btnInventory sendActionsForControlEvents:UIControlEventTouchDown];
-                stoppedByKey=TRUE;
-            }
-            else
-            {   //this is the case where user releases the trigger key but not pressed the UI button.
-                if ([[btnInventory currentTitle] isEqualToString:@"Stop Inventory"])
-                {
-                    [btnInventory sendActionsForControlEvents:UIControlEventTouchDown];
-                    stoppedByKey=FALSE;
-                }
-            }
-        }
-
-    }
-}
 - (void)viewDidAppear:(BOOL)animated {
 
     //The application launches and scan reader for 5 seconds.  The reader list will continue the readers being detected within these 5 seconds.  If no reader found, the reader will return.
@@ -181,6 +148,7 @@
     [reader sendAbortCommand];
     [reader getRfidFwVersionNumber:rfidFwVersion];
     
+    
     //read OEM data
     [reader readOEMData:reader atAddr:0x00000002 forData:OEMData];
     [reader readOEMData:reader atAddr:0x00000008 forData:OEMData];
@@ -194,7 +162,7 @@
     [reader readOEMData:reader atAddr:0x00000006 forData:OEMData];
     [reader readOEMData:reader atAddr:0x00000007 forData:OEMData];
     [reader readOEMData:reader atAddr:0x000000A5 forData:OEMData];
-    
+
     [btnConnect setTitle:@"Disconnect" forState:UIControlStateNormal];
     btnConnect.enabled=true;
     btnInventory.enabled=true;
@@ -207,8 +175,6 @@
     {
         btnInventory.enabled=false;
         //reader configurations before inventory
-        CSLBlePacket* packet= [[CSLBlePacket alloc] init];
-        CSLBlePacket * recvPacket=[[CSLBlePacket alloc] init];
         
         //clear UI
         txtTagRate.text=@"0";
@@ -220,179 +186,14 @@
         //set power
         [reader setPower:30.0];
         [reader setAntennaCycle:COMMAND_ANTCYCLE_CONTINUOUS];
+        [reader setAntennaDwell:0];
+        [reader setLinkProfile:2];
+        [reader setQueryConfigurations:0 querySession:0 querySelect:0];
+        [reader selectAlgorithmParameter:1];
+        [reader setInventoryAlgorithmParameters0:6 maximumQ:15 minimumQ:0 ThresholdMultiplier:4];
+        [reader setInventoryConfigurations:3 MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:0 crcErrorRead:1 QTMode:0 tagDelay:0 inventoryMode:1];
         
-         
-         //Select which set of algorithm parameter registers to access (INV_SEL) reg_addr = 0x0902
-         unsigned int desc_idx=3;    //select algortihm #3 (Dyanmic Q)
-         NSLog(@"----------------------------------------------------------------------");
-         NSLog(@"Select which set of algorithm parameter registers to access (INV_SEL)...");
-         NSLog(@"----------------------------------------------------------------------");
-         
-         unsigned char INV_SEL_3[] = {0x80, 0x02, 0x70, 0x01, 0x02, 0x09, desc_idx & 0x000000FF, (desc_idx & 0x0000FF00) >> 8, (desc_idx & 0x00FF0000) >> 16, (desc_idx & 0xFF000000) >> 24};
-         packet.prefix=0xA7;
-         packet.connection = Bluetooth;
-         packet.payloadLength=0x0A;
-         packet.deviceId=RFID;
-         packet.Reserve=0x82;
-         packet.direction=Downlink;
-         packet.crc1=0;
-         packet.crc2=0;
-         packet.payload=[NSData dataWithBytes:INV_SEL_3 length:sizeof(INV_SEL_3)];
-         
-         NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
-         [reader sendPackets:packet];
-         
-         while((!([reader.recvQueue count] > 0)) && (([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]])));
-         
-         recvPacket=((CSLBlePacket *)[reader.recvQueue deqObject]);
-         if (memcmp([recvPacket.payload bytes], INV_SEL_3, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
-         NSLog(@"Select which set of algorithm parameter registers: OK");
-         else
-         NSLog(@"Select which set of algorithm parameter registers: FAILED");
-         
-         //Set algorithm parameters (INV_ALG_PARM_0) for DyanmicQ reg_addr = 0x0901
-         Byte startQ=6, maxQ=15, minQ=0, tmult=4;
-         NSLog(@"----------------------------------------------------------------------");
-         NSLog(@"Set algorithm parameters (INV_ALG_PARM_0) for DyanmicQ...");
-         NSLog(@"----------------------------------------------------------------------");
-         
-         unsigned char INV_ALG_PARM_3[] = {0x80, 0x02, 0x70, 0x01, 0x03, 0x09, (startQ & 0x0F) + ((maxQ & 0x0F) << 4), (minQ & 0x0F) + ((tmult & 0x0F) << 4), (tmult & 0xF0) >> 4, 0x00};
-         packet.prefix=0xA7;
-         packet.connection = Bluetooth;
-         packet.payloadLength=0x0A;
-         packet.deviceId=RFID;
-         packet.Reserve=0x82;
-         packet.direction=Downlink;
-         packet.crc1=0;
-         packet.crc2=0;
-         packet.payload=[NSData dataWithBytes:INV_ALG_PARM_3 length:sizeof(INV_ALG_PARM_3)];
-         
-         NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
-         [reader sendPackets:packet];
-         
-         while((!([reader.recvQueue count] > 0)) && (([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]])));
-         
-         recvPacket=((CSLBlePacket *)[reader.recvQueue deqObject]);
-         if (memcmp([recvPacket.payload bytes], INV_ALG_PARM_3, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
-         NSLog(@"Set DynamicQ parameter: OK");
-         else
-         NSLog(@"Set DynamicQ parameter: FAILED");
-         
-         ////
-         //Select which set of algorithm parameter registers to access (INV_SEL) reg_addr = 0x0902
-         desc_idx=0;    //select algortihm #0 (Fixed Q)
-         NSLog(@"----------------------------------------------------------------------");
-         NSLog(@"Select which set of algorithm parameter registers to access (INV_SEL)...");
-         NSLog(@"----------------------------------------------------------------------");
-         
-         unsigned char INV_SEL_0[] = {0x80, 0x02, 0x70, 0x01, 0x02, 0x09, desc_idx & 0x000000FF, (desc_idx & 0x0000FF00) >> 8, (desc_idx & 0x00FF0000) >> 16, (desc_idx & 0xFF000000) >> 24};
-         packet.prefix=0xA7;
-         packet.connection = Bluetooth;
-         packet.payloadLength=0x0A;
-         packet.deviceId=RFID;
-         packet.Reserve=0x82;
-         packet.direction=Downlink;
-         packet.crc1=0;
-         packet.crc2=0;
-         packet.payload=[NSData dataWithBytes:INV_SEL_0 length:sizeof(INV_SEL_0)];
-         
-         NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
-         [reader sendPackets:packet];
-         
-         while((!([reader.recvQueue count] > 0)) && (([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]])));
-         
-         recvPacket=((CSLBlePacket *)[reader.recvQueue deqObject]);
-         if (memcmp([recvPacket.payload bytes], INV_SEL_0, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
-         NSLog(@"Select which set of algorithm parameter registers: OK");
-         else
-         NSLog(@"Select which set of algorithm parameter registers: FAILED");
-         
-         
-         //Select which set of algorithm parameter registers to access (INV_SEL) reg_addr = 0x0902
-         Byte FixedQ=6;
-         NSLog(@"----------------------------------------------------------------------");
-         NSLog(@"Set algorithm parameters (INV_ALG_PARM_0) for FixedQ...");
-         NSLog(@"----------------------------------------------------------------------");
-         
-         unsigned char INV_ALG_PARM_0[] = {0x80, 0x02, 0x70, 0x01, 0x03, 0x09, FixedQ & 0x0000000F, 0x00, 0x00, 0x00};
-         packet.prefix=0xA7;
-         packet.connection = Bluetooth;
-         packet.payloadLength=0x0A;
-         packet.deviceId=RFID;
-         packet.Reserve=0x82;
-         packet.direction=Downlink;
-         packet.crc1=0;
-         packet.crc2=0;
-         packet.payload=[NSData dataWithBytes:INV_ALG_PARM_0 length:sizeof(INV_ALG_PARM_0)];
-         
-         NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
-         [reader sendPackets:packet];
-         
-         while((!([reader.recvQueue count] > 0)) && (([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]])));
-         
-         recvPacket=((CSLBlePacket *)[reader.recvQueue deqObject]);
-         if (memcmp([recvPacket.payload bytes], INV_ALG_PARM_0, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
-         NSLog(@"Set FixedQ parameter: OK");
-         else
-         NSLog(@"Set FixedQ parameter: FAILED");
-         ////
-         
-         //Select which set of algorithm parameter registers to access (INV_SEL) reg_addr = 0x0902
-         Byte Inv_algo=0x03, match_rep=0, tag_sel=0, disable_inv=0, tag_read=0, crc_err_read=1, QT_mode=0, tag_delay=0, inv_mode=1;  //inventory algorithm #3, enable crc error read, compact mode inventory
-         NSLog(@"----------------------------------------------------------------------");
-         NSLog(@"Set inventory configurations (INV_CFG)...");
-         NSLog(@"----------------------------------------------------------------------");
-         
-         unsigned char INV_CFG[] = {0x80, 0x02, 0x70, 0x01, 0x01, 0x09, (Inv_algo & 0x3F) + ((match_rep & 0x03) << 6), ((match_rep & 0xFC) >> 2) + ((tag_sel & 0x01) << 6) + ((disable_inv & 0x01) << 7), (tag_read & 0x03) + ((crc_err_read & 0x01) << 2) + ((QT_mode & 0x01) << 3) + ((tag_delay & 0x0F) << 4), ((tag_delay & 0x30) >> 4) + ((inv_mode & 0x01) << 2)};
-         packet.prefix=0xA7;
-         packet.connection = Bluetooth;
-         packet.payloadLength=0x0A;
-         packet.deviceId=RFID;
-         packet.Reserve=0x82;
-         packet.direction=Downlink;
-         packet.crc1=0;
-         packet.crc2=0;
-         packet.payload=[NSData dataWithBytes:INV_CFG length:sizeof(INV_CFG)];
-         
-         NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
-         [reader sendPackets:packet];
-         
-         while((!([reader.recvQueue count] > 0)) && (([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]])));
-         
-         recvPacket=((CSLBlePacket *)[reader.recvQueue deqObject]);
-         if (memcmp([recvPacket.payload bytes], INV_CFG, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
-         NSLog(@"Set inventory configurations: OK");
-         else
-         NSLog(@"Set inventory configurations: FAILED");
-         
-         //Select which set of algorithm parameter registers to access (INV_SEL) reg_addr = 0x0902
-         Byte query_target=0x00, query_session=1, query_sel=0;
-         NSLog(@"----------------------------------------------------------------------");
-         NSLog(@"Configure parameters on query and inventory operations (QUERY_CFG)...");
-         NSLog(@"----------------------------------------------------------------------");
-         
-         unsigned char QUERY_CFG[] = {0x80, 0x02, 0x70, 0x01, 0x00, 0x09, ((query_target & 0x01) << 4) + ((query_session & 0x03) << 5) + ((query_sel & 0x01) << 7), ((query_sel & 0x02) >> 1), 0x00, 0x00};
-         packet.prefix=0xA7;
-         packet.connection = Bluetooth;
-         packet.payloadLength=0x0A;
-         packet.deviceId=RFID;
-         packet.Reserve=0x82;
-         packet.direction=Downlink;
-         packet.crc1=0;
-         packet.crc2=0;
-         packet.payload=[NSData dataWithBytes:QUERY_CFG length:sizeof(QUERY_CFG)];
-         
-         NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
-         [reader sendPackets:packet];
-         
-         while((!([reader.recvQueue count] > 0)) && (([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]])));
-         
-         recvPacket=((CSLBlePacket *)[reader.recvQueue deqObject]);
-         if (memcmp([recvPacket.payload bytes], QUERY_CFG, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
-         NSLog(@"Configure parameters on query and inventory operations: OK");
-         else
-         NSLog(@"Configure parameters on query and inventory operations: FAILED");
-    
+        
         //start inventory
         tagRangingStartTime=[NSDate date];
         [reader startInventory];
@@ -441,12 +242,30 @@
     return ((CBPeripheral*)reader.bleDeviceList[row]).name;
 }
 
+
 - (void) didInterfaceChangeConnectStatus: (CSLBleInterface *) sender {
     
 }
 
 - (void) didReceiveTagResponsePacket: (CSLBleReader *) sender tagReceived:(CSLBleTag*)tag {
     //[tagListing reloadData];
+}
+
+- (void) didTriggerKeyChangedState: (CSLBleReader *) sender keyState:(BOOL)state {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (btnInventory.enabled)
+        {
+            if (state) {
+                if ([[btnInventory currentTitle] isEqualToString:@"Start Inventory"])
+                    [btnInventory sendActionsForControlEvents:UIControlEventTouchDown];
+            }
+            else {
+                if ([[btnInventory currentTitle] isEqualToString:@"Stop Inventory"])
+                    [btnInventory sendActionsForControlEvents:UIControlEventTouchDown];
+            }
+        }
+    });
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
