@@ -16,7 +16,8 @@ typedef enum _STATUS : Byte
     CONNECTED,
     NOT_CONNECTED,
     SCANNING,
-    BUSY,
+    BUSY,   //at this state, reader is busy and not able to receive any downlink command
+    TAG_OPERATIONS,  //at this state, reader is performing actions on the tags (inventory/read/write/etc) in the background but still able to receive specific downlink commands
     ERROR
 } STATUS;
 

@@ -21,18 +21,21 @@
 @class CSLBleReader;             //define class, so protocol can see CSLBleReader class
 @protocol CSLBleReaderDelegate <NSObject>   //define delegate protocol
 - (void) didReceiveTagResponsePacket: (CSLBleReader *) sender tagReceived:(CSLBleTag*)tag;  //define delegate method to be implemented within another class
-//- (void) didReaderChangeConnectStatus: (CSLBleReader *) sender;     //triggered when reader state chagnes
+- (void) didTriggerKeyChangedState: (CSLBleReader *) sender keyState:(BOOL)state;  //define delegate method to be implemented within another class
 @end //end protocol
 
 @interface CSLBleReader : CSLBleInterface
 {
-    NSMutableArray * filteredBuffer;   //after duplicate eliminations
-    NSInteger * rangingTagCount;
+    NSMutableArray * filteredBuffer;   //after duplicate eliminations durinng async inventory
+    CSLCircularQueue * cmdRespQueue;     //Buffer for storing response packet(s) after issuing a command synchronously
+    
+    NSInteger rangingTagCount;
 }
 
 @property NSMutableArray * filteredBuffer;
+@property CSLCircularQueue * cmdRespQueue;
 @property (nonatomic, weak) id <CSLBleReaderDelegate> readerDelegate; //define CSLBleReaderDelegate as delegate
-@property NSInteger * rangingTagCount;
+@property NSInteger rangingTagCount;
 
 - (id)init;
 - (void)dealloc;
@@ -42,12 +45,19 @@
 - (BOOL)getBtFirmwareVersion:(NSString *)versionNumber;
 - (BOOL)getConnectedDeviceName:(NSString *) deviceName;
 - (BOOL)getSilLabIcVersion:(NSString *) slVersion;
-- (BOOL)getTriggerKeyStatus:(BOOL*)state;
 - (BOOL)getRfidBrdSerialNumber:(NSString*) serialNumber;
 - (BOOL)sendAbortCommand;
 - (BOOL)getRfidFwVersionNumber:(NSString*) versionInfo;
 - (BOOL)setPower:(double) powerInDbm;
 - (BOOL)setAntennaCycle:(NSUInteger) cycles;
+- (BOOL)setAntennaDwell:(NSUInteger) timeInMilliseconds;
+- (BOOL)setLinkProfile:(Byte) profile;
+- (BOOL)selectAlgorithmParameter:(NSUInteger) descriptorIndex;
+- (BOOL)setInventoryAlgorithmParameters0:(Byte) startQ maximumQ:(Byte)maxQ minimumQ:(Byte)minQ ThresholdMultiplier:(Byte)tmult;
+- (BOOL)setInventoryAlgorithmParameters1:(Byte) retry;
+- (BOOL)setInventoryAlgorithmParameters2:(BOOL) toggle RunTillZero:(BOOL)rtz;
+- (BOOL)setInventoryConfigurations:(Byte) inventoryAlgorithm MatchRepeats:(Byte)match_rep tagSelect:(Byte)tag_sel disableInventory:(Byte)disable_inventory tagRead:(Byte)tag_read crcErrorRead:(Byte) crc_err_read QTMode:(Byte) QT_mode tagDelay:(Byte) tag_delay inventoryMode:(Byte)inv_mode;
+- (BOOL)setQueryConfigurations:(Byte) queryTarget querySession:(Byte)query_session querySelect:(Byte)query_sel;
 - (BOOL)startInventory;
 - (BOOL)stopInventory;
 
