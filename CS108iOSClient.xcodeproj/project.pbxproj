@@ -19,6 +19,7 @@
 		CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71602132631F00D15BB1 /* CSLCircularQueue.m */; };
 		CABA71672132631F00D15BB1 /* CSLBlePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71642132631F00D15BB1 /* CSLBlePacket.m */; };
 		CABA71682132631F00D15BB1 /* CSLBleInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71652132631F00D15BB1 /* CSLBleInterface.m */; };
+		CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		CABA71632132631F00D15BB1 /* CSLBleInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLBleInterface.h; sourceTree = "<group>"; };
 		CABA71642132631F00D15BB1 /* CSLBlePacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBlePacket.m; sourceTree = "<group>"; };
 		CABA71652132631F00D15BB1 /* CSLBleInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBleInterface.m; sourceTree = "<group>"; };
+		CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CSLRfidDemoApp.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				CABA715321325BF600D15BB1 /* LaunchScreen.storyboard */,
 				CABA715621325BF600D15BB1 /* Info.plist */,
 				CABA715721325BF600D15BB1 /* main.m */,
+				CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */,
 			);
 			path = CS108iOSClient;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CABA715521325BF600D15BB1 /* LaunchScreen.storyboard in Resources */,
+				CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */,
 				CABA715221325BF600D15BB1 /* Assets.xcassets in Resources */,
 				CABA715021325BF500D15BB1 /* Main.storyboard in Resources */,
 			);
