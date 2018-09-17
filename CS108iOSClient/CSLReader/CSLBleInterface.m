@@ -405,10 +405,19 @@
         else
             [recvBuffer appendData:characteristic.value];
 
+        if (recvBuffer.length >= 2) {
+            if (((unsigned char *)[recvBuffer bytes])[0] != 0xA7 || ((unsigned char *)[recvBuffer bytes])[1] != 0xB3)
+            {
+                NSLog(@"BLE data received but incorrect header information.");
+                [recvBuffer setLength:0];
+                return;
+            }
+        }
+        
         //decode the packet header to find out the type and size of the packet.  If the receival of the packet is not completed, wait for the next reception
         if(recvBuffer.length < (((unsigned char *)[recvBuffer bytes])[2] + 8))
         {
-            NSLog(@"Partial packet received.  Curerent buffer size: %d, packet size: %d", (unsigned int)[recvBuffer length], (((unsigned char *)[recvBuffer bytes])[2] + 8));
+            NSLog(@"Partial packet received.  Current buffer size: %d, packet size: %d", (unsigned int)[recvBuffer length], (((unsigned char *)[recvBuffer bytes])[2] + 8));
             return;
         }
         else
@@ -439,9 +448,8 @@
             
             NSLog(@"Received packet payload size: 0x%2X byte(s)", ((unsigned char *)[recvBuffer bytes])[2] );
 
-            //NSLog(@"Before clear buffer: %ul", (unsigned int) recvBuffer.length);
-            [recvBuffer replaceBytesInRange:NSMakeRange(0, packet.payloadLength+8) withBytes:NULL length:0];
-            //NSLog(@"After clear buffer: %ul", (unsigned int) recvBuffer.length);
+            //[recvBuffer replaceBytesInRange:NSMakeRange(0, packet.payloadLength+8) withBytes:NULL length:0];
+            [recvBuffer setLength:0];
         }
     }
     
