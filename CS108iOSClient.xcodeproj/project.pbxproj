@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E5213528FC0035F075 /* CSLBleReader.m */; };
 		CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E8213698DD0035F075 /* CSLBleTag.m */; };
+		CA787361214CC154009B7FE6 /* CSLHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA787360214CC153009B7FE6 /* CSLHomeVC.m */; };
+		CA787367214CC9C8009B7FE6 /* CSLTabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA787366214CC9C8009B7FE6 /* CSLTabVC.m */; };
+		CA78736A214CCA47009B7FE6 /* CSLSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA787369214CCA47009B7FE6 /* CSLSettingsVC.m */; };
+		CA78736D214CD49D009B7FE6 /* CSLInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78736C214CD49D009B7FE6 /* CSLInventoryVC.m */; };
+		CA787370214CD7C4009B7FE6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA78736F214CD7C4009B7FE6 /* UIKit.framework */; };
+		CA787372214CD7CF009B7FE6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA787371214CD7CF009B7FE6 /* Foundation.framework */; };
 		CAB810842133E16F009D2F8F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB810832133E16F009D2F8F /* CoreBluetooth.framework */; };
 		CABA714A21325BF500D15BB1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA714921325BF500D15BB1 /* AppDelegate.m */; };
 		CABA714D21325BF500D15BB1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA714C21325BF500D15BB1 /* ViewController.m */; };
@@ -27,6 +33,16 @@
 		CA4E78E5213528FC0035F075 /* CSLBleReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLBleReader.m; sourceTree = "<group>"; };
 		CA4E78E7213698DD0035F075 /* CSLBleTag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLBleTag.h; sourceTree = "<group>"; };
 		CA4E78E8213698DD0035F075 /* CSLBleTag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLBleTag.m; sourceTree = "<group>"; };
+		CA78735F214CC153009B7FE6 /* CSLHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLHomeVC.h; sourceTree = "<group>"; };
+		CA787360214CC153009B7FE6 /* CSLHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLHomeVC.m; sourceTree = "<group>"; };
+		CA787365214CC9C8009B7FE6 /* CSLTabVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTabVC.h; sourceTree = "<group>"; };
+		CA787366214CC9C8009B7FE6 /* CSLTabVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTabVC.m; sourceTree = "<group>"; };
+		CA787368214CCA47009B7FE6 /* CSLSettingsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLSettingsVC.h; sourceTree = "<group>"; };
+		CA787369214CCA47009B7FE6 /* CSLSettingsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLSettingsVC.m; sourceTree = "<group>"; };
+		CA78736B214CD49D009B7FE6 /* CSLInventoryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLInventoryVC.h; sourceTree = "<group>"; };
+		CA78736C214CD49D009B7FE6 /* CSLInventoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLInventoryVC.m; sourceTree = "<group>"; };
+		CA78736F214CD7C4009B7FE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CA787371214CD7CF009B7FE6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CAB810832133E16F009D2F8F /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		CABA714521325BF500D15BB1 /* CS108iOSClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CS108iOSClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABA714821325BF500D15BB1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -52,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA787372214CD7CF009B7FE6 /* Foundation.framework in Frameworks */,
+				CA787370214CD7C4009B7FE6 /* UIKit.framework in Frameworks */,
 				CAB810842133E16F009D2F8F /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,9 +77,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA78735E214CC072009B7FE6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CABA714B21325BF500D15BB1 /* ViewController.h */,
+				CABA714C21325BF500D15BB1 /* ViewController.m */,
+				CA78735F214CC153009B7FE6 /* CSLHomeVC.h */,
+				CA787360214CC153009B7FE6 /* CSLHomeVC.m */,
+				CA787365214CC9C8009B7FE6 /* CSLTabVC.h */,
+				CA787366214CC9C8009B7FE6 /* CSLTabVC.m */,
+				CA787368214CCA47009B7FE6 /* CSLSettingsVC.h */,
+				CA787369214CCA47009B7FE6 /* CSLSettingsVC.m */,
+				CA78736B214CD49D009B7FE6 /* CSLInventoryVC.h */,
+				CA78736C214CD49D009B7FE6 /* CSLInventoryVC.m */,
+				CABA714821325BF500D15BB1 /* AppDelegate.h */,
+				CABA714921325BF500D15BB1 /* AppDelegate.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CA78736E214CD5E9009B7FE6 /* CSLReader */ = {
+			isa = PBXGroup;
+			children = (
+				CABA71622132631F00D15BB1 /* CSLBlePacket.h */,
+				CABA71642132631F00D15BB1 /* CSLBlePacket.m */,
+				CA4E78E7213698DD0035F075 /* CSLBleTag.h */,
+				CA4E78E8213698DD0035F075 /* CSLBleTag.m */,
+				CABA71612132631F00D15BB1 /* CSLCircularQueue.h */,
+				CABA71602132631F00D15BB1 /* CSLCircularQueue.m */,
+				CABA71632132631F00D15BB1 /* CSLBleInterface.h */,
+				CABA71652132631F00D15BB1 /* CSLBleInterface.m */,
+				CA4E78E4213528FC0035F075 /* CSLBleReader.h */,
+				CA4E78E5213528FC0035F075 /* CSLBleReader.m */,
+			);
+			path = CSLReader;
+			sourceTree = "<group>";
+		};
 		CAB810822133E16F009D2F8F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA787371214CD7CF009B7FE6 /* Foundation.framework */,
+				CA78736F214CD7C4009B7FE6 /* UIKit.framework */,
 				CAB810832133E16F009D2F8F /* CoreBluetooth.framework */,
 			);
 			name = Frameworks;
@@ -87,26 +143,14 @@
 		CABA714721325BF500D15BB1 /* CS108iOSClient */ = {
 			isa = PBXGroup;
 			children = (
-				CABA71632132631F00D15BB1 /* CSLBleInterface.h */,
-				CABA71652132631F00D15BB1 /* CSLBleInterface.m */,
-				CA4E78E4213528FC0035F075 /* CSLBleReader.h */,
-				CA4E78E5213528FC0035F075 /* CSLBleReader.m */,
-				CABA71622132631F00D15BB1 /* CSLBlePacket.h */,
-				CABA71642132631F00D15BB1 /* CSLBlePacket.m */,
-				CA4E78E7213698DD0035F075 /* CSLBleTag.h */,
-				CA4E78E8213698DD0035F075 /* CSLBleTag.m */,
-				CABA71612132631F00D15BB1 /* CSLCircularQueue.h */,
-				CABA71602132631F00D15BB1 /* CSLCircularQueue.m */,
-				CABA714821325BF500D15BB1 /* AppDelegate.h */,
-				CABA714921325BF500D15BB1 /* AppDelegate.m */,
-				CABA714B21325BF500D15BB1 /* ViewController.h */,
-				CABA714C21325BF500D15BB1 /* ViewController.m */,
 				CABA714E21325BF500D15BB1 /* Main.storyboard */,
-				CABA715121325BF600D15BB1 /* Assets.xcassets */,
+				CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */,
 				CABA715321325BF600D15BB1 /* LaunchScreen.storyboard */,
+				CA78736E214CD5E9009B7FE6 /* CSLReader */,
+				CA78735E214CC072009B7FE6 /* ViewControllers */,
+				CABA715121325BF600D15BB1 /* Assets.xcassets */,
 				CABA715621325BF600D15BB1 /* Info.plist */,
 				CABA715721325BF600D15BB1 /* main.m */,
-				CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */,
 			);
 			path = CS108iOSClient;
 			sourceTree = "<group>";
@@ -190,10 +234,14 @@
 				CABA71682132631F00D15BB1 /* CSLBleInterface.m in Sources */,
 				CABA714D21325BF500D15BB1 /* ViewController.m in Sources */,
 				CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */,
+				CA787367214CC9C8009B7FE6 /* CSLTabVC.m in Sources */,
+				CA78736D214CD49D009B7FE6 /* CSLInventoryVC.m in Sources */,
 				CABA71672132631F00D15BB1 /* CSLBlePacket.m in Sources */,
+				CA787361214CC154009B7FE6 /* CSLHomeVC.m in Sources */,
 				CABA715821325BF600D15BB1 /* main.m in Sources */,
 				CABA714A21325BF500D15BB1 /* AppDelegate.m in Sources */,
 				CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */,
+				CA78736A214CCA47009B7FE6 /* CSLSettingsVC.m in Sources */,
 				CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
