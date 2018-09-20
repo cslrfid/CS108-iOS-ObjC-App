@@ -15,6 +15,8 @@
 		CA78736D214CD49D009B7FE6 /* CSLInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78736C214CD49D009B7FE6 /* CSLInventoryVC.m */; };
 		CA787370214CD7C4009B7FE6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA78736F214CD7C4009B7FE6 /* UIKit.framework */; };
 		CA787372214CD7CF009B7FE6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA787371214CD7CF009B7FE6 /* Foundation.framework */; };
+		CA7873782150DF7A009B7FE6 /* CSLDeviceTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7873772150DF7A009B7FE6 /* CSLDeviceTV.m */; };
+		CA78737C21514E61009B7FE6 /* CSLRfidAppEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78737B21514E61009B7FE6 /* CSLRfidAppEngine.m */; };
 		CAB810842133E16F009D2F8F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB810832133E16F009D2F8F /* CoreBluetooth.framework */; };
 		CABA714A21325BF500D15BB1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA714921325BF500D15BB1 /* AppDelegate.m */; };
 		CABA714D21325BF500D15BB1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA714C21325BF500D15BB1 /* ViewController.m */; };
@@ -43,6 +45,10 @@
 		CA78736C214CD49D009B7FE6 /* CSLInventoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLInventoryVC.m; sourceTree = "<group>"; };
 		CA78736F214CD7C4009B7FE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CA787371214CD7CF009B7FE6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CA7873762150DF7A009B7FE6 /* CSLDeviceTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLDeviceTV.h; sourceTree = "<group>"; };
+		CA7873772150DF7A009B7FE6 /* CSLDeviceTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLDeviceTV.m; sourceTree = "<group>"; };
+		CA78737A21514E61009B7FE6 /* CSLRfidAppEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLRfidAppEngine.h; sourceTree = "<group>"; };
+		CA78737B21514E61009B7FE6 /* CSLRfidAppEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLRfidAppEngine.m; sourceTree = "<group>"; };
 		CAB810832133E16F009D2F8F /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		CABA714521325BF500D15BB1 /* CS108iOSClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CS108iOSClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABA714821325BF500D15BB1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -92,6 +98,8 @@
 				CA78736C214CD49D009B7FE6 /* CSLInventoryVC.m */,
 				CABA714821325BF500D15BB1 /* AppDelegate.h */,
 				CABA714921325BF500D15BB1 /* AppDelegate.m */,
+				CA7873762150DF7A009B7FE6 /* CSLDeviceTV.h */,
+				CA7873772150DF7A009B7FE6 /* CSLDeviceTV.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -111,6 +119,15 @@
 				CA4E78E5213528FC0035F075 /* CSLBleReader.m */,
 			);
 			path = CSLReader;
+			sourceTree = "<group>";
+		};
+		CA78737921514DC9009B7FE6 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				CA78737A21514E61009B7FE6 /* CSLRfidAppEngine.h */,
+				CA78737B21514E61009B7FE6 /* CSLRfidAppEngine.m */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		CAB810822133E16F009D2F8F /* Frameworks */ = {
@@ -148,6 +165,7 @@
 				CABA715321325BF600D15BB1 /* LaunchScreen.storyboard */,
 				CA78736E214CD5E9009B7FE6 /* CSLReader */,
 				CA78735E214CC072009B7FE6 /* ViewControllers */,
+				CA78737921514DC9009B7FE6 /* model */,
 				CABA715121325BF600D15BB1 /* Assets.xcassets */,
 				CABA715621325BF600D15BB1 /* Info.plist */,
 				CABA715721325BF600D15BB1 /* main.m */,
@@ -232,9 +250,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CABA71682132631F00D15BB1 /* CSLBleInterface.m in Sources */,
+				CA78737C21514E61009B7FE6 /* CSLRfidAppEngine.m in Sources */,
 				CABA714D21325BF500D15BB1 /* ViewController.m in Sources */,
 				CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */,
 				CA787367214CC9C8009B7FE6 /* CSLTabVC.m in Sources */,
+				CA7873782150DF7A009B7FE6 /* CSLDeviceTV.m in Sources */,
 				CA78736D214CD49D009B7FE6 /* CSLInventoryVC.m in Sources */,
 				CABA71672132631F00D15BB1 /* CSLBlePacket.m in Sources */,
 				CA787361214CC154009B7FE6 /* CSLHomeVC.m in Sources */,

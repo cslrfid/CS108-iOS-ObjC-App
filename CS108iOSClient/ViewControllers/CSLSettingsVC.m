@@ -12,13 +12,19 @@
 
 @end
 
+
 @implementation CSLSettingsVC
+
+@synthesize btnSaveConfig;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     self.navigationItem.title=@"Settings";
+    btnSaveConfig.layer.borderWidth=1.0f;
+    btnSaveConfig.layer.borderColor=[UIColor lightGrayColor].CGColor;
+
 }
 
 - (void)didReceiveMemoryWarning {

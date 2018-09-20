@@ -10,6 +10,8 @@
 #import "CSLSettingsVC.h"
 #import "CSLTabVC.h"
 #import "CSLInventoryVC.h"
+#import "CSLDeviceTV.h"
+#import "CSLRfidAppEngine.h"
 
 
 @interface CSLHomeVC ()
@@ -21,6 +23,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    //check if reader is connected
+    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus!=NOT_CONNECTED) {
+        self.lbConnectReader.text=[NSString stringWithFormat:@"Connected: %@", [CSLRfidAppEngine sharedAppEngine].reader.deviceName];
+        [self.btnConnectReader.imageView setImage:[UIImage imageNamed:@"connected"]];
+        [self.btnConnectReader.imageView setNeedsDisplay];
+
+    }
+    else {
+        self.lbConnectReader.text=@"Press to Connect";
+        [self.btnConnectReader.imageView setImage:[UIImage imageNamed:@"disconnected"]];
+        [self.btnConnectReader.imageView setNeedsDisplay];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,12 +75,66 @@
 
 
 - (IBAction)btnSettingsPressed:(id)sender {
-     CSLSettingsVC* settingsVC = (CSLSettingsVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_SettingsVC"];
+    CSLSettingsVC* settingsVC;
     
-    if (settingsVC != nil)
-    {
-        [[self navigationController] pushViewController:settingsVC animated:YES];
+    //if no device is connected, the settings page will not be loaded
+    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reader NOT connected" message:@"Please connect to reader first." preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
     }
+    else {
+        settingsVC = (CSLSettingsVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_SettingsVC"];
+        
+        if (settingsVC != nil)
+        {
+            [[self navigationController] pushViewController:settingsVC animated:YES];
+        }
+    }
+}
+
+- (IBAction)btnConnectReaderPressed:(id)sender {
+    CSLDeviceTV* deviceTV;
     
+    //if device is connected, will ask user if they want to disconnect it
+    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus!=NOT_CONNECTED && [CSLRfidAppEngine sharedAppEngine].reader.connectStatus!=SCANNING) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:[CSLRfidAppEngine sharedAppEngine].reader.deviceName message:@"Disconnect reader?" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+        {
+                                 
+            //stop scanning for device
+            [[CSLRfidAppEngine sharedAppEngine].reader disconnectDevice];
+            //connect to device selected
+            self.lbConnectReader.text=@"Press to Connect";
+            [self.btnConnectReader.imageView setImage:[UIImage imageNamed:@"disconnected"]];
+            [self.btnConnectReader.imageView setNeedsDisplay];
+
+        }];
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+        {
+            [self.btnConnectReader.imageView setImage:[UIImage imageNamed:@"connected"]];
+            [self.btnConnectReader.imageView setNeedsDisplay];
+        }];
+        
+        [alert addAction:ok];
+        [alert addAction:cancel];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    }
+    else {
+        deviceTV = (CSLDeviceTV*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_DeviceTV"];
+        
+        if (deviceTV != nil)
+        {
+            [[self navigationController] pushViewController:deviceTV animated:YES];
+        }
+    }
 }
 @end

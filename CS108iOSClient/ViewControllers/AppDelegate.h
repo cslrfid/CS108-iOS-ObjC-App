@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CSLBleReader.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+{
+    CSLBleReader* reader;
+    NSDate * tagRangingStartTime;
+        
+}
 @property (strong, nonatomic) UIWindow *window;
 
 

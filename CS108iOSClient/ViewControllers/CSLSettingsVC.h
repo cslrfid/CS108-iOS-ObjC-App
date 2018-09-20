@@ -10,4 +10,6 @@
 
 @interface CSLSettingsVC : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIButton *btnSaveConfig;
+
 @end

@@ -15,6 +15,9 @@
 
 - (IBAction)btnInventoryPressed:(id)sender;
 - (IBAction)btnSettingsPressed:(id)sender;
+- (IBAction)btnConnectReaderPressed:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnConnectReader;
+@property (weak, nonatomic) IBOutlet UILabel *lbConnectReader;
 
 @end

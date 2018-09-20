@@ -1549,203 +1549,206 @@
     int datalen;
     while (bleDevice)  //packet decoding would continue
     {
-        @synchronized(recvQueue) {
-            if ([self.recvQueue count] > 0)
-            {
-                //dequque the next packet received
-                packet=((CSLBlePacket *)[self.recvQueue deqObject]);
-            
-                //get event code
-                eventCode = [[packet getPacketPayloadInHexString] substringToIndex:4];
-                
-                //if we recieved a partial RFID packet on the previosu loop that to be combined with the current packet
-                if (isAppendPacket && [eventCode isEqualToString:@"8100"]) { //append to the previous packet
-                    
-                    NSMutableData * combinedData=[payloadInBytes mutableCopy];
-                    [combinedData appendData:[packet.payload subdataWithRange:NSMakeRange(2, [packet.payload length]-2)]];
-                    payloadInBytes=combinedData;
-                    
-                    [payload stringByAppendingString:[packet.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, packet.getPacketPayloadInHexString.length-4)]];
-                }
-                else {
-                    payloadInBytes = packet.payload;
-                    payload=packet.getPacketPayloadInHexString;
-                }
-
-                NSLog(@"[decodePacketsInBufferAsync] Payload to be decoded: %@", payload);
-                
-                //**************************************
-                //selector of different command responses
-                if ([eventCode isEqualToString:@"8100"])    //RFID module responses
+        @autoreleasepool {
+            @synchronized(recvQueue) {
+                if ([self.recvQueue count] > 0)
                 {
-                    if ([payload containsString:@"81004003BFFCBFFCBFFC"]) {
-                        NSLog(@"[decodePacketsInBufferAsync] Abort command received.  All opeartions ended");
+                    //dequque the next packet received
+                    packet=((CSLBlePacket *)[self.recvQueue deqObject]);
+                }
+                else
+                    continue;
+            }
+        
+            //get event code
+            eventCode = [[packet getPacketPayloadInHexString] substringToIndex:4];
+        
+            //if we recieved a partial RFID packet on the previosu loop that to be combined with the current packet
+            if (isAppendPacket && [eventCode isEqualToString:@"8100"]) { //append to the previous packet
+                
+                NSMutableData * combinedData=[payloadInBytes mutableCopy];
+                [combinedData appendData:[packet.payload subdataWithRange:NSMakeRange(2, [packet.payload length]-2)]];
+                payloadInBytes=combinedData;
+                
+                [payload stringByAppendingString:[packet.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, packet.getPacketPayloadInHexString.length-4)]];
+            }
+            else {
+                payloadInBytes = packet.payload;
+                payload=packet.getPacketPayloadInHexString;
+            }
+
+            NSLog(@"[decodePacketsInBufferAsync] Payload to be decoded: %@", payload);
+        
+            //**************************************
+            //selector of different command responses
+            if ([eventCode isEqualToString:@"8100"])    //RFID module responses
+            {
+                if ([payload containsString:@"81004003BFFCBFFCBFFC"]) {
+                    NSLog(@"[decodePacketsInBufferAsync] Abort command received.  All opeartions ended");
+                    [self.cmdRespQueue enqObject:packet];
+                    connectStatus=CONNECTED;
+                    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+                    continue;
+                }
+                
+                //command begin response
+                if ([payload length] >= 12)
+                {
+                    if ([[payload substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[payload substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"]) {
+                        NSLog(@"[decodePacketsInBufferAsync] Command-begin response recieved: %@", payload);
+                        //return packet directly to the API for decoding
                         [self.cmdRespQueue enqObject:packet];
-                        connectStatus=CONNECTED;
-                        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
                         continue;
                     }
-                    
-                    //command begin response
-                    if ([payload length] >= 12)
-                    {
-                        if ([[payload substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[payload substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"]) {
-                            NSLog(@"[decodePacketsInBufferAsync] Command-begin response recieved: %@", payload);
-                            //return packet directly to the API for decoding
-                            [self.cmdRespQueue enqObject:packet];
-                            continue;
-                        }
+                }
+                
+                //command end response
+                if ([payload length] >= 12)
+                {
+                    if ([[payload substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[payload substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0180"]) {
+                        NSLog(@"[decodePacketsInBufferAsync] Command-end response recieved: %@", payload);
+                        //return packet directly to the API for decoding
+                        [self.cmdRespQueue enqObject:packet];
+                        continue;
                     }
-                    
-                    //command end response
-                    if ([payload length] >= 12)
-                    {
-                        if ([[payload substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[payload substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0180"]) {
-                            NSLog(@"[decodePacketsInBufferAsync] Command-end response recieved: %@", payload);
-                            //return packet directly to the API for decoding
-                            [self.cmdRespQueue enqObject:packet];
-                            continue;
-                        }
+                }
+                
+                if ([payload length] >= 8)
+                {
+                    if ([[payload substringWithRange:NSMakeRange(4,4)] isEqualToString:@"7000"] || [[payload substringWithRange:NSMakeRange(4,4)] isEqualToString:@"7001"]) {
+                        //response when reading/writing registers.  Return packet directly to the API for decoding
+                        [self.cmdRespQueue enqObject:packet];
+                        continue;
                     }
-                    
-                    if ([payload length] >= 8)
+                }
+                
+                NSLog(@"[decodePacketsInBufferAsync] Current filtered buffer size: %d", (int)[filteredBuffer count]);
+                //check if packet is compact response packet
+                if ([payload length] >= 12) {
+                    if ([[payload substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"04"] && [[payload substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0580"])
                     {
-                        if ([[payload substringWithRange:NSMakeRange(4,4)] isEqualToString:@"7000"] || [[payload substringWithRange:NSMakeRange(4,4)] isEqualToString:@"7001"]) {
-                            //response when reading/writing registers.  Return packet directly to the API for decoding
-                            [self.cmdRespQueue enqObject:packet];
-                            continue;
-                        }
-                    }
-                    
-                    NSLog(@"[decodePacketsInBufferAsync] Current filtered buffer size: %d", (int)[filteredBuffer count]);
-                    //check if packet is compact response packet
-                    if ([payload length] >= 12) {
-                        if ([[payload substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"04"] && [[payload substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0580"])
+                        //start decode message
+                        datalen=((Byte *)[payloadInBytes bytes])[6] + (((((Byte *)[payloadInBytes bytes])[7] << 8) & 0xFF00)) ;
+                        
+                        //iterate through all the tag data
+                        int ptr=10;     //starting point of the tag data
+                        while(TRUE)
                         {
-                            //start decode message
-                            datalen=((Byte *)[payloadInBytes bytes])[6] + (((((Byte *)[payloadInBytes bytes])[7] << 8) & 0xFF00)) ;
+                            CSLBleTag* tag=[[CSLBleTag alloc] init];
                             
-                            //iterate through all the tag data
-                            int ptr=10;     //starting point of the tag data
-                            while(TRUE)
+                            tag.PC =((((Byte *)[payloadInBytes bytes])[ptr] << 8) & 0xFF00)+ ((Byte *)[payloadInBytes bytes])[ptr+1];
+                            tag.EPC=[payload substringWithRange:NSMakeRange((ptr*2)+4, ((tag.PC >> 11) * 2) * 2)];
+                            tag.rssi=(Byte)((Byte *)[payloadInBytes bytes])[(ptr + 2) + ((tag.PC >> 11) * 2)];
+                            ptr+= (2 + ((tag.PC >> 11) * 2) + 1);
+                            [self.readerDelegate didReceiveTagResponsePacket:self tagReceived:tag]; //this will call the method for handling the tag response.
+                            
+                            NSLog(@"[decodePacketsInBufferAsync] Tag data found: PC=%04X EPC=%@ rssi=%d", tag.PC, tag.EPC, tag.rssi);
+                            rangingTagCount++;
+                            
+                            //insert the tag data to the sorted filteredBuffer if not duplicated
+                            
+                            //check and see if epc exists on the array using binary search
+                            NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
+                            NSUInteger findIndex = [filteredBuffer indexOfObject:tag
+                                                                inSortedRange:searchRange
+                                                                      options:NSBinarySearchingInsertionIndex
+                                                              usingComparator:^(id obj1, id obj2)
+                                                                {
+                                                                    NSString* str1=((CSLBleTag*)obj1).EPC;
+                                                                    NSString* str2=((CSLBleTag*)obj2).EPC;
+                                                                    return [str1 compare:str2 options:NSCaseInsensitiveSearch];
+                                                                }];
+                            
+                            if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
                             {
-                                CSLBleTag* tag=[[CSLBleTag alloc] init];
+                                [filteredBuffer insertObject:tag atIndex:findIndex];
                                 
-                                tag.PC =((((Byte *)[payloadInBytes bytes])[ptr] << 8) & 0xFF00)+ ((Byte *)[payloadInBytes bytes])[ptr+1];
-                                tag.EPC=[payload substringWithRange:NSMakeRange((ptr*2)+4, ((tag.PC >> 11) * 2) * 2)];
-                                tag.rssi=(Byte)((Byte *)[payloadInBytes bytes])[(ptr + 2) + ((tag.PC >> 11) * 2)];
-                                ptr+= (2 + ((tag.PC >> 11) * 2) + 1);
-                                [self.readerDelegate didReceiveTagResponsePacket:self tagReceived:tag]; //this will call the method for handling the tag response.
-                                
-                                NSLog(@"[decodePacketsInBufferAsync] Tag data found: PC=%04X EPC=%@ rssi=%d", tag.PC, tag.EPC, tag.rssi);
-                                rangingTagCount++;
-                                
-                                //insert the tag data to the sorted filteredBuffer if not duplicated
-                                
-                                //check and see if epc exists on the array using binary search
-                                NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
-                                NSUInteger findIndex = [filteredBuffer indexOfObject:tag
-                                                                    inSortedRange:searchRange
-                                                                          options:NSBinarySearchingInsertionIndex
-                                                                  usingComparator:^(id obj1, id obj2)
-                                                                    {
-                                                                        NSString* str1=((CSLBleTag*)obj1).EPC;
-                                                                        NSString* str2=((CSLBleTag*)obj2).EPC;
-                                                                        return [str1 compare:str2 options:NSCaseInsensitiveSearch];
-                                                                    }];
-                                
-                                if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
-                                {
-                                    [filteredBuffer insertObject:tag atIndex:findIndex];
-                                    
-                                }
-                                else if ( [((CSLBleTag*)filteredBuffer[findIndex]).EPC caseInsensitiveCompare:tag.EPC] != NSOrderedSame)
-                                {
-                                    //new tag found.  insert into buffer in sorted order
-                                    [filteredBuffer insertObject:tag atIndex:findIndex];
-                                }
-                                else    //tag is duplicated, but will replace the existing tag information with the new one for updating the RRSI value.
-                                {
-                                    [filteredBuffer replaceObjectAtIndex:findIndex withObject:tag];
-                                }
-                                
-                                //for the cases where we reaches the end of the RFID reponse packet but there are still data within the bluetooth reader packet.
-                                // (1) user is aborting the operation so that the abort command reponse
-                                if ((ptr >= (datalen + 10)) && ([payloadInBytes length] >= (datalen + 10 /* 8 bytes of bluetooth packet header + 2 byte for the payload reply */ + 8 /* 8 bytes for the abort command response or other RFID command reponse*/)))
-                                {
-                                    NSLog(@"[decodePacketsInBufferAsync] Decoding the data appended to the end of the 8100 packet: %@", [payload substringWithRange:NSMakeRange(ptr * 2, ([payloadInBytes length] - ptr) * 2)] );
-                                    if ([[payload substringWithRange:NSMakeRange(ptr * 2, ([payloadInBytes length] - ptr) * 2)] containsString:@"4003BFFCBFFCBFFC"]) {
-                                        NSLog(@"[decodePacketsInBufferAsync] Abort command received.  All operations ended");
-                                        [self.cmdRespQueue enqObject:packet];
-                                        connectStatus=CONNECTED;
-                                        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-                                        break;
-                                    }
-                                    //check if we are getting the beginning of another 8100 packet.  If so, decode the beinginning of the next RFID response
-                                    else if ([[payload substringWithRange:NSMakeRange((ptr * 2)  + 4, 2)] isEqualToString:@"04"] && [[payload substringWithRange:NSMakeRange((ptr * 2)+8, 4)] isEqualToString:@"0580"])
-                                    {
-                                        datalen=((Byte *)[payloadInBytes bytes])[ptr+6] + (((((Byte *)[payloadInBytes bytes])[ptr+7] << 8) & 0xFF00)) ;
-                                        payloadInBytes = [payloadInBytes subdataWithRange:NSMakeRange(ptr + 8, [payloadInBytes length]-ptr-8)];
-                                        payload=[payload substringWithRange:NSMakeRange((ptr * 2) + 16, [payload length]-(ptr * 2)-16)];
-                                        isAppendPacket=true;
-                                    }
-                                    else
-                                        isAppendPacket=false;
-                                }
-                                
-                                //return when pointer reaches the end of the RFID response packet.
-                                if (ptr >= (datalen + 10))
-                                    break;
                             }
+                            else if ( [((CSLBleTag*)filteredBuffer[findIndex]).EPC caseInsensitiveCompare:tag.EPC] != NSOrderedSame)
+                            {
+                                //new tag found.  insert into buffer in sorted order
+                                [filteredBuffer insertObject:tag atIndex:findIndex];
+                            }
+                            else    //tag is duplicated, but will replace the existing tag information with the new one for updating the RRSI value.
+                            {
+                                [filteredBuffer replaceObjectAtIndex:findIndex withObject:tag];
+                            }
+                            
+                            //for the cases where we reaches the end of the RFID reponse packet but there are still data within the bluetooth reader packet.
+                            // (1) user is aborting the operation so that the abort command reponse
+                            if ((ptr >= (datalen + 10)) && ([payloadInBytes length] >= (datalen + 10 /* 8 bytes of bluetooth packet header + 2 byte for the payload reply */ + 8 /* 8 bytes for the abort command response or other RFID command reponse*/)))
+                            {
+                                NSLog(@"[decodePacketsInBufferAsync] Decoding the data appended to the end of the 8100 packet: %@", [payload substringWithRange:NSMakeRange(ptr * 2, ([payloadInBytes length] - ptr) * 2)] );
+                                if ([[payload substringWithRange:NSMakeRange(ptr * 2, ([payloadInBytes length] - ptr) * 2)] containsString:@"4003BFFCBFFCBFFC"]) {
+                                    NSLog(@"[decodePacketsInBufferAsync] Abort command received.  All operations ended");
+                                    [self.cmdRespQueue enqObject:packet];
+                                    connectStatus=CONNECTED;
+                                    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+                                    break;
+                                }
+                                //check if we are getting the beginning of another 8100 packet.  If so, decode the beinginning of the next RFID response
+                                else if ([[payload substringWithRange:NSMakeRange((ptr * 2)  + 4, 2)] isEqualToString:@"04"] && [[payload substringWithRange:NSMakeRange((ptr * 2)+8, 4)] isEqualToString:@"0580"])
+                                {
+                                    datalen=((Byte *)[payloadInBytes bytes])[ptr+6] + (((((Byte *)[payloadInBytes bytes])[ptr+7] << 8) & 0xFF00)) ;
+                                    payloadInBytes = [payloadInBytes subdataWithRange:NSMakeRange(ptr + 8, [payloadInBytes length]-ptr-8)];
+                                    payload=[payload substringWithRange:NSMakeRange((ptr * 2) + 16, [payload length]-(ptr * 2)-16)];
+                                    isAppendPacket=true;
+                                }
+                                else
+                                    isAppendPacket=false;
+                            }
+                            
+                            //return when pointer reaches the end of the RFID response packet.
+                            if (ptr >= (datalen + 10))
+                                break;
                         }
                     }
                 }
-                else if ([eventCode isEqualToString:@"9000"]) {   //Power on barcode
-                    NSLog(@"[decodePacketsInBufferAsync] Power on barcode");
-                    [self.cmdRespQueue enqObject:packet];
-                }
-                else if ([eventCode isEqualToString:@"8000"]) {   //Power on RFID module
-                    NSLog(@"[decodePacketsInBufferAsync] Power on Rfid Module");
-                    [self.cmdRespQueue enqObject:packet];
-                }
-                else if ([eventCode isEqualToString:@"8001"]) {   //Power off RFID module
-                    NSLog(@"[decodePacketsInBufferAsync] Power off Rfid Module");
-                    [self.cmdRespQueue enqObject:packet];
-                }
-                else if ([eventCode isEqualToString:@"C000"]) {   //Get BT firmware version
-                    NSLog(@"[decodePacketsInBufferAsync] Get BT firmware version");
-                    [self.cmdRespQueue enqObject:packet];
-                }
-                else if ([eventCode isEqualToString:@"C004"]) {   //Get connected device name
-                    NSLog(@"[decodePacketsInBufferAsync] Get connected device name");
-                    [self.cmdRespQueue enqObject:packet];
-                }
-                else if ([eventCode isEqualToString:@"B000"]) {   //Get SilconLab IC firmware version.
-                    NSLog(@"[decodePacketsInBufferAsync] Get SilconLab IC firmware version.");
-                    [self.cmdRespQueue enqObject:packet];
-                }
-                else if ([eventCode isEqualToString:@"B004"]) {   //Get 16 byte serial number.
-                    NSLog(@"[decodePacketsInBufferAsync] Get 16 byte serial number.");
-                    [self.cmdRespQueue enqObject:packet];
-                }
-                else if ([eventCode isEqualToString:@"8002"]) {   //RFID firmware command response
-                    NSLog(@"[decodePacketsInBufferAsync] RFID firmware command response.");
-                    [self.cmdRespQueue enqObject:packet];
-                }
-                else if ([eventCode isEqualToString:@"A103"]) {
-                    //Trigger key is released.  Trigger callback delegate method
-                    NSLog(@"[decodePacketsInBufferAsync] Trigger key: OFF");
-                    [self.readerDelegate didTriggerKeyChangedState:self keyState:false]; //this will call the method for handling the tag response.
-                }
-                else if ([eventCode isEqualToString:@"A102"]) {
-                    //Trigger key is pressed.  Trigger callback delegate method
-                    NSLog(@"[decodePacketsInBufferAsync] Trigger key: ON");
-                    [self.readerDelegate didTriggerKeyChangedState:self keyState:true]; //this will call the method for handling the tag response.
-                }
+            }
+            else if ([eventCode isEqualToString:@"9000"]) {   //Power on barcode
+                NSLog(@"[decodePacketsInBufferAsync] Power on barcode");
+                [self.cmdRespQueue enqObject:packet];
+            }
+            else if ([eventCode isEqualToString:@"8000"]) {   //Power on RFID module
+                NSLog(@"[decodePacketsInBufferAsync] Power on Rfid Module");
+                [self.cmdRespQueue enqObject:packet];
+            }
+            else if ([eventCode isEqualToString:@"8001"]) {   //Power off RFID module
+                NSLog(@"[decodePacketsInBufferAsync] Power off Rfid Module");
+                [self.cmdRespQueue enqObject:packet];
+            }
+            else if ([eventCode isEqualToString:@"C000"]) {   //Get BT firmware version
+                NSLog(@"[decodePacketsInBufferAsync] Get BT firmware version");
+                [self.cmdRespQueue enqObject:packet];
+            }
+            else if ([eventCode isEqualToString:@"C004"]) {   //Get connected device name
+                NSLog(@"[decodePacketsInBufferAsync] Get connected device name");
+                [self.cmdRespQueue enqObject:packet];
+            }
+            else if ([eventCode isEqualToString:@"B000"]) {   //Get SilconLab IC firmware version.
+                NSLog(@"[decodePacketsInBufferAsync] Get SilconLab IC firmware version.");
+                [self.cmdRespQueue enqObject:packet];
+            }
+            else if ([eventCode isEqualToString:@"B004"]) {   //Get 16 byte serial number.
+                NSLog(@"[decodePacketsInBufferAsync] Get 16 byte serial number.");
+                [self.cmdRespQueue enqObject:packet];
+            }
+            else if ([eventCode isEqualToString:@"8002"]) {   //RFID firmware command response
+                NSLog(@"[decodePacketsInBufferAsync] RFID firmware command response.");
+                [self.cmdRespQueue enqObject:packet];
+            }
+            else if ([eventCode isEqualToString:@"A103"]) {
+                //Trigger key is released.  Trigger callback delegate method
+                NSLog(@"[decodePacketsInBufferAsync] Trigger key: OFF");
+                [self.readerDelegate didTriggerKeyChangedState:self keyState:false]; //this will call the method for handling the tag response.
+            }
+            else if ([eventCode isEqualToString:@"A102"]) {
+                //Trigger key is pressed.  Trigger callback delegate method
+                NSLog(@"[decodePacketsInBufferAsync] Trigger key: ON");
+                [self.readerDelegate didTriggerKeyChangedState:self keyState:true]; //this will call the method for handling the tag response.
             }
         }
     }
-
     NSLog(@"[decodePacketsInBufferAsync] Ended!");
 }
 
