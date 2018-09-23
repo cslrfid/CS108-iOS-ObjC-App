@@ -97,8 +97,53 @@
         if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus != CONNECTED) {
             NSLog(@"Failed to connect to reader.");
         }
-        else //set device name to singleton object
+        else {
+            
+            //set device name to singleton object
             [CSLRfidAppEngine sharedAppEngine].reader.deviceName=[[[CSLRfidAppEngine sharedAppEngine].reader.bleDeviceList objectAtIndex:indexPath.row] name];
+            NSString * btFwVersion;
+            NSString * slVersion;
+            NSString * rfidBoardSn;
+            NSString * rfidFwVersion;
+            NSString * appVersion;
+
+            
+            //Configure reader
+            [[CSLRfidAppEngine sharedAppEngine].reader barcodeReader:true];
+            [[CSLRfidAppEngine sharedAppEngine].reader powerOnRfid:false];
+            [[CSLRfidAppEngine sharedAppEngine].reader powerOnRfid:true];
+            [[CSLRfidAppEngine sharedAppEngine].reader getBtFirmwareVersion:&btFwVersion];
+            [[CSLRfidAppEngine sharedAppEngine].reader getSilLabIcVersion:&slVersion];
+            [[CSLRfidAppEngine sharedAppEngine].reader getRfidBrdSerialNumber:&rfidBoardSn];
+            [[CSLRfidAppEngine sharedAppEngine].reader sendAbortCommand];
+            [[CSLRfidAppEngine sharedAppEngine].reader getRfidFwVersionNumber:&rfidFwVersion];
+
+            [CSLRfidAppEngine sharedAppEngine].readerInfo.BtFirmwareVersion=btFwVersion;
+            [CSLRfidAppEngine sharedAppEngine].readerInfo.SiLabICFirmwareVersion=slVersion;
+            [CSLRfidAppEngine sharedAppEngine].readerInfo.RfidFirmwareVersion=rfidFwVersion;
+            [CSLRfidAppEngine sharedAppEngine].readerInfo.deviceSerialNumber=rfidBoardSn;
+            
+            appVersion = [NSString stringWithFormat:@"v%@ Build %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]];
+            [CSLRfidAppEngine sharedAppEngine].readerInfo.appVersion=appVersion;
+            
+             //read OEM data: to be implemented for getting reader regional settings and parameters
+            /*
+             NSData* OEMData;
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000002 forData:OEMData];
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000008 forData:OEMData];
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000008E forData:OEMData];
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000008F forData:OEMData];
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000009D forData:OEMData];
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x000000A3 forData:OEMData];
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x000000A4 forData:OEMData];
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000004 forData:OEMData];
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000005 forData:OEMData];
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000006 forData:OEMData];
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000007 forData:OEMData];
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x000000A5 forData:OEMData];
+             */
+        }
+        
         
         [self.navigationController popToRootViewControllerAnimated:YES];
     }];

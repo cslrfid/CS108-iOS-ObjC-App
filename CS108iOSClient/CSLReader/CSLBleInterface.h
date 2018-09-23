@@ -29,21 +29,14 @@ typedef enum _STATUS : Byte
 @interface CSLBleInterface : NSObject <CBCentralManagerDelegate,CBPeripheralDelegate>
 {
     NSString * deviceName;
-    CBCentralManager * manager;
-    CBPeripheral * bleDevice;       //Device UUID=9800
-    CBCharacteristic * bleSend;     //Service UUID=9900
-    CBCharacteristic * bleReceive;  //Service UUID=9901
-    NSMutableData * sendBuffer;     //byte array for sending data
-    NSMutableData * recvBuffer;     //byte array for receving data
+    CBPeripheral* bleDevice;        //connected BLE device
     NSMutableArray * bleDeviceList; //array of CBPeripheral object after device discovery
     NSException* LastException;
     CSLCircularQueue * recvQueue;
     STATUS connectStatus;
-    
 }
 
 @property NSString * deviceName;
-@property CBCentralManager * manager;
 @property NSException* LastException;
 @property NSMutableArray * bleDeviceList;
 @property CBPeripheral* bleDevice;

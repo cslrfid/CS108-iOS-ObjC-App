@@ -12,6 +12,7 @@
 #import "CSLInventoryVC.h"
 #import "CSLDeviceTV.h"
 #import "CSLRfidAppEngine.h"
+#import "CSLAboutVC.h"
 
 
 @interface CSLHomeVC ()
@@ -32,7 +33,6 @@
         self.lbConnectReader.text=[NSString stringWithFormat:@"Connected: %@", [CSLRfidAppEngine sharedAppEngine].reader.deviceName];
         [self.btnConnectReader.imageView setImage:[UIImage imageNamed:@"connected"]];
         [self.btnConnectReader.imageView setNeedsDisplay];
-
     }
     else {
         self.lbConnectReader.text=@"Press to Connect";
@@ -136,5 +136,29 @@
             [[self navigationController] pushViewController:deviceTV animated:YES];
         }
     }
+}
+
+- (IBAction)btnAboutPressed:(id)sender {
+    CSLAboutVC* aboutVC;
+
+    //if no device is connected, the settings page will not be loaded
+    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reader NOT connected" message:@"Please connect to reader first." preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                             { [[self navigationController] popViewControllerAnimated:YES]; }];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        aboutVC = (CSLAboutVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_AboutVC"];
+        
+        if (aboutVC != nil)
+        {
+            [[self navigationController] pushViewController:aboutVC animated:YES];
+        }
+    }
+    
 }
 @end

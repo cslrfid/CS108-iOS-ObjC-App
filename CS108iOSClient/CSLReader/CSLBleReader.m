@@ -11,8 +11,7 @@
 //define private methods and variables
 
 @interface CSLBleReader() {
-//    BOOL isRunningAsync;
-    int firstTagReceived;
+    CSLCircularQueue * cmdRespQueue;     //Buffer for storing response packet(s) after issuing a command synchronously
 }
 
 - (void) stopInventoryBlocking;
@@ -22,7 +21,7 @@
 @implementation CSLBleReader
 
 @synthesize filteredBuffer;
-@synthesize cmdRespQueue;
+//@synthesize cmdRespQueue;
 @synthesize delegate; //synthesize CSLBleReaderDelegate delegate
 @synthesize rangingTagCount;
 
@@ -61,8 +60,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
     CSLBlePacket * recvPacket;
@@ -86,13 +85,13 @@
     [intf sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if ([self.cmdRespQueue count] !=0)
+        if ([cmdRespQueue count] !=0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
 
-    if ([self.cmdRespQueue count] != 0)
-        recvPacket = ((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([cmdRespQueue count] != 0)
+        recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
     else
     {
         NSLog(@"Command timed out.");
@@ -128,13 +127,13 @@
     [intf sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if ([self.cmdRespQueue count] >= 2)
+        if ([cmdRespQueue count] >= 2)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
     
-    if ([self.cmdRespQueue count] >= 2)
-        recvPacket = ((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([cmdRespQueue count] >= 2)
+        recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
     else
     {
         NSLog(@"Command timed out.");
@@ -154,7 +153,7 @@
         return FALSE;
     }
     
-    recvPacket=((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
     if (((Byte *)[recvPacket.payload bytes])[0] == 0x81 && ((Byte *)[recvPacket.payload bytes])[1] == 0x00)
     {
         NSLog(@"Read OEM data: OK");
@@ -185,8 +184,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
 
     
     //Initialize data
@@ -212,12 +211,12 @@
     [self sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if ([self.cmdRespQueue count] != 0)
+        if ([cmdRespQueue count] != 0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
-    if ([self.cmdRespQueue count] != 0)
-        payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
+    if ([cmdRespQueue count] != 0)
+        payloadData = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
     else
     {
         NSLog(@"Command timed out.");
@@ -248,8 +247,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -274,12 +273,12 @@
     [self sendPackets:packet];
 
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-        if([self.cmdRespQueue count] != 0)
+        if([cmdRespQueue count] != 0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
-    if ([self.cmdRespQueue count] != 0)
-        payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
+    if ([cmdRespQueue count] != 0)
+        payloadData = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
     else
     {
         NSLog(@"Command timed out.");
@@ -298,7 +297,7 @@
         return false;
     }
 }
-- (BOOL)getBtFirmwareVersion:(NSString *)versionNumber
+- (BOOL)getBtFirmwareVersion:(NSString **)versionNumber
 {
     @synchronized(self) {
         if (connectStatus!=CONNECTED)
@@ -310,8 +309,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -336,12 +335,12 @@
     [self sendPackets:packet];
 
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-       if([self.cmdRespQueue count] != 0)
+       if([cmdRespQueue count] != 0)
            break;
            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
-    if ([self.cmdRespQueue count] != 0)
-        versionInfo = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
+    if ([cmdRespQueue count] != 0)
+        versionInfo = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
     else
     {
         NSLog(@"Command timed out.");
@@ -353,13 +352,13 @@
     NSString * btFwVersion = [NSString stringWithFormat:@"%d.%d.%d", ((Byte*)[versionInfo bytes])[2], ((Byte*)[versionInfo bytes])[3], ((Byte*)[versionInfo bytes])[4]];
     NSLog(@"Bluetooth IC firmware version: %@", btFwVersion);
     
-    versionNumber=btFwVersion;
+    *versionNumber=btFwVersion;
     connectStatus=CONNECTED;
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
     return true;
 }
 
-- (BOOL) getConnectedDeviceName:(NSString *) deviceName
+- (BOOL) getConnectedDeviceName:(NSString **) deviceName
 {
     @synchronized(self) {
         if (connectStatus!=CONNECTED)
@@ -371,8 +370,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -396,15 +395,15 @@
     [self sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-        if([self.cmdRespQueue count] != 0)
+        if([cmdRespQueue count] != 0)
             break;
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
         
-    if ([self.cmdRespQueue count] != 0) {
-        NSData * name = [((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload subdataWithRange:NSMakeRange(2, 21)];
-        deviceName = [NSString stringWithUTF8String:[name bytes]];
-        NSLog(@"Device Name: %@", deviceName);
+    if ([cmdRespQueue count] != 0) {
+        NSData * name = [((CSLBlePacket *)[cmdRespQueue deqObject]).payload subdataWithRange:NSMakeRange(2, 21)];
+        *deviceName = [NSString stringWithUTF8String:[name bytes]];
+        NSLog(@"Device Name: %@", *deviceName);
     }
     else {
         NSLog(@"Command timed out.");
@@ -417,7 +416,7 @@
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
     return true;
 }
-- (BOOL)getSilLabIcVersion:(NSString *) slVersion
+- (BOOL)getSilLabIcVersion:(NSString **) slVersion
 {
     
     @synchronized(self) {
@@ -430,8 +429,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -455,14 +454,14 @@
     [self sendPackets:packet];
 
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if([self.cmdRespQueue count] != 0)
+        if([cmdRespQueue count] != 0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
-    if ([self.cmdRespQueue count] != 0) {
-        NSData * versionInfo = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
-        slVersion=[NSString stringWithFormat:@"%d.%d.%d", ((Byte*)[versionInfo bytes])[2], ((Byte*)[versionInfo bytes])[3], ((Byte*)[versionInfo bytes])[4]];
-        NSLog(@"SilconLab IC firmware version: %@", slVersion);
+    if ([cmdRespQueue count] != 0) {
+        NSData * versionInfo = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
+        *slVersion=[NSString stringWithFormat:@"%d.%d.%d", ((Byte*)[versionInfo bytes])[2], ((Byte*)[versionInfo bytes])[3], ((Byte*)[versionInfo bytes])[4]];
+        NSLog(@"SilconLab IC firmware version: %@", *slVersion);
     }
     else {
         NSLog(@"Command timed out.");
@@ -477,7 +476,7 @@
 }
 
 
-- (BOOL)getRfidBrdSerialNumber:(NSString*) serialNumber {
+- (BOOL)getRfidBrdSerialNumber:(NSString**) serialNumber {
     
     @synchronized(self) {
         if (connectStatus!=CONNECTED)
@@ -489,8 +488,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -514,15 +513,15 @@
     [self sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if([self.cmdRespQueue count] != 0)
+        if([cmdRespQueue count] != 0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
     
-    if ([self.cmdRespQueue count] != 0) {
-        NSData * name = [((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload subdataWithRange:NSMakeRange(2, 16)];
-        serialNumber=[NSString stringWithUTF8String:[name bytes]];
-        NSLog(@"16 byte serial number: %@", serialNumber);
+    if ([cmdRespQueue count] != 0) {
+        NSData * name = [((CSLBlePacket *)[cmdRespQueue deqObject]).payload subdataWithRange:NSMakeRange(2, 16)];
+        *serialNumber=[NSString stringWithUTF8String:[name bytes]];
+        NSLog(@"16 byte serial number: %@", *serialNumber);
     }
     else {
         NSLog(@"Command timed out.");
@@ -545,7 +544,7 @@
             return false;
         }
     }
-    [self.cmdRespQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -572,9 +571,9 @@
     
                 
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if ([self.cmdRespQueue count] !=0)
+        if ([cmdRespQueue count] !=0)
         {
-            recvPacket=((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+            recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
             if ([[recvPacket getPacketPayloadInHexString] containsString:@"4003BFFCBFFCBFFC"]) {
                 isAborted=true;
                 break;
@@ -596,7 +595,7 @@
 
 }
 
-- (BOOL)getRfidFwVersionNumber:(NSString*) versionInfo {
+- (BOOL)getRfidFwVersionNumber:(NSString**) versionInfo {
 
     @synchronized(self) {
         if (connectStatus!=CONNECTED)
@@ -608,8 +607,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -634,13 +633,13 @@
     [self sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if([self.cmdRespQueue count] >= 2)
+        if([cmdRespQueue count] >= 2)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
     
-    if ([self.cmdRespQueue count] >= 2) {
-        recvPacket=((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([cmdRespQueue count] >= 2) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
         if (memcmp([recvPacket.payload bytes], rfidFWVersion, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
             NSLog(@"RFID firmware version command sent: OK");
         else {
@@ -650,15 +649,15 @@
         }
     }
         
-    recvPacket=((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
     unsigned short byte1, byte2, byte3, byte4;
     if (((Byte*)[recvPacket.payload bytes])[4] == 0x00 && ((Byte*)[recvPacket.payload bytes])[5] == 0x00 && [recvPacket.payload length] == 10) {
         byte1 = ((Byte*)[recvPacket.payload bytes])[6];
         byte2 = ((Byte*)[recvPacket.payload bytes])[7];
         byte3 = ((Byte*)[recvPacket.payload bytes])[8];
         byte4 = ((Byte*)[recvPacket.payload bytes])[9];
-        versionInfo=[NSString stringWithFormat:@"%d.%d.%d", byte4, ((byte2 >> 4) & 0x0F) + ((byte3 << 4) & 0xF00), (byte2 & 0x0F) + byte1];
-        NSLog(@"RFID firmware: %@", versionInfo);
+        *versionInfo=[NSString stringWithFormat:@"%d.%d.%d", byte4, ((byte2 >> 4) & 0x0F) + ((byte3 << 4) & 0xF00), (byte2 & 0x0F) + byte1];
+        NSLog(@"RFID firmware: %@", *versionInfo);
     }
     else {
         NSLog(@"Command response failure.");
@@ -683,8 +682,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -707,13 +706,13 @@
     [self sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if([self.cmdRespQueue count] != 0)
+        if([cmdRespQueue count] != 0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
     
-    if ([self.cmdRespQueue count] != 0) {
-        recvPacket=((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
         if (memcmp([recvPacket.payload bytes], ANT_PORT_POWER, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
             NSLog(@"Set antenna power command sent: OK");
         else {
@@ -747,8 +746,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -774,13 +773,13 @@
     [self sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if([self.cmdRespQueue count] != 0)
+        if([cmdRespQueue count] != 0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
     
-    if ([self.cmdRespQueue count] != 0) {
-        recvPacket=((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
         if (memcmp([recvPacket.payload bytes], ANT_CYCLES, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
             NSLog(@"Set antenna cycles: OK");
         else {
@@ -814,8 +813,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -841,13 +840,13 @@
     [self sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if([self.cmdRespQueue count] != 0)
+        if([cmdRespQueue count] != 0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
     
-    if ([self.cmdRespQueue count] != 0) {
-        recvPacket=((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
         if (memcmp([recvPacket.payload bytes], ANT_DWELL, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
             NSLog(@"Set antenna dwell: OK");
         else {
@@ -870,7 +869,7 @@
 }
 
 
-- (BOOL)selectAlgorithmParameter:(NSUInteger) descriptorIndex {
+- (BOOL)selectAlgorithmParameter:(QUERYALGORITHM) algorithm {
     
     @synchronized(self) {
         if (connectStatus!=CONNECTED)
@@ -882,8 +881,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -895,7 +894,7 @@
     NSLog(@"Select which set of algorithm parameter registers to access (INV_SEL)...");
     NSLog(@"----------------------------------------------------------------------");
     
-    unsigned char INV_SEL[] = {0x80, 0x02, 0x70, 0x01, 0x02, 0x09, descriptorIndex & 0x000000FF, (descriptorIndex & 0x0000FF00) >> 8, (descriptorIndex & 0x00FF0000) >> 16, (descriptorIndex & 0xFF000000) >> 24};
+    unsigned char INV_SEL[] = {0x80, 0x02, 0x70, 0x01, 0x02, 0x09, algorithm & 0x000000FF, (algorithm & 0x0000FF00) >> 8, (algorithm & 0x00FF0000) >> 16, (algorithm & 0xFF000000) >> 24};
     packet.prefix=0xA7;
     packet.connection = Bluetooth;
     packet.payloadLength=0x0A;
@@ -910,13 +909,13 @@
     [self sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if([self.cmdRespQueue count] != 0)
+        if([cmdRespQueue count] != 0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
     
-    if ([self.cmdRespQueue count] != 0) {
-        recvPacket=((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
         if (memcmp([recvPacket.payload bytes], INV_SEL, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
             NSLog(@"Select which set of algorithm parameter registers: OK");
         else {
@@ -950,8 +949,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -977,13 +976,13 @@
     [self sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if([self.cmdRespQueue count] != 0)
+        if([cmdRespQueue count] != 0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
     
-    if ([self.cmdRespQueue count] != 0) {
-        recvPacket=((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
         if (memcmp([recvPacket.payload bytes], INV_ALG_PARM, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
             NSLog(@"Set algorithm parameter 0: OK");
         else {
@@ -1017,8 +1016,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -1044,13 +1043,13 @@
     [self sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if([self.cmdRespQueue count] != 0)
+        if([cmdRespQueue count] != 0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
     
-    if ([self.cmdRespQueue count] != 0) {
-        recvPacket=((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
         if (memcmp([recvPacket.payload bytes], INV_ALG_PARM, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
             NSLog(@"Set algorithm parameter 1: OK");
         else {
@@ -1083,8 +1082,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -1110,13 +1109,13 @@
     [self sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if([self.cmdRespQueue count] != 0)
+        if([cmdRespQueue count] != 0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
     
-    if ([self.cmdRespQueue count] != 0) {
-        recvPacket=((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
         if (memcmp([recvPacket.payload bytes], INV_ALG_PARM, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
             NSLog(@"Set algorithm parameter 2: OK");
         else {
@@ -1138,8 +1137,7 @@
     return true;
 }
 
-- (BOOL)setInventoryConfigurations:(Byte) inventoryAlgorithm MatchRepeats:(Byte)match_rep tagSelect:(Byte)tag_sel disableInventory:(Byte)disable_inventory tagRead:(Byte) tag_read
-                      crcErrorRead:(Byte) crc_err_read QTMode:(Byte) QT_mode tagDelay:(Byte) tag_delay inventoryMode:(Byte)inv_mode {
+- (BOOL)setInventoryConfigurations:(QUERYALGORITHM) inventoryAlgorithm MatchRepeats:(Byte)match_rep tagSelect:(Byte)tag_sel disableInventory:(Byte)disable_inventory tagRead:(Byte)tag_read crcErrorRead:(Byte) crc_err_read QTMode:(Byte) QT_mode tagDelay:(Byte) tag_delay inventoryMode:(Byte)inv_mode {
     @synchronized(self) {
         if (connectStatus!=CONNECTED)
         {
@@ -1151,8 +1149,8 @@
         
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -1179,13 +1177,13 @@
     [self sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-        if([self.cmdRespQueue count] != 0)
+        if([cmdRespQueue count] != 0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
     
-    if ([self.cmdRespQueue count] != 0) {
-        recvPacket=((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
         if (memcmp([recvPacket.payload bytes], INV_CFG, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
             NSLog(@"Set inventory configurations: OK");
         else {
@@ -1206,7 +1204,7 @@
     return true;
 }
 
-- (BOOL)setQueryConfigurations:(Byte) queryTarget querySession:(Byte)query_session querySelect:(Byte)query_sel  {
+- (BOOL)setQueryConfigurations:(TARGET) queryTarget querySession:(SESSION)query_session querySelect:(QUERYSELECT)query_sel {
     
     @synchronized(self) {
         if (connectStatus!=CONNECTED)
@@ -1219,8 +1217,8 @@
         
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -1247,13 +1245,13 @@
     [self sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-        if([self.cmdRespQueue count] != 0)
+        if([cmdRespQueue count] != 0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
     
-    if ([self.cmdRespQueue count] != 0) {
-        recvPacket=((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
         if (memcmp([recvPacket.payload bytes], QUERY_CFG, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
             NSLog(@"Configure parameters on query and inventory operations: OK");
         else {
@@ -1274,7 +1272,7 @@
     return true;
 }
 
-- (BOOL)setLinkProfile:(Byte) profile
+- (BOOL)setLinkProfile:(LINKPROFILE) profile
 {
     @synchronized(self) {
         if (connectStatus!=CONNECTED)
@@ -1286,8 +1284,8 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
     CSLBlePacket * recvPacket;
@@ -1311,13 +1309,13 @@
     [self sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if ([self.cmdRespQueue count] !=0)
+        if ([cmdRespQueue count] !=0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
     
-    if ([self.cmdRespQueue count] != 0)
-        recvPacket = ((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([cmdRespQueue count] != 0)
+        recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
     else
     {
         NSLog(@"Command timed out.");
@@ -1353,13 +1351,13 @@
     [self sendPackets:packet];
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if ([self.cmdRespQueue count] >= 3) //command response + command begin + command end
+        if ([cmdRespQueue count] >= 3) //command response + command begin + command end
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
     
-    if ([self.cmdRespQueue count] >= 3)
-        recvPacket = ((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([cmdRespQueue count] >= 3)
+        recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
     else
     {
         NSLog(@"Command timed out.");
@@ -1379,7 +1377,7 @@
     }
     
     //command-begin
-    recvPacket = ((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
     if ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"])
         NSLog(@"Receive HST_CMD 0x19 command-begin response: OK");
     else
@@ -1391,7 +1389,7 @@
     }
     
     //command-end
-    recvPacket = ((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
     if ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0180"] && ((Byte *)[recvPacket.payload bytes])[14] == 0x00 && ((Byte *)[recvPacket.payload bytes])[15] == 0x00)
         NSLog(@"Receive HST_CMD 0x19 command-end response: OK");
     else
@@ -1420,8 +1418,8 @@
         rangingTagCount=0;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [self.recvQueue removeAllObjects];
-    [self.cmdRespQueue removeAllObjects];
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
     
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -1448,13 +1446,13 @@
     [self sendPackets:packet];
 
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-        if([self.cmdRespQueue count] != 0)
+        if([cmdRespQueue count] != 0)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
     
-    if ([self.cmdRespQueue count] != 0) {
-        recvPacket=((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
         if (memcmp([recvPacket.payload bytes], cmd, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
             NSLog(@"Start inventory: OK");
         else {
@@ -1551,10 +1549,10 @@
     {
         @autoreleasepool {
             @synchronized(recvQueue) {
-                if ([self.recvQueue count] > 0)
+                if ([recvQueue count] > 0)
                 {
                     //dequque the next packet received
-                    packet=((CSLBlePacket *)[self.recvQueue deqObject]);
+                    packet=((CSLBlePacket *)[recvQueue deqObject]);
                 }
                 else
                     continue;
@@ -1585,7 +1583,7 @@
             {
                 if ([payload containsString:@"81004003BFFCBFFCBFFC"]) {
                     NSLog(@"[decodePacketsInBufferAsync] Abort command received.  All opeartions ended");
-                    [self.cmdRespQueue enqObject:packet];
+                    [cmdRespQueue enqObject:packet];
                     connectStatus=CONNECTED;
                     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
                     continue;
@@ -1597,7 +1595,7 @@
                     if ([[payload substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[payload substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"]) {
                         NSLog(@"[decodePacketsInBufferAsync] Command-begin response recieved: %@", payload);
                         //return packet directly to the API for decoding
-                        [self.cmdRespQueue enqObject:packet];
+                        [cmdRespQueue enqObject:packet];
                         continue;
                     }
                 }
@@ -1608,7 +1606,7 @@
                     if ([[payload substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[payload substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0180"]) {
                         NSLog(@"[decodePacketsInBufferAsync] Command-end response recieved: %@", payload);
                         //return packet directly to the API for decoding
-                        [self.cmdRespQueue enqObject:packet];
+                        [cmdRespQueue enqObject:packet];
                         continue;
                     }
                 }
@@ -1617,7 +1615,7 @@
                 {
                     if ([[payload substringWithRange:NSMakeRange(4,4)] isEqualToString:@"7000"] || [[payload substringWithRange:NSMakeRange(4,4)] isEqualToString:@"7001"]) {
                         //response when reading/writing registers.  Return packet directly to the API for decoding
-                        [self.cmdRespQueue enqObject:packet];
+                        [cmdRespQueue enqObject:packet];
                         continue;
                     }
                 }
@@ -1681,7 +1679,7 @@
                                 NSLog(@"[decodePacketsInBufferAsync] Decoding the data appended to the end of the 8100 packet: %@", [payload substringWithRange:NSMakeRange(ptr * 2, ([payloadInBytes length] - ptr) * 2)] );
                                 if ([[payload substringWithRange:NSMakeRange(ptr * 2, ([payloadInBytes length] - ptr) * 2)] containsString:@"4003BFFCBFFCBFFC"]) {
                                     NSLog(@"[decodePacketsInBufferAsync] Abort command received.  All operations ended");
-                                    [self.cmdRespQueue enqObject:packet];
+                                    [cmdRespQueue enqObject:packet];
                                     connectStatus=CONNECTED;
                                     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
                                     break;
@@ -1707,35 +1705,35 @@
             }
             else if ([eventCode isEqualToString:@"9000"]) {   //Power on barcode
                 NSLog(@"[decodePacketsInBufferAsync] Power on barcode");
-                [self.cmdRespQueue enqObject:packet];
+                [cmdRespQueue enqObject:packet];
             }
             else if ([eventCode isEqualToString:@"8000"]) {   //Power on RFID module
                 NSLog(@"[decodePacketsInBufferAsync] Power on Rfid Module");
-                [self.cmdRespQueue enqObject:packet];
+                [cmdRespQueue enqObject:packet];
             }
             else if ([eventCode isEqualToString:@"8001"]) {   //Power off RFID module
                 NSLog(@"[decodePacketsInBufferAsync] Power off Rfid Module");
-                [self.cmdRespQueue enqObject:packet];
+                [cmdRespQueue enqObject:packet];
             }
             else if ([eventCode isEqualToString:@"C000"]) {   //Get BT firmware version
                 NSLog(@"[decodePacketsInBufferAsync] Get BT firmware version");
-                [self.cmdRespQueue enqObject:packet];
+                [cmdRespQueue enqObject:packet];
             }
             else if ([eventCode isEqualToString:@"C004"]) {   //Get connected device name
                 NSLog(@"[decodePacketsInBufferAsync] Get connected device name");
-                [self.cmdRespQueue enqObject:packet];
+                [cmdRespQueue enqObject:packet];
             }
             else if ([eventCode isEqualToString:@"B000"]) {   //Get SilconLab IC firmware version.
                 NSLog(@"[decodePacketsInBufferAsync] Get SilconLab IC firmware version.");
-                [self.cmdRespQueue enqObject:packet];
+                [cmdRespQueue enqObject:packet];
             }
             else if ([eventCode isEqualToString:@"B004"]) {   //Get 16 byte serial number.
                 NSLog(@"[decodePacketsInBufferAsync] Get 16 byte serial number.");
-                [self.cmdRespQueue enqObject:packet];
+                [cmdRespQueue enqObject:packet];
             }
             else if ([eventCode isEqualToString:@"8002"]) {   //RFID firmware command response
                 NSLog(@"[decodePacketsInBufferAsync] RFID firmware command response.");
-                [self.cmdRespQueue enqObject:packet];
+                [cmdRespQueue enqObject:packet];
             }
             else if ([eventCode isEqualToString:@"A103"]) {
                 //Trigger key is released.  Trigger callback delegate method

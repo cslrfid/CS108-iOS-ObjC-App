@@ -17,6 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.tabBarController setTitle:@"Inventory"];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.tabBarController setTitle:@"Inventory"];
+    
 }
 
 - (void)didReceiveMemoryWarning {

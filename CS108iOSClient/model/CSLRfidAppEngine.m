@@ -12,7 +12,6 @@ CSLRfidAppEngine * appEngine;
 
 @interface CSLRfidAppEngine()
 {
-    CSLBleReader* reader;
 
 }
 @end
@@ -20,6 +19,8 @@ CSLRfidAppEngine * appEngine;
 @implementation CSLRfidAppEngine
 
 @synthesize reader;
+@synthesize readerInfo;
+@synthesize settings;
 
 + (CSLRfidAppEngine *) sharedAppEngine
 {
@@ -66,6 +67,8 @@ CSLRfidAppEngine * appEngine;
         NSLog(@"Initialize the CSLBleReader object instance...");
         NSLog(@"----------------------------------------------------------------------");
         reader = [[CSLBleReader alloc] init];
+        settings = [[CSLReaderSettings alloc] init];
+        readerInfo = [[CSLReaderInfo alloc] init];
     }
     
     return self;
@@ -73,6 +76,42 @@ CSLRfidAppEngine * appEngine;
 
 - (void)dealloc
 {
+    
+}
+
+-(void)reloadSettingsFromUserDefaults {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if([defaults integerForKey:@"power"])
+        settings.power = (int)[defaults integerForKey:@"power"];
+    if([defaults integerForKey:@"tagPopulation"])
+        settings.tagPopulation = (int)[defaults integerForKey:@"tagPopulation"];
+    if([defaults boolForKey:@"isQOverride"])
+        settings.isQOverride =[defaults boolForKey:@"isQOverride"];
+    if([defaults integerForKey:@"QValue"])
+        settings.QValue = (int)[defaults integerForKey:@"QValue"];
+    if([defaults integerForKey:@"session"])
+        settings.session = (SESSION)[defaults integerForKey:@"session"];
+    if([defaults integerForKey:@"target"])
+        settings.target = (TARGET)[defaults integerForKey:@"target"];
+    if([defaults integerForKey:@"algorithm"])
+        settings.algorithm = (QUERYALGORITHM)[defaults integerForKey:@"algorithm"];
+    if([defaults integerForKey:@"linkProfile"])
+        settings.linkProfile = (LINKPROFILE)[defaults integerForKey:@"linkProfile"];
+    
+}
+-(void)saveSettingsToUserDefaults {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setInteger:settings.power forKey:@"power"];
+    [defaults setInteger:settings.tagPopulation forKey:@"tagPopulation"];
+    [defaults setBool:settings.isQOverride forKey:@"isQOverride"];
+    [defaults setInteger:settings.QValue forKey:@"QValue"];
+    [defaults setInteger:settings.session forKey:@"session"];
+    [defaults setInteger:settings.target forKey:@"target"];
+    [defaults setInteger:settings.algorithm forKey:@"algorithm"];
+    [defaults setInteger:settings.linkProfile forKey:@"linkProfile"];
+    [defaults synchronize];
     
 }
 
