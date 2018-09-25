@@ -23,8 +23,6 @@
 		CA7873822155F59C009B7FE6 /* CSLReaderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7873812155F59C009B7FE6 /* CSLReaderInfo.m */; };
 		CAB810842133E16F009D2F8F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB810832133E16F009D2F8F /* CoreBluetooth.framework */; };
 		CABA714A21325BF500D15BB1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA714921325BF500D15BB1 /* AppDelegate.m */; };
-		CABA714D21325BF500D15BB1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA714C21325BF500D15BB1 /* ViewController.m */; };
-		CABA715021325BF500D15BB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CABA714E21325BF500D15BB1 /* Main.storyboard */; };
 		CABA715221325BF600D15BB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABA715121325BF600D15BB1 /* Assets.xcassets */; };
 		CABA715521325BF600D15BB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CABA715321325BF600D15BB1 /* LaunchScreen.storyboard */; };
 		CABA715821325BF600D15BB1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA715721325BF600D15BB1 /* main.m */; };
@@ -64,9 +62,6 @@
 		CABA714521325BF500D15BB1 /* CS108iOSClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CS108iOSClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABA714821325BF500D15BB1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CABA714921325BF500D15BB1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CABA714B21325BF500D15BB1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CABA714C21325BF500D15BB1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		CABA714F21325BF500D15BB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CABA715121325BF600D15BB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CABA715421325BF600D15BB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CABA715621325BF600D15BB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,8 +100,6 @@
 		CA78735E214CC072009B7FE6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CABA714B21325BF500D15BB1 /* ViewController.h */,
-				CABA714C21325BF500D15BB1 /* ViewController.m */,
 				CA78735F214CC153009B7FE6 /* CSLHomeVC.h */,
 				CA787360214CC153009B7FE6 /* CSLHomeVC.m */,
 				CA787365214CC9C8009B7FE6 /* CSLTabVC.h */,
@@ -185,7 +178,6 @@
 		CABA714721325BF500D15BB1 /* CS108iOSClient */ = {
 			isa = PBXGroup;
 			children = (
-				CABA714E21325BF500D15BB1 /* Main.storyboard */,
 				CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */,
 				CABA715321325BF600D15BB1 /* LaunchScreen.storyboard */,
 				CA78736E214CD5E9009B7FE6 /* CSLReader */,
@@ -265,7 +257,6 @@
 				CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */,
 				CABA715221325BF600D15BB1 /* Assets.xcassets in Resources */,
 				CA506644215996A000C3C9C8 /* digital-7 (mono).ttf in Resources */,
-				CABA715021325BF500D15BB1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,7 +270,6 @@
 				CABA71682132631F00D15BB1 /* CSLBleInterface.m in Sources */,
 				CA78737C21514E61009B7FE6 /* CSLRfidAppEngine.m in Sources */,
 				CA5066412157889C00C3C9C8 /* CSLAboutVC.m in Sources */,
-				CABA714D21325BF500D15BB1 /* ViewController.m in Sources */,
 				CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */,
 				CA787367214CC9C8009B7FE6 /* CSLTabVC.m in Sources */,
 				CA7873782150DF7A009B7FE6 /* CSLDeviceTV.m in Sources */,
@@ -299,14 +289,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CABA714E21325BF500D15BB1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CABA714F21325BF500D15BB1 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CABA715321325BF600D15BB1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
