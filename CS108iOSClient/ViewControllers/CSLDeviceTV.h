@@ -12,6 +12,9 @@
 {
     
     IBOutlet UITableView *tblDeviceList;
+    __weak IBOutlet UIActivityIndicatorView *actSpinner;
     
 }
+
+
 @end

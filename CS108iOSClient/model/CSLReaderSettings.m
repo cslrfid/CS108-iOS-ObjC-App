@@ -27,7 +27,7 @@
         self.QValue=6;
         self.power = 300;
         self.session = S1;
-        self.target = A;
+        self.target = ToggleAB;
         self.algorithm = DYNAMICQ;
         self.linkProfile=RANGE_DRM;
     }

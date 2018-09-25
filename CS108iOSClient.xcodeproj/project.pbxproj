@@ -10,6 +10,7 @@
 		CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E5213528FC0035F075 /* CSLBleReader.m */; };
 		CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E8213698DD0035F075 /* CSLBleTag.m */; };
 		CA5066412157889C00C3C9C8 /* CSLAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5066402157889C00C3C9C8 /* CSLAboutVC.m */; };
+		CA506644215996A000C3C9C8 /* digital-7 (mono).ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA506643215996A000C3C9C8 /* digital-7 (mono).ttf */; };
 		CA787361214CC154009B7FE6 /* CSLHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA787360214CC153009B7FE6 /* CSLHomeVC.m */; };
 		CA787367214CC9C8009B7FE6 /* CSLTabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA787366214CC9C8009B7FE6 /* CSLTabVC.m */; };
 		CA78736A214CCA47009B7FE6 /* CSLSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA787369214CCA47009B7FE6 /* CSLSettingsVC.m */; };
@@ -40,6 +41,7 @@
 		CA4E78E8213698DD0035F075 /* CSLBleTag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLBleTag.m; sourceTree = "<group>"; };
 		CA50663F2157889C00C3C9C8 /* CSLAboutVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLAboutVC.h; sourceTree = "<group>"; };
 		CA5066402157889C00C3C9C8 /* CSLAboutVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLAboutVC.m; sourceTree = "<group>"; };
+		CA506643215996A000C3C9C8 /* digital-7 (mono).ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7 (mono).ttf"; sourceTree = "<group>"; };
 		CA78735F214CC153009B7FE6 /* CSLHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLHomeVC.h; sourceTree = "<group>"; };
 		CA787360214CC153009B7FE6 /* CSLHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLHomeVC.m; sourceTree = "<group>"; };
 		CA787365214CC9C8009B7FE6 /* CSLTabVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTabVC.h; sourceTree = "<group>"; };
@@ -92,6 +94,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA5066422159962000C3C9C8 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CA506643215996A000C3C9C8 /* digital-7 (mono).ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		CA78735E214CC072009B7FE6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +194,7 @@
 				CABA715121325BF600D15BB1 /* Assets.xcassets */,
 				CABA715621325BF600D15BB1 /* Info.plist */,
 				CABA715721325BF600D15BB1 /* main.m */,
+				CA5066422159962000C3C9C8 /* fonts */,
 			);
 			path = CS108iOSClient;
 			sourceTree = "<group>";
@@ -253,6 +264,7 @@
 				CABA715521325BF600D15BB1 /* LaunchScreen.storyboard in Resources */,
 				CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */,
 				CABA715221325BF600D15BB1 /* Assets.xcassets in Resources */,
+				CA506644215996A000C3C9C8 /* digital-7 (mono).ttf in Resources */,
 				CABA715021325BF500D15BB1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

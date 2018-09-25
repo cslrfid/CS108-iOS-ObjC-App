@@ -66,10 +66,12 @@ typedef enum _QUERYSELECT : Byte
 {
     NSMutableArray * filteredBuffer;   //after duplicate eliminations durinng async inventory
     NSInteger rangingTagCount;          //counter for tag rate calculation
+    NSInteger uniqueTagCount;
 }
 
 @property NSMutableArray * filteredBuffer;
 @property NSInteger rangingTagCount;
+@property NSInteger uniqueTagCount;
 @property (nonatomic, weak) id <CSLBleReaderDelegate> readerDelegate; //define CSLBleReaderDelegate as delegate
 
 

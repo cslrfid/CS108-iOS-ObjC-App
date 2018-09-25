@@ -29,6 +29,8 @@
     
     self.navigationItem.title=@"Search for Devices...";
     
+    [actSpinner stopAnimating];
+    
     //timer event on updating UI
     [NSTimer scheduledTimerWithTimeInterval:0.5
                                      target:self
@@ -82,7 +84,7 @@
     
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
     {
-        
+        [actSpinner startAnimating];
         //stop scanning for device
         [[CSLRfidAppEngine sharedAppEngine].reader stopScanDevice];
         //connect to device selected
@@ -112,16 +114,18 @@
             [[CSLRfidAppEngine sharedAppEngine].reader barcodeReader:true];
             [[CSLRfidAppEngine sharedAppEngine].reader powerOnRfid:false];
             [[CSLRfidAppEngine sharedAppEngine].reader powerOnRfid:true];
-            [[CSLRfidAppEngine sharedAppEngine].reader getBtFirmwareVersion:&btFwVersion];
-            [[CSLRfidAppEngine sharedAppEngine].reader getSilLabIcVersion:&slVersion];
-            [[CSLRfidAppEngine sharedAppEngine].reader getRfidBrdSerialNumber:&rfidBoardSn];
+            if ([[CSLRfidAppEngine sharedAppEngine].reader getBtFirmwareVersion:&btFwVersion])
+                [CSLRfidAppEngine sharedAppEngine].readerInfo.BtFirmwareVersion=btFwVersion;
+            if ([[CSLRfidAppEngine sharedAppEngine].reader getSilLabIcVersion:&slVersion])
+                [CSLRfidAppEngine sharedAppEngine].readerInfo.SiLabICFirmwareVersion=slVersion;
+            if ([[CSLRfidAppEngine sharedAppEngine].reader getRfidBrdSerialNumber:&rfidBoardSn])
+                [CSLRfidAppEngine sharedAppEngine].readerInfo.deviceSerialNumber=rfidBoardSn;
+            
             [[CSLRfidAppEngine sharedAppEngine].reader sendAbortCommand];
-            [[CSLRfidAppEngine sharedAppEngine].reader getRfidFwVersionNumber:&rfidFwVersion];
+            
+            if ([[CSLRfidAppEngine sharedAppEngine].reader getRfidFwVersionNumber:&rfidFwVersion])
+                [CSLRfidAppEngine sharedAppEngine].readerInfo.RfidFirmwareVersion=rfidFwVersion;
 
-            [CSLRfidAppEngine sharedAppEngine].readerInfo.BtFirmwareVersion=btFwVersion;
-            [CSLRfidAppEngine sharedAppEngine].readerInfo.SiLabICFirmwareVersion=slVersion;
-            [CSLRfidAppEngine sharedAppEngine].readerInfo.RfidFirmwareVersion=rfidFwVersion;
-            [CSLRfidAppEngine sharedAppEngine].readerInfo.deviceSerialNumber=rfidBoardSn;
             
             appVersion = [NSString stringWithFormat:@"v%@ Build %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]];
             [CSLRfidAppEngine sharedAppEngine].readerInfo.appVersion=appVersion;
@@ -142,6 +146,7 @@
             [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000007 forData:OEMData];
             [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x000000A5 forData:OEMData];
              */
+            [actSpinner stopAnimating];
         }
         
         

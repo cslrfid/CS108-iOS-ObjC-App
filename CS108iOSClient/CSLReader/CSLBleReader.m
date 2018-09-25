@@ -24,12 +24,14 @@
 //@synthesize cmdRespQueue;
 @synthesize delegate; //synthesize CSLBleReaderDelegate delegate
 @synthesize rangingTagCount;
+@synthesize uniqueTagCount;
 
 - (id) init
 {
     if (self = [super init])
     {
         rangingTagCount=0;
+        uniqueTagCount=0;
         cmdRespQueue=[[CSLCircularQueue alloc] initWithCapacity:16000];
     }
     return self;
@@ -1416,6 +1418,7 @@
         
         connectStatus=BUSY;
         rangingTagCount=0;
+        uniqueTagCount=0;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
     [recvQueue removeAllObjects];
@@ -1660,12 +1663,14 @@
                             if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
                             {
                                 [filteredBuffer insertObject:tag atIndex:findIndex];
+                                uniqueTagCount++;
                                 
                             }
                             else if ( [((CSLBleTag*)filteredBuffer[findIndex]).EPC caseInsensitiveCompare:tag.EPC] != NSOrderedSame)
                             {
                                 //new tag found.  insert into buffer in sorted order
                                 [filteredBuffer insertObject:tag atIndex:findIndex];
+                                uniqueTagCount++;
                             }
                             else    //tag is duplicated, but will replace the existing tag information with the new one for updating the RRSI value.
                             {
