@@ -144,11 +144,11 @@
     [reader barcodeReader:true];
     [reader powerOnRfid:false];
     [reader powerOnRfid:true];
-    [reader getBtFirmwareVersion:btFwVersion];
-    [reader getSilLabIcVersion:slVersion];
-    [reader getRfidBrdSerialNumber:rfidBoardSn];
+    [reader getBtFirmwareVersion:&btFwVersion];
+    [reader getSilLabIcVersion:&slVersion];
+    [reader getRfidBrdSerialNumber:&rfidBoardSn];
     [reader sendAbortCommand];
-    [reader getRfidFwVersionNumber:rfidFwVersion];
+    [reader getRfidFwVersionNumber:&rfidFwVersion];
     
     
     //read OEM data
@@ -185,15 +185,20 @@
         [tagListing reloadData];
     
         
-        //set power
+        //set inventory configurations
+        Byte startQ=6;
+        BOOL ToggleAB=true;
+        
         [reader setPower:30.0];
         [reader setAntennaCycle:COMMAND_ANTCYCLE_CONTINUOUS];
         [reader setAntennaDwell:0];
-        [reader setLinkProfile:2];
-        [reader setQueryConfigurations:0 querySession:0 querySelect:0];
-        [reader selectAlgorithmParameter:1];
-        [reader setInventoryAlgorithmParameters0:6 maximumQ:15 minimumQ:0 ThresholdMultiplier:4];
-        [reader setInventoryConfigurations:3 MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:0 crcErrorRead:1 QTMode:0 tagDelay:0 inventoryMode:1];
+        [reader setLinkProfile:RANGE_DRM];
+        [reader setQueryConfigurations:A querySession:S1 querySelect:ALL];
+        [reader selectAlgorithmParameter:DYNAMICQ];
+        [reader setInventoryAlgorithmParameters0:startQ maximumQ:15 minimumQ:0 ThresholdMultiplier:4];
+        [reader setInventoryAlgorithmParameters1:0];
+        [reader setInventoryAlgorithmParameters2:ToggleAB RunTillZero:false];
+        [reader setInventoryConfigurations:DYNAMICQ MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:0 crcErrorRead:1 QTMode:0 tagDelay:0 inventoryMode:1];
         
         
         //start inventory

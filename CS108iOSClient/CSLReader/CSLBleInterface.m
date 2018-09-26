@@ -9,7 +9,11 @@
 #import "CSLBleInterface.h"
 
 @interface CSLBleInterface() {
-    
+    CBCentralManager * manager;
+    CBCharacteristic * bleSend;     //Service UUID=9900
+    CBCharacteristic * bleReceive;  //Service UUID=9901
+    NSMutableData * sendBuffer;     //byte array for sending data
+    NSMutableData * recvBuffer;     //byte array for receving data
 }
 - (void) startScanDeviceBlocking;
 
@@ -21,7 +25,6 @@
 @synthesize LastException;
 @synthesize bleDevice;
 @synthesize recvQueue;
-@synthesize manager;
 @synthesize connectStatus;
 @synthesize deviceName;
 

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "CSLRfidAppEngine.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [CSLRfidAppEngine sharedAppEngine];
     // Override point for customization after application launch.
     return YES;
 }
