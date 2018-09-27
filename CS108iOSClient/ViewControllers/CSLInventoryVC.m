@@ -9,7 +9,9 @@
 #import "CSLInventoryVC.h"
 
 @interface CSLInventoryVC ()
-
+{
+    NSTimer * scrRefreshTimer;
+}
 @end
 
 @implementation CSLInventoryVC
@@ -26,19 +28,12 @@
     // Do any additional setup after loading the view.
     [self.tabBarController setTitle:@"Inventory"];
     
-    tblTagList.dataSource=self;
-    tblTagList.delegate=self;
-    [tblTagList reloadData];
-    
-    [CSLRfidAppEngine sharedAppEngine].reader.delegate = self;
-    [CSLRfidAppEngine sharedAppEngine].reader.readerDelegate=self;
-    
     tblTagList.layer.borderWidth=1.0f;
     tblTagList.layer.borderColor=[UIColor lightGrayColor].CGColor;
     tblTagList.layer.cornerRadius=5.0f;
     
     //timer event on updating UI
-    [NSTimer scheduledTimerWithTimeInterval:1.0
+    scrRefreshTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                      target:self
                                    selector:@selector(refreshTagListing)
                                    userInfo:nil
@@ -47,21 +42,23 @@
 
 //Selector for timer event on updating UI
 - (void)refreshTagListing {
-    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==TAG_OPERATIONS)
-    {
-        //update table
-        [tblTagList reloadData];
-        
-        //update inventory count
-        lbTagCount.text=[NSString stringWithFormat: @"%ld", (long)[tblTagList numberOfRowsInSection:0]];
-        
-        //update tag rate
-        NSLog(@"Total Tag Count: %ld, Unique Tag Coun t: %ld, time elapsed: %ld", ((long)[CSLRfidAppEngine sharedAppEngine].reader.rangingTagCount), ((long)[CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount), (long)[[NSDate date] timeIntervalSinceDate:tagRangingStartTime]);
-        lbTagRate.text = [NSString stringWithFormat: @"%ld", ((long)[CSLRfidAppEngine sharedAppEngine].reader.rangingTagCount)];
-        lbUniqueTagRate.text = [NSString stringWithFormat: @"%ld", ((long)[CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount)];
-        [CSLRfidAppEngine sharedAppEngine].reader.rangingTagCount =0;
-        [CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount =0;
-        
+    @autoreleasepool {
+        if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==TAG_OPERATIONS)
+        {
+            //update table
+            [tblTagList reloadData];
+            
+            //update inventory count
+            lbTagCount.text=[NSString stringWithFormat: @"%ld", (long)[tblTagList numberOfRowsInSection:0]];
+            
+            //update tag rate
+            NSLog(@"Total Tag Count: %ld, Unique Tag Coun t: %ld, time elapsed: %ld", ((long)[CSLRfidAppEngine sharedAppEngine].reader.rangingTagCount), ((long)[CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount), (long)[[NSDate date] timeIntervalSinceDate:tagRangingStartTime]);
+            lbTagRate.text = [NSString stringWithFormat: @"%ld", ((long)[CSLRfidAppEngine sharedAppEngine].reader.rangingTagCount)];
+            lbUniqueTagRate.text = [NSString stringWithFormat: @"%ld", ((long)[CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount)];
+            [CSLRfidAppEngine sharedAppEngine].reader.rangingTagCount =0;
+            [CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount =0;
+            
+        }
     }
 }
 
@@ -74,8 +71,14 @@
     //clear UI
     lbTagRate.text=@"0";
     lbTagCount.text=@"0";
-    [CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer=nil;
+    [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer removeAllObjects];
+    
+    tblTagList.dataSource=self;
+    tblTagList.delegate=self;
     [tblTagList reloadData];
+    
+    [CSLRfidAppEngine sharedAppEngine].reader.delegate = self;
+    [CSLRfidAppEngine sharedAppEngine].reader.readerDelegate=self;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -87,6 +90,16 @@
             [btnInventory sendActionsForControlEvents:UIControlEventTouchUpInside];
 
     }
+    
+    //remove delegate assignment so that trigger key will not triggered when out of this page
+    [CSLRfidAppEngine sharedAppEngine].reader.delegate = nil;
+    [CSLRfidAppEngine sharedAppEngine].reader.readerDelegate=nil;
+    
+    tblTagList.dataSource=nil;
+    tblTagList.delegate=nil;
+    
+    [scrRefreshTimer invalidate];
+    scrRefreshTimer=nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,7 +126,7 @@
         //clear UI
         lbTagRate.text=@"0";
         lbTagCount.text=@"0";
-        [CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer=nil;
+        [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer removeAllObjects];
         [tblTagList reloadData];
         
         
