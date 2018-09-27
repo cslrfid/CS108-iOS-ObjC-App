@@ -18,7 +18,7 @@ Library and demo app for Convergence Systems Limited CS108 UHF RFID handheld rea
 
 ---
 
-**Version 1.2.400**
+**Version 1.2.412**
 
 - Migrated the code from the application to API level for reader management, configuration and tag inventory
 - New reader selection screen for improving reader selection when there are multiple readers at the scene
