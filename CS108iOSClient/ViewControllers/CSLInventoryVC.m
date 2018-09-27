@@ -7,6 +7,7 @@
 //
 
 #import "CSLInventoryVC.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface CSLInventoryVC ()
 {
@@ -45,6 +46,7 @@
     @autoreleasepool {
         if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==TAG_OPERATIONS)
         {
+            AudioServicesPlaySystemSound(1005);
             //update table
             [tblTagList reloadData];
             
@@ -120,6 +122,7 @@
 - (IBAction)btnInventoryPressed:(id)sender {
     if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED && [[btnInventory currentTitle] isEqualToString:@"START"])
     {
+        AudioServicesPlaySystemSound(1033);
         btnInventory.enabled=false;
         //reader configurations before inventory
         
@@ -153,6 +156,7 @@
     }
     else if ([[btnInventory currentTitle] isEqualToString:@"STOP"])
     {
+        AudioServicesPlaySystemSound(1033);
         if([[CSLRfidAppEngine sharedAppEngine].reader stopInventory])
         {
             [btnInventory setTitle:@"START" forState:UIControlStateNormal];
