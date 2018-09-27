@@ -1508,30 +1508,32 @@
 
 -(void)stopInventoryBlocking {
     
-    //Initialize data
-    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
-    
-    if (connectStatus==TAG_OPERATIONS)
-    {
-        NSLog(@"----------------------------------------------------------------------");
-        NSLog(@"Abort command for inventory...");
-        NSLog(@"----------------------------------------------------------------------");
-        //Send abort command
-        unsigned char abortCmd[] = {0x80, 0x02, 0x40, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-        packet.prefix=0xA7;
-        packet.connection = Bluetooth;
-        packet.payloadLength=0x0A;
-        packet.deviceId=RFID;
-        packet.Reserve=0x82;
-        packet.direction=Downlink;
-        packet.crc1=0;
-        packet.crc2=0;
-        packet.payload=[NSData dataWithBytes:abortCmd length:sizeof(abortCmd)];
+    @autoreleasepool {
+        //Initialize data
+        CSLBlePacket* packet= [[CSLBlePacket alloc] init];
         
-        NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
-        [self sendPackets:packet];
-        [self sendPackets:packet];
-        [self sendPackets:packet];
+        if (connectStatus==TAG_OPERATIONS)
+        {
+            NSLog(@"----------------------------------------------------------------------");
+            NSLog(@"Abort command for inventory...");
+            NSLog(@"----------------------------------------------------------------------");
+            //Send abort command
+            unsigned char abortCmd[] = {0x80, 0x02, 0x40, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+            packet.prefix=0xA7;
+            packet.connection = Bluetooth;
+            packet.payloadLength=0x0A;
+            packet.deviceId=RFID;
+            packet.Reserve=0x82;
+            packet.direction=Downlink;
+            packet.crc1=0;
+            packet.crc2=0;
+            packet.payload=[NSData dataWithBytes:abortCmd length:sizeof(abortCmd)];
+            
+            NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+            [self sendPackets:packet];
+            [self sendPackets:packet];
+            [self sendPackets:packet];
+        }
     }
 
 }

@@ -89,34 +89,35 @@
 
 - (void)startScanDeviceBlocking
 {
-    @try {
-        
-        //wait for up to 5 seconds before the Central Manager state got updated.
-        int countIn100Milliseconds=0;
-        while(countIn100Milliseconds<50)
-        {
-            if (connectStatus==NOT_CONNECTED)
-                break;
-            [NSThread sleepForTimeInterval:0.1f];
-            countIn100Milliseconds++;
-        }
-        @synchronized(self) {
-            if (connectStatus==NOT_CONNECTED && [self isLECapableHardware])
+    @autoreleasepool {
+        @try {
+            
+            //wait for up to 5 seconds before the Central Manager state got updated.
+            int countIn100Milliseconds=0;
+            while(countIn100Milliseconds<50)
             {
-                NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:FALSE], CBCentralManagerScanOptionAllowDuplicatesKey, nil];
-                [bleDeviceList removeAllObjects];
-                [manager scanForPeripheralsWithServices:[NSArray arrayWithObject:[CBUUID UUIDWithString:@"9800"]] options:options];
-                connectStatus=SCANNING;
-                [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+                if (connectStatus==NOT_CONNECTED)
+                    break;
+                [NSThread sleepForTimeInterval:0.1f];
+                countIn100Milliseconds++;
             }
-            else
-                NSLog(@"Cannot scan device when device is already been scanning, or existing hardware does not support bluetooth");
+            @synchronized(self) {
+                if (connectStatus==NOT_CONNECTED && [self isLECapableHardware])
+                {
+                    NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:FALSE], CBCentralManagerScanOptionAllowDuplicatesKey, nil];
+                    [bleDeviceList removeAllObjects];
+                    [manager scanForPeripheralsWithServices:[NSArray arrayWithObject:[CBUUID UUIDWithString:@"9800"]] options:options];
+                    connectStatus=SCANNING;
+                    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+                }
+                else
+                    NSLog(@"Cannot scan device when device is already been scanning, or existing hardware does not support bluetooth");
+            }
+        }
+        @catch (NSException* exception) {
+            
         }
     }
-    @catch (NSException* exception) {
-        
-    }
-
 }
 
 - (void) connectDevice:(CBPeripheral*) peripheral {
