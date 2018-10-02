@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbUniqueTagRate;
 @property (weak, nonatomic) IBOutlet UIButton *btnInventory;
 @property (weak, nonatomic) IBOutlet UITableView *tblTagList;
+@property (weak, nonatomic) IBOutlet UILabel *lbStatus;
 
 - (IBAction)btnInventoryPressed:(id)sender;
 

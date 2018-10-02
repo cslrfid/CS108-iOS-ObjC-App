@@ -15,8 +15,9 @@
 #import "CSLAboutVC.h"
 
 
-@interface CSLHomeVC ()
-
+@interface CSLHomeVC () {
+    NSTimer * scrRefreshTimer;
+}
 @end
 
 @implementation CSLHomeVC
@@ -24,9 +25,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-}
+    //timer event on updating UI
 
+}
+- (void)refreshBatteryInfo {
+    @autoreleasepool {
+        if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus!=NOT_CONNECTED)
+        {
+            if ([CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage < 0 || [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage > 100)
+                self.lbReaderStatus.text=@"Battery Level: -";
+            else
+                self.lbReaderStatus.text=[NSString stringWithFormat:@"Battery Level: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
+        }
+        else
+            self.lbReaderStatus.text=@"";
+            
+    }
+}
 - (void)viewWillAppear:(BOOL)animated {
     //check if reader is connected
     if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus!=NOT_CONNECTED) {
@@ -39,6 +54,18 @@
         [self.btnConnectReader.imageView setImage:[UIImage imageNamed:@"disconnected"]];
         [self.btnConnectReader.imageView setNeedsDisplay];
     }
+    [CSLRfidAppEngine sharedAppEngine].reader.readerDelegate=self;
+    scrRefreshTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                       target:self
+                                                     selector:@selector(refreshBatteryInfo)
+                                                     userInfo:nil
+                                                      repeats:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [CSLRfidAppEngine sharedAppEngine].reader.readerDelegate=nil;
+    [scrRefreshTimer invalidate];
+    scrRefreshTimer=nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -174,4 +201,13 @@
     }
     
 }
+
+- (void) didReceiveTagResponsePacket: (CSLBleReader *) sender tagReceived:(CSLBleTag*)tag {  //define delegate method to be implemented within another class
+}
+- (void) didTriggerKeyChangedState: (CSLBleReader *) sender keyState:(BOOL)state {  //define delegate method to be implemented within another class
+}
+- (void) didReceiveBatteryLevelIndicator: (CSLBleReader *) sender batteryPercentage:(int)battPct {
+    [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage=battPct; 
+}
+
 @end

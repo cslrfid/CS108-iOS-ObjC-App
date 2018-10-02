@@ -18,10 +18,12 @@
     CSLBleReader* reader;
     CSLReaderSettings* settings;
     CSLReaderInfo* readerInfo;
+    NSString* tagSelected;
 }
 @property CSLBleReader* reader;
 @property CSLReaderSettings* settings;
 @property CSLReaderInfo* readerInfo;
+@property NSString* tagSelected;
 
 + (CSLRfidAppEngine *) sharedAppEngine;
 + (id)alloc;

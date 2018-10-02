@@ -21,6 +21,7 @@ CSLRfidAppEngine * appEngine;
 @synthesize reader;
 @synthesize readerInfo;
 @synthesize settings;
+@synthesize tagSelected;
 
 + (CSLRfidAppEngine *) sharedAppEngine
 {

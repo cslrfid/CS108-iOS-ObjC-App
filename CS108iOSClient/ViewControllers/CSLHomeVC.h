@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CSLRfidAppEngine.h"
 
-@interface CSLHomeVC : UIViewController
+@interface CSLHomeVC : UIViewController<CSLBleReaderDelegate>
 {
     
 }
@@ -20,5 +21,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnConnectReader;
 @property (weak, nonatomic) IBOutlet UILabel *lbConnectReader;
+@property (weak, nonatomic) IBOutlet UILabel *lbReaderStatus;
 
 @end

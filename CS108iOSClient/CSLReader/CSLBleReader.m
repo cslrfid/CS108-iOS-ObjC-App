@@ -14,6 +14,7 @@
     CSLCircularQueue * cmdRespQueue;     //Buffer for storing response packet(s) after issuing a command synchronously
 }
 
+- (int)convertBatteryLevelToPercentage: (float) voltage;
 - (void) stopInventoryBlocking;
 
 @end
@@ -21,10 +22,10 @@
 @implementation CSLBleReader
 
 @synthesize filteredBuffer;
-//@synthesize cmdRespQueue;
 @synthesize delegate; //synthesize CSLBleReaderDelegate delegate
 @synthesize rangingTagCount;
 @synthesize uniqueTagCount;
+@synthesize batteryInfo;
 
 - (id) init
 {
@@ -32,6 +33,7 @@
     {
         rangingTagCount=0;
         uniqueTagCount=0;
+        batteryInfo=[[CSLReaderBattery alloc] initWithPcBVersion:1.8];
         cmdRespQueue=[[CSLCircularQueue alloc] initWithCapacity:16000];
     }
     return self;
@@ -497,7 +499,7 @@
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
 
     NSLog(@"----------------------------------------------------------------------");
-    NSLog(@"Get 16 bytes serial number...");
+    NSLog(@"Get 13 bytes serial number...");
     NSLog(@"----------------------------------------------------------------------");
     //Get 16 bytes serial number
     unsigned char sn[] = {0xB0, 0x04, 00};
@@ -521,13 +523,13 @@
     }
     
     if ([cmdRespQueue count] != 0) {
-        NSData * name = [((CSLBlePacket *)[cmdRespQueue deqObject]).payload subdataWithRange:NSMakeRange(2, 16)];
+        NSData * name = [((CSLBlePacket *)[cmdRespQueue deqObject]).payload subdataWithRange:NSMakeRange(2, 13)];
         *serialNumber=[NSString stringWithUTF8String:[name bytes]];
-        NSLog(@"16 byte serial number: %@", *serialNumber);
+        NSLog(@"13 byte serial number: %@", *serialNumber);
     }
     else {
         NSLog(@"Command timed out.");
-        NSLog(@"Get SilconLab IC firmware version: FAILED");
+        NSLog(@"Get 13 byte serial number: FAILED");
         connectStatus=CONNECTED;
         [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
         return false;
@@ -536,6 +538,66 @@
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
     return true;
 }
+
+- (BOOL)getPcBBoardVersion:(NSString**) boardVersion {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Get board version...");
+    NSLog(@"----------------------------------------------------------------------");
+    //Get 16 bytes serial number
+    unsigned char sn[] = {0xB0, 0x04, 00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x03;
+    packet.deviceId=SiliconLabIC;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:sn length:sizeof(sn)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if([cmdRespQueue count] != 0)
+            break;
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+    }
+    
+    if ([cmdRespQueue count] != 0) {
+        NSData * name = [((CSLBlePacket *)[cmdRespQueue deqObject]).payload subdataWithRange:NSMakeRange(15, 3)];
+        *boardVersion=[NSString stringWithFormat:@"%@.%@", [[NSString stringWithUTF8String:[name bytes]] substringToIndex:1], [[NSString stringWithUTF8String:[name bytes]] substringFromIndex:1]];
+        NSLog(@"PCB board version: %@", *boardVersion);
+    }
+    else {
+        NSLog(@"Command timed out.");
+        NSLog(@"Get PCB board version: FAILED");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    return true;
+}
+
 
 - (BOOL)sendAbortCommand {
     
@@ -596,6 +658,129 @@
     }
 
 }
+
+- (BOOL)startBatteryAutoReporting {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED && connectStatus!=TAG_OPERATIONS)  //reader is not idling for downlink command and not performing inventory
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+    }
+    [cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    CSLBlePacket* recvPacket;
+    
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Start battery auto reporting command...");
+    NSLog(@"----------------------------------------------------------------------");
+    //Send abort command
+    unsigned char startBattReporting[] = {0xA0, 0x02};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x02;
+    packet.deviceId=Notification;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:startBattReporting length:sizeof(startBattReporting)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if([cmdRespQueue count] != 0)
+            break;
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+    }
+    
+    if ([cmdRespQueue count] !=0)
+    {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+        if (memcmp([recvPacket.payload bytes], startBattReporting, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+            NSLog(@"Start battery auto reporting sent: OK");
+        else {
+            NSLog(@"Start battery auto reporting sent: FAILED");
+            connectStatus=CONNECTED;
+            return false;
+        }
+        
+    }
+    else {
+        NSLog(@"Command timed out.");
+        NSLog(@"Start battery auto reporting: FAILED");
+        connectStatus=CONNECTED;
+        return false;
+    }
+    connectStatus=CONNECTED;
+    return true;
+}
+
+- (BOOL)stopBatteryAutoReporting {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED && connectStatus!=TAG_OPERATIONS)  //reader is not idling for downlink command and not performing inventory
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+    }
+    [cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    CSLBlePacket* recvPacket;
+    
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Stop battery auto reporting command...");
+    NSLog(@"----------------------------------------------------------------------");
+    //Send abort command
+    unsigned char startBattReporting[] = {0xA0, 0x03};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x02;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:startBattReporting length:sizeof(startBattReporting)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if([cmdRespQueue count] != 0)
+            break;
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+    }
+    
+    if ([cmdRespQueue count] !=0)
+    {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+        if (memcmp([recvPacket.payload bytes], startBattReporting, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+            NSLog(@"Stop battery auto reporting sent: OK");
+        else {
+            NSLog(@"Stop battery auto reporting sent: FAILED");
+            connectStatus=CONNECTED;
+            return false;
+        }
+        
+    }
+    else {
+        NSLog(@"Command timed out.");
+        NSLog(@"Stop battery auto reporting: FAILED");
+        connectStatus=CONNECTED;
+        return false;
+    }
+    connectStatus=CONNECTED;
+    return true;
+}
+
 
 - (BOOL)getRfidFwVersionNumber:(NSString**) versionInfo {
 
@@ -1752,10 +1937,30 @@
                 NSLog(@"[decodePacketsInBufferAsync] Trigger key: ON");
                 [self.readerDelegate didTriggerKeyChangedState:self keyState:true]; //this will call the method for handling the tag response.
             }
+            else if ([eventCode isEqualToString:@"A002"]) {
+                NSLog(@"[decodePacketsInBufferAsync] Battery auto reporting: ON");
+                [cmdRespQueue enqObject:packet];
+            }
+            else if ([eventCode isEqualToString:@"A000"]) {
+                NSLog(@"[decodePacketsInBufferAsync] Battery auto reporting Return: 0x%@", [payload substringWithRange:NSMakeRange(4,4)]);
+                if (connectStatus==TAG_OPERATIONS)
+                    [batteryInfo setBatteryMode:INVENTORY];
+                else
+                    [batteryInfo setBatteryMode:IDLE];
+                [self.readerDelegate didReceiveBatteryLevelIndicator:self batteryPercentage:[batteryInfo getBatteryPercentageByVoltage:(double)((((Byte *)[payloadInBytes bytes])[2] * 256) + ((Byte *)[payloadInBytes bytes])[3]) / 1000.00f]];
+                ;
+            }
         }
     }
     NSLog(@"[decodePacketsInBufferAsync] Ended!");
 }
 
+- (int)convertBatteryLevelToPercentage: (float) voltage {
+    
+
+    
+    
+    return 0;
+}
 
 @end

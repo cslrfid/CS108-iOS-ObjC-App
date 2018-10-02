@@ -22,7 +22,7 @@
 @synthesize lbUniqueTagRate;
 @synthesize lbTagCount;
 @synthesize tblTagList;
-
+@synthesize lbStatus;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,7 +31,9 @@
     
     tblTagList.layer.borderWidth=1.0f;
     tblTagList.layer.borderColor=[UIColor lightGrayColor].CGColor;
-    tblTagList.layer.cornerRadius=5.0f;
+    
+    lbStatus.layer.borderWidth=1.0f;
+    lbStatus.layer.borderColor=[UIColor lightGrayColor].CGColor;
     
     //timer event on updating UI
     scrRefreshTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
@@ -61,6 +63,12 @@
             [CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount =0;
             
         }
+
+        if ([CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage < 0 || [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage > 100)
+            self.lbStatus.text=@"Battery Level: -";
+        else
+            self.lbStatus.text=[NSString stringWithFormat:@"Battery Level: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
+        
     }
 }
 
@@ -180,6 +188,10 @@
     //[tagListing reloadData];
 }
 
+- (void) didReceiveBatteryLevelIndicator: (CSLBleReader *) sender batteryPercentage:(int)battPct {
+    [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage=battPct; 
+}
+
 - (void) didTriggerKeyChangedState: (CSLBleReader *) sender keyState:(BOOL)state {
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -218,6 +230,16 @@
     return 1;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [CSLRfidAppEngine sharedAppEngine].tagSelected= ((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).EPC;
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Tag Selected" message:[CSLRfidAppEngine sharedAppEngine].tagSelected  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 
 
