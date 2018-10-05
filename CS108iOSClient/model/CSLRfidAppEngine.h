@@ -19,11 +19,13 @@
     CSLReaderSettings* settings;
     CSLReaderInfo* readerInfo;
     NSString* tagSelected;
+    BOOL isBarcodeMode;
 }
 @property CSLBleReader* reader;
 @property CSLReaderSettings* settings;
 @property CSLReaderInfo* readerInfo;
 @property NSString* tagSelected;
+@property BOOL isBarcodeMode;
 
 + (CSLRfidAppEngine *) sharedAppEngine;
 + (id)alloc;

@@ -16,7 +16,9 @@
     __weak IBOutlet UILabel *lbUniqueTagRate;
     __weak IBOutlet UIButton *btnInventory;
     __weak IBOutlet UITableView *tblTagList;
-    
+    __weak IBOutlet UILabel *lbStatus;
+    __weak IBOutlet UIButton *lbClear;
+    __weak IBOutlet UILabel *lbMode;
     NSDate * tagRangingStartTime;
    
 }
@@ -26,8 +28,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnInventory;
 @property (weak, nonatomic) IBOutlet UITableView *tblTagList;
 @property (weak, nonatomic) IBOutlet UILabel *lbStatus;
+@property (weak, nonatomic) IBOutlet UIButton *lbClear;
+@property (weak, nonatomic) IBOutlet UILabel *lbMode;
 
 - (IBAction)btnInventoryPressed:(id)sender;
+- (IBAction)btnClearTable:(id)sender;
 
 
 

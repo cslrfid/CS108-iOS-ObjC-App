@@ -274,7 +274,7 @@
 - (IBAction)txtPowerChanged:(id)sender {
     NSScanner* scan = [NSScanner scannerWithString:txtPower.text];
     int val;
-    if ([scan scanInt:&val] && [scan isAtEnd] && [txtPower.text intValue] >= 0 && [txtPower.text intValue] <= 300) //valid int between 0 to 300
+    if ([scan scanInt:&val] && [scan isAtEnd] && [txtPower.text intValue] >= 0 && [txtPower.text intValue] <= 320) //valid int between 0 to 320
     {
         NSLog(@"Power value entered: OK");
     }

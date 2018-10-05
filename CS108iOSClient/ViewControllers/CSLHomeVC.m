@@ -33,9 +33,9 @@
         if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus!=NOT_CONNECTED)
         {
             if ([CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage < 0 || [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage > 100)
-                self.lbReaderStatus.text=@"Battery Level: -";
+                self.lbReaderStatus.text=@"Battery: -";
             else
-                self.lbReaderStatus.text=[NSString stringWithFormat:@"Battery Level: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
+                self.lbReaderStatus.text=[NSString stringWithFormat:@"Battery: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
         }
         else
             self.lbReaderStatus.text=@"";

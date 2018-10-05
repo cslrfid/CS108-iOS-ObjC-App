@@ -12,6 +12,8 @@
 @interface CSLInventoryVC ()
 {
     NSTimer * scrRefreshTimer;
+    UISwipeGestureRecognizer* swipeGestureRecognizer;
+    UIImageView *tempImageView;
 }
 @end
 
@@ -23,6 +25,8 @@
 @synthesize lbTagCount;
 @synthesize tblTagList;
 @synthesize lbStatus;
+@synthesize lbClear;
+@synthesize lbMode;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,8 +36,8 @@
     tblTagList.layer.borderWidth=1.0f;
     tblTagList.layer.borderColor=[UIColor lightGrayColor].CGColor;
     
-    lbStatus.layer.borderWidth=1.0f;
-    lbStatus.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnInventory.layer.borderWidth=1.0f;
+    btnInventory.layer.borderColor=[UIColor lightGrayColor].CGColor;
     
     //timer event on updating UI
     scrRefreshTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
@@ -41,6 +45,49 @@
                                    selector:@selector(refreshTagListing)
                                    userInfo:nil
                                     repeats:YES];
+    
+    swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(handleSwipes:)];
+    swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    swipeGestureRecognizer.numberOfTouchesRequired = 1;
+    [self.view addGestureRecognizer:swipeGestureRecognizer];
+    
+    swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]
+                              initWithTarget:self
+                              action:@selector(handleSwipes:)];
+    swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    swipeGestureRecognizer.numberOfTouchesRequired = 1;
+    [self.view addGestureRecognizer:swipeGestureRecognizer];
+}
+
+- (void)handleSwipes:(UISwipeGestureRecognizer*)gestureRecognizer {
+    @autoreleasepool {
+        
+        if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==TAG_OPERATIONS)
+            return;
+        
+        if ([[tempImageView accessibilityIdentifier] containsString:@"tagList-bg-rfid-swipe"]) {
+            tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tagList-bg-barcode-swipe"]];
+            [tempImageView setAccessibilityIdentifier:@"tagList-bg-barcode-swipe"];
+            [tempImageView setFrame:self.tblTagList.frame];
+            self.tblTagList.backgroundView = tempImageView;
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+            [CSLRfidAppEngine sharedAppEngine].isBarcodeMode=true;
+            lbMode.text=@"Mode: Barcode";
+            [lbClear sendActionsForControlEvents:UIControlEventTouchUpInside];
+        }
+        else {
+            tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tagList-bg-rfid-swipe"]];
+            [tempImageView setAccessibilityIdentifier:@"tagList-bg-rfid-swipe"];
+            [tempImageView setFrame:self.tblTagList.frame];
+            self.tblTagList.backgroundView = tempImageView;
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+            [CSLRfidAppEngine sharedAppEngine].isBarcodeMode=false;
+            lbMode.text=@"Mode: RFID";
+            [lbClear sendActionsForControlEvents:UIControlEventTouchUpInside];
+        }
+    }
 }
 
 //Selector for timer event on updating UI
@@ -65,9 +112,9 @@
         }
 
         if ([CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage < 0 || [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage > 100)
-            self.lbStatus.text=@"Battery Level: -";
+            self.lbStatus.text=@"Battery: -";
         else
-            self.lbStatus.text=[NSString stringWithFormat:@"Battery Level: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
+            self.lbStatus.text=[NSString stringWithFormat:@"Battery: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
         
     }
 }
@@ -85,10 +132,16 @@
     
     tblTagList.dataSource=self;
     tblTagList.delegate=self;
+    tblTagList.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tblTagList.bounds.size.width, 0.01f)];
     [tblTagList reloadData];
     
     [CSLRfidAppEngine sharedAppEngine].reader.delegate = self;
     [CSLRfidAppEngine sharedAppEngine].reader.readerDelegate=self;
+    
+    tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tagList-bg-rfid-swipe"]];
+    [tempImageView setAccessibilityIdentifier:@"tagList-bg-rfid-swipe"];
+    [tempImageView setFrame:self.tblTagList.frame];
+    self.tblTagList.backgroundView = tempImageView;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -110,6 +163,8 @@
     
     [scrRefreshTimer invalidate];
     scrRefreshTimer=nil;
+    
+    [self.view removeGestureRecognizer:swipeGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -128,18 +183,45 @@
 */
 
 - (IBAction)btnInventoryPressed:(id)sender {
-    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED && [[btnInventory currentTitle] isEqualToString:@"START"])
-    {
+    
+    if ([CSLRfidAppEngine sharedAppEngine].isBarcodeMode && [[btnInventory currentTitle] isEqualToString:@"START"]) {
         AudioServicesPlaySystemSound(1033);
         btnInventory.enabled=false;
-        //reader configurations before inventory
         
+        /*
         //clear UI
         lbTagRate.text=@"0";
         lbTagCount.text=@"0";
         [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer removeAllObjects];
         [tblTagList reloadData];
+        */
         
+        [[CSLRfidAppEngine sharedAppEngine].reader startBarcodeReading];
+        [btnInventory setTitle:@"STOP" forState:UIControlStateNormal];
+        btnInventory.enabled=true;
+        
+    }
+    else if ([CSLRfidAppEngine sharedAppEngine].isBarcodeMode && [[btnInventory currentTitle] isEqualToString:@"STOP"]) {
+        AudioServicesPlaySystemSound(1033);
+        btnInventory.enabled=false;
+        
+        [[CSLRfidAppEngine sharedAppEngine].reader stopBarcodeReading];
+        [btnInventory setTitle:@"START" forState:UIControlStateNormal];
+        btnInventory.enabled=true;
+    }
+    else if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED && [[btnInventory currentTitle] isEqualToString:@"START"])
+    {
+        AudioServicesPlaySystemSound(1033);
+        btnInventory.enabled=false;
+        //reader configurations before inventory
+        
+        /*
+        //clear UI
+        lbTagRate.text=@"0";
+        lbTagCount.text=@"0";
+        [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer removeAllObjects];
+        [tblTagList reloadData];
+        */
         
         //set inventory configurations
 
@@ -180,6 +262,15 @@
     
 }
 
+- (IBAction)btnClearTable:(id)sender {
+    //clear UI
+    lbTagRate.text=@"0";
+    lbTagCount.text=@"0";
+    [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer removeAllObjects];
+    [tblTagList reloadData];
+
+}
+
 - (void) didInterfaceChangeConnectStatus: (CSLBleInterface *) sender {
     
 }
@@ -209,6 +300,11 @@
     });
 }
 
+
+- (void) didReceiveBarcodeData: (CSLBleReader *) sender scannedBarcode:(CSLReaderBarcode*)barcode {
+
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer count];
 }
@@ -223,6 +319,7 @@
     
     cell.textLabel.font = [UIFont fontWithName:@"Arial" size:14];
     cell.textLabel.text = [NSString stringWithFormat:@"%5d \u25CF %@ \u25CF RSSI: %d", (int)(indexPath.row + 1), epc, (int)((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).rssi];
+    
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -240,7 +337,6 @@
     [alert addAction:ok];
     [self presentViewController:alert animated:YES completion:nil];
 }
-
 
 
 @end

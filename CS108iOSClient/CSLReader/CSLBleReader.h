@@ -10,6 +10,7 @@
 #import "CSLBleInterface.h"
 #import "CSLBleTag.h"
 #import "CSLReaderBattery.h"
+#import "CSLReaderBarcode.h"
 
 #define COMMAND_TIMEOUT_1S 10
 #define COMMAND_TIMEOUT_2S 20
@@ -62,6 +63,7 @@ typedef enum _QUERYSELECT : Byte
 - (void) didReceiveTagResponsePacket: (CSLBleReader *) sender tagReceived:(CSLBleTag*)tag;  //define delegate method to be implemented within another class
 - (void) didTriggerKeyChangedState: (CSLBleReader *) sender keyState:(BOOL)state;  //define delegate method to be implemented within another class
 - (void) didReceiveBatteryLevelIndicator: (CSLBleReader *) sender batteryPercentage:(int)battPct;
+- (void) didReceiveBarcodeData: (CSLBleReader *) sender scannedBarcode:(CSLReaderBarcode*)barcode;
 @end //end protocol
 
 @interface CSLBleReader : CSLBleInterface
@@ -78,11 +80,14 @@ typedef enum _QUERYSELECT : Byte
 @property CSLReaderBattery* batteryInfo;
 @property (nonatomic, weak) id <CSLBleReaderDelegate> readerDelegate; //define CSLBleReaderDelegate as delegate
 
++ (NSString*) convertDataToHexString:(NSData*) data;
 
 - (id)init;
 - (void)dealloc;
 - (BOOL)readOEMData:(CSLBleInterface*)intf atAddr:(unsigned short)addr forData:(NSData*)data;
 - (BOOL)barcodeReader:(BOOL)enable;
+- (BOOL)startBarcodeReading;
+- (BOOL)stopBarcodeReading;
 - (BOOL)powerOnRfid:(BOOL)enable;
 - (BOOL)getBtFirmwareVersion:(NSString **)versionNumber;
 - (BOOL)getConnectedDeviceName:(NSString **) deviceName;

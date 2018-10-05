@@ -22,6 +22,7 @@ CSLRfidAppEngine * appEngine;
 @synthesize readerInfo;
 @synthesize settings;
 @synthesize tagSelected;
+@synthesize isBarcodeMode;
 
 + (CSLRfidAppEngine *) sharedAppEngine
 {
