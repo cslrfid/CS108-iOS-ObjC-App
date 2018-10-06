@@ -88,6 +88,7 @@ typedef enum _QUERYSELECT : Byte
 - (BOOL)barcodeReader:(BOOL)enable;
 - (BOOL)startBarcodeReading;
 - (BOOL)stopBarcodeReading;
+- (BOOL)sendBarcodeCommandData: (NSData*)data;
 - (BOOL)powerOnRfid:(BOOL)enable;
 - (BOOL)getBtFirmwareVersion:(NSString **)versionNumber;
 - (BOOL)getConnectedDeviceName:(NSString **) deviceName;

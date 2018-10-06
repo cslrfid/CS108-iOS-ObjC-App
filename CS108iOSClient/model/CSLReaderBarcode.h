@@ -14,7 +14,6 @@
     NSString* barcodeValue;
     NSString* codeId;
     NSString* aimId;
-    
 }
 
 @property (retain) NSData* serialData;

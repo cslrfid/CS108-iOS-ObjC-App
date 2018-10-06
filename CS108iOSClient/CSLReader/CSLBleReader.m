@@ -240,7 +240,7 @@
     }
 }
 
-- (BOOL)startBarcodeReading
+- (BOOL)sendBarcodeCommandData: (NSData*)data
 {
     @synchronized(self) {
         if (connectStatus!=CONNECTED)
@@ -262,9 +262,9 @@
     
     //power on barcode
     NSLog(@"----------------------------------------------------------------------");
-    NSLog(@" Start reading barcode ");
+    NSLog(@" Send command to barcode ");
     NSLog(@"----------------------------------------------------------------------");
-    unsigned char barcodeStart[] = {0x90, 0x03, 0x1b, 0x33};
+    //unsigned char barcodeStart[] = {0x90, 0x03, 0x1b, 0x33};
     packet.prefix=0xA7;
     packet.connection = Bluetooth;
     packet.payloadLength=0x04;
@@ -273,7 +273,7 @@
     packet.direction=Downlink;
     packet.crc1=0;
     packet.crc2=0;
-    packet.payload=[NSData dataWithBytes:barcodeStart length:sizeof(barcodeStart)];
+    packet.payload=[NSData dataWithData:data];
     
     NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
     [self sendPackets:packet];
@@ -294,80 +294,38 @@
     }
     connectStatus=CONNECTED;
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    if (memcmp([payloadData bytes], barcodeStart, 2) == 0 && ((Byte *)[payloadData bytes])[2] == 0x00) {
-        NSLog(@"Start barcode reading OK");
+    if (memcmp([payloadData bytes], [data bytes], 2) == 0 && ((Byte *)[payloadData bytes])[2] == 0x00) {
+        NSLog(@"Send barcode command OK");
         return true;
     }
     else {
-        NSLog(@"Start barcode reading FAILED");
+        NSLog(@"Sned barcode command FAILED");
         return false;
     }
+}
+
+
+- (BOOL)startBarcodeReading
+{
+    unsigned char dataBytes[] = {0x90, 0x03, 0x1B, 0x33};
+    NSData* data=[NSData dataWithBytes:dataBytes length:4];
+    NSLog(@"Start barcode reading...");
+    if ([self sendBarcodeCommandData:data])
+        return true;
+    else
+        return false;
 }
 
 - (BOOL)stopBarcodeReading
 {
-    @synchronized(self) {
-        if (connectStatus!=CONNECTED)
-        {
-            NSLog(@"Reader is not connected or busy. Access failure");
-            return false;
-        }
-        
-        connectStatus=BUSY;
-    }
-    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
-    [cmdRespQueue removeAllObjects];
-    
-    
-    //Initialize data
-    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
-    NSData * payloadData;
-    
-    //power on barcode
-    NSLog(@"----------------------------------------------------------------------");
-    NSLog(@" Stop reading barcode ");
-    NSLog(@"----------------------------------------------------------------------");
-    unsigned char barcodeStop[] = {0x90, 0x03, 0x1b, 0x30};
-    packet.prefix=0xA7;
-    packet.connection = Bluetooth;
-    packet.payloadLength=0x04;
-    packet.deviceId=Barcode;
-    packet.Reserve=0x82;
-    packet.direction=Downlink;
-    packet.crc1=0;
-    packet.crc2=0;
-    packet.payload=[NSData dataWithBytes:barcodeStop length:sizeof(barcodeStop)];
-    
-    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
-    [self sendPackets:packet];
-    
-    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if ([cmdRespQueue count] != 0)
-            break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
-    }
-    if ([cmdRespQueue count] != 0)
-        payloadData = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
-    else
-    {
-        NSLog(@"Command timed out.");
-        connectStatus=CONNECTED;
-        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-        return false;
-    }
-    connectStatus=CONNECTED;
-    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    if (memcmp([payloadData bytes], barcodeStop, 2) == 0 && ((Byte *)[payloadData bytes])[2] == 0x00) {
-        NSLog(@"Stop barcode reading OK");
+    unsigned char dataBytes[] = {0x90, 0x03, 0x1B, 0x30};
+    NSData* data=[NSData dataWithBytes:dataBytes length:4];
+    NSLog(@"Stop barcode reading...");
+    if ([self sendBarcodeCommandData:data])
         return true;
-    }
-    else {
-        NSLog(@"Stop barcode reading FAILED");
+    else
         return false;
-    }
 }
-
 
 - (BOOL)powerOnRfid:(BOOL)enable
 {
@@ -2139,6 +2097,26 @@
                 barcode=[[CSLReaderBarcode alloc] initWithSerialData:[rfidPacketBuffer subdataWithRange:NSMakeRange(2, [rfidPacketBuffer length]-2)]];
                 if (barcode.aimId != nil && barcode.codeId != nil && barcode.barcodeValue!=nil) {
                     NSLog(@"[decodePacketsInBufferAsync] Barcode received: Code ID=%@ AIM ID=%@ Barcode=%@", barcode.codeId, barcode.aimId, barcode.barcodeValue);
+                    
+                    //check and see if epc exists on the array using binary search
+                    NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
+                    NSUInteger findIndex = [filteredBuffer indexOfObject:barcode
+                                                           inSortedRange:searchRange
+                                                                 options:NSBinarySearchingInsertionIndex
+                                                         usingComparator:^(id obj1, id obj2)
+                                            {
+                                                NSString* str1=((CSLReaderBarcode*)obj1).barcodeValue;
+                                                NSString* str2=((CSLReaderBarcode*)obj2).barcodeValue;
+                                                return [str1 compare:str2 options:NSCaseInsensitiveSearch];
+                                            }];
+                    
+                    if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
+                        [filteredBuffer insertObject:barcode atIndex:findIndex];
+                    else if ( [((CSLReaderBarcode*)filteredBuffer[findIndex]).barcodeValue caseInsensitiveCompare:barcode.barcodeValue] != NSOrderedSame)
+                        //new tag found.  insert into buffer in sorted order
+                        [filteredBuffer insertObject:barcode atIndex:findIndex];
+                    else    //tag is duplicated, but will replace the existing tag information with the new one for updating the RRSI value.
+                        [filteredBuffer replaceObjectAtIndex:findIndex withObject:barcode];
                     [self.readerDelegate didReceiveBarcodeData:self scannedBarcode:barcode];
                 }
                 [rfidPacketBuffer setLength:0];

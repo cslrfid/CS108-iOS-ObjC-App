@@ -8,6 +8,11 @@
 
 #import "CSLReaderBarcode.h"
 
+@interface CSLReaderBarcode() {
+    NSMutableDictionary *codeIdDescriptons;
+}
+@end
+
 @implementation CSLReaderBarcode
 
 @synthesize serialData;
@@ -22,6 +27,34 @@
 
 - (id) initWithSerialData:(NSData *)data {
     if (self = [super init]) {
+        
+        codeIdDescriptons=[[NSMutableDictionary alloc] init];
+        [codeIdDescriptons setObject:@"Code-128/EAN-128" forKey:@"j"];
+        [codeIdDescriptons setObject:@"AIM-128" forKey:@"f"];
+        [codeIdDescriptons setObject:@"EAN-8/EAN-13" forKey:@"d"];
+        [codeIdDescriptons setObject:@"UPC-E/UPC-A" forKey:@"c"];
+        [codeIdDescriptons setObject:@"Interleaved 2 of 5/ITF" forKey:@"e"];
+        [codeIdDescriptons setObject:@"Matrix 2 of 5" forKey:@"v"];
+        [codeIdDescriptons setObject:@"Code 39" forKey:@"b"];
+        [codeIdDescriptons setObject:@"Codabar" forKey:@"a"];
+        [codeIdDescriptons setObject:@"Code 93" forKey:@"i"];
+        [codeIdDescriptons setObject:@"Code 11" forKey:@"H"];
+        [codeIdDescriptons setObject:@"GS1 Databar(RSS)" forKey:@"R"];
+        [codeIdDescriptons setObject:@"EAN/UCC Composite" forKey:@"y"];
+        [codeIdDescriptons setObject:@"ISBN" forKey:@"B"];
+        [codeIdDescriptons setObject:@"ISSN" forKey:@"n"];
+        [codeIdDescriptons setObject:@"Matrix 2 of 5(European Matrix 2)" forKey:@"v"];
+        [codeIdDescriptons setObject:@"Industrial 25" forKey:@"D"];
+        [codeIdDescriptons setObject:@"Standard 25" forKey:@"s"];
+        [codeIdDescriptons setObject:@"Plessey" forKey:@"p"];
+        [codeIdDescriptons setObject:@"MSI-Plessey" forKey:@"m"];
+        [codeIdDescriptons setObject:@"QR Code" forKey:@"Q"];
+        [codeIdDescriptons setObject:@"Aztec" forKey:@"z"];
+        [codeIdDescriptons setObject:@"Data Matrix" forKey:@"u"];
+        [codeIdDescriptons setObject:@"Maxicode" forKey:@"x"];
+        [codeIdDescriptons setObject:@"Chinese Sensible Code" forKey:@"h"];
+        [codeIdDescriptons setObject:@"Plessey" forKey:@"p"];
+        
         serialData=data;
         [self extractBarcodeFromSerialData];
     }
@@ -47,7 +80,6 @@
     }
     
     //self-suffix
-    NSLog(@"Barcode self-prefix - %@", barcodeHexString);
     if ([[barcodeHexString substringFromIndex:[barcodeHexString length]-14] containsString:@"050111160304"]) {
         barcodeHexString=[barcodeHexString substringToIndex:[barcodeHexString length]-14];
     }
@@ -56,9 +88,8 @@
         return nil;
     }
     
-    
-    if (barcodeHexString)
-    codeId=[CSLReaderBarcode convertHexStringToAscii:[barcodeHexString substringToIndex:2]];
+    NSLog(@"Barcode extracted - %@", barcodeHexString);
+    codeId=[codeIdDescriptons objectForKey:[CSLReaderBarcode convertHexStringToAscii:[barcodeHexString substringToIndex:2]]];
     barcodeHexString=[barcodeHexString substringFromIndex:2];
     aimId=[CSLReaderBarcode convertHexStringToAscii:[barcodeHexString substringToIndex:6]];
     barcodeHexString=[barcodeHexString substringFromIndex:6];
