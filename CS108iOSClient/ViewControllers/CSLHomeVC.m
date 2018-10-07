@@ -209,5 +209,9 @@
 - (void) didReceiveBatteryLevelIndicator: (CSLBleReader *) sender batteryPercentage:(int)battPct {
     [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage=battPct; 
 }
+- (void) didReceiveBarcodeData: (CSLBleReader *) sender scannedBarcode:(CSLReaderBarcode*)barcode {
+
+}
+
 
 @end

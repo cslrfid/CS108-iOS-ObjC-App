@@ -16,10 +16,10 @@
     NSString* aimId;
 }
 
-@property (retain) NSData* serialData;
-@property (retain) NSString* barcodeValue;
-@property (retain) NSString* codeId;
-@property (retain) NSString* aimId;
+@property NSData* serialData;
+@property NSString* barcodeValue;
+@property NSString* codeId;
+@property NSString* aimId;
 
 - (id) init;
 - (id) initWithSerialData:(NSData*)data;

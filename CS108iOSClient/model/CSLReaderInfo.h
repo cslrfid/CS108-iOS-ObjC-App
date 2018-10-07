@@ -19,11 +19,11 @@
     int batteryPercentage;
 }
 
-@property (retain) NSString* appVersion;
-@property (retain) NSString* BtFirmwareVersion;
-@property (retain) NSString* RfidFirmwareVersion;
-@property (retain) NSString* SiLabICFirmwareVersion;
-@property (retain) NSString* deviceSerialNumber;
-@property (retain) NSString* pcbBoardVersion;
+@property NSString* appVersion;
+@property NSString* BtFirmwareVersion;
+@property NSString* RfidFirmwareVersion;
+@property NSString* SiLabICFirmwareVersion;
+@property NSString* deviceSerialNumber;
+@property NSString* pcbBoardVersion;
 @property (assign) int batteryPercentage;
 @end

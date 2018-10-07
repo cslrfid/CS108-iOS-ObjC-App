@@ -21,6 +21,7 @@
     TARGET target;
     QUERYALGORITHM algorithm;
     LINKPROFILE linkProfile;
+    BOOL enableSound;
     
 }
 
@@ -32,5 +33,6 @@
 @property (assign) TARGET target;
 @property (assign) QUERYALGORITHM algorithm;
 @property (assign) LINKPROFILE linkProfile;
+@property (assign) BOOL enableSound;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 #import "CSLBleReader.h"
 #import "CSLBleTag.h"
 #import "CSLBlePacket.h"
@@ -25,7 +26,7 @@
 @property CSLReaderSettings* settings;
 @property CSLReaderInfo* readerInfo;
 @property NSString* tagSelected;
-@property BOOL isBarcodeMode;
+@property (assign) BOOL isBarcodeMode;
 
 + (CSLRfidAppEngine *) sharedAppEngine;
 + (id)alloc;
@@ -35,5 +36,6 @@
 
 -(void)reloadSettingsFromUserDefaults;
 -(void)saveSettingsToUserDefaults;
+-(void)soundAlert:(SystemSoundID) soundId;
 
 @end

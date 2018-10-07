@@ -13,8 +13,6 @@
 @interface CSLBleReader() {
     CSLCircularQueue * cmdRespQueue;     //Buffer for storing response packet(s) after issuing a command synchronously
 }
-
-- (int)convertBatteryLevelToPercentage: (float) voltage;
 - (void) stopInventoryBlocking;
 
 @end

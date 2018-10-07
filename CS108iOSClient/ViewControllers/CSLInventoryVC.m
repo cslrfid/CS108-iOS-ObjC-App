@@ -72,7 +72,7 @@
             [tempImageView setAccessibilityIdentifier:@"tagList-bg-barcode-swipe"];
             [tempImageView setFrame:self.tblTagList.frame];
             self.tblTagList.backgroundView = tempImageView;
-            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+            [[CSLRfidAppEngine sharedAppEngine] soundAlert:kSystemSoundID_Vibrate];
             [CSLRfidAppEngine sharedAppEngine].isBarcodeMode=true;
             lbMode.text=@"Mode: Barcode";
             [lbClear sendActionsForControlEvents:UIControlEventTouchUpInside];
@@ -82,7 +82,7 @@
             [tempImageView setAccessibilityIdentifier:@"tagList-bg-rfid-swipe"];
             [tempImageView setFrame:self.tblTagList.frame];
             self.tblTagList.backgroundView = tempImageView;
-            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+            [[CSLRfidAppEngine sharedAppEngine] soundAlert:kSystemSoundID_Vibrate];
             [CSLRfidAppEngine sharedAppEngine].isBarcodeMode=false;
             lbMode.text=@"Mode: RFID";
             [lbClear sendActionsForControlEvents:UIControlEventTouchUpInside];
@@ -95,7 +95,7 @@
     @autoreleasepool {
         if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==TAG_OPERATIONS)
         {
-            AudioServicesPlaySystemSound(1005);
+            [[CSLRfidAppEngine sharedAppEngine] soundAlert:1005];
             //update table
             [tblTagList reloadData];
             
@@ -190,7 +190,7 @@
 - (IBAction)btnInventoryPressed:(id)sender {
     
     if ([CSLRfidAppEngine sharedAppEngine].isBarcodeMode && [[btnInventory currentTitle] isEqualToString:@"START"]) {
-        AudioServicesPlaySystemSound(1033);
+        [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         btnInventory.enabled=false;
         
         /*
@@ -207,7 +207,7 @@
         
     }
     else if ([CSLRfidAppEngine sharedAppEngine].isBarcodeMode && [[btnInventory currentTitle] isEqualToString:@"STOP"]) {
-        AudioServicesPlaySystemSound(1033);
+        [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         btnInventory.enabled=false;
         
         [[CSLRfidAppEngine sharedAppEngine].reader stopBarcodeReading];
@@ -216,7 +216,7 @@
     }
     else if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED && [[btnInventory currentTitle] isEqualToString:@"START"])
     {
-        AudioServicesPlaySystemSound(1033);
+        [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         btnInventory.enabled=false;
         //reader configurations before inventory
         
@@ -251,7 +251,7 @@
     }
     else if ([[btnInventory currentTitle] isEqualToString:@"STOP"])
     {
-        AudioServicesPlaySystemSound(1033);
+        [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         if([[CSLRfidAppEngine sharedAppEngine].reader stopInventory])
         {
             [btnInventory setTitle:@"START" forState:UIControlStateNormal];
@@ -307,7 +307,7 @@
 
 
 - (void) didReceiveBarcodeData: (CSLBleReader *) sender scannedBarcode:(CSLReaderBarcode*)barcode {
-    AudioServicesPlaySystemSound(1005);
+    [[CSLRfidAppEngine sharedAppEngine] soundAlert:1005];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

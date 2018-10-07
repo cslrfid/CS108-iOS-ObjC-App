@@ -10,9 +10,6 @@
 #import "CSLRfidAppEngine.h"
 
 @interface CSLHomeVC : UIViewController<CSLBleReaderDelegate>
-{
-    
-}
 
 - (IBAction)btnInventoryPressed:(id)sender;
 - (IBAction)btnSettingsPressed:(id)sender;

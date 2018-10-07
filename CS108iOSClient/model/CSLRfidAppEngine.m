@@ -10,8 +10,7 @@
 
 CSLRfidAppEngine * appEngine;
 
-@interface CSLRfidAppEngine()
-{
+@interface CSLRfidAppEngine() {
 
 }
 @end
@@ -100,7 +99,8 @@ CSLRfidAppEngine * appEngine;
         settings.algorithm = (QUERYALGORITHM)[defaults integerForKey:@"algorithm"];
     if([defaults integerForKey:@"linkProfile"])
         settings.linkProfile = (LINKPROFILE)[defaults integerForKey:@"linkProfile"];
-    
+    if([defaults boolForKey:@"isSoundEnabled"])
+        settings.enableSound =[defaults boolForKey:@"isSoundEnabled"];
 }
 -(void)saveSettingsToUserDefaults {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -113,9 +113,13 @@ CSLRfidAppEngine * appEngine;
     [defaults setInteger:settings.target forKey:@"target"];
     [defaults setInteger:settings.algorithm forKey:@"algorithm"];
     [defaults setInteger:settings.linkProfile forKey:@"linkProfile"];
+    [defaults setBool:settings.enableSound forKey:@"isSoundEnabled"];
     [defaults synchronize];
     
 }
 
-
+-(void)soundAlert:(SystemSoundID)soundId {
+    if(settings.enableSound)
+        AudioServicesPlaySystemSound(soundId);
+}
 @end
