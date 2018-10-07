@@ -1,5 +1,8 @@
 # CslCs108iOsApp
-Library and demo app for Convergence Systems Limited CS108 UHF RFID handheld reader
+
+<img src="app_img/cs108-1.png" />
+
+### Library and demo app for Convergence Systems Limited CS108 UHF RFID handheld reader
 
 [Product Information](https://www.convergence.com.hk/cs108/)
 
