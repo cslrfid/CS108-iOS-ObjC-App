@@ -7,6 +7,10 @@ Library and demo app for Convergence Systems Limited CS108 UHF RFID handheld rea
 
 ---
 
+<img src="app_img/Home.png" width="200"/><img src="app_img/Inventory-tag.png" width="200"/><img src="app_img/Inventory-barcode.png" width="200"/><img src="app_img/Settings.png" width="200"/>
+
+---
+
 **Initial version: 1.0.1 (tested against Bluetooth FW 1.0.11, RFID FW 2.6.14, SiliconLab FW 1.0.9)**
 
 - Developed the communication and packet exchange over BLE for device discovery, connection and configurations
