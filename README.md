@@ -1,5 +1,8 @@
 # CslCs108iOsApp
-Library and demo app for Convergence Systems Limited CS108 UHF RFID handheld reader
+
+<img src="app_img/cs108-1.png" />
+
+#### Library and demo app for Convergence Systems Limited CS108 UHF RFID handheld reader written in Objective-C
 
 [Product Information](https://www.convergence.com.hk/cs108/)
 
@@ -7,6 +10,15 @@ Library and demo app for Convergence Systems Limited CS108 UHF RFID handheld rea
 
 ---
 
+<img src="app_img/Home.png" width="200"/><img src="app_img/Inventory-tag.png" width="200"/><img src="app_img/Inventory-barcode.png" width="200"/><img src="app_img/Settings.png" width="200"/>
+
+---
+### Development Environment
+- XCode 9
+- iOS 11
+- Tested on iPhone 8 (optimized for 4.7" but functional on all screen sizes) 
+
+---
 **Initial version: 1.0.1 (tested against Bluetooth FW 1.0.11, RFID FW 2.6.14, SiliconLab FW 1.0.9)**
 
 - Developed the communication and packet exchange over BLE for device discovery, connection and configurations
@@ -28,3 +40,12 @@ Library and demo app for Convergence Systems Limited CS108 UHF RFID handheld rea
 - Improved robustness in the process of starting/stopping inventory
 - Created a new page for tag inventory
 - Corrected tag read rate including unique tag rate and general tag rate.  Revised the time window (per second) so that we get a more stable number on the current read rate
+
+---
+
+**Version 1.3.630**
+
+- Implemented battery level reporting
+- Power configuration with a revised range
+- Fixes on EPC handing and enhanced stability 
+- Barcode reading functions under inventory page, with swipe to change mode
