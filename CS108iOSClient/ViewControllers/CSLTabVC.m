@@ -9,10 +9,6 @@
 #import "CSLTabVC.h"
 
 @implementation CSLTabVC
-{
-
-}
-
 
 - (void)setActiveView:(int)identifier
 {

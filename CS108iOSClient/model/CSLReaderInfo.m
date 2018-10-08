@@ -14,7 +14,9 @@
 @synthesize RfidFirmwareVersion;
 @synthesize SiLabICFirmwareVersion;
 @synthesize deviceSerialNumber;
+@synthesize pcbBoardVersion;
 @synthesize appVersion;
+@synthesize batteryPercentage;
 
 -(id)init {
     if (self = [super init])  {
@@ -24,6 +26,8 @@
         RfidFirmwareVersion = [[NSString alloc] init];
         SiLabICFirmwareVersion = [[NSString alloc] init];
         deviceSerialNumber = [[NSString alloc] init];
+        pcbBoardVersion = [[NSString alloc] init];
+        batteryPercentage=-1;
     }
     return self;
 }

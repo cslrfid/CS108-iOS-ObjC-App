@@ -106,6 +106,7 @@
             NSString * btFwVersion;
             NSString * slVersion;
             NSString * rfidBoardSn;
+            NSString * pcbBoardVersion;
             NSString * rfidFwVersion;
             NSString * appVersion;
 
@@ -120,7 +121,9 @@
                 [CSLRfidAppEngine sharedAppEngine].readerInfo.SiLabICFirmwareVersion=slVersion;
             if ([[CSLRfidAppEngine sharedAppEngine].reader getRfidBrdSerialNumber:&rfidBoardSn])
                 [CSLRfidAppEngine sharedAppEngine].readerInfo.deviceSerialNumber=rfidBoardSn;
-            
+            if ([[CSLRfidAppEngine sharedAppEngine].reader getPcBBoardVersion:&pcbBoardVersion])
+                [CSLRfidAppEngine sharedAppEngine].readerInfo.pcbBoardVersion=pcbBoardVersion;
+            [[CSLRfidAppEngine sharedAppEngine].reader.batteryInfo setPcbVersion:[pcbBoardVersion doubleValue]];
             [[CSLRfidAppEngine sharedAppEngine].reader sendAbortCommand];
             
             if ([[CSLRfidAppEngine sharedAppEngine].reader getRfidFwVersionNumber:&rfidFwVersion])
@@ -131,9 +134,9 @@
             [CSLRfidAppEngine sharedAppEngine].readerInfo.appVersion=appVersion;
             
              //read OEM data: to be implemented for getting reader regional settings and parameters
-            /*
              NSData* OEMData;
             [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000002 forData:OEMData];
+            /*
             [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000008 forData:OEMData];
             [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000008E forData:OEMData];
             [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000008F forData:OEMData];
@@ -146,6 +149,9 @@
             [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000007 forData:OEMData];
             [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x000000A5 forData:OEMData];
              */
+            
+            [[CSLRfidAppEngine sharedAppEngine].reader startBatteryAutoReporting];
+            
             [actSpinner stopAnimating];
         }
         

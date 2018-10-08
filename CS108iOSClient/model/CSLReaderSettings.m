@@ -18,6 +18,7 @@
 @synthesize tagPopulation;
 @synthesize QValue;
 @synthesize isQOverride;
+@synthesize enableSound;
 
 -(id)init {
     if (self = [super init])  {
@@ -30,6 +31,7 @@
         self.target = ToggleAB;
         self.algorithm = DYNAMICQ;
         self.linkProfile=RANGE_DRM;
+        self.enableSound=true;
     }
     return self;
 }

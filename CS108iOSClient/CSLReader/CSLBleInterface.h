@@ -1,6 +1,6 @@
 //
 //  CSLBleInterface.h
-//  CS108Playground
+//  CS108iOSClient
 //
 //  Created by Lam Ka Shun on 2/8/2018.
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.
@@ -11,8 +11,7 @@
 #import "CSLBlePacket.h"
 #import "CSLCircularQueue.h"
 
-typedef enum _STATUS : Byte
-{
+typedef enum _STATUS : Byte {
     CONNECTED,
     NOT_CONNECTED,
     SCANNING,
@@ -26,8 +25,7 @@ typedef enum _STATUS : Byte
 - (void) didInterfaceChangeConnectStatus: (CSLBleInterface *) sender;     //triggered when reader state chagnes
 @end //end protocol
 
-@interface CSLBleInterface : NSObject <CBCentralManagerDelegate,CBPeripheralDelegate>
-{
+@interface CSLBleInterface : NSObject <CBCentralManagerDelegate,CBPeripheralDelegate> {
     NSString * deviceName;
     CBPeripheral* bleDevice;        //connected BLE device
     NSMutableArray * bleDeviceList; //array of CBPeripheral object after device discovery

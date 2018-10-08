@@ -20,6 +20,7 @@
 @synthesize lbRfidFirmwareVersion;
 @synthesize lbSerialNumber;
 @synthesize lbSiLabIcFirmwareVersion;
+@synthesize lbBoardVersion;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,6 +36,7 @@
     lbRfidFirmwareVersion.text=[CSLRfidAppEngine sharedAppEngine].readerInfo.RfidFirmwareVersion;
     lbSiLabIcFirmwareVersion.text=[CSLRfidAppEngine sharedAppEngine].readerInfo.SiLabICFirmwareVersion;
     lbSerialNumber.text=[CSLRfidAppEngine sharedAppEngine].readerInfo.deviceSerialNumber;
+    lbBoardVersion.text=[CSLRfidAppEngine sharedAppEngine].readerInfo.pcbBoardVersion;
 }
 
 - (void)didReceiveMemoryWarning {

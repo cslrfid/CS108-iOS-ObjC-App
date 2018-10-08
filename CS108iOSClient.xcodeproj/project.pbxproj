@@ -30,6 +30,8 @@
 		CABA71672132631F00D15BB1 /* CSLBlePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71642132631F00D15BB1 /* CSLBlePacket.m */; };
 		CABA71682132631F00D15BB1 /* CSLBleInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71652132631F00D15BB1 /* CSLBleInterface.m */; };
 		CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */; };
+		CAF5CC2821626F1500C420EF /* CSLReaderBattery.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF5CC2721626F1500C420EF /* CSLReaderBattery.m */; };
+		CAF5CC2B21640E7F00C420EF /* CSLReaderBarcode.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF5CC2A21640E7F00C420EF /* CSLReaderBarcode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +75,10 @@
 		CABA71642132631F00D15BB1 /* CSLBlePacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBlePacket.m; sourceTree = "<group>"; };
 		CABA71652132631F00D15BB1 /* CSLBleInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBleInterface.m; sourceTree = "<group>"; };
 		CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CSLRfidDemoApp.storyboard; sourceTree = "<group>"; };
+		CAF5CC2621626F1500C420EF /* CSLReaderBattery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLReaderBattery.h; sourceTree = "<group>"; };
+		CAF5CC2721626F1500C420EF /* CSLReaderBattery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderBattery.m; sourceTree = "<group>"; };
+		CAF5CC2921640E7F00C420EF /* CSLReaderBarcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLReaderBarcode.h; sourceTree = "<group>"; };
+		CAF5CC2A21640E7F00C420EF /* CSLReaderBarcode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderBarcode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +150,10 @@
 				CA78737E21543B6F009B7FE6 /* CSLReaderSettings.m */,
 				CA7873802155F59C009B7FE6 /* CSLReaderInfo.h */,
 				CA7873812155F59C009B7FE6 /* CSLReaderInfo.m */,
+				CAF5CC2621626F1500C420EF /* CSLReaderBattery.h */,
+				CAF5CC2721626F1500C420EF /* CSLReaderBattery.m */,
+				CAF5CC2921640E7F00C420EF /* CSLReaderBarcode.h */,
+				CAF5CC2A21640E7F00C420EF /* CSLReaderBarcode.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -274,10 +284,12 @@
 				CA787367214CC9C8009B7FE6 /* CSLTabVC.m in Sources */,
 				CA7873782150DF7A009B7FE6 /* CSLDeviceTV.m in Sources */,
 				CA78736D214CD49D009B7FE6 /* CSLInventoryVC.m in Sources */,
+				CAF5CC2821626F1500C420EF /* CSLReaderBattery.m in Sources */,
 				CABA71672132631F00D15BB1 /* CSLBlePacket.m in Sources */,
 				CA787361214CC154009B7FE6 /* CSLHomeVC.m in Sources */,
 				CABA715821325BF600D15BB1 /* main.m in Sources */,
 				CABA714A21325BF500D15BB1 /* AppDelegate.m in Sources */,
+				CAF5CC2B21640E7F00C420EF /* CSLReaderBarcode.m in Sources */,
 				CA7873822155F59C009B7FE6 /* CSLReaderInfo.m in Sources */,
 				CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */,
 				CA78737F21543B6F009B7FE6 /* CSLReaderSettings.m in Sources */,

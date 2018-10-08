@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbRfidFirmwareVersion;
 @property (weak, nonatomic) IBOutlet UILabel *lbSiLabIcFirmwareVersion;
 @property (weak, nonatomic) IBOutlet UILabel *lbSerialNumber;
+@property (weak, nonatomic) IBOutlet UILabel *lbBoardVersion;
 
 
 @end

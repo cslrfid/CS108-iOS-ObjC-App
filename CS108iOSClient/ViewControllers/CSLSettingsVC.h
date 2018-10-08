@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtQValue;
 @property (weak, nonatomic) IBOutlet UITextField *txtTagPopulation;
 @property (weak, nonatomic) IBOutlet UITextField *txtPower;
+@property (weak, nonatomic) IBOutlet UISwitch *swSound;
 
 - (IBAction)btnSessionPressed:(id)sender;
 - (IBAction)btnAlgorithmPressed:(id)sender;

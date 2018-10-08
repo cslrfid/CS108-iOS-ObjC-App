@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "CSLBleInterface.h"
 #import "CSLBleTag.h"
+#import "CSLReaderBattery.h"
+#import "CSLReaderBarcode.h"
 
 #define COMMAND_TIMEOUT_1S 10
 #define COMMAND_TIMEOUT_2S 20
@@ -60,6 +62,8 @@ typedef enum _QUERYSELECT : Byte
 @protocol CSLBleReaderDelegate <NSObject>   //define delegate protocol
 - (void) didReceiveTagResponsePacket: (CSLBleReader *) sender tagReceived:(CSLBleTag*)tag;  //define delegate method to be implemented within another class
 - (void) didTriggerKeyChangedState: (CSLBleReader *) sender keyState:(BOOL)state;  //define delegate method to be implemented within another class
+- (void) didReceiveBatteryLevelIndicator: (CSLBleReader *) sender batteryPercentage:(int)battPct;
+- (void) didReceiveBarcodeData: (CSLBleReader *) sender scannedBarcode:(CSLReaderBarcode*)barcode;
 @end //end protocol
 
 @interface CSLBleReader : CSLBleInterface
@@ -67,24 +71,33 @@ typedef enum _QUERYSELECT : Byte
     NSMutableArray * filteredBuffer;   //after duplicate eliminations durinng async inventory
     NSInteger rangingTagCount;          //counter for tag rate calculation
     NSInteger uniqueTagCount;
+    CSLReaderBattery * batteryInfo;
 }
 
 @property NSMutableArray * filteredBuffer;
 @property NSInteger rangingTagCount;
 @property NSInteger uniqueTagCount;
+@property CSLReaderBattery* batteryInfo;
 @property (nonatomic, weak) id <CSLBleReaderDelegate> readerDelegate; //define CSLBleReaderDelegate as delegate
 
++ (NSString*) convertDataToHexString:(NSData*) data;
 
 - (id)init;
 - (void)dealloc;
 - (BOOL)readOEMData:(CSLBleInterface*)intf atAddr:(unsigned short)addr forData:(NSData*)data;
 - (BOOL)barcodeReader:(BOOL)enable;
+- (BOOL)startBarcodeReading;
+- (BOOL)stopBarcodeReading;
+- (BOOL)sendBarcodeCommandData: (NSData*)data;
 - (BOOL)powerOnRfid:(BOOL)enable;
 - (BOOL)getBtFirmwareVersion:(NSString **)versionNumber;
 - (BOOL)getConnectedDeviceName:(NSString **) deviceName;
 - (BOOL)getSilLabIcVersion:(NSString **) slVersion;
 - (BOOL)getRfidBrdSerialNumber:(NSString**) serialNumber;
+- (BOOL)getPcBBoardVersion:(NSString**) boardVersion;
 - (BOOL)sendAbortCommand;
+- (BOOL)startBatteryAutoReporting;
+- (BOOL)stopBatteryAutoReporting;
 - (BOOL)getRfidFwVersionNumber:(NSString**) versionInfo;
 - (BOOL)setPower:(double) powerInDbm;
 - (BOOL)setAntennaCycle:(NSUInteger) cycles;

@@ -8,16 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CSLBleTag : NSObject
-{
+@interface CSLBleTag : NSObject {
     int PC;
     NSString * EPC;
     Byte rssi;
     
 }
 
-@property int PC;
+@property (assign) int PC;
 @property NSString * EPC;
-@property Byte rssi;
+@property (assign) Byte rssi;
 
 @end

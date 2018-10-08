@@ -1,6 +1,6 @@
 //
 //  CSLBlePacket.m
-//  CS108Playground
+//  CS108iOSClient
 //
 //  Created by Lam Ka Shun on 9/8/2018.
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.

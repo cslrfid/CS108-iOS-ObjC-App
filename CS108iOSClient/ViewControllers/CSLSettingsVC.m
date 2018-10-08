@@ -8,12 +8,6 @@
 
 #import "CSLSettingsVC.h"
 
-@interface CSLSettingsVC ()
-{
-}
-@end
-
-
 @implementation CSLSettingsVC
 
 @synthesize btnSaveConfig;
@@ -25,6 +19,7 @@
 @synthesize txtQValue;
 @synthesize txtTagPopulation;
 @synthesize btnTarget;
+@synthesize swSound;
 
 
 - (void)viewDidLoad {
@@ -70,6 +65,7 @@
     txtTagPopulation.text=[NSString stringWithFormat:@"%d", [CSLRfidAppEngine sharedAppEngine].settings.tagPopulation];
     [btnQOverride setOn:[CSLRfidAppEngine sharedAppEngine].settings.isQOverride];
     txtQValue.text=[NSString stringWithFormat:@"%d", [CSLRfidAppEngine sharedAppEngine].settings.QValue];
+    [swSound setOn:[CSLRfidAppEngine sharedAppEngine].settings.enableSound];
     
     switch([CSLRfidAppEngine sharedAppEngine].settings.target) {
         case A :
@@ -274,7 +270,7 @@
 - (IBAction)txtPowerChanged:(id)sender {
     NSScanner* scan = [NSScanner scannerWithString:txtPower.text];
     int val;
-    if ([scan scanInt:&val] && [scan isAtEnd] && [txtPower.text intValue] >= 0 && [txtPower.text intValue] <= 300) //valid int between 0 to 300
+    if ([scan scanInt:&val] && [scan isAtEnd] && [txtPower.text intValue] >= 0 && [txtPower.text intValue] <= 320) //valid int between 0 to 320
     {
         NSLog(@"Power value entered: OK");
     }
@@ -316,6 +312,7 @@
         [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = RANGE_THROUGHPUT_DRM;
     if ([btnLinkProfile.titleLabel.text compare:@"3. Max Throughput"] == NSOrderedSame)
         [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MAX_THROUGHPUT;
+    [CSLRfidAppEngine sharedAppEngine].settings.enableSound=swSound.isOn;
     
     [[CSLRfidAppEngine sharedAppEngine] saveSettingsToUserDefaults];
     

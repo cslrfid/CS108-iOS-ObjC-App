@@ -7,10 +7,13 @@
 //
 
 #import "CSLInventoryVC.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface CSLInventoryVC ()
 {
     NSTimer * scrRefreshTimer;
+    UISwipeGestureRecognizer* swipeGestureRecognizer;
+    UIImageView *tempImageView;
 }
 @end
 
@@ -21,7 +24,9 @@
 @synthesize lbUniqueTagRate;
 @synthesize lbTagCount;
 @synthesize tblTagList;
-
+@synthesize lbStatus;
+@synthesize lbClear;
+@synthesize lbMode;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,7 +35,9 @@
     
     tblTagList.layer.borderWidth=1.0f;
     tblTagList.layer.borderColor=[UIColor lightGrayColor].CGColor;
-    tblTagList.layer.cornerRadius=5.0f;
+    
+    btnInventory.layer.borderWidth=1.0f;
+    btnInventory.layer.borderColor=[UIColor lightGrayColor].CGColor;
     
     //timer event on updating UI
     scrRefreshTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
@@ -38,6 +45,49 @@
                                    selector:@selector(refreshTagListing)
                                    userInfo:nil
                                     repeats:YES];
+    
+    swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(handleSwipes:)];
+    swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    swipeGestureRecognizer.numberOfTouchesRequired = 1;
+    [self.view addGestureRecognizer:swipeGestureRecognizer];
+    
+    swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]
+                              initWithTarget:self
+                              action:@selector(handleSwipes:)];
+    swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    swipeGestureRecognizer.numberOfTouchesRequired = 1;
+    [self.view addGestureRecognizer:swipeGestureRecognizer];
+}
+
+- (void)handleSwipes:(UISwipeGestureRecognizer*)gestureRecognizer {
+    @autoreleasepool {
+        
+        if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==TAG_OPERATIONS)
+            return;
+        
+        if ([[tempImageView accessibilityIdentifier] containsString:@"tagList-bg-rfid-swipe"]) {
+            tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tagList-bg-barcode-swipe"]];
+            [tempImageView setAccessibilityIdentifier:@"tagList-bg-barcode-swipe"];
+            [tempImageView setFrame:self.tblTagList.frame];
+            self.tblTagList.backgroundView = tempImageView;
+            [[CSLRfidAppEngine sharedAppEngine] soundAlert:kSystemSoundID_Vibrate];
+            [CSLRfidAppEngine sharedAppEngine].isBarcodeMode=true;
+            lbMode.text=@"Mode: Barcode";
+            [lbClear sendActionsForControlEvents:UIControlEventTouchUpInside];
+        }
+        else {
+            tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tagList-bg-rfid-swipe"]];
+            [tempImageView setAccessibilityIdentifier:@"tagList-bg-rfid-swipe"];
+            [tempImageView setFrame:self.tblTagList.frame];
+            self.tblTagList.backgroundView = tempImageView;
+            [[CSLRfidAppEngine sharedAppEngine] soundAlert:kSystemSoundID_Vibrate];
+            [CSLRfidAppEngine sharedAppEngine].isBarcodeMode=false;
+            lbMode.text=@"Mode: RFID";
+            [lbClear sendActionsForControlEvents:UIControlEventTouchUpInside];
+        }
+    }
 }
 
 //Selector for timer event on updating UI
@@ -45,6 +95,7 @@
     @autoreleasepool {
         if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==TAG_OPERATIONS)
         {
+            [[CSLRfidAppEngine sharedAppEngine] soundAlert:1005];
             //update table
             [tblTagList reloadData];
             
@@ -59,6 +110,17 @@
             [CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount =0;
             
         }
+        else if ([CSLRfidAppEngine sharedAppEngine].isBarcodeMode) {
+            //update table
+            [tblTagList reloadData];
+        }
+            
+
+        if ([CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage < 0 || [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage > 100)
+            self.lbStatus.text=@"Battery: -";
+        else
+            self.lbStatus.text=[NSString stringWithFormat:@"Battery: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
+        
     }
 }
 
@@ -75,10 +137,16 @@
     
     tblTagList.dataSource=self;
     tblTagList.delegate=self;
+    tblTagList.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tblTagList.bounds.size.width, 0.01f)];
     [tblTagList reloadData];
     
     [CSLRfidAppEngine sharedAppEngine].reader.delegate = self;
     [CSLRfidAppEngine sharedAppEngine].reader.readerDelegate=self;
+    
+    tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tagList-bg-rfid-swipe"]];
+    [tempImageView setAccessibilityIdentifier:@"tagList-bg-rfid-swipe"];
+    [tempImageView setFrame:self.tblTagList.frame];
+    self.tblTagList.backgroundView = tempImageView;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -100,6 +168,8 @@
     
     [scrRefreshTimer invalidate];
     scrRefreshTimer=nil;
+    
+    [self.view removeGestureRecognizer:swipeGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,17 +188,45 @@
 */
 
 - (IBAction)btnInventoryPressed:(id)sender {
-    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED && [[btnInventory currentTitle] isEqualToString:@"START"])
-    {
+    
+    if ([CSLRfidAppEngine sharedAppEngine].isBarcodeMode && [[btnInventory currentTitle] isEqualToString:@"START"]) {
+        [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         btnInventory.enabled=false;
-        //reader configurations before inventory
         
+        /*
         //clear UI
         lbTagRate.text=@"0";
         lbTagCount.text=@"0";
         [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer removeAllObjects];
         [tblTagList reloadData];
+        */
         
+        [[CSLRfidAppEngine sharedAppEngine].reader startBarcodeReading];
+        [btnInventory setTitle:@"STOP" forState:UIControlStateNormal];
+        btnInventory.enabled=true;
+        
+    }
+    else if ([CSLRfidAppEngine sharedAppEngine].isBarcodeMode && [[btnInventory currentTitle] isEqualToString:@"STOP"]) {
+        [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
+        btnInventory.enabled=false;
+        
+        [[CSLRfidAppEngine sharedAppEngine].reader stopBarcodeReading];
+        [btnInventory setTitle:@"START" forState:UIControlStateNormal];
+        btnInventory.enabled=true;
+    }
+    else if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED && [[btnInventory currentTitle] isEqualToString:@"START"])
+    {
+        [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
+        btnInventory.enabled=false;
+        //reader configurations before inventory
+        
+        /*
+        //clear UI
+        lbTagRate.text=@"0";
+        lbTagCount.text=@"0";
+        [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer removeAllObjects];
+        [tblTagList reloadData];
+        */
         
         //set inventory configurations
 
@@ -153,6 +251,7 @@
     }
     else if ([[btnInventory currentTitle] isEqualToString:@"STOP"])
     {
+        [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         if([[CSLRfidAppEngine sharedAppEngine].reader stopInventory])
         {
             [btnInventory setTitle:@"START" forState:UIControlStateNormal];
@@ -168,12 +267,25 @@
     
 }
 
+- (IBAction)btnClearTable:(id)sender {
+    //clear UI
+    lbTagRate.text=@"0";
+    lbTagCount.text=@"0";
+    [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer removeAllObjects];
+    [tblTagList reloadData];
+
+}
+
 - (void) didInterfaceChangeConnectStatus: (CSLBleInterface *) sender {
     
 }
 
 - (void) didReceiveTagResponsePacket: (CSLBleReader *) sender tagReceived:(CSLBleTag*)tag {
     //[tagListing reloadData];
+}
+
+- (void) didReceiveBatteryLevelIndicator: (CSLBleReader *) sender batteryPercentage:(int)battPct {
+    [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage=battPct; 
 }
 
 - (void) didTriggerKeyChangedState: (CSLBleReader *) sender keyState:(BOOL)state {
@@ -193,20 +305,44 @@
     });
 }
 
+
+- (void) didReceiveBarcodeData: (CSLBleReader *) sender scannedBarcode:(CSLReaderBarcode*)barcode {
+    [[CSLRfidAppEngine sharedAppEngine] soundAlert:1005];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString* epc=((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).EPC;
-    UITableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:epc];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:epc];
-    }
     
-    cell.textLabel.font = [UIFont fontWithName:@"Arial" size:14];
-    cell.textLabel.text = [NSString stringWithFormat:@"%5d \u25CF %@ \u25CF RSSI: %d", (int)(indexPath.row + 1), epc, (int)((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).rssi];
+    UITableViewCell * cell;
+    //for rfid data
+    if ([[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row] isKindOfClass:[CSLBleTag class]]) {
+        NSString* epc=((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).EPC;
+        cell=[tableView dequeueReusableCellWithIdentifier:epc];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:epc];
+        }
+        
+        cell.textLabel.font = [UIFont fontWithName:@"Arial" size:14];
+        cell.textLabel.text = [NSString stringWithFormat:@"%5d \u25CF %@ \u25CF RSSI: %d", (int)(indexPath.row + 1), epc, (int)((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).rssi];
+    }
+    //for barcode data
+    else if ([[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row] isKindOfClass:[CSLReaderBarcode class]]) {
+        NSString* bc=((CSLReaderBarcode*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).barcodeValue;
+        cell=[tableView dequeueReusableCellWithIdentifier:bc];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:bc];
+        }
+        
+        cell.textLabel.font = [UIFont fontWithName:@"Arial" size:14];
+        cell.textLabel.text = [NSString stringWithFormat:@"%5d \u25CF %@ [%@]", (int)(indexPath.row + 1), bc, ((CSLReaderBarcode*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).codeId];
+    }
+    else
+        return nil;
+    
     return cell;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -214,7 +350,22 @@
     return 1;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row] isKindOfClass:[CSLBleTag class]])
+        [CSLRfidAppEngine sharedAppEngine].tagSelected= ((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).EPC;
+    else if ([[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row] isKindOfClass:[CSLReaderBarcode class]])
+        [CSLRfidAppEngine sharedAppEngine].tagSelected= ((CSLReaderBarcode*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).barcodeValue;
+    else
+        [CSLRfidAppEngine sharedAppEngine].tagSelected=@"";
+        
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Tag Selected" message:[CSLRfidAppEngine sharedAppEngine].tagSelected  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 
 @end
