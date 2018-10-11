@@ -1,20 +1,6 @@
 {
   "warnings": [
     {
-      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleInterface.h",
-      "line": 31,
-      "symbol": "CSLBleInterfaceDelegate",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleInterface.h",
-      "line": 32,
-      "symbol": "CSLBleInterfaceDelegate.-didInterfaceChangeConnectStatus:",
-      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBlePacket.h",
       "line": 13,
       "symbol": "DEVICEID.RFID",
