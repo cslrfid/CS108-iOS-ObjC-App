@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CSLBleReader Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Class/CSLBleReader" class="dashAnchor"></a>
+    <a title="CSLBleReader Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">CS108iOSClient Docs</a> (85% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">CS108iOSClient Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CSLBleReader Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleInterface.html">CSLBleInterface</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBlePacket.html">CSLBlePacket</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleReader.html">CSLBleReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleTag.html">CSLBleTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLCircularQueue.html">CSLCircularQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBarcode.html">CSLReaderBarcode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderInfo.html">CSLReaderInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderSettings.html">CSLReaderSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLRfidAppEngine.html">CSLRfidAppEngine</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYLEVELSTATUS.html">BATTERYLEVELSTATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYMODE.html">BATTERYMODE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CONNECTION.html">CONNECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DEVICEID.html">DEVICEID</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DIRECTION.html">DIRECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LINKPROFILE.html">LINKPROFILE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYSELECT.html">QUERYSELECT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SESSION.html">SESSION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/STATUS.html">STATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TARGET.html">TARGET</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleInterfaceDelegate.html">CSLBleInterfaceDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CSLBleReader</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">CSLBleReader</span> <span class="p">:</span> <span class="nc"><a href="../Classes/CSLBleInterface.html">CSLBleInterface</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>This object class holds the core function of the reader API and it allows developers to configure and control the device being connnected.
+It is a sub-class of CSLBleInterface, which handles the low-level Bluetooth LE connectiviites.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(py)filteredBuffer"></a>
+                    <a name="//apple_ref/objc/Property/filteredBuffer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(py)filteredBuffer">filteredBuffer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is a buffer for all the tags that have been sorted with all duplicates removed.
+Insertion/update of tag data is based on binary searching algorithm for better efficiency especially when the number of tags in buffer raises.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span> <span class="n">NSMutableArray</span> <span class="o">*</span><span class="n">filteredBuffer</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">filteredBuffer</span><span class="p">:</span> <span class="kt">NSMutableArray</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(py)rangingTagCount"></a>
+                    <a name="//apple_ref/objc/Property/rangingTagCount" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(py)rangingTagCount">rangingTagCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This property holds the number of tags being read.  It is reset within a specific time interval (1 second by default)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span> <span class="n">NSInteger</span> <span class="n">rangingTagCount</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">rangingTagCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(py)uniqueTagCount"></a>
+                    <a name="//apple_ref/objc/Property/uniqueTagCount" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(py)uniqueTagCount">uniqueTagCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This property holds the number of unique tags being read.  It is reset within a specific time interval (1 second by default)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span> <span class="n">NSInteger</span> <span class="n">uniqueTagCount</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">uniqueTagCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(py)batteryInfo"></a>
+                    <a name="//apple_ref/objc/Property/batteryInfo" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(py)batteryInfo">batteryInfo</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enumeration type that holds the battery status information.  Its value is is being updated by a scheduled timer when batteery level notifications return on every 5 seconds</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span> <span class="n"><a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a></span> <span class="o">*</span><span class="n">batteryInfo</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">batteryInfo</span><span class="p">:</span> <span class="kt"><a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a></span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(py)readerDelegate"></a>
+                    <a name="//apple_ref/objc/Property/readerDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(py)readerDelegate">readerDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delegate instance that follows the CSLBleReaderDelegate protocol</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">id</span><span class="o">&lt;</span><span class="n"><a href="../Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a></span><span class="o">&gt;</span> <span class="n">readerDelegate</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">weak</span> <span class="k">var</span> <span class="nv">readerDelegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a></span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(cm)convertDataToHexString:"></a>
+                    <a name="//apple_ref/objc/Method/+convertDataToHexString:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(cm)convertDataToHexString:">+convertDataToHexString:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Static method that converts binary data to hexdcecimal string</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">convertDataToHexString</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">convertData</span><span class="p">(</span><span class="n">toHexString</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>It holds the binary data to be converted</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>NSString hexdecimal string</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)init"></a>
+                    <a name="//apple_ref/objc/Method/-init" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)init">-init</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>initialization selector that:</p>
+
+<ul>
+<li>call init selector of the super class CSLBleInterface</li>
+<li>initialize tag count properties</li>
+<li>initialize internal buffer queue</li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">init</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)dealloc"></a>
+                    <a name="//apple_ref/objc/Method/-dealloc" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)dealloc">-dealloc</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>dealloc selector that:</p>
+
+<ul>
+<li>stop radio if it is currently active</li>
+<li>release selector to the delegates</li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">dealloc</span><span class="p">;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)readOEMData:atAddr:forData:"></a>
+                    <a name="//apple_ref/objc/Method/-readOEMData:atAddr:forData:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)readOEMData:atAddr:forData:">-readOEMData:atAddr:forData:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Read OEM data that contains product-specific information such as country code, antenna version and frequency channel information</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">readOEMData</span><span class="p">:(</span><span class="n"><a href="../Classes/CSLBleInterface.html">CSLBleInterface</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">intf</span>
+             <span class="nf">atAddr</span><span class="p">:(</span><span class="kt">unsigned</span> <span class="kt">short</span><span class="p">)</span><span class="nv">addr</span>
+            <span class="nf">forData</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">readOEMData</span><span class="p">(</span><span class="n">_</span> <span class="nv">intf</span><span class="p">:</span> <span class="kt"><a href="../Classes/CSLBleInterface.html">CSLBleInterface</a></span><span class="o">!</span><span class="p">,</span> <span class="n">atAddr</span> <span class="nv">addr</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="k">for</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>intf</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>CSLBleInterface that references to the current reader instance</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>addr</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Address of the memory location</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pointer to the NSData object that holds the value of the data address</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)barcodeReader:"></a>
+                    <a name="//apple_ref/objc/Method/-barcodeReader:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)barcodeReader:">-barcodeReader:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enable/disable barcode reader</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">barcodeReader</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">enable</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">barcodeReader</span><span class="p">(</span><span class="n">_</span> <span class="nv">enable</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>enable</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>TRUE/FALSE for turning on/off the barcode reader module</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)startBarcodeReading"></a>
+                    <a name="//apple_ref/objc/Method/-startBarcodeReading" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)startBarcodeReading">-startBarcodeReading</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Start barcode reading continuously</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">startBarcodeReading</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">startBarcodeReading</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)stopBarcodeReading"></a>
+                    <a name="//apple_ref/objc/Method/-stopBarcodeReading" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)stopBarcodeReading">-stopBarcodeReading</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stop barcode reading</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">stopBarcodeReading</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">stopBarcodeReading</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)sendBarcodeCommandData:"></a>
+                    <a name="//apple_ref/objc/Method/-sendBarcodeCommandData:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)sendBarcodeCommandData:">-sendBarcodeCommandData:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Send serial command to barcode reader module</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">sendBarcodeCommandData</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sendBarcodeCommand</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Please refer to Newland serial programming command manual for further details
+
+</div></p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)powerOnRfid:"></a>
+                    <a name="//apple_ref/objc/Method/-powerOnRfid:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)powerOnRfid:">-powerOnRfid:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Power on/off RFID module</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">powerOnRfid</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">enable</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">power</span><span class="p">(</span><span class="n">onRfid</span> <span class="nv">enable</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>enable</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>TRUE/FALSE for turning on/off the RFID module</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)getBtFirmwareVersion:"></a>
+                    <a name="//apple_ref/objc/Method/-getBtFirmwareVersion:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)getBtFirmwareVersion:">-getBtFirmwareVersion:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Obtain Bluetooth firmware version</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">getBtFirmwareVersion</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">**</span><span class="p">)</span><span class="nv">versionNumber</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getBtFirmwareVersion</span><span class="p">(</span><span class="n">_</span> <span class="nv">versionNumber</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="p">?</span><span class="o">&gt;!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>versionNumber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pointer to an instance of NSString that receives the version information</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)getConnectedDeviceName:"></a>
+                    <a name="//apple_ref/objc/Method/-getConnectedDeviceName:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)getConnectedDeviceName:">-getConnectedDeviceName:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Obtain device name (name showing up during device discovery)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">getConnectedDeviceName</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">**</span><span class="p">)</span><span class="nv">deviceName</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getConnectedDeviceName</span><span class="p">(</span><span class="n">_</span> <span class="nv">deviceName</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="p">?</span><span class="o">&gt;!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>deviceName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pointer to an instance of NSString that receives the device name</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)getSilLabIcVersion:"></a>
+                    <a name="//apple_ref/objc/Method/-getSilLabIcVersion:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)getSilLabIcVersion:">-getSilLabIcVersion:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Obtain Silicon Lab IC firmware version</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">getSilLabIcVersion</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">**</span><span class="p">)</span><span class="nv">slVersion</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getSilLabIcVersion</span><span class="p">(</span><span class="n">_</span> <span class="nv">slVersion</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="p">?</span><span class="o">&gt;!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>slVersion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pointer to an instance of NSString that receives the firmware version</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)getRfidBrdSerialNumber:"></a>
+                    <a name="//apple_ref/objc/Method/-getRfidBrdSerialNumber:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)getRfidBrdSerialNumber:">-getRfidBrdSerialNumber:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Obtain RFID board serial number</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">getRfidBrdSerialNumber</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">**</span><span class="p">)</span><span class="nv">serialNumber</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getRfidBrdSerialNumber</span><span class="p">(</span><span class="n">_</span> <span class="nv">serialNumber</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="p">?</span><span class="o">&gt;!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>serialNumber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pointer to an instance of NSString that receives the serial number information</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)getPcBBoardVersion:"></a>
+                    <a name="//apple_ref/objc/Method/-getPcBBoardVersion:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)getPcBBoardVersion:">-getPcBBoardVersion:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Obtain PCB board version information</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">getPcBBoardVersion</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">**</span><span class="p">)</span><span class="nv">boardVersion</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getPcBBoardVersion</span><span class="p">(</span><span class="n">_</span> <span class="nv">boardVersion</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="p">?</span><span class="o">&gt;!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>boardVersion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pointer to an instance of NSString that receives the PCB version information</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)sendAbortCommand"></a>
+                    <a name="//apple_ref/objc/Method/-sendAbortCommand" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)sendAbortCommand">-sendAbortCommand</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Send abort command to the device for stopping RFID operations (e.g. inventory, tag read/write, etc.)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">sendAbortCommand</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sendAbortCommand</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)startBatteryAutoReporting"></a>
+                    <a name="//apple_ref/objc/Method/-startBatteryAutoReporting" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)startBatteryAutoReporting">-startBatteryAutoReporting</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Start battery level reporting (notification every 5 seconds)
+Once it is started, the delegate will be triggered everytime when a battery level notification is being returned</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">startBatteryAutoReporting</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">startBatteryAutoReporting</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)stopBatteryAutoReporting"></a>
+                    <a name="//apple_ref/objc/Method/-stopBatteryAutoReporting" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)stopBatteryAutoReporting">-stopBatteryAutoReporting</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stop battery level reporting (notification every 5 seconds)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">stopBatteryAutoReporting</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">stopBatteryAutoReporting</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)getRfidFwVersionNumber:"></a>
+                    <a name="//apple_ref/objc/Method/-getRfidFwVersionNumber:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)getRfidFwVersionNumber:">-getRfidFwVersionNumber:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Obtain RFID module firmware version</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">getRfidFwVersionNumber</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">**</span><span class="p">)</span><span class="nv">versionInfo</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getRfidFwVersionNumber</span><span class="p">(</span><span class="n">_</span> <span class="nv">versionInfo</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="p">?</span><span class="o">&gt;!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>versionInfo</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pointer to an instance of NSString that receives the RFID firmware version</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setPower:"></a>
+                    <a name="//apple_ref/objc/Method/-setPower:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setPower:">-setPower:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set output power of the reader</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setPower</span><span class="p">:(</span><span class="kt">double</span><span class="p">)</span><span class="nv">powerInDbm</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setPower</span><span class="p">(</span><span class="n">_</span> <span class="nv">powerInDbm</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>powerInDbm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Power in the range of 0.0-32.0 dBm</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setAntennaCycle:"></a>
+                    <a name="//apple_ref/objc/Method/-setAntennaCycle:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setAntennaCycle:">-setAntennaCycle:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set antenna cycle</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setAntennaCycle</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">cycles</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setAntennaCycle</span><span class="p">(</span><span class="n">_</span> <span class="nv">cycles</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cycles</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Should set to 0 (continous) all the time as CS108 is running with a single antenna</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setAntennaDwell:"></a>
+                    <a name="//apple_ref/objc/Method/-setAntennaDwell:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setAntennaDwell:">-setAntennaDwell:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set antenna dwell time</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setAntennaDwell</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">timeInMilliseconds</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setAntennaDwell</span><span class="p">(</span><span class="n">_</span> <span class="nv">timeInMilliseconds</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>timeInMilliseconds</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>number of milliseconds to communicate on this antenna during a given Antenna Cycle.
+0x00000000 indicates that dwell time should not be used.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setLinkProfile:"></a>
+                    <a name="//apple_ref/objc/Method/-setLinkProfile:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setLinkProfile:">-setLinkProfile:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set link profile from the four selections</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setLinkProfile</span><span class="p">:(</span><span class="n"><a href="../Enums/LINKPROFILE.html">LINKPROFILE</a></span><span class="p">)</span><span class="nv">profile</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setLinkProfile</span><span class="p">(</span><span class="n">_</span> <span class="nv">profile</span><span class="p">:</span> <span class="kt"><a href="../Enums/LINKPROFILE.html">LINKPROFILE</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>profile</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>LINKPROFILE data type that represents 1 of the 4 link profile</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)selectAlgorithmParameter:"></a>
+                    <a name="//apple_ref/objc/Method/-selectAlgorithmParameter:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)selectAlgorithmParameter:">-selectAlgorithmParameter:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Select which set of algorithm parameter registers to access.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">selectAlgorithmParameter</span><span class="p">:(</span><span class="n"><a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a></span><span class="p">)</span><span class="nv">algorithm</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">selectAlgorithmParameter</span><span class="p">(</span><span class="n">_</span> <span class="nv">algorithm</span><span class="p">:</span> <span class="kt"><a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>algorithm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>zero based index of descriptor to access 0 through 3</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setInventoryAlgorithmParameters0:maximumQ:minimumQ:ThresholdMultiplier:"></a>
+                    <a name="//apple_ref/objc/Method/-setInventoryAlgorithmParameters0:maximumQ:minimumQ:ThresholdMultiplier:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setInventoryAlgorithmParameters0:maximumQ:minimumQ:ThresholdMultiplier:">-setInventoryAlgorithmParameters0:maximumQ:minimumQ:ThresholdMultiplier:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The algorithm that will be used for the next Inventory command. The definition of each register varies depending on the algorithm chosen. For instance, if you wish to set the
+ parameters for algorithm 1, then set selectAlgorithmParameter to 1 and load parameters as specified.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setInventoryAlgorithmParameters0</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">startQ</span>
+                                <span class="nf">maximumQ</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">maxQ</span>
+                                <span class="nf">minimumQ</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">minQ</span>
+                     <span class="nf">ThresholdMultiplier</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">tmult</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setInventoryAlgorithmParameters0</span><span class="p">(</span><span class="n">_</span> <span class="nv">startQ</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">maximumQ</span> <span class="nv">maxQ</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">minimumQ</span> <span class="nv">minQ</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">thresholdMultiplier</span> <span class="nv">tmult</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>startQ</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Starting Q value</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>maxQ</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Maximum Q value</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>minQ</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Minimum Q Value</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tmult</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Threshold multiplier. This is a fixed point fraction with the decimal point between bit 2 and 3.
+The field looks like bbbbbb.bb which allows fractional values of ½ , ¼ and ¾ .</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setInventoryAlgorithmParameters1:"></a>
+                    <a name="//apple_ref/objc/Method/-setInventoryAlgorithmParameters1:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setInventoryAlgorithmParameters1:">-setInventoryAlgorithmParameters1:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The algorithm that will be used for the next Inventory command. The definition of each register varies depending on the algorithm chosen. For instance, if you wish to set the
+parameters for algorithm 1, then set selectAlgorithmParameter to 1 and load parameters as specified.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setInventoryAlgorithmParameters1</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">retry</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setInventoryAlgorithmParameters1</span><span class="p">(</span><span class="n">_</span> <span class="nv">retry</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>retry</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Number of times to retry a query / query rep sequence for the session/target before flipping the target or exiting. For example, if q is 2 then there will be one query and 4 query reps for each retry.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setInventoryAlgorithmParameters2:RunTillZero:"></a>
+                    <a name="//apple_ref/objc/Method/-setInventoryAlgorithmParameters2:RunTillZero:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setInventoryAlgorithmParameters2:RunTillZero:">-setInventoryAlgorithmParameters2:RunTillZero:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The algorithm that will be used for the next Inventory command. The definition of each register varies depending on the algorithm chosen. For instance, if you wish to set the
+parameters for algorithm 1, then set selectAlgorithmParameter to 1 and load parameters as specified.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setInventoryAlgorithmParameters2</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">toggle</span> <span class="nf">RunTillZero</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">rtz</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setInventoryAlgorithmParameters2</span><span class="p">(</span><span class="n">_</span> <span class="nv">toggle</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">runTillZero</span> <span class="nv">rtz</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>toggle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If set to one, the target will flip from A to B or B to A after all rounds have been run on the current target. This is done after no tags have been read if continuous mode is selected and all retry&rsquo;s have been run.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rtz</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Continue running inventory rounds until a round is completed without reading any tags.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setInventoryConfigurations:MatchRepeats:tagSelect:disableInventory:tagRead:crcErrorRead:QTMode:tagDelay:inventoryMode:"></a>
+                    <a name="//apple_ref/objc/Method/-setInventoryConfigurations:MatchRepeats:tagSelect:disableInventory:tagRead:crcErrorRead:QTMode:tagDelay:inventoryMode:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setInventoryConfigurations:MatchRepeats:tagSelect:disableInventory:tagRead:crcErrorRead:QTMode:tagDelay:inventoryMode:">-setInventoryConfigurations:MatchRepeats:tagSelect:disableInventory:tagRead:crcErrorRead:QTMode:tagDelay:inventoryMode:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Inventory configuration. Configure parameters used in underlying inventory operations</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setInventoryConfigurations</span><span class="p">:(</span><span class="n"><a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a></span><span class="p">)</span><span class="nv">inventoryAlgorithm</span>
+                      <span class="nf">MatchRepeats</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">match_rep</span>
+                         <span class="nf">tagSelect</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">tag_sel</span>
+                  <span class="nf">disableInventory</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">disable_inventory</span>
+                           <span class="nf">tagRead</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">tag_read</span>
+                      <span class="nf">crcErrorRead</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">crc_err_read</span>
+                            <span class="nf">QTMode</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">QT_mode</span>
+                          <span class="nf">tagDelay</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">tag_delay</span>
+                     <span class="nf">inventoryMode</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">inv_mode</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setInventoryConfigurations</span><span class="p">(</span><span class="n">_</span> <span class="nv">inventoryAlgorithm</span><span class="p">:</span> <span class="kt"><a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a></span><span class="p">,</span> <span class="n">matchRepeats</span> <span class="nv">match_rep</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">tagSelect</span> <span class="nv">tag_sel</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">disableInventory</span> <span class="nv">disable_inventory</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">tagRead</span> <span class="nv">tag_read</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">crcErrorRead</span> <span class="nv">crc_err_read</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">qtMode</span> <span class="kt">QT_mode</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">tagDelay</span> <span class="nv">tag_delay</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">inventoryMode</span> <span class="nv">inv_mode</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>inventoryAlgorithm</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Inventory algorithm to use.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>match_rep</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Stop after <q>N</q> tags inventoried (zero indicates no stop)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tag_sel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>1 = enable tag select prior to inventory, read, write, lock or kill.  0 = no select issued.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>disable_inventory</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Do not run inventory</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tag_read</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>0 = no tag read issued
+1 = enable read 1 bank after inventory
+2 = enable read 2 banks after inventory</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>crc_err_read</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>0 = disable crc error read
+1 = enable crc error read</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>QT_mode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>0 = disable QT temporary read private EPC
+1 = enable QT temporary read private EPC</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tag_delay</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Time delay for each tag in ms (use to reduce tag rate).  Value should be between 1 to 65</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>inv_mode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>0 = normal mode
+1 = compact mode</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setQueryConfigurations:querySession:querySelect:"></a>
+                    <a name="//apple_ref/objc/Method/-setQueryConfigurations:querySession:querySelect:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setQueryConfigurations:querySession:querySelect:">-setQueryConfigurations:querySession:querySelect:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Configure parameters used in underlying Query and inventory operations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setQueryConfigurations</span><span class="p">:(</span><span class="n"><a href="../Enums/TARGET.html">TARGET</a></span><span class="p">)</span><span class="nv">queryTarget</span>
+                  <span class="nf">querySession</span><span class="p">:(</span><span class="n"><a href="../Enums/SESSION.html">SESSION</a></span><span class="p">)</span><span class="nv">query_session</span>
+                   <span class="nf">querySelect</span><span class="p">:(</span><span class="n"><a href="../Enums/QUERYSELECT.html">QUERYSELECT</a></span><span class="p">)</span><span class="nv">query_sel</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setQueryConfigurations</span><span class="p">(</span><span class="n">_</span> <span class="nv">queryTarget</span><span class="p">:</span> <span class="kt"><a href="../Enums/TARGET.html">TARGET</a></span><span class="p">,</span> <span class="n">querySession</span> <span class="nv">query_session</span><span class="p">:</span> <span class="kt"><a href="../Enums/SESSION.html">SESSION</a></span><span class="p">,</span> <span class="n">querySelect</span> <span class="nv">query_sel</span><span class="p">:</span> <span class="kt"><a href="../Enums/QUERYSELECT.html">QUERYSELECT</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>queryTarget</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Starting Target argument (A or B) to underlying Query.  0 = A; 1 = B.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>query_session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Session argument to underlying Query.  0= S0; 1 = S1; 2 = S2; 3 = S3.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>query_sel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Select argument to underlying Query.  0 = All; 1 = All; 2 = ~SL; 3 = SL;
+Recommend to Set 0 for inventory operation.
+Recommend to Set 3 for tag select operation. Reference to INV_CFG and TAGMSK_DESC_CFG.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)startInventory"></a>
+                    <a name="//apple_ref/objc/Method/-startInventory" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)startInventory">-startInventory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Start Inventory asynchornously</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">startInventory</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">startInventory</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)stopInventory"></a>
+                    <a name="//apple_ref/objc/Method/-stopInventory" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)stopInventory">-stopInventory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stop Inventory</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">stopInventory</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">stopInventory</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)decodePacketsInBufferAsync"></a>
+                    <a name="//apple_ref/objc/Method/-decodePacketsInBufferAsync" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)decodePacketsInBufferAsync">-decodePacketsInBufferAsync</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Start the data packet decoding routine, where a selector will be running on a background thread and decode the received packet if commands were being sent out previously.  Results will be returned to the recvQueue (for asynchornous commands)  and to cmdRespQueue (for synchronous commands)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">decodePacketsInBufferAsync</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">decodePacketsInBufferAsync</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://www.convergenece.com.hk" target="_blank" rel="external">CSL</a>. All rights reserved. (Last updated: 2018-10-10)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

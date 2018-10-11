@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Classes  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Section/Classes" class="dashAnchor"></a>
+    <a title="Classes  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html"> Docs</a> (0% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html"> Reference</a>
+        <img id="carat" src="img/carat.png" />
+        Classes  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/CSLBleInterface.html">CSLBleInterface</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CSLBlePacket.html">CSLBlePacket</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CSLBleReader.html">CSLBleReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CSLBleTag.html">CSLBleTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CSLCircularQueue.html">CSLCircularQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CSLReaderBarcode.html">CSLReaderBarcode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CSLReaderBattery.html">CSLReaderBattery</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/BATTERYLEVELSTATUS.html">BATTERYLEVELSTATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/BATTERYMODE.html">BATTERYMODE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/CONNECTION.html">CONNECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/DEVICEID.html">DEVICEID</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/DIRECTION.html">DIRECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/LINKPROFILE.html">LINKPROFILE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/QUERYALGORITHM.html">QUERYALGORITHM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/QUERYSELECT.html">QUERYSELECT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/SESSION.html">SESSION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/STATUS.html">STATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/TARGET.html">TARGET</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/CSLBleInterfaceDelegate.html">CSLBleInterfaceDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Classes</h1>
+            <p>The following classes are available globally.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleInterface"></a>
+                    <a name="//apple_ref/objc/Class/CSLBleInterface" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleInterface">CSLBleInterface</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Classes/CSLBleInterface.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">CSLBleInterface</span> <span class="p">:</span> <span class="nc">NSObject</span> <span class="o">&lt;</span><span class="n">CBCentralManagerDelegate</span><span class="p">,</span><span class="n">CBPeripheralDelegate</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span> <span class="n">deviceName</span><span class="p">;</span>
+    <span class="n">CBPeripheral</span><span class="o">*</span> <span class="n">bleDevice</span><span class="p">;</span>        <span class="c1">//connected BLE device</span>
+    <span class="n">NSMutableArray</span> <span class="o">*</span> <span class="n">bleDeviceList</span><span class="p">;</span> <span class="c1">//array of CBPeripheral object after device discovery</span>
+    <span class="n">NSException</span><span class="o">*</span> <span class="n">LastException</span><span class="p">;</span>
+    <span class="n"><a href="Classes/CSLCircularQueue.html">CSLCircularQueue</a></span> <span class="o">*</span> <span class="n">recvQueue</span><span class="p">;</span>
+    <span class="n"><a href="Enums/STATUS.html">STATUS</a></span> <span class="n">connectStatus</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">@property</span> <span class="n">NSString</span> <span class="o">*</span> <span class="n">deviceName</span><span class="p">;</span>
+<span class="k">@property</span> <span class="n">NSException</span><span class="o">*</span> <span class="n">LastException</span><span class="p">;</span>
+<span class="k">@property</span> <span class="n">NSMutableArray</span> <span class="o">*</span> <span class="n">bleDeviceList</span><span class="p">;</span>
+<span class="k">@property</span> <span class="n">CBPeripheral</span><span class="o">*</span> <span class="n">bleDevice</span><span class="p">;</span>
+<span class="k">@property</span> <span class="n"><a href="Classes/CSLCircularQueue.html">CSLCircularQueue</a></span><span class="o">*</span> <span class="n">recvQueue</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">)</span> <span class="n"><a href="Enums/STATUS.html">STATUS</a></span> <span class="n">connectStatus</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">weak</span><span class="p">)</span> <span class="n">id</span> <span class="o">&lt;</span><span class="n"><a href="Protocols/CSLBleInterfaceDelegate.html">CSLBleInterfaceDelegate</a></span><span class="o">&gt;</span> <span class="n">delegate</span><span class="p">;</span> <span class="c1">//define CSLBleReaderDelegate as delegate</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="n">init</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">dealloc</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">startScanDevice</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">stopScanDevice</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">connectDevice</span><span class="p">:(</span><span class="n">CBPeripheral</span><span class="o">*</span><span class="p">)</span> <span class="n">peripheral</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">disconnectDevice</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="n">isLECapableHardware</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">sendPackets</span><span class="p">:(</span><span class="n"><a href="Classes/CSLBlePacket.html">CSLBlePacket</a></span> <span class="o">*</span><span class="p">)</span> <span class="n">packet</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span> <span class="nf">computeChecksum</span><span class="p">:</span> <span class="p">(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span> <span class="n">dataIn</span><span class="p">;</span>
+
+<span class="k">@end</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CSLBleInterface</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">CBCentralManagerDelegate</span><span class="p">,</span> <span class="kt">CBPeripheralDelegate</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBlePacket"></a>
+                    <a name="//apple_ref/objc/Class/CSLBlePacket" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBlePacket">CSLBlePacket</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Classes/CSLBlePacket.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">CSLBlePacket</span> <span class="p">:</span> <span class="nc">NSObject</span>
+<span class="p">{</span>
+    <span class="n">Byte</span> <span class="n">prefix</span><span class="p">;</span>
+    <span class="n"><a href="Enums/CONNECTION.html">CONNECTION</a></span> <span class="n">connection</span><span class="p">;</span>
+    <span class="n">Byte</span> <span class="n">payloadLength</span><span class="p">;</span>
+    <span class="n"><a href="Enums/DEVICEID.html">DEVICEID</a></span> <span class="n">deviceId</span><span class="p">;</span>
+    <span class="n">Byte</span> <span class="n">Reserve</span><span class="p">;</span>
+    <span class="n"><a href="Enums/DIRECTION.html">DIRECTION</a></span> <span class="n">direction</span><span class="p">;</span>
+    <span class="n">Byte</span> <span class="n">crc1</span><span class="p">;</span>
+    <span class="n">Byte</span> <span class="n">crc2</span><span class="p">;</span>
+    <span class="n">NSData</span><span class="o">*</span> <span class="n">payload</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="n">Byte</span> <span class="n">prefix</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="n"><a href="Enums/CONNECTION.html">CONNECTION</a></span> <span class="n">connection</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="n">Byte</span> <span class="n">payloadLength</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="n"><a href="Enums/DEVICEID.html">DEVICEID</a></span> <span class="n">deviceId</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="n">Byte</span> <span class="n">Reserve</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="n"><a href="Enums/DIRECTION.html">DIRECTION</a></span> <span class="n">direction</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="n">Byte</span> <span class="n">crc1</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="n">Byte</span> <span class="n">crc2</span><span class="p">;</span>
+<span class="k">@property</span> <span class="n">NSData</span><span class="o">*</span> <span class="n">payload</span><span class="p">;</span>
+
+
+<span class="k">-</span> <span class="p">(</span><span class="n">NSData</span><span class="o">*</span><span class="p">)</span> <span class="n">getPacketInHexString</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="n">getPacketPayloadInHexString</span><span class="p">;</span>
+
+<span class="k">@end</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CSLBlePacket</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader"></a>
+                    <a name="//apple_ref/objc/Class/CSLBleReader" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader">CSLBleReader</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>CSLBleInterface</p>
+
+                        <a href="Classes/CSLBleReader.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">CSLBleReader</span> <span class="p">:</span> <span class="nc"><a href="Classes/CSLBleInterface.html">CSLBleInterface</a></span> <span class="p">{</span>
+  <span class="n">NSMutableArray</span> <span class="o">*</span><span class="n">filteredBuffer</span><span class="p">;</span>
+  <span class="n">NSInteger</span> <span class="n">rangingTagCount</span><span class="p">;</span>
+  <span class="n">NSInteger</span> <span class="n">uniqueTagCount</span><span class="p">;</span>
+  <span class="n"><a href="Classes/CSLReaderBattery.html">CSLReaderBattery</a></span> <span class="o">*</span><span class="n">batteryInfo</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CSLBleReader</span> <span class="p">:</span> <span class="kt"><a href="Classes/CSLBleInterface.html">CSLBleInterface</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleTag"></a>
+                    <a name="//apple_ref/objc/Class/CSLBleTag" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleTag">CSLBleTag</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Classes/CSLBleTag.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">CSLBleTag</span> <span class="p">:</span> <span class="nc">NSObject</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">PC</span><span class="p">;</span>
+    <span class="n">NSString</span> <span class="o">*</span> <span class="n">EPC</span><span class="p">;</span>
+    <span class="n">Byte</span> <span class="n">rssi</span><span class="p">;</span>
+    
+<span class="p">}</span>
+
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="kt">int</span> <span class="n">PC</span><span class="p">;</span>
+<span class="k">@property</span> <span class="n">NSString</span> <span class="o">*</span> <span class="n">EPC</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="n">Byte</span> <span class="n">rssi</span><span class="p">;</span>
+
+<span class="k">@end</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CSLBleTag</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLCircularQueue"></a>
+                    <a name="//apple_ref/objc/Class/CSLCircularQueue" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLCircularQueue">CSLCircularQueue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Classes/CSLCircularQueue.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">CSLCircularQueue</span> <span class="p">:</span> <span class="nc">NSObject</span> <span class="o">&lt;</span><span class="n">NSFastEnumeration</span><span class="o">&gt;</span>
+
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">assign</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSUInteger</span> <span class="n">capacity</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">assign</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSUInteger</span> <span class="n">count</span><span class="p">;</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">initWithCapacity</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">capacity</span><span class="p">;</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">enqObject</span><span class="p">:(</span><span class="n">id</span><span class="p">)</span><span class="nv">obj</span><span class="p">;</span> <span class="c1">// Enqueue</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">deqObject</span><span class="p">;</span>           <span class="c1">// Dequeue</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">objectAtIndex</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">index</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">removeAllObjects</span><span class="p">;</span>
+
+<span class="k">@end</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CSLCircularQueue</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">NSFastEnumeration</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLReaderBarcode"></a>
+                    <a name="//apple_ref/objc/Class/CSLReaderBarcode" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLReaderBarcode">CSLReaderBarcode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Classes/CSLReaderBarcode.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">CSLReaderBarcode</span> <span class="p">:</span> <span class="nc">NSObject</span>
+<span class="p">{</span>
+    <span class="n">NSData</span><span class="o">*</span> <span class="n">serialData</span><span class="p">;</span>
+    <span class="n">NSString</span><span class="o">*</span> <span class="n">barcodeValue</span><span class="p">;</span>
+    <span class="n">NSString</span><span class="o">*</span> <span class="n">codeId</span><span class="p">;</span>
+    <span class="n">NSString</span><span class="o">*</span> <span class="n">aimId</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">@property</span> <span class="n">NSData</span><span class="o">*</span> <span class="n">serialData</span><span class="p">;</span>
+<span class="k">@property</span> <span class="n">NSString</span><span class="o">*</span> <span class="n">barcodeValue</span><span class="p">;</span>
+<span class="k">@property</span> <span class="n">NSString</span><span class="o">*</span> <span class="n">codeId</span><span class="p">;</span>
+<span class="k">@property</span> <span class="n">NSString</span><span class="o">*</span> <span class="n">aimId</span><span class="p">;</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="n">init</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="nf">initWithSerialData</span><span class="p">:(</span><span class="n">NSData</span><span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="n">extractBarcodeFromSerialData</span><span class="p">;</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nf">convertDataToHexString</span><span class="p">:(</span><span class="n">NSData</span><span class="o">*</span><span class="p">)</span> <span class="n">data</span><span class="p">;</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nf">convertHexStringToAscii</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="n">hexString</span> <span class="p">;</span>
+
+<span class="k">@end</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CSLReaderBarcode</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLReaderBattery"></a>
+                    <a name="//apple_ref/objc/Class/CSLReaderBattery" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLReaderBattery">CSLReaderBattery</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Classes/CSLReaderBattery.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">CSLReaderBattery</span> <span class="p">:</span> <span class="nc">NSObject</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="n">init</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="nf">initWithPcBVersion</span><span class="p">:(</span><span class="kt">double</span><span class="p">)</span><span class="nv">pdbVersion</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setPcbVersion</span><span class="p">:(</span><span class="kt">double</span><span class="p">)</span><span class="nv">pcbVersion</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setBatteryMode</span><span class="p">:</span> <span class="p">(</span><span class="n"><a href="Enums/BATTERYMODE.html">BATTERYMODE</a></span><span class="p">)</span> <span class="n">bm</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="nf">getBatteryPercentageByVoltage</span><span class="p">:</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">voltage</span><span class="p">;</span>
+
+<span class="k">@end</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CSLReaderBattery</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-10-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

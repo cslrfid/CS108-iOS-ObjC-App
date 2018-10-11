@@ -25,11 +25,12 @@ CSLRfidAppEngine * appEngine;
 
 + (CSLRfidAppEngine *) sharedAppEngine
 {
+    id ret;
     @synchronized([CSLRfidAppEngine class])
     {
         if (appEngine == nil)
         {
-            [[self alloc] init];
+            ret=[[self alloc] init];
         }
         
         return appEngine;

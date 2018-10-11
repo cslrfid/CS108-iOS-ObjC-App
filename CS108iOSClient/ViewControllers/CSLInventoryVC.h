@@ -10,15 +10,6 @@
 #import "CSLRfidAppEngine.h"
 
 @interface CSLInventoryVC : UIViewController<CSLBleReaderDelegate, CSLBleInterfaceDelegate, UITableViewDataSource, UITableViewDelegate> {
-    
-    __weak IBOutlet UILabel *lbTagCount;
-    __weak IBOutlet UILabel *lbTagRate;
-    __weak IBOutlet UILabel *lbUniqueTagRate;
-    __weak IBOutlet UIButton *btnInventory;
-    __weak IBOutlet UITableView *tblTagList;
-    __weak IBOutlet UILabel *lbStatus;
-    __weak IBOutlet UIButton *lbClear;
-    __weak IBOutlet UILabel *lbMode;
     NSDate * tagRangingStartTime;
    
 }

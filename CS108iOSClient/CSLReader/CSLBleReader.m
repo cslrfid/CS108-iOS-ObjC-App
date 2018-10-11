@@ -53,7 +53,7 @@
 - (BOOL)readOEMData:(CSLBleInterface*)intf atAddr:(unsigned short)addr forData:(NSData*)data
 {
     @synchronized(self) {
-        if (connectStatus!=CONNECTED)
+        if (self.connectStatus!=CONNECTED)
         {
             NSLog(@"Reader is not connected or busy. Access failure");
             return false;
@@ -62,7 +62,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -159,7 +159,7 @@
     if (((Byte *)[recvPacket.payload bytes])[0] == 0x81 && ((Byte *)[recvPacket.payload bytes])[1] == 0x00)
     {
         NSLog(@"Read OEM data: OK");
-        data = recvPacket.getPacketInHexString;
+        data = recvPacket.payload;
     }
     else
     {
@@ -186,7 +186,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
 
     
@@ -198,7 +198,9 @@
     NSLog(@"----------------------------------------------------------------------");
     NSLog(@"Power %s barcode module...", enable ? "on" : "off");
     NSLog(@"----------------------------------------------------------------------");
-    unsigned char barcodeOn[] = {0x90, 0x00};
+    unsigned char barcodeOn[]= {0x90, 0x00};
+    if (!enable)
+        barcodeOn[1]=0x01;
     packet.prefix=0xA7;
     packet.connection = Bluetooth;
     packet.payloadLength=0x02;
@@ -250,7 +252,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     
@@ -336,7 +338,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -398,7 +400,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -459,7 +461,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -518,7 +520,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -577,7 +579,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -636,7 +638,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -879,7 +881,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -954,7 +956,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -1018,7 +1020,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -1085,7 +1087,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -1153,7 +1155,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -1221,7 +1223,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -1288,7 +1290,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -1354,7 +1356,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -1421,7 +1423,7 @@
         
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -1489,7 +1491,7 @@
         
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -1556,7 +1558,7 @@
         connectStatus=BUSY;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
@@ -1691,7 +1693,7 @@
         uniqueTagCount=0;
     }
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-    [recvQueue removeAllObjects];
+    [self.recvQueue removeAllObjects];
     [cmdRespQueue removeAllObjects];
     
     //Initialize data
@@ -1823,14 +1825,14 @@
     rfidPacketBufferInHexString=[[NSString alloc] init];
     
     int datalen;        //data length given on the RFID packet
-    while (bleDevice)  //packet decoding will continue as long as there is a connected device instance
+    while (self.bleDevice)  //packet decoding will continue as long as there is a connected device instance
     {
         @autoreleasepool {
-            @synchronized(recvQueue) {
-                if ([recvQueue count] > 0)
+            @synchronized(self.recvQueue) {
+                if ([self.recvQueue count] > 0)
                 {
                     //dequque the next packet received
-                    packet=((CSLBlePacket *)[recvQueue deqObject]);
+                    packet=((CSLBlePacket *)[self.recvQueue deqObject]);
                 }
                 else
                     continue;
@@ -2021,6 +2023,11 @@
             }
             else if ([eventCode isEqualToString:@"9000"]) {   //Power on barcode
                 NSLog(@"[decodePacketsInBufferAsync] Power on barcode");
+                [rfidPacketBuffer setLength:0];
+                [cmdRespQueue enqObject:packet];
+            }
+            else if ([eventCode isEqualToString:@"9001"]) {   //Power on barcode
+                NSLog(@"[decodePacketsInBufferAsync] Power off barcode");
                 [rfidPacketBuffer setLength:0];
                 [cmdRespQueue enqObject:packet];
             }
