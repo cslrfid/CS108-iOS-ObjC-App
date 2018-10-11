@@ -49,3 +49,13 @@
 - Power configuration with a revised range
 - Fixes on EPC handing and enhanced stability 
 - Barcode reading functions under inventory page, with swipe to change mode
+
+---
+
+**Version 1.3.737**
+
+- Included inline documentation on the header files and files under /docs folder
+- Added logic to power off RFID and barcode module when application terminates
+- Put in additional icons for all required device (iPhone, iPad)
+- Changed app name to a short name CS108ObjC
+
