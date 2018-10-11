@@ -148,6 +148,8 @@
         {
                                  
             //stop scanning for device
+            [[CSLRfidAppEngine sharedAppEngine].reader barcodeReader:false];
+            [[CSLRfidAppEngine sharedAppEngine].reader powerOnRfid:false];
             [[CSLRfidAppEngine sharedAppEngine].reader disconnectDevice];
             //connect to device selected
             self.lbConnectReader.text=@"Press to Connect";

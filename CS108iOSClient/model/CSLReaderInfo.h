@@ -8,22 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+///Information of the connected reader
 @interface CSLReaderInfo : NSObject
-{
-    NSString* appVersion;
-    NSString* BtFirmwareVersion;
-    NSString* RfidFirmwareVersion;
-    NSString* SiLabICFirmwareVersion;
-    NSString* deviceSerialNumber;
-    NSString* pcbBoardVersion;
-    int batteryPercentage;
-}
-
+///Applicatino version
 @property NSString* appVersion;
+///Bluetooth IC firmware version
 @property NSString* BtFirmwareVersion;
+///RFID firmware version
 @property NSString* RfidFirmwareVersion;
+///Silicon Lab IC firmware version
 @property NSString* SiLabICFirmwareVersion;
+///Reader 13-character serial number
 @property NSString* deviceSerialNumber;
+///PCB board version
 @property NSString* pcbBoardVersion;
+///Reader current battery level percentage
 @property (assign) int batteryPercentage;
 @end

@@ -291,15 +291,15 @@
 - (void) didTriggerKeyChangedState: (CSLBleReader *) sender keyState:(BOOL)state {
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (btnInventory.enabled)
+        if (self->btnInventory.enabled)
         {
             if (state) {
-                if ([[btnInventory currentTitle] isEqualToString:@"START"])
-                    [btnInventory sendActionsForControlEvents:UIControlEventTouchUpInside];
+                if ([[self->btnInventory currentTitle] isEqualToString:@"START"])
+                    [self->btnInventory sendActionsForControlEvents:UIControlEventTouchUpInside];
             }
             else {
-                if ([[btnInventory currentTitle] isEqualToString:@"STOP"])
-                    [btnInventory sendActionsForControlEvents:UIControlEventTouchUpInside];
+                if ([[self->btnInventory currentTitle] isEqualToString:@"STOP"])
+                    [self->btnInventory sendActionsForControlEvents:UIControlEventTouchUpInside];
             }
         }
     });

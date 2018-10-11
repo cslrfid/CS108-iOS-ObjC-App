@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CSLCircularQueue Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Class/CSLCircularQueue" class="dashAnchor"></a>
+    <a title="CSLCircularQueue Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">CS108iOSClient Docs</a> (85% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">CS108iOSClient Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CSLCircularQueue Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleInterface.html">CSLBleInterface</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBlePacket.html">CSLBlePacket</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleReader.html">CSLBleReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleTag.html">CSLBleTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLCircularQueue.html">CSLCircularQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBarcode.html">CSLReaderBarcode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderInfo.html">CSLReaderInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderSettings.html">CSLReaderSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLRfidAppEngine.html">CSLRfidAppEngine</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYLEVELSTATUS.html">BATTERYLEVELSTATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYMODE.html">BATTERYMODE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CONNECTION.html">CONNECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DEVICEID.html">DEVICEID</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DIRECTION.html">DIRECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LINKPROFILE.html">LINKPROFILE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYSELECT.html">QUERYSELECT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SESSION.html">SESSION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/STATUS.html">STATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TARGET.html">TARGET</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleInterfaceDelegate.html">CSLBleInterfaceDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CSLCircularQueue</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">CSLCircularQueue</span> <span class="p">:</span> <span class="nc">NSObject</span> <span class="o">&lt;</span><span class="n">NSFastEnumeration</span><span class="o">&gt;</span></code></pre>
+
+                </div>
+              </div>
+            <p>Circular queue for storing tag response data</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLCircularQueue(py)capacity"></a>
+                    <a name="//apple_ref/objc/Property/capacity" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLCircularQueue(py)capacity">capacity</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Define the maximum number of elements that the instance can hold</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">assign</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSUInteger</span> <span class="n">capacity</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">capacity</span><span class="p">:</span> <span class="kt">UInt</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLCircularQueue(py)count"></a>
+                    <a name="//apple_ref/objc/Property/count" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLCircularQueue(py)count">count</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Number of element that the instance is holding</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">assign</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSUInteger</span> <span class="n">count</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">UInt</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLCircularQueue(im)initWithCapacity:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithCapacity:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLCircularQueue(im)initWithCapacity:">-initWithCapacity:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializing the instance with a defined capacity</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">initWithCapacity</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">capacity</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="nv">capacity</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLCircularQueue(im)enqObject:"></a>
+                    <a name="//apple_ref/objc/Method/-enqObject:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLCircularQueue(im)enqObject:">-enqObject:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enqueu object into the queue</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">enqObject</span><span class="p">:(</span><span class="n">id</span><span class="p">)</span><span class="nv">obj</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">enqObject</span><span class="p">(</span><span class="n">_</span> <span class="nv">obj</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLCircularQueue(im)deqObject"></a>
+                    <a name="//apple_ref/objc/Method/-deqObject" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLCircularQueue(im)deqObject">-deqObject</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Dnqueu object from the queue</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">deqObject</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">deqObject</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>id Reference to the returned object</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLCircularQueue(im)objectAtIndex:"></a>
+                    <a name="//apple_ref/objc/Method/-objectAtIndex:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLCircularQueue(im)objectAtIndex:">-objectAtIndex:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Return reference to a specific object in the queue</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">objectAtIndex</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">index</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">object</span><span class="p">(</span><span class="n">at</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Any</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>id Reference to the returned object</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLCircularQueue(im)removeAllObjects"></a>
+                    <a name="//apple_ref/objc/Method/-removeAllObjects" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLCircularQueue(im)removeAllObjects">-removeAllObjects</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Remove all objects in queue</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">removeAllObjects</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">removeAllObjects</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://www.convergenece.com.hk" target="_blank" rel="external">CSL</a>. All rights reserved. (Last updated: 2018-10-10)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

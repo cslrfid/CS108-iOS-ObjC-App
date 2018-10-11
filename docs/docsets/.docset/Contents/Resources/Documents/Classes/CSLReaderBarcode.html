@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CSLReaderBarcode Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Class/CSLReaderBarcode" class="dashAnchor"></a>
+    <a title="CSLReaderBarcode Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (0% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CSLReaderBarcode Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleInterface.html">CSLBleInterface</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBlePacket.html">CSLBlePacket</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleReader.html">CSLBleReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleTag.html">CSLBleTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLCircularQueue.html">CSLCircularQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBarcode.html">CSLReaderBarcode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYLEVELSTATUS.html">BATTERYLEVELSTATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYMODE.html">BATTERYMODE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CONNECTION.html">CONNECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DEVICEID.html">DEVICEID</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DIRECTION.html">DIRECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LINKPROFILE.html">LINKPROFILE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYSELECT.html">QUERYSELECT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SESSION.html">SESSION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/STATUS.html">STATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TARGET.html">TARGET</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleInterfaceDelegate.html">CSLBleInterfaceDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CSLReaderBarcode</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">CSLReaderBarcode</span> <span class="p">:</span> <span class="nc">NSObject</span>
+<span class="p">{</span>
+    <span class="n">NSData</span><span class="o">*</span> <span class="n">serialData</span><span class="p">;</span>
+    <span class="n">NSString</span><span class="o">*</span> <span class="n">barcodeValue</span><span class="p">;</span>
+    <span class="n">NSString</span><span class="o">*</span> <span class="n">codeId</span><span class="p">;</span>
+    <span class="n">NSString</span><span class="o">*</span> <span class="n">aimId</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">@property</span> <span class="n">NSData</span><span class="o">*</span> <span class="n">serialData</span><span class="p">;</span>
+<span class="k">@property</span> <span class="n">NSString</span><span class="o">*</span> <span class="n">barcodeValue</span><span class="p">;</span>
+<span class="k">@property</span> <span class="n">NSString</span><span class="o">*</span> <span class="n">codeId</span><span class="p">;</span>
+<span class="k">@property</span> <span class="n">NSString</span><span class="o">*</span> <span class="n">aimId</span><span class="p">;</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="n">init</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="nf">initWithSerialData</span><span class="p">:(</span><span class="n">NSData</span><span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="n">extractBarcodeFromSerialData</span><span class="p">;</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nf">convertDataToHexString</span><span class="p">:(</span><span class="n">NSData</span><span class="o">*</span><span class="p">)</span> <span class="n">data</span><span class="p">;</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nf">convertHexStringToAscii</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="n">hexString</span> <span class="p">;</span>
+
+<span class="k">@end</span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLReaderBarcode@serialData"></a>
+                    <a name="//apple_ref/objc/Ivar/serialData" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLReaderBarcode@serialData">serialData</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">NSData</span><span class="o">*</span> <span class="n">serialData</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLReaderBarcode@barcodeValue"></a>
+                    <a name="//apple_ref/objc/Ivar/barcodeValue" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLReaderBarcode@barcodeValue">barcodeValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">NSString</span><span class="o">*</span> <span class="n">barcodeValue</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLReaderBarcode@codeId"></a>
+                    <a name="//apple_ref/objc/Ivar/codeId" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLReaderBarcode@codeId">codeId</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">NSString</span><span class="o">*</span> <span class="n">codeId</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLReaderBarcode@aimId"></a>
+                    <a name="//apple_ref/objc/Ivar/aimId" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLReaderBarcode@aimId">aimId</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">NSString</span><span class="o">*</span> <span class="n">aimId</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLReaderBarcode(py)serialData"></a>
+                    <a name="//apple_ref/objc/Property/serialData" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLReaderBarcode(py)serialData">serialData</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="n">NSData</span><span class="o">*</span> <span class="n"><a href="../Classes/CSLReaderBarcode.html#/c:objc(cs)CSLReaderBarcode@serialData">serialData</a></span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">serialData</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLReaderBarcode(py)barcodeValue"></a>
+                    <a name="//apple_ref/objc/Property/barcodeValue" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLReaderBarcode(py)barcodeValue">barcodeValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="n">NSString</span><span class="o">*</span> <span class="n"><a href="../Classes/CSLReaderBarcode.html#/c:objc(cs)CSLReaderBarcode@barcodeValue">barcodeValue</a></span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">barcodeValue</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLReaderBarcode(py)codeId"></a>
+                    <a name="//apple_ref/objc/Property/codeId" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLReaderBarcode(py)codeId">codeId</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="n">NSString</span><span class="o">*</span> <span class="n"><a href="../Classes/CSLReaderBarcode.html#/c:objc(cs)CSLReaderBarcode@codeId">codeId</a></span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">codeId</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLReaderBarcode(py)aimId"></a>
+                    <a name="//apple_ref/objc/Property/aimId" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLReaderBarcode(py)aimId">aimId</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="n">NSString</span><span class="o">*</span> <span class="n"><a href="../Classes/CSLReaderBarcode.html#/c:objc(cs)CSLReaderBarcode@aimId">aimId</a></span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">aimId</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLReaderBarcode(im)init"></a>
+                    <a name="//apple_ref/objc/Method/-init" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLReaderBarcode(im)init">-init</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="n">init</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLReaderBarcode(im)initWithSerialData:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithSerialData:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLReaderBarcode(im)initWithSerialData:">-initWithSerialData:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="nf">initWithSerialData</span><span class="p">:(</span><span class="n">NSData</span><span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="n"><a href="../Classes/CSLReaderBarcode.html#/c:objc(cs)CSLReaderBarcode@serialData">serialData</a></span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLReaderBarcode(im)extractBarcodeFromSerialData"></a>
+                    <a name="//apple_ref/objc/Method/-extractBarcodeFromSerialData" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLReaderBarcode(im)extractBarcodeFromSerialData">-extractBarcodeFromSerialData</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="n">extractBarcodeFromSerialData</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">extractBarcodeFromSerialData</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLReaderBarcode(cm)convertDataToHexString:"></a>
+                    <a name="//apple_ref/objc/Method/+convertDataToHexString:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLReaderBarcode(cm)convertDataToHexString:">+convertDataToHexString:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nf">convertDataToHexString</span><span class="p">:(</span><span class="n">NSData</span><span class="o">*</span><span class="p">)</span> <span class="n">data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">convertData</span><span class="p">(</span><span class="n">toHexString</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLReaderBarcode(cm)convertHexStringToAscii:"></a>
+                    <a name="//apple_ref/objc/Method/+convertHexStringToAscii:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLReaderBarcode(cm)convertHexStringToAscii:">+convertHexStringToAscii:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nf">convertHexStringToAscii</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="n">hexString</span> <span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">convertHexString</span><span class="p">(</span><span class="n">toAscii</span> <span class="nv">hexString</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-10-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

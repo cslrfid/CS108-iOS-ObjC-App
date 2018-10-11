@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CSLBleReader Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Class/CSLBleReader" class="dashAnchor"></a>
+    <a title="CSLBleReader Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (0% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CSLBleReader Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleInterface.html">CSLBleInterface</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBlePacket.html">CSLBlePacket</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleReader.html">CSLBleReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleTag.html">CSLBleTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLCircularQueue.html">CSLCircularQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBarcode.html">CSLReaderBarcode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYLEVELSTATUS.html">BATTERYLEVELSTATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYMODE.html">BATTERYMODE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CONNECTION.html">CONNECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DEVICEID.html">DEVICEID</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DIRECTION.html">DIRECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LINKPROFILE.html">LINKPROFILE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYSELECT.html">QUERYSELECT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SESSION.html">SESSION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/STATUS.html">STATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TARGET.html">TARGET</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleInterfaceDelegate.html">CSLBleInterfaceDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CSLBleReader</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">CSLBleReader</span> <span class="p">:</span> <span class="nc"><a href="../Classes/CSLBleInterface.html">CSLBleInterface</a></span> <span class="p">{</span>
+  <span class="n">NSMutableArray</span> <span class="o">*</span><span class="n">filteredBuffer</span><span class="p">;</span>
+  <span class="n">NSInteger</span> <span class="n">rangingTagCount</span><span class="p">;</span>
+  <span class="n">NSInteger</span> <span class="n">uniqueTagCount</span><span class="p">;</span>
+  <span class="n"><a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a></span> <span class="o">*</span><span class="n">batteryInfo</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+
+                </div>
+              </div>
+            <p>CSLBleInterface</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader@filteredBuffer"></a>
+                    <a name="//apple_ref/objc/Ivar/filteredBuffer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader@filteredBuffer">filteredBuffer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">NSMutableArray</span> <span class="o">*</span> <span class="n">filteredBuffer</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader@rangingTagCount"></a>
+                    <a name="//apple_ref/objc/Ivar/rangingTagCount" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader@rangingTagCount">rangingTagCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">NSInteger</span> <span class="n">rangingTagCount</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader@uniqueTagCount"></a>
+                    <a name="//apple_ref/objc/Ivar/uniqueTagCount" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader@uniqueTagCount">uniqueTagCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">NSInteger</span> <span class="n">uniqueTagCount</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader@batteryInfo"></a>
+                    <a name="//apple_ref/objc/Ivar/batteryInfo" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader@batteryInfo">batteryInfo</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n"><a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a></span> <span class="o">*</span> <span class="n">batteryInfo</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(py)filteredBuffer"></a>
+                    <a name="//apple_ref/objc/Property/filteredBuffer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(py)filteredBuffer">filteredBuffer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="n">NSMutableArray</span> <span class="o">*</span> <span class="n"><a href="../Classes/CSLBleReader.html#/c:objc(cs)CSLBleReader@filteredBuffer">filteredBuffer</a></span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">filteredBuffer</span><span class="p">:</span> <span class="kt">NSMutableArray</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(py)rangingTagCount"></a>
+                    <a name="//apple_ref/objc/Property/rangingTagCount" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(py)rangingTagCount">rangingTagCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="n">NSInteger</span> <span class="n"><a href="../Classes/CSLBleReader.html#/c:objc(cs)CSLBleReader@rangingTagCount">rangingTagCount</a></span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">rangingTagCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(py)uniqueTagCount"></a>
+                    <a name="//apple_ref/objc/Property/uniqueTagCount" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(py)uniqueTagCount">uniqueTagCount</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="n">NSInteger</span> <span class="n"><a href="../Classes/CSLBleReader.html#/c:objc(cs)CSLBleReader@uniqueTagCount">uniqueTagCount</a></span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">uniqueTagCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(py)batteryInfo"></a>
+                    <a name="//apple_ref/objc/Property/batteryInfo" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(py)batteryInfo">batteryInfo</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="n"><a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a></span><span class="o">*</span> <span class="n"><a href="../Classes/CSLBleReader.html#/c:objc(cs)CSLBleReader@batteryInfo">batteryInfo</a></span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">batteryInfo</span><span class="p">:</span> <span class="kt"><a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a></span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(py)readerDelegate"></a>
+                    <a name="//apple_ref/objc/Property/readerDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(py)readerDelegate">readerDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">weak</span><span class="p">)</span> <span class="n">id</span> <span class="o">&lt;</span><span class="n"><a href="../Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a></span><span class="o">&gt;</span> <span class="n">readerDelegate</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">weak</span> <span class="k">var</span> <span class="nv">readerDelegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a></span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(cm)convertDataToHexString:"></a>
+                    <a name="//apple_ref/objc/Method/+convertDataToHexString:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(cm)convertDataToHexString:">+convertDataToHexString:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nf">convertDataToHexString</span><span class="p">:(</span><span class="n">NSData</span><span class="o">*</span><span class="p">)</span> <span class="n">data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">convertData</span><span class="p">(</span><span class="n">toHexString</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)init"></a>
+                    <a name="//apple_ref/objc/Method/-init" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)init">-init</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="n">init</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)dealloc"></a>
+                    <a name="//apple_ref/objc/Method/-dealloc" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)dealloc">-dealloc</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">dealloc</span><span class="p">;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)readOEMData:atAddr:forData:"></a>
+                    <a name="//apple_ref/objc/Method/-readOEMData:atAddr:forData:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)readOEMData:atAddr:forData:">-readOEMData:atAddr:forData:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">readOEMData</span><span class="p">:(</span><span class="n"><a href="../Classes/CSLBleInterface.html">CSLBleInterface</a></span><span class="o">*</span><span class="p">)</span><span class="nv">intf</span> <span class="nf">atAddr</span><span class="p">:(</span><span class="kt">unsigned</span> <span class="kt">short</span><span class="p">)</span><span class="nv">addr</span> <span class="nf">forData</span><span class="p">:(</span><span class="n">NSData</span><span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">readOEMData</span><span class="p">(</span><span class="n">_</span> <span class="nv">intf</span><span class="p">:</span> <span class="kt"><a href="../Classes/CSLBleInterface.html">CSLBleInterface</a></span><span class="o">!</span><span class="p">,</span> <span class="n">atAddr</span> <span class="nv">addr</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="k">for</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)barcodeReader:"></a>
+                    <a name="//apple_ref/objc/Method/-barcodeReader:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)barcodeReader:">-barcodeReader:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">barcodeReader</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">enable</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">barcodeReader</span><span class="p">(</span><span class="n">_</span> <span class="nv">enable</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)startBarcodeReading"></a>
+                    <a name="//apple_ref/objc/Method/-startBarcodeReading" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)startBarcodeReading">-startBarcodeReading</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">startBarcodeReading</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">startBarcodeReading</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)stopBarcodeReading"></a>
+                    <a name="//apple_ref/objc/Method/-stopBarcodeReading" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)stopBarcodeReading">-stopBarcodeReading</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">stopBarcodeReading</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">stopBarcodeReading</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)sendBarcodeCommandData:"></a>
+                    <a name="//apple_ref/objc/Method/-sendBarcodeCommandData:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)sendBarcodeCommandData:">-sendBarcodeCommandData:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">sendBarcodeCommandData</span><span class="p">:</span> <span class="p">(</span><span class="n">NSData</span><span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sendBarcodeCommand</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)powerOnRfid:"></a>
+                    <a name="//apple_ref/objc/Method/-powerOnRfid:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)powerOnRfid:">-powerOnRfid:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">powerOnRfid</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">enable</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">power</span><span class="p">(</span><span class="n">onRfid</span> <span class="nv">enable</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)getBtFirmwareVersion:"></a>
+                    <a name="//apple_ref/objc/Method/-getBtFirmwareVersion:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)getBtFirmwareVersion:">-getBtFirmwareVersion:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">getBtFirmwareVersion</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">**</span><span class="p">)</span><span class="nv">versionNumber</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getBtFirmwareVersion</span><span class="p">(</span><span class="n">_</span> <span class="nv">versionNumber</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="p">?</span><span class="o">&gt;!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)getConnectedDeviceName:"></a>
+                    <a name="//apple_ref/objc/Method/-getConnectedDeviceName:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)getConnectedDeviceName:">-getConnectedDeviceName:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">getConnectedDeviceName</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">**</span><span class="p">)</span> <span class="n">deviceName</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getConnectedDeviceName</span><span class="p">(</span><span class="n">_</span> <span class="nv">deviceName</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="p">?</span><span class="o">&gt;!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)getSilLabIcVersion:"></a>
+                    <a name="//apple_ref/objc/Method/-getSilLabIcVersion:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)getSilLabIcVersion:">-getSilLabIcVersion:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">getSilLabIcVersion</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">**</span><span class="p">)</span> <span class="n">slVersion</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getSilLabIcVersion</span><span class="p">(</span><span class="n">_</span> <span class="nv">slVersion</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="p">?</span><span class="o">&gt;!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)getRfidBrdSerialNumber:"></a>
+                    <a name="//apple_ref/objc/Method/-getRfidBrdSerialNumber:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)getRfidBrdSerialNumber:">-getRfidBrdSerialNumber:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">getRfidBrdSerialNumber</span><span class="p">:(</span><span class="n">NSString</span><span class="o">**</span><span class="p">)</span> <span class="n">serialNumber</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getRfidBrdSerialNumber</span><span class="p">(</span><span class="n">_</span> <span class="nv">serialNumber</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="p">?</span><span class="o">&gt;!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)getPcBBoardVersion:"></a>
+                    <a name="//apple_ref/objc/Method/-getPcBBoardVersion:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)getPcBBoardVersion:">-getPcBBoardVersion:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">getPcBBoardVersion</span><span class="p">:(</span><span class="n">NSString</span><span class="o">**</span><span class="p">)</span> <span class="n">boardVersion</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getPcBBoardVersion</span><span class="p">(</span><span class="n">_</span> <span class="nv">boardVersion</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="p">?</span><span class="o">&gt;!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)sendAbortCommand"></a>
+                    <a name="//apple_ref/objc/Method/-sendAbortCommand" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)sendAbortCommand">-sendAbortCommand</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">sendAbortCommand</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sendAbortCommand</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)startBatteryAutoReporting"></a>
+                    <a name="//apple_ref/objc/Method/-startBatteryAutoReporting" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)startBatteryAutoReporting">-startBatteryAutoReporting</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">startBatteryAutoReporting</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">startBatteryAutoReporting</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)stopBatteryAutoReporting"></a>
+                    <a name="//apple_ref/objc/Method/-stopBatteryAutoReporting" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)stopBatteryAutoReporting">-stopBatteryAutoReporting</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">stopBatteryAutoReporting</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">stopBatteryAutoReporting</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)getRfidFwVersionNumber:"></a>
+                    <a name="//apple_ref/objc/Method/-getRfidFwVersionNumber:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)getRfidFwVersionNumber:">-getRfidFwVersionNumber:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">getRfidFwVersionNumber</span><span class="p">:(</span><span class="n">NSString</span><span class="o">**</span><span class="p">)</span> <span class="n">versionInfo</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getRfidFwVersionNumber</span><span class="p">(</span><span class="n">_</span> <span class="nv">versionInfo</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="p">?</span><span class="o">&gt;!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setPower:"></a>
+                    <a name="//apple_ref/objc/Method/-setPower:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setPower:">-setPower:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setPower</span><span class="p">:(</span><span class="kt">double</span><span class="p">)</span> <span class="n">powerInDbm</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setPower</span><span class="p">(</span><span class="n">_</span> <span class="nv">powerInDbm</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setAntennaCycle:"></a>
+                    <a name="//apple_ref/objc/Method/-setAntennaCycle:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setAntennaCycle:">-setAntennaCycle:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setAntennaCycle</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span> <span class="n">cycles</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setAntennaCycle</span><span class="p">(</span><span class="n">_</span> <span class="nv">cycles</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setAntennaDwell:"></a>
+                    <a name="//apple_ref/objc/Method/-setAntennaDwell:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setAntennaDwell:">-setAntennaDwell:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setAntennaDwell</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span> <span class="n">timeInMilliseconds</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setAntennaDwell</span><span class="p">(</span><span class="n">_</span> <span class="nv">timeInMilliseconds</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setLinkProfile:"></a>
+                    <a name="//apple_ref/objc/Method/-setLinkProfile:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setLinkProfile:">-setLinkProfile:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setLinkProfile</span><span class="p">:(</span><span class="n"><a href="../Enums/LINKPROFILE.html">LINKPROFILE</a></span><span class="p">)</span> <span class="n">profile</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setLinkProfile</span><span class="p">(</span><span class="n">_</span> <span class="nv">profile</span><span class="p">:</span> <span class="kt"><a href="../Enums/LINKPROFILE.html">LINKPROFILE</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)selectAlgorithmParameter:"></a>
+                    <a name="//apple_ref/objc/Method/-selectAlgorithmParameter:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)selectAlgorithmParameter:">-selectAlgorithmParameter:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">selectAlgorithmParameter</span><span class="p">:(</span><span class="n"><a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a></span><span class="p">)</span> <span class="n">algorithm</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">selectAlgorithmParameter</span><span class="p">(</span><span class="n">_</span> <span class="nv">algorithm</span><span class="p">:</span> <span class="kt"><a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setInventoryAlgorithmParameters0:maximumQ:minimumQ:ThresholdMultiplier:"></a>
+                    <a name="//apple_ref/objc/Method/-setInventoryAlgorithmParameters0:maximumQ:minimumQ:ThresholdMultiplier:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setInventoryAlgorithmParameters0:maximumQ:minimumQ:ThresholdMultiplier:">-setInventoryAlgorithmParameters0:maximumQ:minimumQ:ThresholdMultiplier:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setInventoryAlgorithmParameters0</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span> <span class="n">startQ</span> <span class="n">maximumQ</span><span class="o">:</span><span class="p">(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">maxQ</span> <span class="nf">minimumQ</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">minQ</span> <span class="nf">ThresholdMultiplier</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">tmult</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setInventoryAlgorithmParameters0</span><span class="p">(</span><span class="n">_</span> <span class="nv">startQ</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">maximumQ</span> <span class="nv">maxQ</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">minimumQ</span> <span class="nv">minQ</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">thresholdMultiplier</span> <span class="nv">tmult</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setInventoryAlgorithmParameters1:"></a>
+                    <a name="//apple_ref/objc/Method/-setInventoryAlgorithmParameters1:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setInventoryAlgorithmParameters1:">-setInventoryAlgorithmParameters1:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setInventoryAlgorithmParameters1</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span> <span class="n">retry</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setInventoryAlgorithmParameters1</span><span class="p">(</span><span class="n">_</span> <span class="nv">retry</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setInventoryAlgorithmParameters2:RunTillZero:"></a>
+                    <a name="//apple_ref/objc/Method/-setInventoryAlgorithmParameters2:RunTillZero:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setInventoryAlgorithmParameters2:RunTillZero:">-setInventoryAlgorithmParameters2:RunTillZero:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setInventoryAlgorithmParameters2</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span> <span class="n">toggle</span> <span class="n">RunTillZero</span><span class="o">:</span><span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">rtz</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setInventoryAlgorithmParameters2</span><span class="p">(</span><span class="n">_</span> <span class="nv">toggle</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">runTillZero</span> <span class="nv">rtz</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setInventoryConfigurations:MatchRepeats:tagSelect:disableInventory:tagRead:crcErrorRead:QTMode:tagDelay:inventoryMode:"></a>
+                    <a name="//apple_ref/objc/Method/-setInventoryConfigurations:MatchRepeats:tagSelect:disableInventory:tagRead:crcErrorRead:QTMode:tagDelay:inventoryMode:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setInventoryConfigurations:MatchRepeats:tagSelect:disableInventory:tagRead:crcErrorRead:QTMode:tagDelay:inventoryMode:">-setInventoryConfigurations:MatchRepeats:tagSelect:disableInventory:tagRead:crcErrorRead:QTMode:tagDelay:inventoryMode:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setInventoryConfigurations</span><span class="p">:(</span><span class="n"><a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a></span><span class="p">)</span> <span class="n">inventoryAlgorithm</span> <span class="n">MatchRepeats</span><span class="o">:</span><span class="p">(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">match_rep</span> <span class="nf">tagSelect</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">tag_sel</span> <span class="nf">disableInventory</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">disable_inventory</span> <span class="nf">tagRead</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">tag_read</span> <span class="nf">crcErrorRead</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span> <span class="n">crc_err_read</span> <span class="n">QTMode</span><span class="o">:</span><span class="p">(</span><span class="n">Byte</span><span class="p">)</span> <span class="n">QT_mode</span> <span class="n">tagDelay</span><span class="o">:</span><span class="p">(</span><span class="n">Byte</span><span class="p">)</span> <span class="n">tag_delay</span> <span class="n">inventoryMode</span><span class="o">:</span><span class="p">(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">inv_mode</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setInventoryConfigurations</span><span class="p">(</span><span class="n">_</span> <span class="nv">inventoryAlgorithm</span><span class="p">:</span> <span class="kt"><a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a></span><span class="p">,</span> <span class="n">matchRepeats</span> <span class="nv">match_rep</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">tagSelect</span> <span class="nv">tag_sel</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">disableInventory</span> <span class="nv">disable_inventory</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">tagRead</span> <span class="nv">tag_read</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">crcErrorRead</span> <span class="nv">crc_err_read</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">qtMode</span> <span class="kt">QT_mode</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">tagDelay</span> <span class="nv">tag_delay</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">inventoryMode</span> <span class="nv">inv_mode</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setQueryConfigurations:querySession:querySelect:"></a>
+                    <a name="//apple_ref/objc/Method/-setQueryConfigurations:querySession:querySelect:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setQueryConfigurations:querySession:querySelect:">-setQueryConfigurations:querySession:querySelect:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">setQueryConfigurations</span><span class="p">:(</span><span class="n"><a href="../Enums/TARGET.html">TARGET</a></span><span class="p">)</span> <span class="n">queryTarget</span> <span class="n">querySession</span><span class="o">:</span><span class="p">(</span><span class="n"><a href="../Enums/SESSION.html">SESSION</a></span><span class="p">)</span><span class="nv">query_session</span> <span class="nf">querySelect</span><span class="p">:(</span><span class="n"><a href="../Enums/QUERYSELECT.html">QUERYSELECT</a></span><span class="p">)</span><span class="nv">query_sel</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setQueryConfigurations</span><span class="p">(</span><span class="n">_</span> <span class="nv">queryTarget</span><span class="p">:</span> <span class="kt"><a href="../Enums/TARGET.html">TARGET</a></span><span class="p">,</span> <span class="n">querySession</span> <span class="nv">query_session</span><span class="p">:</span> <span class="kt"><a href="../Enums/SESSION.html">SESSION</a></span><span class="p">,</span> <span class="n">querySelect</span> <span class="nv">query_sel</span><span class="p">:</span> <span class="kt"><a href="../Enums/QUERYSELECT.html">QUERYSELECT</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)startInventory"></a>
+                    <a name="//apple_ref/objc/Method/-startInventory" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)startInventory">-startInventory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">startInventory</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">startInventory</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)stopInventory"></a>
+                    <a name="//apple_ref/objc/Method/-stopInventory" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)stopInventory">-stopInventory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">stopInventory</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">stopInventory</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)decodePacketsInBufferAsync"></a>
+                    <a name="//apple_ref/objc/Method/-decodePacketsInBufferAsync" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)decodePacketsInBufferAsync">-decodePacketsInBufferAsync</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">decodePacketsInBufferAsync</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">decodePacketsInBufferAsync</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-10-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

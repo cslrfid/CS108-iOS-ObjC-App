@@ -11,10 +11,6 @@
 #import "CSLSettingsVC.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface CSLDeviceTV ()
-
-@end
-
 @implementation CSLDeviceTV
 
 - (void)viewDidLoad {
@@ -84,7 +80,7 @@
     
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
     {
-        [actSpinner startAnimating];
+        [self->actSpinner startAnimating];
         //stop scanning for device
         [[CSLRfidAppEngine sharedAppEngine].reader stopScanDevice];
         //connect to device selected
@@ -152,7 +148,7 @@
             
             [[CSLRfidAppEngine sharedAppEngine].reader startBatteryAutoReporting];
             
-            [actSpinner stopAnimating];
+            [self->actSpinner stopAnimating];
         }
         
         

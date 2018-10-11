@@ -1,0 +1,201 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBlePacket.h",
+      "line": 13,
+      "symbol": "DEVICEID.RFID",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBlePacket.h",
+      "line": 14,
+      "symbol": "DEVICEID.Barcode",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBlePacket.h",
+      "line": 15,
+      "symbol": "DEVICEID.Notification",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBlePacket.h",
+      "line": 16,
+      "symbol": "DEVICEID.SiliconLabIC",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBlePacket.h",
+      "line": 17,
+      "symbol": "DEVICEID.BluetoothIC",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBlePacket.h",
+      "line": 22,
+      "symbol": "CONNECTION.USB",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBlePacket.h",
+      "line": 23,
+      "symbol": "CONNECTION.Bluetooth",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBlePacket.h",
+      "line": 28,
+      "symbol": "DIRECTION.Downlink",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBlePacket.h",
+      "line": 29,
+      "symbol": "DIRECTION.Uplink",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 26,
+      "symbol": "SESSION.S0",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 27,
+      "symbol": "SESSION.S1",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 28,
+      "symbol": "SESSION.S2",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 29,
+      "symbol": "SESSION.S3",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 35,
+      "symbol": "TARGET.A",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 36,
+      "symbol": "TARGET.B",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 37,
+      "symbol": "TARGET.ToggleAB",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 43,
+      "symbol": "QUERYALGORITHM.FIXEDQ",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 44,
+      "symbol": "QUERYALGORITHM.DYNAMICQ",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 50,
+      "symbol": "LINKPROFILE.MULTIPATH_INTERFERENCE_RESISTANCE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 51,
+      "symbol": "LINKPROFILE.RANGE_DRM",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 52,
+      "symbol": "LINKPROFILE.RANGE_THROUGHPUT_DRM",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 53,
+      "symbol": "LINKPROFILE.MAX_THROUGHPUT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 56,
+      "symbol": "QUERYSELECT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 56,
+      "symbol": "QUERYSELECT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 58,
+      "symbol": "QUERYSELECT.ALL",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
+      "line": 59,
+      "symbol": "QUERYSELECT.SL",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/model/CSLReaderBarcode.h",
+      "line": 22,
+      "symbol": "CSLReaderBarcode.-init",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/model/CSLReaderBattery.h",
+      "line": 34,
+      "symbol": "CSLReaderBattery.-init",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp"
+}

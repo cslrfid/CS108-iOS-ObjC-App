@@ -7,16 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+/**
+Tag data information
+ */
+@interface CSLBleTag : NSObject 
 
-@interface CSLBleTag : NSObject {
-    int PC;
-    NSString * EPC;
-    Byte rssi;
-    
-}
-
+///Protocol Control bits
 @property (assign) int PC;
+///EPC data string
 @property NSString * EPC;
+///Return RRSI of the tag response
 @property (assign) Byte rssi;
 
 @end

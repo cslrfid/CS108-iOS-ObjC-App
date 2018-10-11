@@ -9,12 +9,7 @@
 #import "AppDelegate.h"
 #import "CSLRfidAppEngine.h"
 
-@interface AppDelegate ()
-
-@end
-
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -54,6 +49,15 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
+    //power off reader and disconnect before closing application
+    if ([CSLRfidAppEngine sharedAppEngine].reader) {
+        if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED)
+        {
+            [[CSLRfidAppEngine sharedAppEngine].reader barcodeReader:false];
+            [[CSLRfidAppEngine sharedAppEngine].reader powerOnRfid:false];
+            [[CSLRfidAppEngine sharedAppEngine].reader disconnectDevice];
+        }
+    }
     [[UIApplication sharedApplication] setIdleTimerDisabled: NO];
 }
 
