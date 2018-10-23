@@ -317,4 +317,10 @@ Select which set of algorithm parameter registers to access.
  */
 - (void)decodePacketsInBufferAsync;
 
+/**
+ This will send out all the commands needed before tag acccess inclduing (1) setting antenna cycles (2) Query config (3) setting FixedQ, Q=0
+ @return TRUE if the operation is successful
+ */
+- (BOOL)setParametersForTagAccess;
+
 @end

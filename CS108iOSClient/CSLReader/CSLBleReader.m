@@ -2158,4 +2158,20 @@
     }
 }
 
+- (BOOL)setParametersForTagAccess {
+    
+    if(![self setAntennaCycle:0])
+        return false;
+    if (![self setQueryConfigurations:A querySession:S0 querySelect:SL])
+        return false;
+    if (![self selectAlgorithmParameter:FIXEDQ])
+        return false;
+    if (![self setInventoryAlgorithmParameters0:0 maximumQ:0 minimumQ:0 ThresholdMultiplier:0])
+        return false;
+    if (![self setInventoryAlgorithmParameters2:0 RunTillZero:0])
+        return false;
+    
+    return true;
+}
+
 @end
