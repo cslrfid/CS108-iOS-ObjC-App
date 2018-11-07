@@ -6,8 +6,6 @@
 
 [Product Information](https://www.convergence.com.hk/cs108/)
 
-[Official Downloads & Support](https://www.convergence.com.hk/downloads/cs108/)
-
 ---
 
 <img src="app_img/Home.png" width="200"/><img src="app_img/Inventory-tag.png" width="200"/><img src="app_img/Inventory-barcode.png" width="200"/><img src="app_img/Settings.png" width="200"/>
