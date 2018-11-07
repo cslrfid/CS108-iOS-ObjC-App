@@ -1,8 +1,6 @@
 # CslCs108iOsApp
 
-<img src="app_img/cs108-1.png" />
-
-#### Library and demo app for Convergence Systems Limited CS108 UHF RFID handheld reader written in Objective-C
+Library and demo app for Convergence Systems Limited CS108 UHF RFID handheld reader written in Objective-C
 
 [Product Information](https://www.convergence.com.hk/cs108/)
 
