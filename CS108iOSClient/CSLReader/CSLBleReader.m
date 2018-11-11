@@ -24,6 +24,7 @@
 @synthesize rangingTagCount;
 @synthesize uniqueTagCount;
 @synthesize batteryInfo;
+@synthesize cmdRespQueue;
 
 - (id) init
 {
@@ -2014,6 +2015,15 @@
                             }
                         }
                     }
+                    else if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0600"]) {
+                        NSLog(@"[decodePacketsInBufferAsync] Tag-access response recieved: %@", rfidPacketBufferInHexString);
+                        //return packet to the
+                        NSLog(@"[decodePacketsInBufferAsync] Finished decode tag-access packet.");
+                        [cmdRespQueue enqObject:packet];
+                        [rfidPacketBuffer setLength:0];
+                        continue;
+                        
+                    }
                     else {
                         //unknown 8100 rfid packet.  Dropping the data
                         NSLog(@"[decodePacketsInBufferAsync] Unknown 8100 RFID packet.  Dropping the data");
@@ -2158,20 +2168,36 @@
     }
 }
 
-- (BOOL)setParametersForTagAccess {
++ (NSData *)convertHexStringToData:(NSString *)hexString {
     
-    if(![self setAntennaCycle:0])
-        return false;
-    if (![self setQueryConfigurations:A querySession:S0 querySelect:SL])
-        return false;
-    if (![self selectAlgorithmParameter:FIXEDQ])
-        return false;
-    if (![self setInventoryAlgorithmParameters0:0 maximumQ:0 minimumQ:0 ThresholdMultiplier:0])
-        return false;
-    if (![self setInventoryAlgorithmParameters2:0 RunTillZero:0])
-        return false;
+    const char *hexChar = [hexString UTF8String];
     
-    return true;
+    Byte *bt = malloc(sizeof(Byte)*(hexString.length/2));
+    
+    char tmpChar[3] = {'\0','\0','\0'};
+    
+    int btIndex = 0;
+    
+    for (int i=0; i<hexString.length; i += 2) {
+        
+        tmpChar[0] = hexChar[i];
+        
+        tmpChar[1] = hexChar[i+1];
+        
+        bt[btIndex] = strtoul(tmpChar, NULL, 16);
+        
+        btIndex ++;
+        
+    }
+    
+    NSData *data = [NSData dataWithBytes:bt length:btIndex];
+    
+    free(bt);
+    
+    return data;
+    
 }
+
+
 
 @end

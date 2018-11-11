@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "CSLBleReader.h"
+#import "CSLBleReader+AccessControl.h"
 #import "CSLBleTag.h"
 #import "CSLBlePacket.h"
 #import "CSLReaderSettings.h"

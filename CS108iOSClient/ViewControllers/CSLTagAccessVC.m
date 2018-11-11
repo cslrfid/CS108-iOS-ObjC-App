@@ -68,6 +68,24 @@
 }
 
 - (IBAction)btnReadPressed:(id)sender {
+    
+    BOOL result=true;
+    
+    //read EPC
+    if ([self.swEPC isOn]) {
+        result=true;
+        UInt32 accPwd;
+        NSScanner* scanner = [NSScanner scannerWithString:[self.txtAccPwd text]];
+        [scanner scanHexInt:&accPwd];
+        
+        //select EPC
+        //result=[[CSLRfidAppEngine sharedAppEngine].reader selectTag:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4)  maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+        //result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:EPC data_offset:32 data_count:((UInt32)[self.txtSelectedEPC text].length * 4) ACC_PWD:accPwd];
+        result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:TID dataOffset:0 dataCount:2 ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+        
+    
+    }
+    
 }
 
 - (IBAction)btnWritePressed:(id)sender {

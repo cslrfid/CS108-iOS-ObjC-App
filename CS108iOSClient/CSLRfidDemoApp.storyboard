@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uy9-1K-dab">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uy9-1K-dab">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1007,7 +1007,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="f99-kR-uda" userLabel="PC">
                                         <rect key="frame" x="0.0" y="70" width="365" height="31"/>
                                         <subviews>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P5E-CQ-NWU">
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P5E-CQ-NWU">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                 <connections>
                                                     <action selector="swPCPressed:" destination="a6d-Bo-Txe" eventType="valueChanged" id="uk0-k2-1A7"/>
@@ -1063,7 +1063,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="eE0-du-pe3" userLabel="ACC PWD">
                                         <rect key="frame" x="0.0" y="142" width="365" height="31"/>
                                         <subviews>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7hd-ca-W2y">
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7hd-ca-W2y">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                 <connections>
                                                     <action selector="swAccPwdPressed:" destination="E7F-yr-253" eventType="valueChanged" id="DQH-GS-L16"/>
@@ -1090,7 +1090,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bWw-R7-zdN" userLabel="KILL PWD">
                                         <rect key="frame" x="0.0" y="178" width="365" height="31"/>
                                         <subviews>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fTq-HM-Y9z">
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fTq-HM-Y9z">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                 <connections>
                                                     <action selector="swKillPwdPressed:" destination="a6d-Bo-Txe" eventType="valueChanged" id="BBn-Bi-gjK"/>
@@ -1118,7 +1118,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="car-4X-Dmm" userLabel="TID-UID">
                                         <rect key="frame" x="0.0" y="214" width="365" height="31"/>
                                         <subviews>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BFh-Vb-a28">
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BFh-Vb-a28">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                 <connections>
                                                     <action selector="swTidUidPressed:" destination="E7F-yr-253" eventType="valueChanged" id="XfG-ce-XUy"/>
@@ -1167,7 +1167,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aHF-Mc-N3o" userLabel="USER">
                                         <rect key="frame" x="0.0" y="285" width="365" height="31"/>
                                         <subviews>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Zxw-I4-nc8">
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zxw-I4-nc8">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                 <connections>
                                                     <action selector="swUserPressed:" destination="E7F-yr-253" eventType="valueChanged" id="39A-u4-X0D"/>
@@ -1290,14 +1290,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Access" width="512" height="512"/>
-        <image name="Access-25" width="25" height="25"/>
-        <image name="Inventory" width="512" height="512"/>
-        <image name="Inventory-25" width="25" height="25"/>
-        <image name="Search" width="512" height="512"/>
-        <image name="Search-25" width="25" height="25"/>
-        <image name="disconnected" width="512" height="512"/>
-        <image name="filter" width="512" height="512"/>
-        <image name="settings" width="512" height="512"/>
+        <image name="Access" width="409.60000610351562" height="409.60000610351562"/>
+        <image name="Access-25" width="20" height="20"/>
+        <image name="Inventory" width="409.60000610351562" height="409.60000610351562"/>
+        <image name="Inventory-25" width="20" height="20"/>
+        <image name="Search" width="409.60000610351562" height="409.60000610351562"/>
+        <image name="Search-25" width="20" height="20"/>
+        <image name="disconnected" width="409.60000610351562" height="409.60000610351562"/>
+        <image name="filter" width="409.60000610351562" height="409.60000610351562"/>
+        <image name="settings" width="409.60000610351562" height="409.60000610351562"/>
     </resources>
 </document>

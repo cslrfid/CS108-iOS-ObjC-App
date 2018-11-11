@@ -284,6 +284,9 @@
 - (void) didReceiveTagResponsePacket: (CSLBleReader *) sender tagReceived:(CSLBleTag*)tag {
     //[tagListing reloadData];
 }
+- (void) didReceiveTagAccessData: (CSLBleReader *) sender tagReceived:(CSLBleTag*)tag {
+    //no used
+}
 
 - (void) didReceiveBatteryLevelIndicator: (CSLBleReader *) sender batteryPercentage:(int)battPct {
     [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage=battPct; 

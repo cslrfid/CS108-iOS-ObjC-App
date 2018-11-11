@@ -16,7 +16,14 @@ Tag data information
 @property (assign) int PC;
 ///EPC data string
 @property NSString * EPC;
+///TID data string
+@property (assign) NSString* TID;
+///USER data string
+@property (assign) NSString* USER;
 ///Return RRSI of the tag response
 @property (assign) Byte rssi;
+///Return timestamp of the tag readtime
+@property (assign) NSDate* timestamp;
+
 
 @end
