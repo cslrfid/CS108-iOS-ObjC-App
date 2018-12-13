@@ -9,12 +9,27 @@
 #import <UIKit/UIKit.h>
 #import "CSLRfidAppEngine.h"
 
+typedef NS_ENUM(Byte, MEMORYITEM)
+{
+    mKILLPWD,
+    mACCPWD,
+    mPC,
+    mEPC,
+    mTID,
+    mUSER
+};
+
+#define UIColorFromRGB(rgbValue) \
+[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0x00FF00) >>  8))/255.0 \
+blue:((float)((rgbValue & 0x0000FF) >>  0))/255.0 \
+alpha:1.0]
+
 //NS_ASSUME_NONNULL_BEGIN
 
-@interface CSLTagAccessVC : UIViewController
-{
-    
-    
+@interface CSLTagAccessVC : UIViewController<CSLBleInterfaceDelegate, CSLBleReaderDelegate, UITextFieldDelegate> {
+    MEMORYBANK bankSelected;
+    MEMORYITEM memItem;
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *txtSelectedEPC;

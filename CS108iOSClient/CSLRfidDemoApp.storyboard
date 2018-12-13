@@ -997,8 +997,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
-                                                    <action selector="txtAccPwdChanged:" destination="E7F-yr-253" eventType="editingDidEnd" id="uJg-Jh-Dax"/>
-                                                    <action selector="txtAccessPwdChanged:" destination="E7F-yr-253" eventType="editingDidEnd" id="hYw-40-mKd"/>
+                                                    <action selector="txtAccessPwdChanged:" destination="E7F-yr-253" eventType="editingDidEnd" id="6qN-Rn-yk1"/>
                                                     <action selector="txtAccessPwdChanged:" destination="a6d-Bo-Txe" eventType="editingDidEnd" id="l4R-8t-7bU"/>
                                                 </connections>
                                             </textField>
@@ -1083,6 +1082,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <action selector="txtAccPwdChanged:" destination="a6d-Bo-Txe" eventType="editingDidEnd" id="gAS-zw-8q5"/>
+                                                    <action selector="txtAccPwdChanged:" destination="E7F-yr-253" eventType="editingDidEnd" id="vNv-ZZ-lfG"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -1152,7 +1152,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1Lc-aK-DGa" userLabel="TID-UID Text">
                                         <rect key="frame" x="0.0" y="250" width="365" height="30"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v6U-FT-pLN" userLabel="TID-UID Text">
+                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v6U-FT-pLN" userLabel="TID-UID Text">
                                                 <rect key="frame" x="0.0" y="0.0" width="365" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
