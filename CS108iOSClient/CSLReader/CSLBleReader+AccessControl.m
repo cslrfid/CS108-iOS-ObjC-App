@@ -894,28 +894,28 @@
     result=[self TAGMSK_BANK:maskbank];
     result=[self TAGMSK_PTR:ptr];
     result=[self TAGMSK_LEN:length];
-    if (length > 0 && mask.length >= 4) {
+    if (length > 0 && mask.length > 0) {
         result=[self setTAGMSK:TAGMSK_0_3 tagMask:((UInt32)(((Byte *)[mask bytes])[0] << 24)) + ((UInt32)(((Byte *)[mask bytes])[1] << 16)) + ((UInt32)(((Byte *)[mask bytes])[2] << 8)) + ((UInt32)((Byte *)[mask bytes])[3])];
     }
-    if (length > 32 && mask.length >= 4) {
+    if (length > 32 && mask.length > 4) {
         result=[self setTAGMSK:TAGMSK_4_7 tagMask:((UInt32)(((Byte *)[mask bytes])[4] << 24)) + ((UInt32)(((Byte *)[mask bytes])[5] << 16)) + ((UInt32)(((Byte *)[mask bytes])[6] << 8)) + ((UInt32)((Byte *)[mask bytes])[7])];
     }
-    if (length > 64 && mask.length >= 6) {
+    if (length > 64 && mask.length > 8) {
         result=[self setTAGMSK:TAGMSK_8_11 tagMask:((UInt32)(((Byte *)[mask bytes])[8] << 24)) + ((UInt32)(((Byte *)[mask bytes])[9] << 16)) + ((UInt32)(((Byte *)[mask bytes])[10] << 8)) + ((UInt32)((Byte *)[mask bytes])[11])];
     }
-    if (length > 96 && mask.length >= 8) {
+    if (length > 96 && mask.length > 12) {
         result=[self setTAGMSK:TAGMSK_12_15 tagMask:((UInt32)(((Byte *)[mask bytes])[12] << 24)) + ((UInt32)(((Byte *)[mask bytes])[13] << 16)) + ((UInt32)(((Byte *)[mask bytes])[14] << 8)) + ((UInt32)((Byte *)[mask bytes])[15])];
     }
-    if (length > 128 && mask.length >= 10) {
+    if (length > 128 && mask.length > 16) {
         result=[self setTAGMSK:TAGMSK_16_19 tagMask:((UInt32)(((Byte *)[mask bytes])[16] << 24)) + ((UInt32)(((Byte *)[mask bytes])[17] << 16)) + ((UInt32)(((Byte *)[mask bytes])[18] << 8)) + ((UInt32)((Byte *)[mask bytes])[19])];
     }
-    if (length > 160 && mask.length >= 12) {
+    if (length > 160 && mask.length > 20) {
         result=[self setTAGMSK:TAGMSK_20_23 tagMask:((UInt32)(((Byte *)[mask bytes])[20] << 24)) + ((UInt32)(((Byte *)[mask bytes])[21] << 16)) + ((UInt32)(((Byte *)[mask bytes])[22] << 8)) + ((UInt32)((Byte *)[mask bytes])[23])];
     }
-    if (length > 192 && mask.length >= 14) {
+    if (length > 192 && mask.length > 24) {
         result=[self setTAGMSK:TAGMSK_24_27 tagMask:((UInt32)(((Byte *)[mask bytes])[24] << 24)) + ((UInt32)(((Byte *)[mask bytes])[25] << 16)) + ((UInt32)(((Byte *)[mask bytes])[26] << 8)) + ((UInt32)((Byte *)[mask bytes])[27])];
     }
-    if (length > 224 && mask.length >= 16) {
+    if (length > 224 && mask.length > 28) {
         result=[self setTAGMSK:TAGMSK_28_31 tagMask:((UInt32)(((Byte *)[mask bytes])[28] << 24)) + ((UInt32)(((Byte *)[mask bytes])[29] << 16)) + ((UInt32)(((Byte *)[mask bytes])[30] << 8)) + ((UInt32)((Byte *)[mask bytes])[31])];
     }
     

@@ -165,7 +165,7 @@
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
                          {
                              UITextField *textField = [alert.textFields firstObject];
-                             if (([textField.text intValue] >= 0 && [textField.text intValue] <= 8) && ![textField.text isEqualToString:@""]) {
+                             if (([textField.text intValue] >= 0 && [textField.text intValue] <= 32) && ![textField.text isEqualToString:@""]) {
                                  textField.text=[NSString stringWithFormat:@"%d",[textField.text intValue]];
                                  [self.btnUserOffset setTitle:[NSString stringWithFormat:@"Offset=%@", textField.text] forState:UIControlStateNormal];
                              }
@@ -214,14 +214,22 @@
         Byte tidOffset = [[[self.btnTidUidOffset titleLabel].text substringFromIndex:7] intValue];
         Byte userWordCount = [[[self.btnUserWord titleLabel].text substringFromIndex:5] intValue];
         Byte userOffset = [[[self.btnUserOffset titleLabel].text substringFromIndex:7] intValue];
+        Byte EPCWordCount = [[self.txtSelectedEPC text] length] / 4;
         
         //clear UI
-        self.txtTidUid.text=@"";
-        self.txtUser.text=@"";
-        self.txtEPC.text=@"";
-        self.txtPC.text=@"";
-        self.txtAccPwd.text=@"";
-        self.txtKillPwd.text=@"";
+        if ([self.swTidUid isOn])
+            self.txtTidUid.text=@"";
+        if ([self.swUser isOn])
+            self.txtUser.text=@"";
+        if ([self.swEPC isOn])
+            self.txtEPC.text=@"";
+        if ([self.swPC isOn])
+            self.txtPC.text=@"";
+        if ([self.swAccPwd isOn])
+            self.txtAccPwd.text=@"";
+        if ([self.swKillPwd isOn])
+            self.txtKillPwd.text=@"";
+
         [self.txtTidUid setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
         [self.txtUser setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
         [self.txtEPC setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
@@ -241,7 +249,7 @@
                 result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:TID dataOffset:tidOffset dataCount:tidWordCount ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             }
             else if ([self.swEPC isOn] || [self.swPC isOn]) {
-                result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:TID dataOffset:0 dataCount:0 ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+                result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:EPC dataOffset:2 dataCount:EPCWordCount ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             }
             
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
@@ -316,6 +324,33 @@
         BOOL result=true;
         Byte userWordCount = [[[self.btnUserWord titleLabel].text substringFromIndex:5] intValue];
         Byte userOffset = [[[self.btnUserOffset titleLabel].text substringFromIndex:7] intValue];
+        NSString* validationMsg=@"";
+        UIAlertController *alert;
+        UIAlertAction *ok;
+        
+        //input validation
+        if ([self.swPC isOn] && [[self.txtPC text] length] != 4)
+            validationMsg=[validationMsg stringByAppendingString:@"PC "];
+        if ([self.swEPC isOn] && ((([[self.txtEPC text] length] % 4) != 0) || ([[self.txtEPC text] length] == 0)))
+            validationMsg=[validationMsg stringByAppendingString:@"EPC "];
+        if ([self.swUser isOn] && ([[self.txtUser text] length] != (userWordCount * 4) || ([[self.txtUser text] length] == 0)))
+            validationMsg=[validationMsg stringByAppendingString:@"USER "];
+        if ([[self.txtAccPwd text] length] != 8)
+            validationMsg=[validationMsg stringByAppendingString:@"AccPWD "];
+        if ([[self.txtKillPwd text] length] != 8)
+            validationMsg=[validationMsg stringByAppendingString:@"KillPWD "];
+        if (([[self.txtSelectedEPC text] length] % 4) != 0)
+            validationMsg=[validationMsg stringByAppendingString:@"SelectedEPC "];
+        if ([[self.txtAccessPwd text] length] != 8 && ([[self.txtSelectedEPC text] length] != 0))
+            validationMsg=[validationMsg stringByAppendingString:@"AccessPWD "];
+
+        if (![validationMsg isEqualToString:@""]) {
+            alert = [UIAlertController alertControllerWithTitle:@"Tag Write" message:[@"Invalid Input: " stringByAppendingString:validationMsg] preferredStyle:UIAlertControllerStyleAlert];
+            ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
+            return;
+        }
         
         //clear UI
         [self.txtTidUid setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
@@ -414,8 +449,8 @@
             }
         }
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Tag Write" message:@"Completed" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        alert = [UIAlertController alertControllerWithTitle:@"Tag Write" message:@"Completed" preferredStyle:UIAlertControllerStyleAlert];
+        ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
     }
@@ -435,7 +470,7 @@
     //Validate if input is hex value
     NSCharacterSet *chars = [[NSCharacterSet
                               characterSetWithCharactersInString:@"0123456789ABCDEF"] invertedSet];
-    if (([[self.txtAccessPwd.text uppercaseString] rangeOfCharacterFromSet:chars].location != NSNotFound) || [self.txtAccessPwd.text length] != 4) {
+    if (([[self.txtAccessPwd.text uppercaseString] rangeOfCharacterFromSet:chars].location != NSNotFound) || [self.txtAccessPwd.text length] != 8) {
         self.txtAccessPwd.text = @"00000000";
     }
     
@@ -464,8 +499,8 @@
     //Validate if input is hex value
     NSCharacterSet *chars = [[NSCharacterSet
                               characterSetWithCharactersInString:@"0123456789ABCDEF"] invertedSet];
-    if (([[self.txtAccPwd.text uppercaseString] rangeOfCharacterFromSet:chars].location != NSNotFound) || [self.txtAccPwd.text length] != 4) {
-        self.txtAccPwd.text = @"";
+    if (([[self.txtAccPwd.text uppercaseString] rangeOfCharacterFromSet:chars].location != NSNotFound) || [self.txtAccPwd.text length] != 8) {
+        self.txtAccPwd.text = @"00000000";
     }
     
 }
@@ -474,8 +509,8 @@
     //Validate if input is hex value
     NSCharacterSet *chars = [[NSCharacterSet
                               characterSetWithCharactersInString:@"0123456789ABCDEF"] invertedSet];
-    if (([[self.txtKillPwd.text uppercaseString] rangeOfCharacterFromSet:chars].location != NSNotFound) || [self.txtKillPwd.text length] != 4) {
-        self.txtKillPwd.text = @"";
+    if (([[self.txtKillPwd.text uppercaseString] rangeOfCharacterFromSet:chars].location != NSNotFound) || [self.txtKillPwd.text length] != 8) {
+        self.txtKillPwd.text = @"00000000";
     }
 }
 
