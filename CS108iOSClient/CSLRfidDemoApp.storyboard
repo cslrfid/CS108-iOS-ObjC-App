@@ -111,6 +111,9 @@
                                                                     <constraint firstAttribute="width" secondItem="JoP-Gb-s9g" secondAttribute="height" multiplier="1:1" id="YXe-Ol-N5H"/>
                                                                 </constraints>
                                                                 <state key="normal" image="Search"/>
+                                                                <connections>
+                                                                    <action selector="btnTagSearchPressed:" destination="fVS-GJ-XIB" eventType="touchUpInside" id="5CM-DF-feO"/>
+                                                                </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find your Item" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSd-pG-TcJ">
                                                                 <rect key="frame" x="8" y="115.5" width="163.5" height="22"/>
@@ -386,18 +389,71 @@
         <!--CslRfid findYourItemVC-->
         <scene sceneID="dUs-Nz-pgd">
             <objects>
-                <viewController id="qel-VM-Uw9" userLabel="CslRfid findYourItemVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_TagSearchVC" id="qel-VM-Uw9" userLabel="CslRfid findYourItemVC" customClass="CSLTagSearchVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kuj-AL-YiZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TXi-8X-gJt">
+                                <rect key="frame" x="0.0" y="40" width="375" height="574"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="RWl-16-bGc" userLabel="EPC Elements">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EPC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoO-FG-klp" userLabel="EPC">
+                                                <rect key="frame" x="0.0" y="0.0" width="32" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDx-ql-S6S" userLabel="EPC Text">
+                                                <rect key="frame" x="37" y="0.0" width="338" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="6Zk-bw-WQ1" userLabel="Gauge Elements">
+                                        <rect key="frame" x="0.0" y="30" width="375" height="505"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zRp-L7-GxB">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="505"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaP-TP-hj6" userLabel="Start ">
+                                        <rect key="frame" x="0.0" y="535" width="375" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="vjo-Z9-5Dm" userLabel="height = 40"/>
+                                        </constraints>
+                                        <state key="normal" title="START"/>
+                                        <connections>
+                                            <action selector="btnSearchPressed:" destination="qel-VM-Uw9" eventType="touchUpInside" id="19F-Nc-l4u"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Zg4-Ym-14B" firstAttribute="bottom" secondItem="TXi-8X-gJt" secondAttribute="bottom" constant="4" id="4j5-FO-Z8j"/>
+                            <constraint firstItem="TXi-8X-gJt" firstAttribute="top" secondItem="Zg4-Ym-14B" secondAttribute="top" constant="20" id="ady-Fp-Bah"/>
+                            <constraint firstAttribute="trailing" secondItem="TXi-8X-gJt" secondAttribute="trailing" id="bNN-m2-7M2"/>
+                            <constraint firstItem="TXi-8X-gJt" firstAttribute="leading" secondItem="kuj-AL-YiZ" secondAttribute="leading" id="zlJ-2i-Ple"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Zg4-Ym-14B"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Find your Item" image="Search-25" landscapeImage="Search-25" id="txS-lV-5CQ"/>
+                    <connections>
+                        <outlet property="btnSearch" destination="XaP-TP-hj6" id="G1B-nV-EFv"/>
+                        <outlet property="ivGauge" destination="zRp-L7-GxB" id="Mmv-c5-dHJ"/>
+                        <outlet property="txtEPC" destination="UDx-ql-S6S" id="bys-1g-y1g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lyu-8f-8F2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="896.79999999999995" y="683.20839580209895"/>
+            <point key="canvasLocation" x="896.79999999999995" y="682.3088455772114"/>
         </scene>
         <!--DeviceTV-->
         <scene sceneID="Prb-yy-xPI">

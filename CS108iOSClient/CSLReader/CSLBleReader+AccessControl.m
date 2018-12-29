@@ -26,6 +26,22 @@
     return true;
 }
 
+- (BOOL)setParametersForTagSearch {
+    
+    if(![self setAntennaCycle:COMMAND_ANTCYCLE_CONTINUOUS])
+        return false;
+    if (![self setQueryConfigurations:A querySession:S0 querySelect:SL])
+        return false;
+    if (![self selectAlgorithmParameter:FIXEDQ])
+        return false;
+    if (![self setInventoryAlgorithmParameters0:0 maximumQ:0 minimumQ:0 ThresholdMultiplier:0])
+        return false;
+    if (![self setInventoryAlgorithmParameters2:0 RunTillZero:0])
+        return false;
+    
+    return true;
+}
+
 - (BOOL) TAGMSK_DESC_CFG:(BOOL)isEnable selectTarget:(Byte)sel_target selectAction:(Byte)sel_action {
     
     @synchronized(self) {
@@ -883,6 +899,73 @@
     return true;
 }
 
+- (BOOL) sendHostCommandSearch {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [self.cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    CSLBlePacket * recvPacket;
+    
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Send HST_CMD 0x10 (Search Tag)...");
+    NSLog(@"----------------------------------------------------------------------");
+    
+    //Send HST_CMD
+    unsigned char HSTCMD[] = {0x80, 0x02, 0x70, 0x01, 0x0, 0xF0, 0x0F, 0x00, 0x00, 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:HSTCMD length:sizeof(HSTCMD)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if ([self.cmdRespQueue count] >= 1) //command response + command begin + command end
+            break;
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+    }
+    
+    if ([self.cmdRespQueue count] >= 1)
+        recvPacket = ((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    else
+    {
+        NSLog(@"Command timed out.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    if (memcmp([recvPacket.payload bytes], HSTCMD, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+        NSLog(@"Receive HST_CMD 0x0F response: OK");
+    else
+    {
+        NSLog(@"Receive HST_CMD 0x0F response: FAILED");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return FALSE;
+    }
+    
+    return true;
+}
+
+
 - (BOOL) selectTag:(MEMORYBANK)maskbank maskPointer:(UInt16)ptr maskLength:(UInt32)length maskData:(NSData*)mask {
     
     BOOL result=true;
@@ -920,10 +1003,53 @@
     }
     
     //stop after 1 tag inventoried, enable tag select, compact mode
-    [self setInventoryConfigurations:FIXEDQ MatchRepeats:1 tagSelect:1 disableInventory:0 tagRead:0 crcErrorRead:0 QTMode:0 tagDelay:0 inventoryMode:0];
+    [self setInventoryConfigurations:FIXEDQ MatchRepeats:1 tagSelect:1 disableInventory:0 tagRead:0 crcErrorRead:1 QTMode:0 tagDelay:0 inventoryMode:0];
     
     return result;
 }
+
+- (BOOL) selectTagForSearch:(MEMORYBANK)maskbank maskPointer:(UInt16)ptr maskLength:(UInt32)length maskData:(NSData*)mask {
+    
+    BOOL result=true;
+    
+    NSLog(@"Tag select mask in hex: %@", [CSLBleReader convertDataToHexString:mask] );
+    
+    //Select the desired tag
+    result=[self TAGMSK_DESC_CFG:true selectTarget:4 /* SL*/ selectAction:0];
+    result=[self TAGMSK_BANK:maskbank];
+    result=[self TAGMSK_PTR:ptr];
+    result=[self TAGMSK_LEN:length];
+    if (length > 0 && mask.length > 0) {
+        result=[self setTAGMSK:TAGMSK_0_3 tagMask:((UInt32)(((Byte *)[mask bytes])[0] << 24)) + ((UInt32)(((Byte *)[mask bytes])[1] << 16)) + ((UInt32)(((Byte *)[mask bytes])[2] << 8)) + ((UInt32)((Byte *)[mask bytes])[3])];
+    }
+    if (length > 32 && mask.length > 4) {
+        result=[self setTAGMSK:TAGMSK_4_7 tagMask:((UInt32)(((Byte *)[mask bytes])[4] << 24)) + ((UInt32)(((Byte *)[mask bytes])[5] << 16)) + ((UInt32)(((Byte *)[mask bytes])[6] << 8)) + ((UInt32)((Byte *)[mask bytes])[7])];
+    }
+    if (length > 64 && mask.length > 8) {
+        result=[self setTAGMSK:TAGMSK_8_11 tagMask:((UInt32)(((Byte *)[mask bytes])[8] << 24)) + ((UInt32)(((Byte *)[mask bytes])[9] << 16)) + ((UInt32)(((Byte *)[mask bytes])[10] << 8)) + ((UInt32)((Byte *)[mask bytes])[11])];
+    }
+    if (length > 96 && mask.length > 12) {
+        result=[self setTAGMSK:TAGMSK_12_15 tagMask:((UInt32)(((Byte *)[mask bytes])[12] << 24)) + ((UInt32)(((Byte *)[mask bytes])[13] << 16)) + ((UInt32)(((Byte *)[mask bytes])[14] << 8)) + ((UInt32)((Byte *)[mask bytes])[15])];
+    }
+    if (length > 128 && mask.length > 16) {
+        result=[self setTAGMSK:TAGMSK_16_19 tagMask:((UInt32)(((Byte *)[mask bytes])[16] << 24)) + ((UInt32)(((Byte *)[mask bytes])[17] << 16)) + ((UInt32)(((Byte *)[mask bytes])[18] << 8)) + ((UInt32)((Byte *)[mask bytes])[19])];
+    }
+    if (length > 160 && mask.length > 20) {
+        result=[self setTAGMSK:TAGMSK_20_23 tagMask:((UInt32)(((Byte *)[mask bytes])[20] << 24)) + ((UInt32)(((Byte *)[mask bytes])[21] << 16)) + ((UInt32)(((Byte *)[mask bytes])[22] << 8)) + ((UInt32)((Byte *)[mask bytes])[23])];
+    }
+    if (length > 192 && mask.length > 24) {
+        result=[self setTAGMSK:TAGMSK_24_27 tagMask:((UInt32)(((Byte *)[mask bytes])[24] << 24)) + ((UInt32)(((Byte *)[mask bytes])[25] << 16)) + ((UInt32)(((Byte *)[mask bytes])[26] << 8)) + ((UInt32)((Byte *)[mask bytes])[27])];
+    }
+    if (length > 224 && mask.length > 28) {
+        result=[self setTAGMSK:TAGMSK_28_31 tagMask:((UInt32)(((Byte *)[mask bytes])[28] << 24)) + ((UInt32)(((Byte *)[mask bytes])[29] << 16)) + ((UInt32)(((Byte *)[mask bytes])[30] << 8)) + ((UInt32)((Byte *)[mask bytes])[31])];
+    }
+    
+    //stop after 1 tag inventoried, enable tag select, compact mode
+    [self setInventoryConfigurations:FIXEDQ MatchRepeats:0 tagSelect:1 disableInventory:0 tagRead:0 crcErrorRead:1 QTMode:0 tagDelay:30 inventoryMode:0];
+    
+    return result;
+}
+
 - (BOOL) startTagMemoryRead:(MEMORYBANK)bank dataOffset:(UInt16)offset dataCount:(UInt16)count ACCPWD:(UInt32)password maskBank:(MEMORYBANK)mask_bank maskPointer:(UInt16)mask_pointer maskLength:(UInt32)mask_Length maskData:(NSData*)mask_data {
     
     BOOL result=true;
@@ -1081,6 +1207,108 @@
     connectStatus=CONNECTED;
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
     return result;
+}
+
+- (BOOL) startTagSearch:(MEMORYBANK)mask_bank maskPointer:(UInt16)mask_pointer maskLength:(UInt32)mask_Length maskData:(NSData*)mask_data {
+    
+    BOOL result=true;
+    CSLBlePacket *recvPacket;
+    
+    result=[self setParametersForTagSearch];
+    
+    //if mask data is not nil, tag will be selected before reading
+    if (mask_data != nil)
+        result=[self selectTagForSearch:mask_bank maskPointer:32 maskLength:mask_Length  maskData:mask_data];
+    
+    result = [self sendHostCommandSearch];
+    
+    //wait for the command-begin and command-end packet
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if ([self.cmdRespQueue count] >= 1)
+            break;
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+    }
+    
+    if ([self.cmdRespQueue count] < 1) {
+        NSLog(@"Tag search command timed out.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    //command-begin
+    recvPacket = ((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"])
+        NSLog(@"Receive search command-begin response: OK");
+    else
+    {
+        NSLog(@"Receive search command-begin response: FAILED");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return FALSE;
+    }
+    connectStatus=TAG_OPERATIONS;
+    //[self performSelectorInBackground:@selector(decodePacketsInBufferAsync) withObject:(nil)];
+    return true;
+}
+
+- (BOOL)stopTagSearch {
+    
+    //retry multiple times in case rfid module is busy on receiving the abort command
+    for (int j=0;j<3;j++)
+    {
+        [self performSelectorInBackground:@selector(stopTagSearchBlocking) withObject:(nil)];
+        
+        for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 3 seconds
+            ([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]]);
+            if(connectStatus == CONNECTED)
+                break;
+        }
+        if (connectStatus != CONNECTED)
+        {
+            NSLog(@"Abort command response failure.  Try #%d", j+1);
+            continue;
+        }
+        else
+        {
+            NSLog(@"Abort command response: OK");
+            break;
+        }
+        
+    }
+    
+    return ((connectStatus != CONNECTED) ? false : true);
+    
+}
+
+- (void)stopTagSearchBlocking {
+    
+    @autoreleasepool {
+        //Initialize data
+        CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+        
+        if (connectStatus==TAG_OPERATIONS)
+        {
+            NSLog(@"----------------------------------------------------------------------");
+            NSLog(@"Abort command for tag search...");
+            NSLog(@"----------------------------------------------------------------------");
+            //Send abort command
+            unsigned char abortCmd[] = {0x80, 0x02, 0x40, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+            packet.prefix=0xA7;
+            packet.connection = Bluetooth;
+            packet.payloadLength=0x0A;
+            packet.deviceId=RFID;
+            packet.Reserve=0x82;
+            packet.direction=Downlink;
+            packet.crc1=0;
+            packet.crc2=0;
+            packet.payload=[NSData dataWithBytes:abortCmd length:sizeof(abortCmd)];
+            
+            NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+            [self sendPackets:packet];
+        }
+    }
+    
 }
 
 @end

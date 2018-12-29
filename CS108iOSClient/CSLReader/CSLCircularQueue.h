@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CSLBleTag.h"
 
 /**
  Circular queue for storing tag response data
@@ -34,7 +35,9 @@
 /**Remove all objects in queue
  */
 - (void)removeAllObjects;
-
+/**Calculate the rolling average of the tag search RSSI
+ */
+- (Byte)calculateRollingAverage;
 @end
 
 

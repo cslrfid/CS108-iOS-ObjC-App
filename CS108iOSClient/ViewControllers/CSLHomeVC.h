@@ -16,6 +16,7 @@
 - (IBAction)btnConnectReaderPressed:(id)sender;
 - (IBAction)btnAboutPressed:(id)sender;
 - (IBAction)btnTagAccessPressed:(id)sender;
+- (IBAction)btnTagSearchPressed:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnConnectReader;
 @property (weak, nonatomic) IBOutlet UILabel *lbConnectReader;
