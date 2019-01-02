@@ -52,6 +52,7 @@ alpha:1.0]
 @property (weak, nonatomic) IBOutlet UIButton *btnUserWord;
 @property (weak, nonatomic) IBOutlet UIButton *btnRead;
 @property (weak, nonatomic) IBOutlet UIButton *btnWrite;
+@property (weak, nonatomic) IBOutlet UIButton *btnSecurity;
 
 - (IBAction)swPCPressed:(id)sender;
 - (IBAction)swEPCPressed:(id)sender;
@@ -67,6 +68,7 @@ alpha:1.0]
 
 - (IBAction)btnReadPressed:(id)sender;
 - (IBAction)btnWritePressed:(id)sender;
+- (IBAction)btnSecurityPressed:(id)sender;
 
 
 - (IBAction)txtSelectedEPCChanged:(id)sender;

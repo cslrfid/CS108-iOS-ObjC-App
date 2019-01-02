@@ -2032,7 +2032,7 @@
                                 
                                 tag.ACKTimeout=(((Byte *)[rfidPacketBuffer bytes])[ptr+1] & 0x04) >> 2;
                                 
-                                if ((((Byte *)[rfidPacketBuffer bytes])[ptr+1] & 0x02) >> 1) {
+                                if ((((Byte *)[rfidPacketBuffer bytes])[ptr+1] & 0x02) >> 1 && tag.BackScatterError == 0xFF && !tag.CRCError && !tag.ACKTimeout) {
                                     tag.AccessError=((Byte *)[rfidPacketBuffer bytes])[ptr+20];
                                 }
                                 else

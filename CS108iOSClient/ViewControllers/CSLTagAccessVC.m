@@ -7,6 +7,7 @@
 //
 
 #import "CSLTagAccessVC.h"
+#import "CSLTagLockVC.h"
 
 @interface CSLTagAccessVC()
 
@@ -41,8 +42,13 @@
 
     self.btnRead.layer.borderWidth=1.0f;
     self.btnRead.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    self.btnRead.layer.cornerRadius=5.0f;
     self.btnWrite.layer.borderWidth=1.0f;
     self.btnWrite.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    self.btnWrite.layer.cornerRadius=5.0f;
+    self.btnSecurity.layer.borderWidth=1.0f;
+    self.btnSecurity.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    self.btnSecurity.layer.cornerRadius=5.0f;
     
 }
 
@@ -239,7 +245,7 @@
         
         //get access password
         UInt32 accPwd=0;
-        NSScanner* scanner = [NSScanner scannerWithString:[self.txtAccPwd text]];
+        NSScanner* scanner = [NSScanner scannerWithString:[self.txtAccessPwd text]];
         [scanner scanHexInt:&accPwd];
         
         bankSelected=TID;
@@ -274,9 +280,10 @@
             }
         }
         bankSelected=RESERVED;
+        memItem=mACCPWD;
         //read access password and kill password
-        if ([self.swAccPwd isOn] || [self.swKillPwd isOn]) {
-            result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:RESERVED dataOffset:0 dataCount:4 ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+        if ([self.swAccPwd isOn]) {
+            result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:RESERVED dataOffset:2 dataCount:2 ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
                 if([self.txtAccPwd.text length] != 0)
@@ -287,6 +294,17 @@
                 [self.txtAccPwd setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
             } else if ([self.txtAccPwd.text length] != 0 && [self.swAccPwd isOn]) {
                 [self.txtAccPwd setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
+            }
+        
+        }
+        memItem=mKILLPWD;
+        if ([self.swKillPwd isOn]) {
+            result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:RESERVED dataOffset:0 dataCount:2 ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+            
+            for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
+                if([self.txtKillPwd.text length] != 0)
+                    break;
+                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
             }
             if([self.txtKillPwd.text length] == 0 && [self.swKillPwd isOn]) {
                 [self.txtKillPwd setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
@@ -362,7 +380,7 @@
         
         //get access password
         UInt32 accPwd=0;
-        NSScanner* scanner = [NSScanner scannerWithString:[self.txtAccPwd text]];
+        NSScanner* scanner = [NSScanner scannerWithString:[self.txtAccessPwd text]];
         [scanner scanHexInt:&accPwd];
         
         bankSelected=EPC;
@@ -372,13 +390,13 @@
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:EPC dataOffset:1 dataCount:((UInt32)[self.txtPC text].length / 4) writeData:[CSLBleReader convertHexStringToData:[self.txtPC text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                if([self.txtPC backgroundColor] != UIColorFromRGB(0xFFFFFF))
+                if(![[self.txtPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
                     break;
                 [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
             }
             //set UI color to red if no tag access reponse returned
-            if([self.txtEPC backgroundColor] == UIColorFromRGB(0xFFFFFF)) {
-                [self.txtEPC setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
+            if([[self.txtPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
+                [self.txtPC setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
             }
         }
         
@@ -389,12 +407,12 @@
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:EPC dataOffset:2 dataCount:((UInt32)[self.txtEPC text].length / 4) writeData:[CSLBleReader convertHexStringToData:[self.txtEPC text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                if([self.txtEPC backgroundColor] != UIColorFromRGB(0xFFFFFF))
+                if(![[self.txtEPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
                     break;
                 [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
             }
             //set UI color to red if no tag access reponse returned
-            if([self.txtEPC backgroundColor] == UIColorFromRGB(0xFFFFFF)) {
+            if([[self.txtEPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
                 [self.txtEPC setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
             }
         }
@@ -406,12 +424,12 @@
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:RESERVED dataOffset:2 dataCount:2 writeData:[CSLBleReader convertHexStringToData:[self.txtAccPwd text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                if([self.txtAccPwd.text length] != 0)
+                if(![[self.txtAccPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
                     break;
                 [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
             }
             //set UI color to red if no tag access reponse returned
-            if([self.txtAccPwd backgroundColor] == UIColorFromRGB(0xFFFFFF)) {
+            if([[self.txtAccPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
                 [self.txtAccPwd setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
             }
         }
@@ -422,12 +440,12 @@
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:RESERVED dataOffset:0 dataCount:2 writeData:[CSLBleReader convertHexStringToData:[self.txtKillPwd text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                if([self.txtAccPwd.text length] != 0)
+                if(![[self.txtKillPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
                     break;
                 [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
             }
             //set UI color to red if no tag access reponse returned
-            if([self.txtKillPwd backgroundColor] == UIColorFromRGB(0xFFFFFF)) {
+            if([[self.txtKillPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
                 [self.txtKillPwd setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
             }
         }
@@ -439,12 +457,12 @@
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:USER dataOffset:userOffset dataCount:userWordCount writeData:[CSLBleReader convertHexStringToData:[self.txtUser text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                if([self.txtUser.text length] != 0)
+                if(![[self.txtUser backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
                     break;
                 [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
             }
             //set UI color to red if no tag access reponse returned
-            if([self.txtUser backgroundColor] == UIColorFromRGB(0xFFFFFF)) {
+            if([[self.txtUser backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
                 [self.txtUser setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
             }
         }
@@ -453,6 +471,18 @@
         ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
+    }
+    
+}
+
+- (IBAction)btnSecurityPressed:(id)sender {
+    
+    CSLTagLockVC* tagLockVC;
+    tagLockVC = (CSLTagLockVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_TagLockVC"];
+    
+    if (tagLockVC != nil)
+    {
+        [[self navigationController] pushViewController:tagLockVC animated:YES];
     }
     
 }
@@ -548,14 +578,19 @@
             else if (self->bankSelected == USER) {
                 self->txtUser.text=tag.DATA1;
             }
-            else if (self->bankSelected == RESERVED) {
-                if ([tag.DATA1 length] == 16) {
-                    if (self->swKillPwd.isOn)
-                        self->txtKillPwd.text=[tag.DATA1 substringToIndex:8];
+            else if (self->bankSelected == RESERVED && self->memItem==mACCPWD) {
+                if ([tag.DATA1 length] == 8) {
                     if (self->swAccPwd.isOn)
-                        self->txtAccPwd.text=[tag.DATA1 substringFromIndex:8];
+                        self->txtAccPwd.text=tag.DATA1;
                 }
             }
+            else if (self->bankSelected == RESERVED && self->memItem==mKILLPWD) {
+                if ([tag.DATA1 length] == 8) {
+                    if (self->swKillPwd.isOn)
+                        self->txtKillPwd.text=tag.DATA1;
+                }
+            }
+            
         }
         else if (tag.AccessCommand == WRITE) {      //write command
             if (self->bankSelected == EPC && self->memItem == mEPC) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA411CDF21D8C59F0029E779 /* CSLTagLockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA411CDE21D8C59F0029E779 /* CSLTagLockVC.m */; };
 		CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E5213528FC0035F075 /* CSLBleReader.m */; };
 		CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E8213698DD0035F075 /* CSLBleTag.m */; };
 		CA5066412157889C00C3C9C8 /* CSLAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5066402157889C00C3C9C8 /* CSLAboutVC.m */; };
@@ -39,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA411CDD21D8C59F0029E779 /* CSLTagLockVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagLockVC.h; sourceTree = "<group>"; };
+		CA411CDE21D8C59F0029E779 /* CSLTagLockVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTagLockVC.m; sourceTree = "<group>"; };
 		CA4E78E4213528FC0035F075 /* CSLBleReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLBleReader.h; sourceTree = "<group>"; };
 		CA4E78E5213528FC0035F075 /* CSLBleReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLBleReader.m; sourceTree = "<group>"; };
 		CA4E78E7213698DD0035F075 /* CSLBleTag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLBleTag.h; sourceTree = "<group>"; };
@@ -138,6 +141,8 @@
 				CAD168562175AD6600DC218E /* CSLTagAccessVC.m */,
 				CACFBBB921C8E4D0001161F6 /* CSLTagSearchVC.h */,
 				CACFBBBA21C8E4D0001161F6 /* CSLTagSearchVC.m */,
+				CA411CDD21D8C59F0029E779 /* CSLTagLockVC.h */,
+				CA411CDE21D8C59F0029E779 /* CSLTagLockVC.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 				CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */,
 				CA787367214CC9C8009B7FE6 /* CSLTabVC.m in Sources */,
 				CA7873782150DF7A009B7FE6 /* CSLDeviceTV.m in Sources */,
+				CA411CDF21D8C59F0029E779 /* CSLTagLockVC.m in Sources */,
 				CA78736D214CD49D009B7FE6 /* CSLInventoryVC.m in Sources */,
 				CA57AA7821CAC45E00D081F9 /* LMGaugeView.m in Sources */,
 				CAF5CC2821626F1500C420EF /* CSLReaderBattery.m in Sources */,
