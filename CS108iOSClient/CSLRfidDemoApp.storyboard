@@ -398,28 +398,41 @@
                                 <rect key="frame" x="0.0" y="40" width="320" height="475"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="RWl-16-bGc" userLabel="EPC Elements">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EPC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoO-FG-klp" userLabel="EPC">
-                                                <rect key="frame" x="0.0" y="0.0" width="32" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="32" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDx-ql-S6S" userLabel="EPC Text">
-                                                <rect key="frame" x="37" y="0.0" width="283" height="20.5"/>
+                                                <rect key="frame" x="37" y="0.0" width="283" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="6Zk-bw-WQ1" userLabel="Gauge Elements">
-                                        <rect key="frame" x="0.0" y="20.5" width="320" height="415.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Zk-bw-WQ1" userLabel="Gauge Elements">
+                                        <rect key="frame" x="0.0" y="30" width="320" height="406"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zRp-L7-GxB">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="415.5"/>
-                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5r-vv-1BP" customClass="LMGaugeView">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="406"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="numOfDivisions">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="numOfSubDivisions">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="ringThickness">
+                                                        <real key="value" value="30"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="unitOfMeasurement" value="Signal"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaP-TP-hj6" userLabel="Start ">
@@ -447,13 +460,13 @@
                     <tabBarItem key="tabBarItem" title="Find your Item" image="Search-25" landscapeImage="Search-25" id="txS-lV-5CQ"/>
                     <connections>
                         <outlet property="btnSearch" destination="XaP-TP-hj6" id="G1B-nV-EFv"/>
-                        <outlet property="ivGauge" destination="zRp-L7-GxB" id="Mmv-c5-dHJ"/>
+                        <outlet property="gaugeView" destination="p5r-vv-1BP" id="ChH-i4-HRK"/>
                         <outlet property="txtEPC" destination="UDx-ql-S6S" id="bys-1g-y1g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lyu-8f-8F2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="896.79999999999995" y="682.3088455772114"/>
+            <point key="canvasLocation" x="896.25" y="681.33802816901414"/>
         </scene>
         <!--DeviceTV-->
         <scene sceneID="Prb-yy-xPI">

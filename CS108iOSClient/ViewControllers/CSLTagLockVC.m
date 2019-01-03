@@ -46,6 +46,9 @@
         self.txtSelectedEPC.text=[CSLRfidAppEngine sharedAppEngine].tagSelected;
     }
     
+    [self.txtSelectedEPC setDelegate:self];
+    [self.txtAccessPwd setDelegate:self];
+    
     [CSLRfidAppEngine sharedAppEngine].reader.delegate = self;
     [CSLRfidAppEngine sharedAppEngine].reader.readerDelegate=self;
 
@@ -63,6 +66,16 @@
 
 - (IBAction)btnApplySecurityPressed:(id)sender {
     @autoreleasepool {
+        
+        if ([self.txtSelectedEPC.text isEqualToString:@""]) {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Tag Security" message:@"No EPC Selected" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
+            return;
+        }
+        
         BOOL result=true;
         NSString* validationMsg=@"";
         UIAlertController *alert;

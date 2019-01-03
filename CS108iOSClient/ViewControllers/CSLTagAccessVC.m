@@ -215,6 +215,9 @@
 - (IBAction)btnReadPressed:(id)sender {
 
     @autoreleasepool {
+        self.btnWrite.enabled=false;
+        self.btnSecurity.enabled=false;
+        
         BOOL result=true;
         Byte tidWordCount =[[[self.btnTidUidWord titleLabel].text substringFromIndex:5] intValue];
         Byte tidOffset = [[[self.btnTidUidOffset titleLabel].text substringFromIndex:7] intValue];
@@ -334,11 +337,18 @@
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
+        
+        self.btnWrite.enabled=true;
+        self.btnSecurity.enabled=true;
+        
     }
 }
 
 - (IBAction)btnWritePressed:(id)sender {
     @autoreleasepool {
+        self.btnRead.enabled=false;
+        self.btnSecurity.enabled=false;
+        
         BOOL result=true;
         Byte userWordCount = [[[self.btnUserWord titleLabel].text substringFromIndex:5] intValue];
         Byte userOffset = [[[self.btnUserOffset titleLabel].text substringFromIndex:7] intValue];
@@ -471,6 +481,9 @@
         ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
+        
+        self.btnRead.enabled=true;
+        self.btnSecurity.enabled=true;
     }
     
 }

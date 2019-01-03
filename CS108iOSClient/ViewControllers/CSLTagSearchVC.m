@@ -10,8 +10,8 @@
 
 @interface CSLTagSearchVC () {
     CSLCircularQueue* rollingAvgRssi;
-    LMGaugeView *gaugeView;
     NSDate* tagLastFoundTime;
+    NSTimer* gaugeRefreshTimer;
 }
 
 @end
@@ -21,18 +21,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    CGRect frame = CGRectApplyAffineTransform(self.ivGauge.bounds, self.ivGauge.transform);
-    gaugeView = [[LMGaugeView alloc] initWithFrame:frame];
-    gaugeView.value = 0;
-    gaugeView.maxValue=100;
-    gaugeView.minValue=0;
-    gaugeView.numOfDivisions=10;
-    gaugeView.numOfSubDivisions=10;
-    gaugeView.unitOfMeasurement=@"Signal";
-    gaugeView.ringThickness=30;
+    //CGRect frame = CGRectApplyAffineTransform(self.gauageView.bounds, self.gauageView.transform);
+    //gaugeView = [[LMGaugeView alloc] initWithFrame:frame];
+    self.gaugeView.value = 0;
+    self.gaugeView.maxValue=100;
+    self.gaugeView.minValue=0;
+    self.gaugeView.numOfDivisions=10;
+    self.gaugeView.numOfSubDivisions=10;
+    self.gaugeView.unitOfMeasurement=@"Signal";
+    self.gaugeView.ringThickness=30;
     
-    self.ivGauge.contentMode = UIViewContentModeCenter;
-    [self.ivGauge addSubview:gaugeView];
+    self.gaugeView.contentMode = UIViewContentModeCenter;
+    //[self.gauageView addSubview:self.gaugeView];
     
     
     self.btnSearch.layer.borderWidth=1.0f;
@@ -48,6 +48,8 @@
     if (![[CSLRfidAppEngine sharedAppEngine].tagSelected isEqualToString:@""]) {
         self.txtEPC.text=[CSLRfidAppEngine sharedAppEngine].tagSelected;
     }
+    
+    [self.txtEPC setDelegate:self];
     
     [CSLRfidAppEngine sharedAppEngine].reader.delegate = self;
     [CSLRfidAppEngine sharedAppEngine].reader.readerDelegate=self;
@@ -71,6 +73,24 @@
     
     [CSLRfidAppEngine sharedAppEngine].isBarcodeMode=false;
 }
+
+//Selector for timer event on updating UI and sound effect
+- (void)refreshGauge {
+    @autoreleasepool {
+        if ([self.gaugeView.ringColor isEqual:UIColor.redColor])
+            [[CSLRfidAppEngine sharedAppEngine] soundAlert:1052];
+        else
+            [[CSLRfidAppEngine sharedAppEngine] soundAlert:1005];
+        
+        if ([[NSDate date] timeIntervalSinceDate:tagLastFoundTime] > 1.0) {
+            //no tag found in the last 1 second.  Reset gauge
+            [self->rollingAvgRssi removeAllObjects];
+            self.gaugeView.value=0;
+            
+        }
+    }
+}
+
 
 /*
 #pragma mark - Navigation
@@ -100,13 +120,13 @@
             [self->rollingAvgRssi enqObject:tag];
         }
         
-        self->gaugeView.value=[self->rollingAvgRssi calculateRollingAverage];
-        if (self->gaugeView.value > (self->gaugeView.maxValue * 0.8))
-            self->gaugeView.ringColor=UIColor.redColor;
+        self->_gaugeView.value=[self->rollingAvgRssi calculateRollingAverage];
+        if (self->_gaugeView.value > (self->_gaugeView.maxValue * 0.8))
+            self->_gaugeView.ringColor=UIColor.redColor;
         else
-            self->gaugeView.ringColor=[UIColor colorWithRed:76.0/255 green:217.0/255 blue:100.0/255 alpha:1];
+            self->_gaugeView.ringColor=[UIColor colorWithRed:76.0/255 green:217.0/255 blue:100.0/255 alpha:1];
         
-        NSLog(@"Tag Search with average RRSI = %f",self->gaugeView.value);
+        NSLog(@"Tag Search with average RRSI = %f",self->_gaugeView.value);
         self->tagLastFoundTime=[NSDate date];
     });
 }
@@ -146,12 +166,30 @@
 
 - (IBAction)btnSearchPressed:(id)sender {
 
+    if ([self.txtEPC.text isEqualToString:@""]) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Tag Search" message:@"No EPC Selected" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    
     BOOL result=true;
     rollingAvgRssi = [[CSLCircularQueue alloc] initWithCapacity:ROLLING_AVG_COUNT];
     
     if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED && [[self.btnSearch currentTitle] isEqualToString:@"START"])
     {
-        gaugeView.value=0;
+        
+        //timer event on updating UI
+        gaugeRefreshTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                           target:self
+                                                         selector:@selector(refreshGauge)
+                                                         userInfo:nil
+                                                          repeats:YES];
+        
+        
+        self.gaugeView.value=0;
         tagLastFoundTime=nil;
         [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         self.btnSearch.enabled=false;
@@ -168,6 +206,9 @@
     }
     else if ([[self.btnSearch currentTitle] isEqualToString:@"STOP"])
     {
+        [gaugeRefreshTimer invalidate];
+        gaugeRefreshTimer=nil;
+        
         [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         if([[CSLRfidAppEngine sharedAppEngine].reader stopTagSearch])
         {

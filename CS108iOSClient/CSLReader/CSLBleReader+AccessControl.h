@@ -35,14 +35,12 @@ typedef NS_ENUM(Byte, MEMORYBANK)
 };
 
 NS_ASSUME_NONNULL_BEGIN
-
+/**
+ This category add tag access function to the CSLBleReader class, including read, write and security features.
+ */
 @interface CSLBleReader (AccessControl) {
     
 }
-/**
- This will send out all the commands needed before tag acccess inclduing (1) setting antenna cycles (2) Query config (3) setting FixedQ, Q=0
- @return TRUE if the operation is successful
- */
 - (BOOL)setParametersForTagAccess;
 - (BOOL) TAGMSK_DESC_CFG:(BOOL)isEnable selectTarget:(Byte)sel_target selectAction:(Byte)sel_action;
 - (BOOL) TAGMSK_BANK:(MEMORYBANK)bank;
@@ -66,12 +64,74 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) sendHostCommandSearch;
 - (BOOL) sendHostCommandLock;
 
+/**
+ Select tag before tag access (read/write) operation
+ @param maskbank Mask bank to be used for tag selection
+ @param ptr Pointer to the start of the memory address, to be expressed by bits
+ @param length Size of the mask expressed in number of bits
+ @param mask mask value
+ @return TRUE if the operation is successful
+ */
 - (BOOL) selectTag:(MEMORYBANK)maskbank maskPointer:(UInt16)ptr maskLength:(UInt32)length maskData:(NSData*)mask;
+/**
+ Select tag before tag access (search) operation
+ @param maskbank Mask bank to be used for tag selection
+ @param ptr Pointer to the start of the memory address, to be expressed by bits
+ @param length Size of the mask expressed in number of bits
+ @param mask mask value
+ @return TRUE if the operation is successful
+ */
 - (BOOL) selectTagForSearch:(MEMORYBANK)maskbank maskPointer:(UInt16)ptr maskLength:(UInt32)length maskData:(NSData*)mask;
+/**
+ Send singular tag read command
+ @param bank Bank to be read from
+ @param offset Pointer to the start of the memory address, by the number of words
+ @param count Number of words to be read
+ @param password Access password for the tag
+ @param mask_bank Mask bank to be used for tag selection
+ @param mask_pointer Pointer to the start of the memory address, to be expressed by bits
+ @param mask_Length Size of the mask expressed in number of bits
+ @param mask_data mask value
+ @return TRUE if the operation is successful
+ */
 - (BOOL) startTagMemoryRead:(MEMORYBANK)bank dataOffset:(UInt16)offset dataCount:(UInt16)count ACCPWD:(UInt32)password maskBank:(MEMORYBANK)mask_bank maskPointer:(UInt16)mask_pointer maskLength:(UInt32)mask_Length maskData:(NSData*)mask_data;
+/**
+ Send singular tag write command
+ @param bank Bank to be writing to
+ @param offset Pointer to the start of the memory address, by the number of words
+ @param count Number of words to be written
+ @param password Access password for the tag
+ @param mask_bank Mask bank to be used for tag selection
+ @param mask_pointer Pointer to the start of the memory address, to be expressed by bits
+ @param mask_Length Size of the mask expressed in number of bits
+ @param mask_data mask value
+ @return TRUE if the operation is successful
+ */
 - (BOOL) startTagMemoryWrite:(MEMORYBANK)bank dataOffset:(UInt16)offset dataCount:(UInt16)count writeData:(NSData*)data ACCPWD:(UInt32)password maskBank:(MEMORYBANK)mask_bank maskPointer:(UInt16)mask_pointer maskLength:(UInt32)mask_Length maskData:(NSData*)mask_data;
+/**
+ Send singular tag security command
+ @param lockCommandConfigBits 20 configuration bits for defining security status of a tag.  Mask defines which bank to execute the locking, action defines what type of lock or unlock commands to carry out. For details please reference EPC Air Interface document.
+ @param password Access password for the tag
+ @param mask_bank Mask bank to be used for tag selection
+ @param mask_pointer Pointer to the start of the memory address, to be expressed by bits
+ @param mask_Length Size of the mask expressed in number of bits
+ @param mask_data mask value
+ @return TRUE if the operation is successful
+ */
 - (BOOL) startTagMemoryLock:(UInt32)lockCommandConfigBits ACCPWD:(UInt32)password maskBank:(MEMORYBANK)mask_bank maskPointer:(UInt16)mask_pointer maskLength:(UInt32)mask_Length maskData:(NSData*)mask_data;
+/**
+ Send singular tag search command
+ @param mask_bank Mask bank to be used for tag selection
+ @param mask_pointer Pointer to the start of the memory address, to be expressed by bits
+ @param mask_Length Size of the mask expressed in number of bits
+ @param mask_data mask value
+ @return TRUE if the operation is successful
+ */
 - (BOOL) startTagSearch:(MEMORYBANK)mask_bank maskPointer:(UInt16)mask_pointer maskLength:(UInt32)mask_Length maskData:(NSData*)mask_data;
+/**
+ Stop singular tag search
+ @return TRUE if the operation is successful
+ */
 - (BOOL)stopTagSearch;
 
 

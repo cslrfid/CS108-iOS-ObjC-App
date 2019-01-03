@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CSLTagSearchVC : UIViewController<CSLBleInterfaceDelegate, CSLBleReaderDelegate, UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *ivGauge;
+@property (weak, nonatomic) IBOutlet LMGaugeView *gaugeView;
 @property (weak, nonatomic) IBOutlet UIButton *btnSearch;
 @property (weak, nonatomic) IBOutlet UITextField *txtEPC;
 
