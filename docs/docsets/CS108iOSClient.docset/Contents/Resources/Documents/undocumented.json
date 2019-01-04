@@ -64,6 +64,160 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 31,
+      "symbol": "MEMORYBANK.RESERVED",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 32,
+      "symbol": "MEMORYBANK.EPC",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 33,
+      "symbol": "MEMORYBANK.TID",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 34,
+      "symbol": "MEMORYBANK.USER",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 44,
+      "symbol": "CSLBleReader.-setParametersForTagAccess",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 45,
+      "symbol": "CSLBleReader.-TAGMSK_DESC_CFG:selectTarget:selectAction:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 46,
+      "symbol": "CSLBleReader.-TAGMSK_BANK:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 47,
+      "symbol": "CSLBleReader.-TAGMSK_PTR:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 48,
+      "symbol": "CSLBleReader.-TAGMSK_LEN:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 49,
+      "symbol": "CSLBleReader.-setTAGMSK:tagMask:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 51,
+      "symbol": "CSLBleReader.-TAGACC_BANK:acc_bank2:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 52,
+      "symbol": "CSLBleReader.-TAGACC_PTR:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 53,
+      "symbol": "CSLBleReader.-TAGACC_PTR:secondBank:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 54,
+      "symbol": "CSLBleReader.-TAGACC_CNT:secondBank:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 55,
+      "symbol": "CSLBleReader.-TAGACC_ACCPWD:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 57,
+      "symbol": "CSLBleReader.-setTAGWRDAT:data_word:data_offset:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 59,
+      "symbol": "CSLBleReader.-TAGACC_DESC_CFG:retryCount:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 60,
+      "symbol": "CSLBleReader.-TAGACC_LOCKCFG:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 62,
+      "symbol": "CSLBleReader.-sendHostCommandRead",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 63,
+      "symbol": "CSLBleReader.-sendHostCommandWrite",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 64,
+      "symbol": "CSLBleReader.-sendHostCommandSearch",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 65,
+      "symbol": "CSLBleReader.-sendHostCommandLock",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
       "line": 26,
       "symbol": "SESSION.S0",
@@ -179,6 +333,41 @@
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
       "line": 59,
       "symbol": "QUERYSELECT.SL",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleTag.h",
+      "line": 13,
+      "symbol": "ACCESSCMD.READ",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleTag.h",
+      "line": 14,
+      "symbol": "ACCESSCMD.WRITE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleTag.h",
+      "line": 15,
+      "symbol": "ACCESSCMD.KILL",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleTag.h",
+      "line": 16,
+      "symbol": "ACCESSCMD.LOCK",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleTag.h",
+      "line": 17,
+      "symbol": "ACCESSCMD.EAS",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },

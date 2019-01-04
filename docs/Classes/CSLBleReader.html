@@ -14,7 +14,7 @@
     <a title="CSLBleReader Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">CS108iOSClient Docs</a> (85% documented)</p>
+        <p><a href="../index.html">CS108iOSClient Docs</a> (77% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -66,6 +66,9 @@
             <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Enums/ACCESSCMD.html">ACCESSCMD</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/BATTERYLEVELSTATUS.html">BATTERYLEVELSTATUS</a>
               </li>
               <li class="nav-group-task">
@@ -82,6 +85,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/LINKPROFILE.html">LINKPROFILE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MEMORYBANK.html">MEMORYBANK</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a>
@@ -262,6 +268,37 @@ Insertion/update of tag data is based on binary searching algorithm for better e
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/c:objc(cs)CSLBleReader(py)cmdRespQueue"></a>
+                    <a name="//apple_ref/objc/Property/cmdRespQueue" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(py)cmdRespQueue">cmdRespQueue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span> <span class="n"><a href="../Classes/CSLCircularQueue.html">CSLCircularQueue</a></span> <span class="o">*</span><span class="n">cmdRespQueue</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">cmdRespQueue</span><span class="p">:</span> <span class="kt"><a href="../Classes/CSLCircularQueue.html">CSLCircularQueue</a></span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/c:objc(cs)CSLBleReader(py)readerDelegate"></a>
                     <a name="//apple_ref/objc/Property/readerDelegate" class="dashAnchor"></a>
                     <a class="token" href="#/c:objc(cs)CSLBleReader(py)readerDelegate">readerDelegate</a>
@@ -287,6 +324,61 @@ Insertion/update of tag data is based on binary searching algorithm for better e
                           <pre class="highlight swift"><code><span class="k">weak</span> <span class="k">var</span> <span class="nv">readerDelegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a></span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(cm)convertHexStringToData:"></a>
+                    <a name="//apple_ref/objc/Method/+convertHexStringToData:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(cm)convertHexStringToData:">+convertHexStringToData:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Static method that converts hexdcecimal string to binary data</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nf">convertHexStringToData</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">hexString</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">convertHexString</span><span class="p">(</span><span class="n">toData</span> <span class="nv">hexString</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Data</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>hexString</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>It holds the hexidecimal string to be converted</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>NSData value</p>
                       </div>
                     </section>
                   </div>
@@ -2008,10 +2100,1328 @@ Recommend to Set 3 for tag select operation. Reference to INV_CFG and TAGMSK_DES
                 </li>
               </ul>
             </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/AccessControl"></a>
+                <a name="//apple_ref/objc/Section/AccessControl" class="dashAnchor"></a>
+                <a href="#/AccessControl">
+                  <h3 class="section-name">AccessControl</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setParametersForTagAccess"></a>
+                    <a name="//apple_ref/objc/Method/-setParametersForTagAccess" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setParametersForTagAccess">-setParametersForTagAccess</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">setParametersForTagAccess</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setParametersForTagAccess</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)TAGMSK_DESC_CFG:selectTarget:selectAction:"></a>
+                    <a name="//apple_ref/objc/Method/-TAGMSK_DESC_CFG:selectTarget:selectAction:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)TAGMSK_DESC_CFG:selectTarget:selectAction:">-TAGMSK_DESC_CFG:selectTarget:selectAction:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="nf">TAGMSK_DESC_CFG</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">isEnable</span> <span class="nf">selectTarget</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">sel_target</span> <span class="nf">selectAction</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">sel_action</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tagmsk_DESC_CFG</span><span class="p">(</span><span class="n">_</span> <span class="nv">isEnable</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">selectTarget</span> <span class="nv">sel_target</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">selectAction</span> <span class="nv">sel_action</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)TAGMSK_BANK:"></a>
+                    <a name="//apple_ref/objc/Method/-TAGMSK_BANK:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)TAGMSK_BANK:">-TAGMSK_BANK:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="nf">TAGMSK_BANK</span><span class="p">:(</span><span class="n"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">)</span><span class="nv">bank</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tagmsk_BANK</span><span class="p">(</span><span class="n">_</span> <span class="nv">bank</span><span class="p">:</span> <span class="kt"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)TAGMSK_PTR:"></a>
+                    <a name="//apple_ref/objc/Method/-TAGMSK_PTR:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)TAGMSK_PTR:">-TAGMSK_PTR:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="nf">TAGMSK_PTR</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">ptr</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tagmsk_PTR</span><span class="p">(</span><span class="n">_</span> <span class="nv">ptr</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)TAGMSK_LEN:"></a>
+                    <a name="//apple_ref/objc/Method/-TAGMSK_LEN:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)TAGMSK_LEN:">-TAGMSK_LEN:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="nf">TAGMSK_LEN</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">length</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tagmsk_LEN</span><span class="p">(</span><span class="n">_</span> <span class="nv">length</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setTAGMSK:tagMask:"></a>
+                    <a name="//apple_ref/objc/Method/-setTAGMSK:tagMask:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setTAGMSK:tagMask:">-setTAGMSK:tagMask:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="nf">setTAGMSK</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">TAGMSKAddr</span> <span class="nf">tagMask</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">mask</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setTAGMSK</span><span class="p">(</span><span class="n">_</span> <span class="kt">TAGMSKAddr</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">tagMask</span> <span class="nv">mask</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)TAGACC_BANK:acc_bank2:"></a>
+                    <a name="//apple_ref/objc/Method/-TAGACC_BANK:acc_bank2:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)TAGACC_BANK:acc_bank2:">-TAGACC_BANK:acc_bank2:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="nf">TAGACC_BANK</span><span class="p">:(</span><span class="n"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">)</span><span class="nv">bank</span> <span class="nf">acc_bank2</span><span class="p">:(</span><span class="n"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">)</span><span class="nv">bank2</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tagacc_BANK</span><span class="p">(</span><span class="n">_</span> <span class="nv">bank</span><span class="p">:</span> <span class="kt"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">,</span> <span class="n">acc_bank2</span> <span class="nv">bank2</span><span class="p">:</span> <span class="kt"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)TAGACC_PTR:"></a>
+                    <a name="//apple_ref/objc/Method/-TAGACC_PTR:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)TAGACC_PTR:">-TAGACC_PTR:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="nf">TAGACC_PTR</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">ptr</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tagacc_PTR</span><span class="p">(</span><span class="n">_</span> <span class="nv">ptr</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)TAGACC_PTR:secondBank:"></a>
+                    <a name="//apple_ref/objc/Method/-TAGACC_PTR:secondBank:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)TAGACC_PTR:secondBank:">-TAGACC_PTR:secondBank:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="nf">TAGACC_PTR</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">ptr</span> <span class="nf">secondBank</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">ptr2</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tagacc_PTR</span><span class="p">(</span><span class="n">_</span> <span class="nv">ptr</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="n">secondBank</span> <span class="nv">ptr2</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)TAGACC_CNT:secondBank:"></a>
+                    <a name="//apple_ref/objc/Method/-TAGACC_CNT:secondBank:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)TAGACC_CNT:secondBank:">-TAGACC_CNT:secondBank:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="nf">TAGACC_CNT</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">length</span> <span class="nf">secondBank</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">length2</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tagacc_CNT</span><span class="p">(</span><span class="n">_</span> <span class="nv">length</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span> <span class="n">secondBank</span> <span class="nv">length2</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)TAGACC_ACCPWD:"></a>
+                    <a name="//apple_ref/objc/Method/-TAGACC_ACCPWD:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)TAGACC_ACCPWD:">-TAGACC_ACCPWD:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="nf">TAGACC_ACCPWD</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">password</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tagacc_ACCPWD</span><span class="p">(</span><span class="n">_</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)setTAGWRDAT:data_word:data_offset:"></a>
+                    <a name="//apple_ref/objc/Method/-setTAGWRDAT:data_word:data_offset:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)setTAGWRDAT:data_word:data_offset:">-setTAGWRDAT:data_word:data_offset:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="nf">setTAGWRDAT</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">TAGWRDATAddr</span> <span class="nf">data_word</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">word</span> <span class="nf">data_offset</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">offset</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setTAGWRDAT</span><span class="p">(</span><span class="n">_</span> <span class="kt">TAGWRDATAddr</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">data_word</span> <span class="nv">word</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">data_offset</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)TAGACC_DESC_CFG:retryCount:"></a>
+                    <a name="//apple_ref/objc/Method/-TAGACC_DESC_CFG:retryCount:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)TAGACC_DESC_CFG:retryCount:">-TAGACC_DESC_CFG:retryCount:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="nf">TAGACC_DESC_CFG</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">isVerify</span> <span class="nf">retryCount</span><span class="p">:(</span><span class="n">Byte</span><span class="p">)</span><span class="nv">count</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tagacc_DESC_CFG</span><span class="p">(</span><span class="n">_</span> <span class="nv">isVerify</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">retryCount</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)TAGACC_LOCKCFG:"></a>
+                    <a name="//apple_ref/objc/Method/-TAGACC_LOCKCFG:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)TAGACC_LOCKCFG:">-TAGACC_LOCKCFG:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="nf">TAGACC_LOCKCFG</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">lockCommandConfigBits</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tagacc_LOCKCFG</span><span class="p">(</span><span class="n">_</span> <span class="nv">lockCommandConfigBits</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)sendHostCommandRead"></a>
+                    <a name="//apple_ref/objc/Method/-sendHostCommandRead" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)sendHostCommandRead">-sendHostCommandRead</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="n">sendHostCommandRead</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sendHostCommandRead</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)sendHostCommandWrite"></a>
+                    <a name="//apple_ref/objc/Method/-sendHostCommandWrite" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)sendHostCommandWrite">-sendHostCommandWrite</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="n">sendHostCommandWrite</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sendHostCommandWrite</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)sendHostCommandSearch"></a>
+                    <a name="//apple_ref/objc/Method/-sendHostCommandSearch" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)sendHostCommandSearch">-sendHostCommandSearch</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="n">sendHostCommandSearch</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sendHostCommandSearch</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)sendHostCommandLock"></a>
+                    <a name="//apple_ref/objc/Method/-sendHostCommandLock" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)sendHostCommandLock">-sendHostCommandLock</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span> <span class="n">sendHostCommandLock</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sendHostCommandLock</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)selectTag:maskPointer:maskLength:maskData:"></a>
+                    <a name="//apple_ref/objc/Method/-selectTag:maskPointer:maskLength:maskData:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)selectTag:maskPointer:maskLength:maskData:">-selectTag:maskPointer:maskLength:maskData:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Select tag before tag access (read/write) operation</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">selectTag</span><span class="p">:(</span><span class="n"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">)</span><span class="nv">maskbank</span>
+      <span class="nf">maskPointer</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">ptr</span>
+       <span class="nf">maskLength</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">length</span>
+         <span class="nf">maskData</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">mask</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">selectTag</span><span class="p">(</span><span class="n">_</span> <span class="nv">maskbank</span><span class="p">:</span> <span class="kt"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">,</span> <span class="n">maskPointer</span> <span class="nv">ptr</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">maskLength</span> <span class="nv">length</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="n">maskData</span> <span class="nv">mask</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>maskbank</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Mask bank to be used for tag selection</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ptr</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pointer to the start of the memory address, to be expressed by bits</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>length</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Size of the mask expressed in number of bits</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>mask value</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)selectTagForSearch:maskPointer:maskLength:maskData:"></a>
+                    <a name="//apple_ref/objc/Method/-selectTagForSearch:maskPointer:maskLength:maskData:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)selectTagForSearch:maskPointer:maskLength:maskData:">-selectTagForSearch:maskPointer:maskLength:maskData:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Select tag before tag access (search) operation</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">selectTagForSearch</span><span class="p">:(</span><span class="n"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">)</span><span class="nv">maskbank</span>
+               <span class="nf">maskPointer</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">ptr</span>
+                <span class="nf">maskLength</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">length</span>
+                  <span class="nf">maskData</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">mask</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">selectTag</span><span class="p">(</span><span class="n">forSearch</span> <span class="nv">maskbank</span><span class="p">:</span> <span class="kt"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">,</span> <span class="n">maskPointer</span> <span class="nv">ptr</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">maskLength</span> <span class="nv">length</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="n">maskData</span> <span class="nv">mask</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>maskbank</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Mask bank to be used for tag selection</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ptr</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pointer to the start of the memory address, to be expressed by bits</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>length</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Size of the mask expressed in number of bits</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>mask value</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)startTagMemoryRead:dataOffset:dataCount:ACCPWD:maskBank:maskPointer:maskLength:maskData:"></a>
+                    <a name="//apple_ref/objc/Method/-startTagMemoryRead:dataOffset:dataCount:ACCPWD:maskBank:maskPointer:maskLength:maskData:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)startTagMemoryRead:dataOffset:dataCount:ACCPWD:maskBank:maskPointer:maskLength:maskData:">-startTagMemoryRead:dataOffset:dataCount:ACCPWD:maskBank:maskPointer:maskLength:maskData:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Send singular tag read command</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">startTagMemoryRead</span><span class="p">:(</span><span class="n"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">)</span><span class="nv">bank</span>
+                <span class="nf">dataOffset</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">offset</span>
+                 <span class="nf">dataCount</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">count</span>
+                    <span class="nf">ACCPWD</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">password</span>
+                  <span class="nf">maskBank</span><span class="p">:(</span><span class="n"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">)</span><span class="nv">mask_bank</span>
+               <span class="nf">maskPointer</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">mask_pointer</span>
+                <span class="nf">maskLength</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">mask_Length</span>
+                  <span class="nf">maskData</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">mask_data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">startTagMemoryRead</span><span class="p">(</span><span class="n">_</span> <span class="nv">bank</span><span class="p">:</span> <span class="kt"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">,</span> <span class="n">dataOffset</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">dataCount</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">accpwd</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="n">maskBank</span> <span class="nv">mask_bank</span><span class="p">:</span> <span class="kt"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">,</span> <span class="n">maskPointer</span> <span class="nv">mask_pointer</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">maskLength</span> <span class="nv">mask_Length</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="n">maskData</span> <span class="nv">mask_data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bank</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Bank to be read from</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>offset</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pointer to the start of the memory address, by the number of words</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>count</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Number of words to be read</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>password</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Access password for the tag</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_bank</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Mask bank to be used for tag selection</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_pointer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pointer to the start of the memory address, to be expressed by bits</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_Length</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Size of the mask expressed in number of bits</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>mask value</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)startTagMemoryWrite:dataOffset:dataCount:writeData:ACCPWD:maskBank:maskPointer:maskLength:maskData:"></a>
+                    <a name="//apple_ref/objc/Method/-startTagMemoryWrite:dataOffset:dataCount:writeData:ACCPWD:maskBank:maskPointer:maskLength:maskData:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)startTagMemoryWrite:dataOffset:dataCount:writeData:ACCPWD:maskBank:maskPointer:maskLength:maskData:">-startTagMemoryWrite:dataOffset:dataCount:writeData:ACCPWD:maskBank:maskPointer:maskLength:maskData:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Send singular tag write command</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">startTagMemoryWrite</span><span class="p">:(</span><span class="n"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">)</span><span class="nv">bank</span>
+                 <span class="nf">dataOffset</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">offset</span>
+                  <span class="nf">dataCount</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">count</span>
+                  <span class="nf">writeData</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span>
+                     <span class="nf">ACCPWD</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">password</span>
+                   <span class="nf">maskBank</span><span class="p">:(</span><span class="n"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">)</span><span class="nv">mask_bank</span>
+                <span class="nf">maskPointer</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">mask_pointer</span>
+                 <span class="nf">maskLength</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">mask_Length</span>
+                   <span class="nf">maskData</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">mask_data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">startTagMemoryWrite</span><span class="p">(</span><span class="n">_</span> <span class="nv">bank</span><span class="p">:</span> <span class="kt"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">,</span> <span class="n">dataOffset</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">dataCount</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">write</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="n">accpwd</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="n">maskBank</span> <span class="nv">mask_bank</span><span class="p">:</span> <span class="kt"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">,</span> <span class="n">maskPointer</span> <span class="nv">mask_pointer</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">maskLength</span> <span class="nv">mask_Length</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="n">maskData</span> <span class="nv">mask_data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bank</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Bank to be writing to</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>offset</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pointer to the start of the memory address, by the number of words</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>count</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Number of words to be written</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>password</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Access password for the tag</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_bank</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Mask bank to be used for tag selection</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_pointer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pointer to the start of the memory address, to be expressed by bits</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_Length</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Size of the mask expressed in number of bits</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>mask value</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)startTagMemoryLock:ACCPWD:maskBank:maskPointer:maskLength:maskData:"></a>
+                    <a name="//apple_ref/objc/Method/-startTagMemoryLock:ACCPWD:maskBank:maskPointer:maskLength:maskData:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)startTagMemoryLock:ACCPWD:maskBank:maskPointer:maskLength:maskData:">-startTagMemoryLock:ACCPWD:maskBank:maskPointer:maskLength:maskData:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Send singular tag security command</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">startTagMemoryLock</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">lockCommandConfigBits</span>
+                    <span class="nf">ACCPWD</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">password</span>
+                  <span class="nf">maskBank</span><span class="p">:(</span><span class="n"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">)</span><span class="nv">mask_bank</span>
+               <span class="nf">maskPointer</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">mask_pointer</span>
+                <span class="nf">maskLength</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">mask_Length</span>
+                  <span class="nf">maskData</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">mask_data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">startTagMemoryLock</span><span class="p">(</span><span class="n">_</span> <span class="nv">lockCommandConfigBits</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="n">accpwd</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="n">maskBank</span> <span class="nv">mask_bank</span><span class="p">:</span> <span class="kt"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">,</span> <span class="n">maskPointer</span> <span class="nv">mask_pointer</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">maskLength</span> <span class="nv">mask_Length</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="n">maskData</span> <span class="nv">mask_data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lockCommandConfigBits</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>20 configuration bits for defining security status of a tag.  Mask defines which bank to execute the locking, action defines what type of lock or unlock commands to carry out. For details please reference EPC Air Interface document.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>password</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Access password for the tag</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_bank</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Mask bank to be used for tag selection</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_pointer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pointer to the start of the memory address, to be expressed by bits</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_Length</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Size of the mask expressed in number of bits</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>mask value</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)startTagSearch:maskPointer:maskLength:maskData:"></a>
+                    <a name="//apple_ref/objc/Method/-startTagSearch:maskPointer:maskLength:maskData:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)startTagSearch:maskPointer:maskLength:maskData:">-startTagSearch:maskPointer:maskLength:maskData:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Send singular tag search command</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">startTagSearch</span><span class="p">:(</span><span class="n"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">)</span><span class="nv">mask_bank</span>
+           <span class="nf">maskPointer</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">mask_pointer</span>
+            <span class="nf">maskLength</span><span class="p">:(</span><span class="n">UInt32</span><span class="p">)</span><span class="nv">mask_Length</span>
+              <span class="nf">maskData</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">mask_data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">startTagSearch</span><span class="p">(</span><span class="n">_</span> <span class="nv">mask_bank</span><span class="p">:</span> <span class="kt"><a href="../Enums/MEMORYBANK.html">MEMORYBANK</a></span><span class="p">,</span> <span class="n">maskPointer</span> <span class="nv">mask_pointer</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">maskLength</span> <span class="nv">mask_Length</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="n">maskData</span> <span class="nv">mask_data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_bank</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Mask bank to be used for tag selection</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_pointer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pointer to the start of the memory address, to be expressed by bits</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_Length</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Size of the mask expressed in number of bits</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mask_data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>mask value</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLBleReader(im)stopTagSearch"></a>
+                    <a name="//apple_ref/objc/Method/-stopTagSearch" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLBleReader(im)stopTagSearch">-stopTagSearch</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stop singular tag search</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">stopTagSearch</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">stopTagSearch</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>TRUE if the operation is successful</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://www.convergenece.com.hk" target="_blank" rel="external">CSL</a>. All rights reserved. (Last updated: 2018-10-10)</p>
+          <p>&copy; 2019 <a class="link" href="https://www.convergenece.com.hk" target="_blank" rel="external">CSL</a>. All rights reserved. (Last updated: 2019-01-04)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

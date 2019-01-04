@@ -13,7 +13,7 @@
     <a title="CS108iOSClient  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">CS108iOSClient Docs</a> (85% documented)</p>
+        <p><a href="index.html">CS108iOSClient Docs</a> (77% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -65,6 +65,9 @@
             <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Enums/ACCESSCMD.html">ACCESSCMD</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/BATTERYLEVELSTATUS.html">BATTERYLEVELSTATUS</a>
               </li>
               <li class="nav-group-task">
@@ -81,6 +84,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/LINKPROFILE.html">LINKPROFILE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/MEMORYBANK.html">MEMORYBANK</a>
               </li>
               <li class="nav-group-task">
                 <a href="Enums/QUERYALGORITHM.html">QUERYALGORITHM</a>
@@ -116,21 +122,15 @@
         <section>
           <section class="section">
             
-            <h1 id='cslcs108iosapp' class='heading'>CslCs108iOsApp</h1>
+            <h1 id='cs108-ios-objc-app' class='heading'>CS108-iOS-ObjC-App</h1>
 
-<p><img src="app_img/cs108-1.png" /></p>
-<h4 id='library-and-demo-app-for-convergence-systems-limited-cs108-uhf-rfid-handheld-reader-written-in-objective-c' class='heading'>Library and demo app for Convergence Systems Limited CS108 UHF RFID handheld reader written in Objective-C</h4>
+<p>Library and demo app for Convergence Systems Limited CS108 UHF RFID handheld reader written in Objective-C</p>
 
-<p><a href="https://www.convergence.com.hk/cs108/">Product Information</a></p>
-
-<p><a href="https://www.convergence.com.hk/downloads/cs108/">Official Downloads &amp; Support</a></p>
-
-<hr>
-
-<p><img src="app_img/Home.png" width="200"/><img src="app_img/Inventory-tag.png" width="200"/><img src="app_img/Inventory-barcode.png" width="200"/><img src="app_img/Settings.png" width="200"/></p>
-
-<hr>
-<h3 id='development-environment' class='heading'>Development Environment</h3>
+<p><a href="https://www.convergence.com.hk/cs108/">Product Information</a>
+<br><br>
+<img src="app_img/Home.png" width="200"/><img src="app_img/Inventory-tag.png" width="200"/><img src="app_img/Inventory-barcode.png" width="200"/><img src="app_img/Settings.png" width="200"/>
+<br><br></p>
+<h2 id='development-environment' class='heading'>Development Environment</h2>
 
 <ul>
 <li>XCode 9</li>
@@ -138,60 +138,10 @@
 <li>Tested on iPhone 8 (optimized for 4.7&quot; but functional on all screen sizes)</li>
 </ul>
 
-<hr>
-
-<p><strong>Initial version: 1.0.1 (tested against Bluetooth FW 1.0.11, RFID FW 2.6.14, SiliconLab FW 1.0.9)</strong></p>
-
-<ul>
-<li>Developed the communication and packet exchange over BLE for device discovery, connection and configurations</li>
-<li>Created three parallel workstreams for the basic operations: (1) Collecting notifications over the Characterister ID 9901 and put data into a buffer (2) decode the incoming notifications and packetize the data.  All packets being stored in a circular buffer (3) User application and interactions</li>
-<li>Prioritize the BLE interface class at the Global Central Dispatch queues so that the BLE communication is on the separate high priority queue and running on a separate thread in the background.  The UI and main program would be running on the main thread.  Tag reading to the buffer is on its own thread</li>
-<li>EnableTag inventory in compact mode.<br></li>
-<li>Duplicate elimination in inventory mode.  Tested against 1000 tag read</li>
-<li>UI for reader selection, connection and tag inventory listing</li>
-</ul>
-
-<hr>
-
-<p><strong>Version 1.2.412</strong></p>
-
-<ul>
-<li>Migrated the code from the application to API level for reader management, configuration and tag inventory</li>
-<li>New reader selection screen for improving reader selection when there are multiple readers at the scene</li>
-<li>Defined antenna dwell time to be zero for CS108 API</li>
-<li>Moved all the API calls to sync mode.  Only inventory is running async and all other call are running synchronously in the foreground</li>
-<li>Created new page for reader settings and configurations (power, algorithm, link profile, etc).</li>
-<li>Improved robustness in the process of starting/stopping inventory</li>
-<li>Created a new page for tag inventory</li>
-<li>Corrected tag read rate including unique tag rate and general tag rate.  Revised the time window (per second) so that we get a more stable number on the current read rate</li>
-</ul>
-
-<hr>
-
-<p><strong>Version 1.3.630</strong></p>
-
-<ul>
-<li>Implemented battery level reporting</li>
-<li>Power configuration with a revised range</li>
-<li>Fixes on EPC handing and enhanced stability</li>
-<li>Barcode reading functions under inventory page, with swipe to change mode</li>
-</ul>
-
-<hr>
-
-<p><strong>Version 1.3.737</strong></p>
-
-<ul>
-<li>Included inline documentation on the header files and files under /docs folder</li>
-<li>Added logic to power off RFID and barcode module when application terminates</li>
-<li>Put in additional icons for all required device (iPhone, iPad)</li>
-<li>Changed app name to a short name CS108ObjC</li>
-</ul>
-
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://www.convergenece.com.hk" target="_blank" rel="external">CSL</a>. All rights reserved. (Last updated: 2018-10-10)</p>
+          <p>&copy; 2019 <a class="link" href="https://www.convergenece.com.hk" target="_blank" rel="external">CSL</a>. All rights reserved. (Last updated: 2019-01-04)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
