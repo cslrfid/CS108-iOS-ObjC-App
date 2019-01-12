@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CSLRfidAppEngine.h"
 
-@interface CSLInventoryVC : UIViewController<CSLBleReaderDelegate, CSLBleInterfaceDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface CSLInventoryVC : UIViewController<CSLBleReaderDelegate, CSLBleInterfaceDelegate, UITableViewDataSource, UITableViewDelegate, MQTTSessionDelegate> {
     NSDate * tagRangingStartTime;
    
 }

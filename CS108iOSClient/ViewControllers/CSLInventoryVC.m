@@ -14,6 +14,9 @@
     NSTimer * scrRefreshTimer;
     UISwipeGestureRecognizer* swipeGestureRecognizer;
     UIImageView *tempImageView;
+    MQTTCFSocketTransport *transport;
+    MQTTSession* session;
+    BOOL isMQTTConnected;
 }
 @end
 
@@ -147,6 +150,45 @@
                                                      selector:@selector(refreshTagListing)
                                                      userInfo:nil
                                                       repeats:YES];
+    
+    if ([CSLRfidAppEngine sharedAppEngine].MQTTSettings.isMQTTEnabled) {
+        transport = [[MQTTCFSocketTransport alloc] init];
+        transport.host = [CSLRfidAppEngine sharedAppEngine].MQTTSettings.brokerAddress;
+        transport.port = [CSLRfidAppEngine sharedAppEngine].MQTTSettings.brokerPort;
+        transport.tls = [CSLRfidAppEngine sharedAppEngine].MQTTSettings.isTLSEnabled;
+        
+        session = [[MQTTSession alloc] init];
+        session.transport = transport;
+        session.userName=[CSLRfidAppEngine sharedAppEngine].MQTTSettings.userName;
+        session.password=[CSLRfidAppEngine sharedAppEngine].MQTTSettings.password;
+        session.keepAliveInterval = 60;
+        session.clientId=[CSLRfidAppEngine sharedAppEngine].MQTTSettings.clientId;
+        session.willFlag=true;
+        session.willMsg=[@"offline" dataUsingEncoding:NSUTF8StringEncoding];
+        session.willTopic=[NSString stringWithFormat:@"devices/%@/messages/events/", session.clientId];
+        session.willQoS=([CSLRfidAppEngine sharedAppEngine].MQTTSettings.QoS) ? MQTTQosLevelAtLeastOnce : MQTTQosLevelAtMostOnce;
+        session.willRetainFlag=[CSLRfidAppEngine sharedAppEngine].MQTTSettings.retained;
+        
+        [session connectWithConnectHandler:^(NSError *error) {
+            if (error == nil) {
+                NSLog(@"Connected to MQTT Broker");
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"MQTT broker" message:@"Connected" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+                [alert addAction:ok];
+                [self presentViewController:alert animated:YES completion:nil];
+                self->isMQTTConnected=true;
+            }
+            else {
+                NSLog(@"Fail connecting to MQTT Broker");
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"MQTT broker" message:[NSString stringWithFormat:@"Error: %@", error.debugDescription] preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+                [alert addAction:ok];
+                [self presentViewController:alert animated:YES completion:nil];
+                self->isMQTTConnected=false;
+            }
+        }];
+    }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -171,6 +213,11 @@
     
     [CSLRfidAppEngine sharedAppEngine].isBarcodeMode=false;
     [self.view removeGestureRecognizer:swipeGestureRecognizer];
+    
+    [session disconnect];
+    [transport close];
+    session=nil;
+    transport=nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -269,12 +316,52 @@
 }
 
 - (IBAction)btnClearTable:(id)sender {
+    //check MQTT settings.  Connect to broker and send tag data
+    __block BOOL allTagPublishedSuccess=true;
+    if ([CSLRfidAppEngine sharedAppEngine].MQTTSettings.isMQTTEnabled && isMQTTConnected==true) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"MQTT broker" message:@"Send Tag Data?" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            for (CSLBleTag* tag in [CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer) {                
+                //build an info object and convert to json
+                NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      [[NSUUID UUID] UUIDString],
+                                      @"messageId",
+                                      [CSLRfidAppEngine sharedAppEngine].MQTTSettings.clientId,
+                                      @"deviceId",
+                                      tag.EPC,
+                                      @"EPC",
+                                      nil];
+                
+                NSError * err;
+                NSData * jsonData = [NSJSONSerialization dataWithJSONObject:info options:NSJSONWritingPrettyPrinted error:&err];
+                BOOL retain=[CSLRfidAppEngine sharedAppEngine].MQTTSettings.retained;
+                MQTTQosLevel level=([CSLRfidAppEngine sharedAppEngine].MQTTSettings.QoS) ? MQTTQosLevelAtLeastOnce : MQTTQosLevelAtMostOnce;
+                NSString* topic=[NSString stringWithFormat:@"devices/%@/messages/events/", self->session.clientId];
+                
+                [self->session publishData:jsonData onTopic:topic retain:retain qos:level publishHandler:^(NSError *error) {
+                    if (error != nil) {
+                        NSLog(@"Failed sending EPC=%@ to MQTT broker. Error message: %@", tag.EPC, error.debugDescription);
+                        allTagPublishedSuccess=false;
+                    }
+                }];
+            }
+        }];
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:ok];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    }
+    
+    /*
     //clear UI
     lbTagRate.text=@"0";
     lbTagCount.text=@"0";
     [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer removeAllObjects];
     [tblTagList reloadData];
-
+     */
 }
 
 - (void) didInterfaceChangeConnectStatus: (CSLBleInterface *) sender {

@@ -14,6 +14,8 @@
 #import "CSLBlePacket.h"
 #import "CSLReaderSettings.h"
 #import "CSLReaderInfo.h"
+#import "CSLMQTTSettings.h"
+#import <MQTTClient/MQTTClient.h>
 
 /**
  Singleton class that handles all activities on the reader.  It provides a centralize point and allows data to be moved across different controllers
@@ -32,6 +34,8 @@
 @property NSString* tagSelected;
 ///Defines the current reader mode (RFID/Barcode)
 @property (assign) BOOL isBarcodeMode;
+///Reader settings on MQTT broker
+@property CSLMQTTSettings* MQTTSettings;
 
 ///Initialize the app engine
 ///@return Reference to the singleton class CSLRfidAppEngine
@@ -50,6 +54,10 @@
 -(void)reloadSettingsFromUserDefaults;
 ///Save current settings to User Defaults
 -(void)saveSettingsToUserDefaults;
+///Load MQTT settings from User Defaults
+-(void)reloadMQTTSettingsFromUserDefaults;
+///Save current MQTT settings to User Defaults
+-(void)saveMQTTSettingsToUserDefaults;
 ///Play iOS default sound alerts
 -(void)soundAlert:(SystemSoundID) soundId;
 

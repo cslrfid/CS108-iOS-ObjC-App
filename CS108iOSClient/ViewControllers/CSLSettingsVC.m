@@ -20,7 +20,8 @@
 @synthesize txtTagPopulation;
 @synthesize btnTarget;
 @synthesize swSound;
-
+@synthesize btnRadioSettings;
+@synthesize btnMQTTClient;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,6 +49,14 @@
     btnTarget.layer.borderWidth=1.0f;
     btnTarget.layer.borderColor=[UIColor lightGrayColor].CGColor;
     btnTarget.layer.cornerRadius=5.0f;
+    
+    btnRadioSettings.layer.borderWidth=1.0f;
+    btnRadioSettings.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnRadioSettings.layer.cornerRadius=5.0f;
+    
+    btnMQTTClient.layer.borderWidth=1.0f;
+    btnMQTTClient.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnMQTTClient.layer.cornerRadius=5.0f;
     
     [txtQValue setDelegate:self];
     [txtTagPopulation setDelegate:self];
@@ -321,6 +330,20 @@
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:ok];
     [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+- (IBAction)btnRadioSettingsPressed:(id)sender {
+}
+
+- (IBAction)btnMQTTClientPressed:(id)sender {
+    CSLMQTTClientSettings* mqttSettings;
+    mqttSettings = (CSLMQTTClientSettings*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_MQTTSettingsVC"];
+    
+    if (mqttSettings != nil)
+    {
+        [[self navigationController] pushViewController:mqttSettings animated:YES];
+    }
     
 }
 
