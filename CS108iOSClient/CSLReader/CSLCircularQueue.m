@@ -104,5 +104,15 @@
     return subcount;
 }
 
+- (Byte)calculateRollingAverage {
+    
+    int sum=0;
+    for (int i=0;i<_count;i++) {
+        sum+=((CSLBleTag*)[self objectAtIndex:i]).rssi;
+    }
+    
+    return (Byte)(sum/_count);
+}
+
 @end
 

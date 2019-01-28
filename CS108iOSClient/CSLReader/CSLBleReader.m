@@ -24,6 +24,7 @@
 @synthesize rangingTagCount;
 @synthesize uniqueTagCount;
 @synthesize batteryInfo;
+@synthesize cmdRespQueue;
 
 - (id) init
 {
@@ -1847,6 +1848,7 @@
                 //if there were partial packet from previous iteration, append the current data after stripping out the event code and header information
                 if ([[[CSLBleReader convertDataToHexString:rfidPacketBuffer] substringToIndex:4] isEqualToString:@"8100"] && packet.payloadLength>=2) {
                     [rfidPacketBuffer appendData:[packet.payload subdataWithRange:NSMakeRange(2, packet.payloadLength - 2)]];
+                    packet.payload=[NSData dataWithBytes:[rfidPacketBuffer bytes] length:[rfidPacketBuffer length]];
                 }
                 else {
                     //other event code
@@ -1894,6 +1896,24 @@
                         //return packet directly to the API for decoding
                         [cmdRespQueue enqObject:packet];
                         [rfidPacketBuffer setLength:0];
+                        connectStatus=CONNECTED;
+                        continue;
+                    }
+                }
+                
+                //tag search response with no tag found
+                if ([rfidPacketBufferInHexString length] >= 12)
+                {
+                    if ([[[CSLBleReader convertDataToHexString:rfidPacketBuffer] substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0E00"]) {
+                        
+                        CSLBleTag* tag=[[CSLBleTag alloc] init];
+                        tag.EPC=@"";
+                        tag.rssi=0;
+                        
+                        NSLog(@"[decodePacketsInBufferAsync] Tag search response with no tag found recieved: %@", rfidPacketBufferInHexString);
+                        //return packet directly to the API for decoding
+                        [self.readerDelegate didReceiveTagResponsePacket:self tagReceived:tag]; //this will call the method for handling the tag response.
+                        [rfidPacketBuffer setLength:0];
                         continue;
                     }
                 }
@@ -1909,7 +1929,163 @@
                 }
                 
                 NSLog(@"[decodePacketsInBufferAsync] Current filtered buffer size: %d", (int)[filteredBuffer count]);
-                //check if packet is compact response packet
+                
+                //inventory response and tag-access packet returned during read/write
+                //packet much be longer than 44 hex characteres (0x8100 + 20 bytes of header)
+                if ([rfidPacketBufferInHexString length] >= 44) {
+                    //inventory response packet (full packet mode)
+                    if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"03"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0580"]) {
+                        
+                        //start decode message
+                        //first need to check if we have received the complete message if this is a tag-access response.  Otherwise, will return and wait for the partial packet to return on the next round.
+                        int tagAccessPktLen=0;
+                        int payloadDataLen=0;
+                        bool tagInventoryPacketOnly=false; //flag being set when there is inventory response only for tag search operations.
+                        
+                        //length of data field (in bytes) for the inventory response = ((pkt_len – 3) * 4) – ((flags >> 6) & 3)
+                        datalen=(((((Byte *)[rfidPacketBuffer bytes])[6] + (((((Byte *)[rfidPacketBuffer bytes])[7] << 8) & 0xFF00)))-3) * 4) - ((((Byte *)[rfidPacketBuffer bytes])[3] >> 6) & 3);
+                        
+                        //in the case where the abort reponse command is being appended to the end of the buffer, remove the abort reponse and decode the remaining tag reponses
+                        if ([rfidPacketBufferInHexString containsString:@"4003BFFCBFFCBFFC"]) {
+                            NSLog(@"[decodePacketsInBufferAsync] Abort command received during tag access.  All operations ended");
+                            [cmdRespQueue enqObject:packet];
+                            [rfidPacketBuffer setLength:0];
+                            connectStatus=CONNECTED;
+                            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+                            continue;
+                        }
+                        //in the case where BLE packet returned only contain full inventory response and reader is in inventory mode (not sync read/write mode), decode packet and then return
+                        else if (([rfidPacketBuffer length] == (22 + datalen)) && connectStatus == TAG_OPERATIONS) {
+                            tagInventoryPacketOnly=true;
+                        }
+                        else if ([rfidPacketBuffer length] > (22 + datalen + 20)) {
+                            tagAccessPktLen=((Byte *)[rfidPacketBuffer bytes])[22+datalen+4] + ((((Byte *)[rfidPacketBuffer bytes])[22+datalen+5] << 8) & 0xFF00);
+                            payloadDataLen= ((tagAccessPktLen - 3) * 4) - ((((Byte*)[rfidPacketBuffer bytes])[22+datalen+1] >> 6) & 3);
+                            if ([rfidPacketBuffer length] < (22+datalen+20+payloadDataLen))
+                                continue;
+                        }
+                        else
+                            continue;
+                        
+                        int ptr=22;     //starting point of the tag data
+                        CSLBleTag* tag=[[CSLBleTag alloc] init];
+                        
+                        tag.PC =((((Byte *)[rfidPacketBuffer bytes])[ptr] << 8) & 0xFF00)+ ((Byte *)[rfidPacketBuffer bytes])[ptr+1];
+                        //for the case where we reaches to the end of the BLE packet but not the RFID response packet, where there will be partial packet to be returned from the next packet.  The partial tag data will be combined with the next packet being returned.
+                        if ((ptr + datalen) > [rfidPacketBuffer length]) {
+                            //stop decoding and wait for the partial tag data to be appended in the next packet arrival
+                            NSLog(@"[decodePacketsInBufferAsync] partial inventory response packet being returned.  Wait for next rfid response packet for complete tag data.");
+                            continue;
+                        }
+                        tag.EPC=[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr*2)+4, ((tag.PC >> 11) * 2) * 2)];
+                        tag.rssi = ((Byte *)[rfidPacketBuffer bytes])[15];
+                        tag.CRCError=((Byte *)[rfidPacketBuffer bytes])[3] & 0x01;
+                        
+                        //shifting pointer beginning of tag access packet
+                        ptr+= datalen;
+                        
+                        NSLog(@"[decodePacketsInBufferAsync] Tag data found: PC=%04X EPC=%@ rssi=%d", tag.PC, tag.EPC, tag.rssi);
+                        
+                        if (tagInventoryPacketOnly) {
+                            NSLog(@"[decodePacketsInBufferAsync] Finished decode inventory response (full) packet.");
+                            //trigger delegate for returning the tag response
+                            [self.readerDelegate didReceiveTagResponsePacket:self tagReceived:tag]; //this will call the method for handling the tag access response.
+                            [rfidPacketBuffer setLength:0];
+                            continue;
+                        }
+                        
+                        //for the cases where we reaches the end of the RFID reponse packet but there are still data within the bluetooth reader packet.
+                        // start of teh tag-access packet
+                        if ([rfidPacketBufferInHexString length] >= ptr + 20)
+                        {
+                            NSLog(@"[decodePacketsInBufferAsync] Decoding the tag-access data appended to the end of the inventory response packet: %@", [rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] );
+                            //check if we are getting tag response packet
+                            if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2), 2)] isEqualToString:@"01"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)+4, 4)] isEqualToString:@"0600"]) {
+                                
+                                NSLog(@"[decodePacketsInBufferAsync] Tag-access packet received.");
+                                tag.DATA1Length=((Byte *)[rfidPacketBuffer bytes])[18];
+                                tag.DATA2Length=((Byte *)[rfidPacketBuffer bytes])[19];
+                                
+                                //start decode taq-response message
+                                //length of data field (in bytes) = ((pkt_len – 3) * 4) – ((flags >> 6) & 3)
+                                datalen=(((((Byte *)[rfidPacketBuffer bytes])[ptr+4] + (((((Byte *)[rfidPacketBuffer bytes])[ptr+5] << 8) & 0xFF00)))-3) * 4) - ((((Byte *)[rfidPacketBuffer bytes])[ptr+1] >> 6) & 3);
+                                if (tag.DATA1Length > 0 && (((tag.DATA1Length + tag.DATA2Length) * 2) == datalen))
+                                    tag.DATA1 = [rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2) + 40, tag.DATA1Length * 4)];  //20 byte tag response header = 40 hex digits
+                                else
+                                    tag.DATA1=@"";
+                                if (tag.DATA2Length > 0 && (((tag.DATA1Length + tag.DATA2Length) * 2) == datalen))
+                                    tag.DATA2 = [rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2) + 40 + (tag.DATA1Length * 4), tag.DATA2Length * 4)]; //20 byte tag response header = 40 hex digits
+                                else
+                                    tag.DATA2=@"";
+                                NSLog(@"[decodePacketsInBufferAsync] Tag-access packet.  DATA1=%@ DATA2=%@", tag.DATA1, tag.DATA2);
+                                tag.timestamp=[NSDate date];
+                                
+                                //set flags
+                                tag.CRCError = tag.CRCError || ((((Byte *)[rfidPacketBuffer bytes])[ptr+1] & 0x08) >> 3);
+                                
+                                if ((((Byte *)[rfidPacketBuffer bytes])[ptr+1] & 0x02) >> 1) {
+                                    //get error code
+                                    tag.BackScatterError = ((Byte *)[rfidPacketBuffer bytes])[ptr+13];
+                                }
+                                else
+                                    tag.BackScatterError=0xFF;
+                                
+                                tag.ACKTimeout=(((Byte *)[rfidPacketBuffer bytes])[ptr+1] & 0x04) >> 2;
+                                
+                                if ((((Byte *)[rfidPacketBuffer bytes])[ptr+1] & 0x02) >> 1 && tag.BackScatterError == 0xFF && !tag.CRCError && !tag.ACKTimeout) {
+                                    tag.AccessError=((Byte *)[rfidPacketBuffer bytes])[ptr+20];
+                                }
+                                else
+                                    tag.AccessError=0xFF;
+                                
+                                tag.portNumber=((Byte *)[rfidPacketBuffer bytes])[ptr+14];
+
+                                //save the access command read/write/kill/lock/EAS
+                                tag.AccessCommand=((Byte *)[rfidPacketBuffer bytes])[ptr+12];
+
+                                //trigger delegate for returning the tag response
+                                [self.readerDelegate didReceiveTagAccessData:self tagReceived:tag]; //this will call the method for handling the tag access response.
+                                
+                                //shifting pointer to the beginning of the next RFID response packet (if any)
+                                ptr+= (20+((tagAccessPktLen - 3) * 4));
+
+                                //check and see if we have received a complete RFID response packet (command-end)
+                                if ([rfidPacketBuffer length] >= (ptr+4)) {
+                                    if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, 2)] isEqualToString:@"02"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr+2) * 2, 4)] isEqualToString:@"0180"]) {
+                                        
+                                        //partial command-end packet received
+                                        //remove decoded data from rfid buffer and leave the partial packet on the buffer with 8100 appended to the beginning
+                                        
+                                        tempMutableData=[NSMutableData data];
+                                        [tempMutableData appendData:[NSMutableData dataWithBytes:ecode length:sizeof(ecode)]];
+                                        [tempMutableData appendData:[[rfidPacketBuffer subdataWithRange:NSMakeRange(ptr, [rfidPacketBuffer length]-ptr)] mutableCopy]];
+                                        
+                                        if ([rfidPacketBuffer length] >= (ptr+16)) {
+                                            //return packet to the API for decoding
+                                            packet.payload=[NSData dataWithBytes:[tempMutableData bytes] length:[tempMutableData length]];
+                                            [cmdRespQueue enqObject:packet];
+                                            [rfidPacketBuffer setLength:0];
+                                            continue;
+                                        }
+                                        else {
+                                            rfidPacketBuffer=tempMutableData;
+                                            connectStatus=CONNECTED;
+                                            continue;
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                        
+                        //return when pointer reaches the end of the RFID response packet.
+                        NSLog(@"[decodePacketsInBufferAsync] Decode tag response packet completed with error.");
+                        [rfidPacketBuffer setLength:0];
+                        continue;
+      
+                    }
+                }
+                //check if packet is compact response packet (inventory)
                 if ([rfidPacketBufferInHexString length] >= 12) {
                     if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"04"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0580"])
                     {
@@ -2157,5 +2333,37 @@
         return nil;
     }
 }
+
++ (NSData *)convertHexStringToData:(NSString *)hexString {
+    
+    const char *hexChar = [hexString UTF8String];
+    
+    Byte *bt = malloc(sizeof(Byte)*(hexString.length/2));
+    
+    char tmpChar[3] = {'\0','\0','\0'};
+    
+    int btIndex = 0;
+    
+    for (int i=0; i<hexString.length; i += 2) {
+        
+        tmpChar[0] = hexChar[i];
+        
+        tmpChar[1] = hexChar[i+1];
+        
+        bt[btIndex] = strtoul(tmpChar, NULL, 16);
+        
+        btIndex ++;
+        
+    }
+    
+    NSData *data = [NSData dataWithBytes:bt length:btIndex];
+    
+    free(bt);
+    
+    return data;
+    
+}
+
+
 
 @end

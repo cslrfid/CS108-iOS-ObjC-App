@@ -88,6 +88,12 @@ typedef NS_ENUM(Byte, QUERYSELECT)
  @param barcode Barcode data in CSLReaderBarcode object
  */
 - (void) didReceiveBarcodeData: (CSLBleReader *) sender scannedBarcode:(CSLReaderBarcode*)barcode;
+/**
+ This will be triggered when reader receives a tag access response during its operations
+ @param sender CSLBleReader object of the connected reader
+ @param tag Reference to the CSLBleTag object being returned
+ */
+- (void) didReceiveTagAccessData: (CSLBleReader *) sender tagReceived:(CSLBleTag*)tag;  //define delegate method to be implemented within another class
 @end //end protocol
 
 /**
@@ -105,9 +111,18 @@ Insertion/update of tag data is based on binary searching algorithm for better e
 @property NSInteger uniqueTagCount;
 ///Enumeration type that holds the battery status information.  Its value is is being updated by a scheduled timer when batteery level notifications return on every 5 seconds
 @property CSLReaderBattery* batteryInfo;
+///
+@property CSLCircularQueue * cmdRespQueue;
 ///Delegate instance that follows the CSLBleReaderDelegate protocol
 @property (nonatomic, weak) id <CSLBleReaderDelegate> readerDelegate;
 
+/**
+ Static method that converts hexdcecimal string to binary data
+ 
+ @param hexString It holds the hexidecimal string to be converted
+ @return NSData value
+ */
++ (NSData *)convertHexStringToData:(NSString *)hexString;
 /**
  Static method that converts binary data to hexdcecimal string
  

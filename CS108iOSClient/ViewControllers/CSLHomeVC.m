@@ -204,6 +204,47 @@
     
 }
 
+- (IBAction)btnTagAccessPressed:(id)sender {
+    
+    //if no device is connected, the settings page will not be loaded
+    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reader NOT connected" message:@"Please connect to reader first." preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        
+        [self showTabInterfaceActiveView:CSL_VC_RFIDTAB_ACCESS_VC_IDX];
+    }
+
+    
+    
+}
+
+
+- (IBAction)btnTagSearchPressed:(id)sender {
+    
+    //if no device is connected, the settings page will not be loaded
+    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reader NOT connected" message:@"Please connect to reader first." preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        
+        [self showTabInterfaceActiveView:CSL_VC_RFIDTAB_SEARCH_VC_IDX];
+    }
+    
+    
+    
+}
+
 - (void) didReceiveTagResponsePacket: (CSLBleReader *) sender tagReceived:(CSLBleTag*)tag {  //define delegate method to be implemented within another class
 }
 - (void) didTriggerKeyChangedState: (CSLBleReader *) sender keyState:(BOOL)state {  //define delegate method to be implemented within another class
@@ -214,6 +255,8 @@
 - (void) didReceiveBarcodeData: (CSLBleReader *) sender scannedBarcode:(CSLReaderBarcode*)barcode {
 
 }
+- (void) didReceiveTagAccessData: (CSLBleReader *) sender tagReceived:(CSLBleTag*)tag {
 
+}
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CSLRfidAppEngine.h"
 
 #define CSL_VC_RFIDTAB_INVENTORY_VC_IDX 0
 #define CSL_VC_RFIDTAB_SEARCH_VC_IDX 1

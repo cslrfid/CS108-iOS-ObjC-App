@@ -39,13 +39,6 @@
     btnInventory.layer.borderWidth=1.0f;
     btnInventory.layer.borderColor=[UIColor lightGrayColor].CGColor;
     
-    //timer event on updating UI
-    scrRefreshTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                     target:self
-                                   selector:@selector(refreshTagListing)
-                                   userInfo:nil
-                                    repeats:YES];
-    
     swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(handleSwipes:)];
@@ -147,6 +140,13 @@
     [tempImageView setAccessibilityIdentifier:@"tagList-bg-rfid-swipe"];
     [tempImageView setFrame:self.tblTagList.frame];
     self.tblTagList.backgroundView = tempImageView;
+    
+    //timer event on updating UI
+    scrRefreshTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                       target:self
+                                                     selector:@selector(refreshTagListing)
+                                                     userInfo:nil
+                                                      repeats:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -169,6 +169,7 @@
     [scrRefreshTimer invalidate];
     scrRefreshTimer=nil;
     
+    [CSLRfidAppEngine sharedAppEngine].isBarcodeMode=false;
     [self.view removeGestureRecognizer:swipeGestureRecognizer];
 }
 
@@ -282,6 +283,9 @@
 
 - (void) didReceiveTagResponsePacket: (CSLBleReader *) sender tagReceived:(CSLBleTag*)tag {
     //[tagListing reloadData];
+}
+- (void) didReceiveTagAccessData: (CSLBleReader *) sender tagReceived:(CSLBleTag*)tag {
+    //no used
 }
 
 - (void) didReceiveBatteryLevelIndicator: (CSLBleReader *) sender batteryPercentage:(int)battPct {
