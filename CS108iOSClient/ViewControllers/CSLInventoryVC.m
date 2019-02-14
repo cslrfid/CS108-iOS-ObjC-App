@@ -30,6 +30,7 @@
 @synthesize lbStatus;
 @synthesize lbClear;
 @synthesize lbMode;
+@synthesize uivSendTagData;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,6 +56,9 @@
     swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
     swipeGestureRecognizer.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:swipeGestureRecognizer];
+    
+    tblTagList.estimatedRowHeight=44.0;
+    tblTagList.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (void)handleSwipes:(UISwipeGestureRecognizer*)gestureRecognizer {
@@ -70,7 +74,7 @@
             self.tblTagList.backgroundView = tempImageView;
             [[CSLRfidAppEngine sharedAppEngine] soundAlert:kSystemSoundID_Vibrate];
             [CSLRfidAppEngine sharedAppEngine].isBarcodeMode=true;
-            lbMode.text=@"Mode: Barcode";
+            lbMode.text=@"Mode: BC";
             [lbClear sendActionsForControlEvents:UIControlEventTouchUpInside];
         }
         else {
@@ -169,6 +173,8 @@
         session.willQoS=([CSLRfidAppEngine sharedAppEngine].MQTTSettings.QoS) ? MQTTQosLevelAtLeastOnce : MQTTQosLevelAtMostOnce;
         session.willRetainFlag=[CSLRfidAppEngine sharedAppEngine].MQTTSettings.retained;
         
+        [self->uivSendTagData setHidden:false];
+        
         [session connectWithConnectHandler:^(NSError *error) {
             if (error == nil) {
                 NSLog(@"Connected to MQTT Broker");
@@ -188,7 +194,9 @@
             }
         }];
     }
-    
+    else {
+                [self->uivSendTagData setHidden:true];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -315,20 +323,28 @@
     
 }
 
-- (IBAction)btnClearTable:(id)sender {
+- (IBAction)btnClearTable:(id)sender {    
+    //clear UI
+    lbTagRate.text=@"0";
+    lbTagCount.text=@"0";
+    [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer removeAllObjects];
+    [tblTagList reloadData];
+}
+
+- (IBAction)btnSendTagData:(id)sender {
     //check MQTT settings.  Connect to broker and send tag data
     __block BOOL allTagPublishedSuccess=true;
     if ([CSLRfidAppEngine sharedAppEngine].MQTTSettings.isMQTTEnabled && isMQTTConnected==true) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"MQTT broker" message:@"Send Tag Data?" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            for (CSLBleTag* tag in [CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer) {                
+            for (CSLBleTag* tag in [CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer) {
                 //build an info object and convert to json
                 NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
                                       [[NSUUID UUID] UUIDString],
                                       @"messageId",
-                                      [CSLRfidAppEngine sharedAppEngine].MQTTSettings.clientId,
-                                      @"deviceId",
+                                      [NSString stringWithFormat:@"%d",tag.rssi],
+                                      @"rssi",
                                       tag.EPC,
                                       @"EPC",
                                       nil];
@@ -354,14 +370,6 @@
         [self presentViewController:alert animated:YES completion:nil];
         
     }
-    
-    /*
-    //clear UI
-    lbTagRate.text=@"0";
-    lbTagCount.text=@"0";
-    [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer removeAllObjects];
-    [tblTagList reloadData];
-     */
 }
 
 - (void) didInterfaceChangeConnectStatus: (CSLBleInterface *) sender {
