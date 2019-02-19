@@ -23,8 +23,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtTagPopulation;
 @property (weak, nonatomic) IBOutlet UITextField *txtPower;
 @property (weak, nonatomic) IBOutlet UISwitch *swSound;
-@property (weak, nonatomic) IBOutlet UIButton *btnRadioSettings;
-@property (weak, nonatomic) IBOutlet UIButton *btnMQTTClient;
 
 - (IBAction)btnSessionPressed:(id)sender;
 - (IBAction)btnAlgorithmPressed:(id)sender;
@@ -35,8 +33,6 @@
 - (IBAction)txtTagPopulationChanged:(id)sender;
 - (IBAction)txtPowerChanged:(id)sender;
 - (IBAction)btnSaveConfigPressed:(id)sender;
-- (IBAction)btnRadioSettingsPressed:(id)sender;
-- (IBAction)btnMQTTClientPressed:(id)sender;
 
 
 @end

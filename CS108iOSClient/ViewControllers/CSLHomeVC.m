@@ -13,6 +13,7 @@
 #import "CSLDeviceTV.h"
 #import "CSLRfidAppEngine.h"
 #import "CSLAboutVC.h"
+#import "CSLMoreFunctionsVC.h"
 
 
 @interface CSLHomeVC () {
@@ -186,7 +187,10 @@
     //if no device is connected, the settings page will not be loaded
     if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING) {
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reader NOT connected" message:@"Please connect to reader first." preferredStyle:UIAlertControllerStyleAlert];
+        NSString * appVersionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+        NSString * appBuildString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"App Version" message:[NSString stringWithFormat:@"v%@ Build %@", appVersionString, appBuildString] preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
                              { [[self navigationController] popViewControllerAnimated:YES]; }];
@@ -242,6 +246,30 @@
     }
     
     
+    
+}
+
+- (IBAction)btnFunctionsPressed:(id)sender {
+    
+    CSLMoreFunctionsVC * funcVC;
+    //if no device is connected, the settings page will not be loaded
+    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reader NOT connected" message:@"Please connect to reader first." preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        funcVC = (CSLMoreFunctionsVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_FuncVC"];
+        
+        if (funcVC != nil)
+        {
+            [[self navigationController] pushViewController:funcVC animated:YES];
+        }
+    }
+
     
 }
 

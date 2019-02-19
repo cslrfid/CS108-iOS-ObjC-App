@@ -30,6 +30,9 @@
 		CA78737C21514E61009B7FE6 /* CSLRfidAppEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78737B21514E61009B7FE6 /* CSLRfidAppEngine.m */; };
 		CA78737F21543B6F009B7FE6 /* CSLReaderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78737E21543B6F009B7FE6 /* CSLReaderSettings.m */; };
 		CA7873822155F59C009B7FE6 /* CSLReaderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7873812155F59C009B7FE6 /* CSLReaderInfo.m */; };
+		CAB31377221A75330048DA62 /* CSLTagListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB31375221A75330048DA62 /* CSLTagListCell.m */; };
+		CAB31378221A75330048DA62 /* CSLTagListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB31376221A75330048DA62 /* CSLTagListCell.xib */; };
+		CAB3137B221BE17D0048DA62 /* CSLMoreFunctionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3137A221BE17D0048DA62 /* CSLMoreFunctionsVC.m */; };
 		CAB810842133E16F009D2F8F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB810832133E16F009D2F8F /* CoreBluetooth.framework */; };
 		CABA714A21325BF500D15BB1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA714921325BF500D15BB1 /* AppDelegate.m */; };
 		CABA715221325BF600D15BB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABA715121325BF600D15BB1 /* Assets.xcassets */; };
@@ -99,6 +102,11 @@
 		CA78737E21543B6F009B7FE6 /* CSLReaderSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderSettings.m; sourceTree = "<group>"; };
 		CA7873802155F59C009B7FE6 /* CSLReaderInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLReaderInfo.h; sourceTree = "<group>"; };
 		CA7873812155F59C009B7FE6 /* CSLReaderInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderInfo.m; sourceTree = "<group>"; };
+		CAB31374221A75330048DA62 /* CSLTagListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagListCell.h; sourceTree = "<group>"; };
+		CAB31375221A75330048DA62 /* CSLTagListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTagListCell.m; sourceTree = "<group>"; };
+		CAB31376221A75330048DA62 /* CSLTagListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CSLTagListCell.xib; sourceTree = "<group>"; };
+		CAB31379221BE17D0048DA62 /* CSLMoreFunctionsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLMoreFunctionsVC.h; sourceTree = "<group>"; };
+		CAB3137A221BE17D0048DA62 /* CSLMoreFunctionsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLMoreFunctionsVC.m; sourceTree = "<group>"; };
 		CAB810832133E16F009D2F8F /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		CABA714521325BF500D15BB1 /* CS108iOSClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CS108iOSClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABA714821325BF500D15BB1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -177,6 +185,11 @@
 				CA411CDE21D8C59F0029E779 /* CSLTagLockVC.m */,
 				CA5C059221E4517D00E68E44 /* CSLMQTTClientSettings.h */,
 				CA5C059321E4517D00E68E44 /* CSLMQTTClientSettings.m */,
+				CAB31374221A75330048DA62 /* CSLTagListCell.h */,
+				CAB31375221A75330048DA62 /* CSLTagListCell.m */,
+				CAB31376221A75330048DA62 /* CSLTagListCell.xib */,
+				CAB31379221BE17D0048DA62 /* CSLMoreFunctionsVC.h */,
+				CAB3137A221BE17D0048DA62 /* CSLMoreFunctionsVC.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -330,6 +343,7 @@
 			files = (
 				CABA715521325BF600D15BB1 /* LaunchScreen.storyboard in Resources */,
 				CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */,
+				CAB31378221A75330048DA62 /* CSLTagListCell.xib in Resources */,
 				CABA715221325BF600D15BB1 /* Assets.xcassets in Resources */,
 				CA506644215996A000C3C9C8 /* digital-7 (mono).ttf in Resources */,
 			);
@@ -351,8 +365,10 @@
 				CA411CDF21D8C59F0029E779 /* CSLTagLockVC.m in Sources */,
 				CA78736D214CD49D009B7FE6 /* CSLInventoryVC.m in Sources */,
 				CA57AA7821CAC45E00D081F9 /* LMGaugeView.m in Sources */,
+				CAB31377221A75330048DA62 /* CSLTagListCell.m in Sources */,
 				CAF5CC2821626F1500C420EF /* CSLReaderBattery.m in Sources */,
 				CABA71672132631F00D15BB1 /* CSLBlePacket.m in Sources */,
+				CAB3137B221BE17D0048DA62 /* CSLMoreFunctionsVC.m in Sources */,
 				CA5C05A021E4736700E68E44 /* CSLMQTTSettings.m in Sources */,
 				CA787361214CC154009B7FE6 /* CSLHomeVC.m in Sources */,
 				CABA715821325BF600D15BB1 /* main.m in Sources */,

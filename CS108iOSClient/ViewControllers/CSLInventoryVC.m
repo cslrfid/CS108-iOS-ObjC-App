@@ -57,7 +57,7 @@
     swipeGestureRecognizer.numberOfTouchesRequired = 1;
     [self.view addGestureRecognizer:swipeGestureRecognizer];
     
-    tblTagList.estimatedRowHeight=44.0;
+    tblTagList.estimatedRowHeight=45.0;
     tblTagList.rowHeight = UITableViewAutomaticDimension;
 }
 
@@ -416,28 +416,42 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell * cell;
+    CSLTagListCell * cell;
     //for rfid data
     if ([[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row] isKindOfClass:[CSLBleTag class]]) {
+        
         NSString* epc=((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).EPC;
-        cell=[tableView dequeueReusableCellWithIdentifier:epc];
+        int rssi=(int)((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).rssi;
+        
+        cell=[tableView dequeueReusableCellWithIdentifier:@"TagCell"];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:epc];
+            [tableView registerNib:[UINib nibWithNibName:@"CSLTagListCell" bundle:nil] forCellReuseIdentifier:@"TagCell"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"TagCell"];
         }
         
-        cell.textLabel.font = [UIFont fontWithName:@"Arial" size:14];
-        cell.textLabel.text = [NSString stringWithFormat:@"%5d \u25CF %@ \u25CF RSSI: %d", (int)(indexPath.row + 1), epc, (int)((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).rssi];
+        cell.lbCellEPC.font = [UIFont fontWithName:@"Arial" size:14];
+        cell.lbCellBank.font = [UIFont fontWithName:@"Arial" size:14];
+        cell.lbCellBank.textColor =[UIColor grayColor];
+        cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), epc];
+        cell.lbCellBank.text= [NSString stringWithFormat:@"RSSI: %d", rssi];
+        
     }
     //for barcode data
     else if ([[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row] isKindOfClass:[CSLReaderBarcode class]]) {
         NSString* bc=((CSLReaderBarcode*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).barcodeValue;
-        cell=[tableView dequeueReusableCellWithIdentifier:bc];
+
+        cell=[tableView dequeueReusableCellWithIdentifier:@"TagCell"];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:bc];
+            [tableView registerNib:[UINib nibWithNibName:@"CSLTagListCell" bundle:nil] forCellReuseIdentifier:@"TagCell"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"TagCell"];
         }
         
-        cell.textLabel.font = [UIFont fontWithName:@"Arial" size:14];
-        cell.textLabel.text = [NSString stringWithFormat:@"%5d \u25CF %@ [%@]", (int)(indexPath.row + 1), bc, ((CSLReaderBarcode*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).codeId];
+        cell.lbCellEPC.font = [UIFont fontWithName:@"Arial" size:14];
+        cell.lbCellBank.font = [UIFont fontWithName:@"Arial" size:14];
+        cell.lbCellBank.textColor =[UIColor grayColor];
+        cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), bc];
+        cell.lbCellBank.text= [NSString stringWithFormat:@"[%@]", ((CSLReaderBarcode*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).codeId];
+        
     }
     else
         return nil;
