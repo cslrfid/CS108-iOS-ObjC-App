@@ -47,6 +47,7 @@
 		CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */; };
 		CAF5CC2821626F1500C420EF /* CSLReaderBattery.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF5CC2721626F1500C420EF /* CSLReaderBattery.m */; };
 		CAF5CC2B21640E7F00C420EF /* CSLReaderBarcode.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF5CC2A21640E7F00C420EF /* CSLReaderBarcode.m */; };
+		CAFF2698221D3F7000D89112 /* CSLMultibankAccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFF2697221D3F7000D89112 /* CSLMultibankAccessVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -131,6 +132,8 @@
 		CAF5CC2721626F1500C420EF /* CSLReaderBattery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderBattery.m; sourceTree = "<group>"; };
 		CAF5CC2921640E7F00C420EF /* CSLReaderBarcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLReaderBarcode.h; sourceTree = "<group>"; };
 		CAF5CC2A21640E7F00C420EF /* CSLReaderBarcode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderBarcode.m; sourceTree = "<group>"; };
+		CAFF2696221D3F7000D89112 /* CSLMultibankAccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLMultibankAccessVC.h; sourceTree = "<group>"; };
+		CAFF2697221D3F7000D89112 /* CSLMultibankAccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLMultibankAccessVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +193,8 @@
 				CAB31376221A75330048DA62 /* CSLTagListCell.xib */,
 				CAB31379221BE17D0048DA62 /* CSLMoreFunctionsVC.h */,
 				CAB3137A221BE17D0048DA62 /* CSLMoreFunctionsVC.m */,
+				CAFF2696221D3F7000D89112 /* CSLMultibankAccessVC.h */,
+				CAFF2697221D3F7000D89112 /* CSLMultibankAccessVC.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -357,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CABA71682132631F00D15BB1 /* CSLBleInterface.m in Sources */,
+				CAFF2698221D3F7000D89112 /* CSLMultibankAccessVC.m in Sources */,
 				CA78737C21514E61009B7FE6 /* CSLRfidAppEngine.m in Sources */,
 				CA5066412157889C00C3C9C8 /* CSLAboutVC.m in Sources */,
 				CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */,

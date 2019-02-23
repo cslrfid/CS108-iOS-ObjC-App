@@ -106,6 +106,22 @@ CSLRfidAppEngine * appEngine;
         settings.linkProfile = (LINKPROFILE)[defaults integerForKey:@"linkProfile"];
     if([defaults boolForKey:@"isSoundEnabled"])
         settings.enableSound =[defaults boolForKey:@"isSoundEnabled"];
+    if([defaults boolForKey:@"isEnableMultibank1"])
+        settings.isMultibank1Enabled =[defaults boolForKey:@"isEnableMultibank1"];
+    if([defaults integerForKey:@"multibank1Select"])
+        settings.multibank1 = (MEMORYBANK)[defaults integerForKey:@"multibank1Select"];
+    if([defaults integerForKey:@"multibank1Offset"])
+        settings.multibank1Offset = (Byte)[defaults integerForKey:@"multibank1Offset"];
+    if([defaults integerForKey:@"multibank1Size"])
+        settings.multibank1Length = (Byte)[defaults integerForKey:@"multibank1Size"];
+    if([defaults boolForKey:@"isEnableMultibank2"])
+        settings.isMultibank2Enabled =[defaults boolForKey:@"isEnableMultibank2"];
+    if([defaults integerForKey:@"multibank2Select"])
+        settings.multibank2 = (MEMORYBANK)[defaults integerForKey:@"multibank2Select"];
+    if([defaults integerForKey:@"multibank2Offset"])
+        settings.multibank2Offset = (Byte)[defaults integerForKey:@"multibank2Offset"];
+    if([defaults integerForKey:@"multibank2Size"])
+        settings.multibank2Length = (Byte)[defaults integerForKey:@"multibank2Size"];
 }
 -(void)saveSettingsToUserDefaults {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -119,6 +135,14 @@ CSLRfidAppEngine * appEngine;
     [defaults setInteger:settings.algorithm forKey:@"algorithm"];
     [defaults setInteger:settings.linkProfile forKey:@"linkProfile"];
     [defaults setBool:settings.enableSound forKey:@"isSoundEnabled"];
+    [defaults setBool:settings.isMultibank1Enabled forKey:@"isEnableMultibank1"];
+    [defaults setInteger:settings.multibank1 forKey:@"multibank1Select"];
+    [defaults setInteger:settings.multibank1Offset forKey:@"multibank1Offset"];
+    [defaults setInteger:settings.multibank1Length forKey:@"multibank1Size"];
+    [defaults setBool:settings.isMultibank2Enabled forKey:@"isEnableMultibank2"];
+    [defaults setInteger:settings.multibank2 forKey:@"multibank2Select"];
+    [defaults setInteger:settings.multibank2Offset forKey:@"multibank2Offset"];
+    [defaults setInteger:settings.multibank2Length forKey:@"multibank2Size"];
     [defaults synchronize];
     
 }

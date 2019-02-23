@@ -18,6 +18,9 @@
     MQTTSession* session;
     BOOL isMQTTConnected;
 }
+
+- (NSString*)bankEnumToString:(MEMORYBANK)bank;
+
 @end
 
 @implementation CSLInventoryVC
@@ -154,6 +157,7 @@
                                                      selector:@selector(refreshTagListing)
                                                      userInfo:nil
                                                       repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:scrRefreshTimer forMode:NSRunLoopCommonModes];
     
     if ([CSLRfidAppEngine sharedAppEngine].MQTTSettings.isMQTTEnabled) {
         transport = [[MQTTCFSocketTransport alloc] init];
@@ -285,7 +289,15 @@
         */
         
         //set inventory configurations
-
+        
+        //for multiplebank inventory
+        Byte tagRead=0;
+        if ([CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled && [CSLRfidAppEngine sharedAppEngine].settings.isMultibank2Enabled)
+            tagRead=2;
+        else if ([CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled)
+            tagRead=1;
+        else
+            tagRead=0;
         
         [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
         [[CSLRfidAppEngine sharedAppEngine].reader setAntennaCycle:COMMAND_ANTCYCLE_CONTINUOUS];
@@ -296,8 +308,14 @@
         [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters0:[CSLRfidAppEngine sharedAppEngine].settings.QValue maximumQ:15 minimumQ:0 ThresholdMultiplier:4];
         [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters1:0];
         [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters2:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? true : false) RunTillZero:false];
-        [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:0 crcErrorRead:1 QTMode:0 tagDelay:0 inventoryMode:1];
+        [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:tagRead crcErrorRead:(tagRead ? 0 : 1) QTMode:0 tagDelay:(tagRead ? 30 : 0) inventoryMode:(tagRead ? 0 : 1)];
         
+        // if multibank read is enabled
+        if (tagRead) {
+            [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_BANK:[CSLRfidAppEngine sharedAppEngine].settings.multibank1 acc_bank2:[CSLRfidAppEngine sharedAppEngine].settings.multibank2];
+            [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_PTR:([CSLRfidAppEngine sharedAppEngine].settings.multibank2Offset << 16) + [CSLRfidAppEngine sharedAppEngine].settings.multibank1Offset];
+            [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_CNT:(tagRead ? [CSLRfidAppEngine sharedAppEngine].settings.multibank1Length : 0) secondBank:(tagRead==2 ? [CSLRfidAppEngine sharedAppEngine].settings.multibank2Length : 0)];
+        }
         
         //start inventory
         tagRangingStartTime=[NSDate date];
@@ -421,6 +439,10 @@
     if ([[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row] isKindOfClass:[CSLBleTag class]]) {
         
         NSString* epc=((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).EPC;
+        NSString* data1=((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).DATA1;
+        NSString* data1bank=[self bankEnumToString:[CSLRfidAppEngine sharedAppEngine].settings.multibank1];
+        NSString* data2=((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).DATA2;
+        NSString* data2bank=[self bankEnumToString:[CSLRfidAppEngine sharedAppEngine].settings.multibank2];
         int rssi=(int)((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).rssi;
         
         cell=[tableView dequeueReusableCellWithIdentifier:@"TagCell"];
@@ -432,9 +454,19 @@
         cell.lbCellEPC.font = [UIFont fontWithName:@"Arial" size:14];
         cell.lbCellBank.font = [UIFont fontWithName:@"Arial" size:14];
         cell.lbCellBank.textColor =[UIColor grayColor];
-        cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), epc];
-        cell.lbCellBank.text= [NSString stringWithFormat:@"RSSI: %d", rssi];
         
+        if (data1 != NULL && data2 != NULL ) {
+            cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), epc];
+            cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\n%@=%@\nRSSI: %d", data1bank, data1, data2bank, data2, rssi];
+        }
+        else if (data1 != NULL) {
+            cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), epc];
+            cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\nRSSI: %d", data1bank, data1, rssi];
+        }
+        else {
+            cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), epc];
+            cell.lbCellBank.text= [NSString stringWithFormat:@"RSSI: %d", rssi];
+        }
     }
     //for barcode data
     else if ([[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row] isKindOfClass:[CSLReaderBarcode class]]) {
@@ -480,6 +512,28 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (NSString*)bankEnumToString:(MEMORYBANK)bank {
+    NSString *result = nil;
+    
+    switch(bank) {
+        case RESERVED:
+            result = @"RESERVED";
+            break;
+        case EPC:
+            result = @"EPC";
+            break;
+        case TID:
+            result = @"TID";
+            break;
+        case USER:
+            result = @"USER";
+            break;
+        default:
+            [NSException raise:NSGenericException format:@"Unexpected FormatType."];
+    }
+    
+    return result;
+}
 
 @end
 

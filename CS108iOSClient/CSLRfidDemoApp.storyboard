@@ -1401,6 +1401,197 @@
             </objects>
             <point key="canvasLocation" x="1483.125" y="-60.2112676056338"/>
         </scene>
+        <!--CslRfid Multibank AccessVC-->
+        <scene sceneID="5cr-pU-td1">
+            <objects>
+                <viewController storyboardIdentifier="ID_MultibankVC" id="vTg-gF-cDw" userLabel="CslRfid Multibank AccessVC" customClass="CSLMultibankAccessVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iDI-5E-BpG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="g9t-Ha-LAI" userLabel="Multibank Elements">
+                                <rect key="frame" x="5" y="30" width="310" height="260"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbx-Ek-M3M" userLabel="First Bank 1">
+                                        <rect key="frame" x="0.0" y="0.0" width="310" height="35"/>
+                                        <subviews>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zum-UA-X7b">
+                                                <rect key="frame" x="0.0" y="0.0" width="51" height="35"/>
+                                                <connections>
+                                                    <action selector="swEnableMultibank1Pressed:" destination="vTg-gF-cDw" eventType="valueChanged" id="uQ9-L6-VzM"/>
+                                                </connections>
+                                            </switch>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Extra Bank 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gq8-SJ-9Jw">
+                                                <rect key="frame" x="49" y="0.0" width="111" height="35"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJg-Du-tG7">
+                                                <rect key="frame" x="160" y="0.0" width="150" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="G5S-bn-z6K"/>
+                                                </constraints>
+                                                <state key="normal" title="TID"/>
+                                                <connections>
+                                                    <action selector="btnMultibank1SelectPressed:" destination="vTg-gF-cDw" eventType="touchUpInside" id="OYj-aK-n6r"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hvg-DM-68F" userLabel="First Bank 2">
+                                        <rect key="frame" x="0.0" y="45" width="310" height="35"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offset   " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abO-u8-hkX">
+                                                <rect key="frame" x="0.0" y="0.0" width="77.5" height="35"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1uW-eJ-NT1">
+                                                <rect key="frame" x="77.5" y="0.0" width="77.5" height="35"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="txtMultibank1OffsetPressed:" destination="vTg-gF-cDw" eventType="editingDidEnd" id="UaP-1f-OH6"/>
+                                                </connections>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Size   " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tj9-zT-8Nh">
+                                                <rect key="frame" x="155" y="0.0" width="77.5" height="35"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Le-9z-9gr">
+                                                <rect key="frame" x="232.5" y="0.0" width="77.5" height="35"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="txtMultibank1SizePressed:" destination="vTg-gF-cDw" eventType="editingDidEnd" id="sJD-hY-dnr"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DME-rj-sby" userLabel="Second Bank 1">
+                                        <rect key="frame" x="0.0" y="90" width="310" height="35"/>
+                                        <subviews>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4g5-ti-NW7">
+                                                <rect key="frame" x="0.0" y="0.0" width="51" height="35"/>
+                                                <connections>
+                                                    <action selector="swEnableMultibank2Pressed:" destination="vTg-gF-cDw" eventType="valueChanged" id="YS9-Ap-yOj"/>
+                                                </connections>
+                                            </switch>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Extra Bank 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIg-bC-BNe">
+                                                <rect key="frame" x="49" y="0.0" width="111" height="35"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVb-ID-5Hw" userLabel="USER">
+                                                <rect key="frame" x="160" y="0.0" width="150" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="U1y-yf-fmq"/>
+                                                </constraints>
+                                                <state key="normal" title="USER"/>
+                                                <connections>
+                                                    <action selector="btnMultibank2SelectPressed:" destination="vTg-gF-cDw" eventType="touchUpInside" id="pRB-dH-u8g"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="3hg-Iv-GN4" userLabel="Second Bank 2">
+                                        <rect key="frame" x="0.0" y="135" width="310" height="35"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Offset" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjA-r8-vc9">
+                                                <rect key="frame" x="0.0" y="0.0" width="77.5" height="35"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mEC-yr-brN">
+                                                <rect key="frame" x="77.5" y="0.0" width="77.5" height="35"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="txtMultibank2OffsetPressed:" destination="vTg-gF-cDw" eventType="editingDidEnd" id="VH9-D8-irG"/>
+                                                </connections>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size   " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPv-Zk-txp">
+                                                <rect key="frame" x="155" y="0.0" width="77.5" height="35"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yxj-rN-5cF">
+                                                <rect key="frame" x="232.5" y="0.0" width="77.5" height="35"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="txtMultibank2SizePressed:" destination="vTg-gF-cDw" eventType="editingDidEnd" id="Sjy-c6-rzD"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMW-iB-UJ6" userLabel="Save">
+                                        <rect key="frame" x="0.0" y="180" width="310" height="35"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UsI-aa-9Gf" userLabel="Save Button">
+                                                <rect key="frame" x="0.0" y="0.0" width="310" height="35"/>
+                                                <state key="normal" title="Save"/>
+                                                <connections>
+                                                    <action selector="btnMultibankSavePressed:" destination="vTg-gF-cDw" eventType="touchUpInside" id="ndG-ma-ubD"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nrg-8O-6Q0">
+                                        <rect key="frame" x="0.0" y="225" width="310" height="35"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note: configurations above can be overridden by some of the special functions on the app." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6G7-6f-6sB">
+                                                <rect key="frame" x="0.0" y="0.0" width="310" height="35"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="co4-c4-K7Z"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="g9t-Ha-LAI" firstAttribute="centerX" secondItem="iDI-5E-BpG" secondAttribute="centerX" id="6Wt-BL-ca0"/>
+                            <constraint firstItem="g9t-Ha-LAI" firstAttribute="top" secondItem="UUj-YS-sTb" secondAttribute="top" constant="10" id="N8l-01-mgM"/>
+                            <constraint firstItem="g9t-Ha-LAI" firstAttribute="leading" secondItem="UUj-YS-sTb" secondAttribute="leading" constant="5" id="yZ4-gz-QCX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UUj-YS-sTb"/>
+                    </view>
+                    <connections>
+                        <outlet property="btnMultibank1Select" destination="WJg-Du-tG7" id="LiL-SF-SGc"/>
+                        <outlet property="btnMultibank2Select" destination="jVb-ID-5Hw" id="3Jv-Ps-24n"/>
+                        <outlet property="btnMultibankSave" destination="UsI-aa-9Gf" id="h6Z-z4-e67"/>
+                        <outlet property="lbBank" destination="oIg-bC-BNe" id="L5c-zE-TfO"/>
+                        <outlet property="lbOffset" destination="gjA-r8-vc9" id="oJF-FD-nM3"/>
+                        <outlet property="lbSize" destination="FPv-Zk-txp" id="2wy-zw-1F9"/>
+                        <outlet property="swEnableMultibank1" destination="zum-UA-X7b" id="EyL-gV-UMX"/>
+                        <outlet property="swEnableMultibank2" destination="4g5-ti-NW7" id="emM-bb-dsW"/>
+                        <outlet property="txtMultibank1Offset" destination="1uW-eJ-NT1" id="Rd8-En-8Vq"/>
+                        <outlet property="txtMultibank1Size" destination="6Le-9z-9gr" id="fiT-pO-cQZ"/>
+                        <outlet property="txtMultibank2Offset" destination="mEC-yr-brN" id="euI-Zw-ULt"/>
+                        <outlet property="txtMultibank2Size" destination="yxj-rN-5cF" id="gcQ-oe-PPE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="41g-LZ-H6v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2205" y="-60.2112676056338"/>
+        </scene>
         <!--CslRfid AboutVC-->
         <scene sceneID="Q2y-W5-shm">
             <objects>
@@ -1509,7 +1700,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zNu-GA-9mY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2122.5" y="-59.154929577464792"/>
+            <point key="canvasLocation" x="2925" y="-59"/>
         </scene>
         <!--CslRfid TagAccessVC-->
         <scene sceneID="afX-Ce-xLR">

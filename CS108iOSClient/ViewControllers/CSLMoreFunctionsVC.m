@@ -8,6 +8,7 @@
 
 #import "CSLMoreFunctionsVC.h"
 #import "CSLMQTTClientSettings.h"
+#import "CSLMultibankAccessVC.h"
 
 @interface CSLMoreFunctionsVC ()
 
@@ -31,6 +32,14 @@
 */
 
 - (IBAction)btnMultibankPressed:(id)sender {
+    CSLMultibankAccessVC* multibank;
+    multibank = (CSLMultibankAccessVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_MultibankVC"];
+    
+    if (multibank != nil)
+    {
+        [[self navigationController] pushViewController:multibank animated:YES];
+    }
+    
 }
 
 - (IBAction)btnFiltersPressed:(id)sender {
