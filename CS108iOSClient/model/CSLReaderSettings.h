@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CSLBleReader.h"
+#import "CSLBleReader+AccessControl.h"
 
 
 ///Reader Settings
@@ -31,5 +32,22 @@
 @property (assign) LINKPROFILE linkProfile;
 ///Define whether sound alert is enabled/disabled
 @property (assign) BOOL enableSound;
+///Enable/disable multibank bank 1
+@property (assign) BOOL isMultibank1Enabled;
+///Define multibank bank1
+@property (assign) MEMORYBANK multibank1;
+///Multibank bank1 Offset
+@property (assign) Byte multibank1Offset;
+///Multibank bank1 Length
+@property (assign) Byte multibank1Length;
+///Enable/disable multibank bank 2
+@property (assign) BOOL isMultibank2Enabled;
+///Define multibank bank 2
+@property (assign) MEMORYBANK multibank2;
+///Multibank bank1 Offset
+@property (assign) Byte multibank2Offset;
+///Multibank bank1 Length
+@property (assign) Byte multibank2Length;
+
 
 @end

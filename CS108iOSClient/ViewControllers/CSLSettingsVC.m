@@ -21,7 +21,6 @@
 @synthesize btnTarget;
 @synthesize swSound;
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -321,6 +320,20 @@
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:ok];
     [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+- (IBAction)btnRadioSettingsPressed:(id)sender {
+}
+
+- (IBAction)btnMQTTClientPressed:(id)sender {
+    CSLMQTTClientSettings* mqttSettings;
+    mqttSettings = (CSLMQTTClientSettings*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_MQTTSettingsVC"];
+    
+    if (mqttSettings != nil)
+    {
+        [[self navigationController] pushViewController:mqttSettings animated:YES];
+    }
     
 }
 
