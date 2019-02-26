@@ -111,6 +111,8 @@ Insertion/update of tag data is based on binary searching algorithm for better e
 @property NSInteger uniqueTagCount;
 ///Enumeration type that holds the battery status information.  Its value is is being updated by a scheduled timer when batteery level notifications return on every 5 seconds
 @property CSLReaderBattery* batteryInfo;
+///This property indicates if the reader is either in tag access or inventory mode
+@property BOOL isTagAccessMode;
 ///
 @property CSLCircularQueue * cmdRespQueue;
 ///Delegate instance that follows the CSLBleReaderDelegate protocol

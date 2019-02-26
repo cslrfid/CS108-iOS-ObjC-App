@@ -253,14 +253,6 @@
         [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         btnInventory.enabled=false;
         
-        /*
-        //clear UI
-        lbTagRate.text=@"0";
-        lbTagCount.text=@"0";
-        [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer removeAllObjects];
-        [tblTagList reloadData];
-        */
-        
         [[CSLRfidAppEngine sharedAppEngine].reader startBarcodeReading];
         [btnInventory setTitle:@"STOP" forState:UIControlStateNormal];
         btnInventory.enabled=true;
@@ -279,15 +271,6 @@
         [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         btnInventory.enabled=false;
         //reader configurations before inventory
-        
-        /*
-        //clear UI
-        lbTagRate.text=@"0";
-        lbTagCount.text=@"0";
-        [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer removeAllObjects];
-        [tblTagList reloadData];
-        */
-        
         //set inventory configurations
         
         //for multiplebank inventory
@@ -302,13 +285,13 @@
         [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
         [[CSLRfidAppEngine sharedAppEngine].reader setAntennaCycle:COMMAND_ANTCYCLE_CONTINUOUS];
         [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:0];
-        [[CSLRfidAppEngine sharedAppEngine].reader setLinkProfile:[CSLRfidAppEngine sharedAppEngine].settings.linkProfile];
         [[CSLRfidAppEngine sharedAppEngine].reader setQueryConfigurations:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? A : [CSLRfidAppEngine sharedAppEngine].settings.target) querySession:[CSLRfidAppEngine sharedAppEngine].settings.session querySelect:ALL];
         [[CSLRfidAppEngine sharedAppEngine].reader selectAlgorithmParameter:[CSLRfidAppEngine sharedAppEngine].settings.algorithm];
         [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters0:[CSLRfidAppEngine sharedAppEngine].settings.QValue maximumQ:15 minimumQ:0 ThresholdMultiplier:4];
         [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters1:0];
         [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters2:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? true : false) RunTillZero:false];
         [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:tagRead crcErrorRead:(tagRead ? 0 : 1) QTMode:0 tagDelay:(tagRead ? 30 : 0) inventoryMode:(tagRead ? 0 : 1)];
+        [[CSLRfidAppEngine sharedAppEngine].reader setLinkProfile:[CSLRfidAppEngine sharedAppEngine].settings.linkProfile];
         
         // if multibank read is enabled
         if (tagRead) {
