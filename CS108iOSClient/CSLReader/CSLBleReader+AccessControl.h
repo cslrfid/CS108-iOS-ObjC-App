@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
     
 }
 - (BOOL)setParametersForTagAccess;
+- (BOOL) TAGMSK_DESC_SEL:(Byte)desc_idx;
 - (BOOL) TAGMSK_DESC_CFG:(BOOL)isEnable selectTarget:(Byte)sel_target selectAction:(Byte)sel_action;
 - (BOOL) TAGMSK_BANK:(MEMORYBANK)bank;
 - (BOOL) TAGMSK_PTR:(UInt16)ptr;
@@ -133,7 +134,17 @@ NS_ASSUME_NONNULL_BEGIN
  @return TRUE if the operation is successful
  */
 - (BOOL)stopTagSearch;
-
+/**
+ Select tag before tag inventory operation
+ @param maskbank Mask bank to be used for tag selection
+ @param ptr Pointer to the start of the memory address, to be expressed by bits
+ @param length Size of the mask expressed in number of bits
+ @param mask mask value
+ @param action What action to perform on inventories or SL flags as indicated to tags during
+ Select operation
+ @return TRUE if the operation is successful
+ */
+- (BOOL) selectTagForInventory:(MEMORYBANK)maskbank maskPointer:(UInt16)ptr maskLength:(UInt32)length maskData:(NSData*)mask sel_action:(Byte)action;
 
 @end
 

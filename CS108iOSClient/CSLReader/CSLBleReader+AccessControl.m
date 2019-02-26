@@ -42,6 +42,67 @@
     return true;
 }
 
+- (BOOL) TAGMSK_DESC_SEL:(Byte)desc_idx {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [self.cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    NSData * payloadData;
+    
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"TAGMSK_DESC_SEL - Write this register to select which Select descriptor and corresponding mask register set to access.");
+    NSLog(@"----------------------------------------------------------------------");
+    unsigned char TAGMSK_DESC_SEL[] = {0x80, 0x02, 0x70, 0x01, 0x00, 0x08, desc_idx & 0x03, 0x00, 0x00, 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:TAGMSK_DESC_SEL length:sizeof(TAGMSK_DESC_SEL)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
+        if([self.cmdRespQueue count] != 0)
+            break;
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+    }
+    if ([self.cmdRespQueue count] != 0)
+        payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
+    else
+    {
+        NSLog(@"Command timed out.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes
+        return false;
+    }
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    if (memcmp([payloadData bytes], TAGMSK_DESC_SEL, 2) == 0 && ((Byte *)[payloadData bytes])[2] == 0x00) {
+        NSLog(@"TAGMSK_DESC_SEL sent OK");
+        return true;
+    }
+    else {
+        NSLog(@"TAGMSK_DESC_SEL sent FAILED");
+        return false;
+    }
+}
+
 - (BOOL) TAGMSK_DESC_CFG:(BOOL)isEnable selectTarget:(Byte)sel_target selectAction:(Byte)sel_action {
     
     @synchronized(self) {
@@ -1031,6 +1092,45 @@
     return true;
 }
 
+- (BOOL) selectTagForInventory:(MEMORYBANK)maskbank maskPointer:(UInt16)ptr maskLength:(UInt32)length maskData:(NSData*)mask sel_action:(Byte)action {
+    
+    BOOL result=true;
+    
+    NSLog(@"Tag select mask in hex: %@", [CSLBleReader convertDataToHexString:mask] );
+    
+    //Select the desired tag
+    result=[self TAGMSK_DESC_CFG:true selectTarget:4 /* SL*/ selectAction:action];
+    result=[self TAGMSK_BANK:maskbank];
+    result=[self TAGMSK_PTR:ptr];
+    result=[self TAGMSK_LEN:length];
+    if (length > 0 && mask.length > 0) {
+        result=[self setTAGMSK:TAGMSK_0_3 tagMask:((UInt32)(((Byte *)[mask bytes])[0] << 24)) + ((UInt32)(((Byte *)[mask bytes])[1] << 16)) + ((UInt32)(((Byte *)[mask bytes])[2] << 8)) + ((UInt32)((Byte *)[mask bytes])[3])];
+    }
+    if (length > 32 && mask.length > 4) {
+        result=[self setTAGMSK:TAGMSK_4_7 tagMask:((UInt32)(((Byte *)[mask bytes])[4] << 24)) + ((UInt32)(((Byte *)[mask bytes])[5] << 16)) + ((UInt32)(((Byte *)[mask bytes])[6] << 8)) + ((UInt32)((Byte *)[mask bytes])[7])];
+    }
+    if (length > 64 && mask.length > 8) {
+        result=[self setTAGMSK:TAGMSK_8_11 tagMask:((UInt32)(((Byte *)[mask bytes])[8] << 24)) + ((UInt32)(((Byte *)[mask bytes])[9] << 16)) + ((UInt32)(((Byte *)[mask bytes])[10] << 8)) + ((UInt32)((Byte *)[mask bytes])[11])];
+    }
+    if (length > 96 && mask.length > 12) {
+        result=[self setTAGMSK:TAGMSK_12_15 tagMask:((UInt32)(((Byte *)[mask bytes])[12] << 24)) + ((UInt32)(((Byte *)[mask bytes])[13] << 16)) + ((UInt32)(((Byte *)[mask bytes])[14] << 8)) + ((UInt32)((Byte *)[mask bytes])[15])];
+    }
+    if (length > 128 && mask.length > 16) {
+        result=[self setTAGMSK:TAGMSK_16_19 tagMask:((UInt32)(((Byte *)[mask bytes])[16] << 24)) + ((UInt32)(((Byte *)[mask bytes])[17] << 16)) + ((UInt32)(((Byte *)[mask bytes])[18] << 8)) + ((UInt32)((Byte *)[mask bytes])[19])];
+    }
+    if (length > 160 && mask.length > 20) {
+        result=[self setTAGMSK:TAGMSK_20_23 tagMask:((UInt32)(((Byte *)[mask bytes])[20] << 24)) + ((UInt32)(((Byte *)[mask bytes])[21] << 16)) + ((UInt32)(((Byte *)[mask bytes])[22] << 8)) + ((UInt32)((Byte *)[mask bytes])[23])];
+    }
+    if (length > 192 && mask.length > 24) {
+        result=[self setTAGMSK:TAGMSK_24_27 tagMask:((UInt32)(((Byte *)[mask bytes])[24] << 24)) + ((UInt32)(((Byte *)[mask bytes])[25] << 16)) + ((UInt32)(((Byte *)[mask bytes])[26] << 8)) + ((UInt32)((Byte *)[mask bytes])[27])];
+    }
+    if (length > 224 && mask.length > 28) {
+        result=[self setTAGMSK:TAGMSK_28_31 tagMask:((UInt32)(((Byte *)[mask bytes])[28] << 24)) + ((UInt32)(((Byte *)[mask bytes])[29] << 16)) + ((UInt32)(((Byte *)[mask bytes])[30] << 8)) + ((UInt32)((Byte *)[mask bytes])[31])];
+    }
+    
+    return result;
+}
+
 - (BOOL) selectTag:(MEMORYBANK)maskbank maskPointer:(UInt16)ptr maskLength:(UInt32)length maskData:(NSData*)mask {
     
     BOOL result=true;
@@ -1121,6 +1221,7 @@
     CSLBlePacket *recvPacket;
     
     result=[self setParametersForTagAccess];
+    self.isTagAccessMode=true;
     
     //if mask data is not nil, tag will be selected before reading
     if (mask_data != nil)
@@ -1181,6 +1282,7 @@
     CSLBlePacket *recvPacket;
     
     result=[self setParametersForTagAccess];
+    self.isTagAccessMode=true;
     
     //if mask data is not nil, tag will be selected before reading
     if (mask_data != nil)
@@ -1280,6 +1382,7 @@
     CSLBlePacket *recvPacket;
     
     result=[self setParametersForTagSearch];
+    self.isTagAccessMode=true;
     
     //if mask data is not nil, tag will be selected before reading
     if (mask_data != nil)
@@ -1442,6 +1545,7 @@
     CSLBlePacket *recvPacket;
     
     result=[self setParametersForTagAccess];
+    self.isTagAccessMode=true;
     
     //if mask data is not nil, tag will be selected before reading
     if (mask_data != nil)

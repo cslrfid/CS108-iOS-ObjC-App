@@ -163,13 +163,13 @@
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *fixedQ = [UIAlertAction actionWithTitle:@"FixedQ" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
                          { [self.btnAlgorithm setTitle:@"FixedQ" forState:UIControlStateNormal]; }]; // FixedQ
-    UIAlertAction *dyanmicQ = [UIAlertAction actionWithTitle:@"DyanmicQ" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                         { [self.btnAlgorithm setTitle:@"DyanmicQ" forState:UIControlStateNormal]; }]; // DynamicQ
+    UIAlertAction *dynamicQ = [UIAlertAction actionWithTitle:@"DynamicQ" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                         { [self.btnAlgorithm setTitle:@"DynamicQ" forState:UIControlStateNormal]; }]; // DynamicQ
    
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]; // cancel
     
     [alert addAction:fixedQ];
-    [alert addAction:dyanmicQ];
+    [alert addAction:dynamicQ];
 
     [alert addAction:cancel];
     

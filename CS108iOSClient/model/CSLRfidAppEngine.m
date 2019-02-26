@@ -88,39 +88,39 @@ CSLRfidAppEngine * appEngine;
 -(void)reloadSettingsFromUserDefaults {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if([defaults integerForKey:@"power"])
+    if([defaults objectForKey:@"power"])
         settings.power = (int)[defaults integerForKey:@"power"];
-    if([defaults integerForKey:@"tagPopulation"])
+    if([defaults objectForKey:@"tagPopulation"])
         settings.tagPopulation = (int)[defaults integerForKey:@"tagPopulation"];
-    if([defaults boolForKey:@"isQOverride"])
+    if([defaults objectForKey:@"isQOverride"])
         settings.isQOverride =[defaults boolForKey:@"isQOverride"];
-    if([defaults integerForKey:@"QValue"])
+    if([defaults objectForKey:@"QValue"])
         settings.QValue = (int)[defaults integerForKey:@"QValue"];
-    if([defaults integerForKey:@"session"])
+    if([defaults objectForKey:@"session"])
         settings.session = (SESSION)[defaults integerForKey:@"session"];
-    if([defaults integerForKey:@"target"])
+    if([defaults objectForKey:@"target"])
         settings.target = (TARGET)[defaults integerForKey:@"target"];
-    if([defaults integerForKey:@"algorithm"])
+    if([defaults objectForKey:@"algorithm"])
         settings.algorithm = (QUERYALGORITHM)[defaults integerForKey:@"algorithm"];
-    if([defaults integerForKey:@"linkProfile"])
+    if([defaults objectForKey:@"linkProfile"])
         settings.linkProfile = (LINKPROFILE)[defaults integerForKey:@"linkProfile"];
-    if([defaults boolForKey:@"isSoundEnabled"])
+    if([defaults objectForKey:@"isSoundEnabled"])
         settings.enableSound =[defaults boolForKey:@"isSoundEnabled"];
-    if([defaults boolForKey:@"isEnableMultibank1"])
+    if([defaults objectForKey:@"isEnableMultibank1"])
         settings.isMultibank1Enabled =[defaults boolForKey:@"isEnableMultibank1"];
-    if([defaults integerForKey:@"multibank1Select"])
+    if([defaults objectForKey:@"multibank1Select"])
         settings.multibank1 = (MEMORYBANK)[defaults integerForKey:@"multibank1Select"];
-    if([defaults integerForKey:@"multibank1Offset"])
+    if([defaults objectForKey:@"multibank1Offset"])
         settings.multibank1Offset = (Byte)[defaults integerForKey:@"multibank1Offset"];
-    if([defaults integerForKey:@"multibank1Size"])
+    if([defaults objectForKey:@"multibank1Size"])
         settings.multibank1Length = (Byte)[defaults integerForKey:@"multibank1Size"];
-    if([defaults boolForKey:@"isEnableMultibank2"])
+    if([defaults objectForKey:@"isEnableMultibank2"])
         settings.isMultibank2Enabled =[defaults boolForKey:@"isEnableMultibank2"];
-    if([defaults integerForKey:@"multibank2Select"])
+    if([defaults objectForKey:@"multibank2Select"])
         settings.multibank2 = (MEMORYBANK)[defaults integerForKey:@"multibank2Select"];
-    if([defaults integerForKey:@"multibank2Offset"])
+    if([defaults objectForKey:@"multibank2Offset"])
         settings.multibank2Offset = (Byte)[defaults integerForKey:@"multibank2Offset"];
-    if([defaults integerForKey:@"multibank2Size"])
+    if([defaults objectForKey:@"multibank2Size"])
         settings.multibank2Length = (Byte)[defaults integerForKey:@"multibank2Size"];
 }
 -(void)saveSettingsToUserDefaults {
