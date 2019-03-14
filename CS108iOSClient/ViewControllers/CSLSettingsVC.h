@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CSLReaderSettings.h"
+#import "CSLMQTTClientSettings.h"
 #import "CSLRfidAppEngine.h"
 
 @interface CSLSettingsVC : UIViewController<UITextFieldDelegate>
@@ -32,5 +33,6 @@
 - (IBAction)txtTagPopulationChanged:(id)sender;
 - (IBAction)txtPowerChanged:(id)sender;
 - (IBAction)btnSaveConfigPressed:(id)sender;
+
 
 @end

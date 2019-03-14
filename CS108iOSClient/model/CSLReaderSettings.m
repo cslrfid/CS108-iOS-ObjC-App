@@ -32,6 +32,14 @@
         self.algorithm = DYNAMICQ;
         self.linkProfile=RANGE_DRM;
         self.enableSound=true;
+        self.isMultibank1Enabled=false;
+        self.multibank1=TID;
+        self.multibank1Offset=0;
+        self.multibank1Length=2;
+        self.isMultibank2Enabled=false;
+        self.multibank2=USER;
+        self.multibank2Offset=0;
+        self.multibank2Length=2;
     }
     return self;
 }

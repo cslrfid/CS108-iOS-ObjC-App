@@ -21,7 +21,6 @@
 @synthesize btnTarget;
 @synthesize swSound;
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -164,13 +163,13 @@
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *fixedQ = [UIAlertAction actionWithTitle:@"FixedQ" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
                          { [self.btnAlgorithm setTitle:@"FixedQ" forState:UIControlStateNormal]; }]; // FixedQ
-    UIAlertAction *dyanmicQ = [UIAlertAction actionWithTitle:@"DyanmicQ" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                         { [self.btnAlgorithm setTitle:@"DyanmicQ" forState:UIControlStateNormal]; }]; // DynamicQ
+    UIAlertAction *dynamicQ = [UIAlertAction actionWithTitle:@"DynamicQ" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                         { [self.btnAlgorithm setTitle:@"DynamicQ" forState:UIControlStateNormal]; }]; // DynamicQ
    
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]; // cancel
     
     [alert addAction:fixedQ];
-    [alert addAction:dyanmicQ];
+    [alert addAction:dynamicQ];
 
     [alert addAction:cancel];
     
@@ -321,6 +320,20 @@
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:ok];
     [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+- (IBAction)btnRadioSettingsPressed:(id)sender {
+}
+
+- (IBAction)btnMQTTClientPressed:(id)sender {
+    CSLMQTTClientSettings* mqttSettings;
+    mqttSettings = (CSLMQTTClientSettings*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_MQTTSettingsVC"];
+    
+    if (mqttSettings != nil)
+    {
+        [[self navigationController] pushViewController:mqttSettings animated:YES];
+    }
     
 }
 
