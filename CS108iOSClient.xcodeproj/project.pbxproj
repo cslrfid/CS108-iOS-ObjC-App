@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2EA900284254819337E0A31A /* Pods_CS108iOSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F9447957572ACB6DCB964E /* Pods_CS108iOSClient.framework */; };
 		CA411CDF21D8C59F0029E779 /* CSLTagLockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA411CDE21D8C59F0029E779 /* CSLTagLockVC.m */; };
 		CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E5213528FC0035F075 /* CSLBleReader.m */; };
 		CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E8213698DD0035F075 /* CSLBleTag.m */; };
@@ -15,10 +16,6 @@
 		CA57AA7821CAC45E00D081F9 /* LMGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA57AA7621CAC45D00D081F9 /* LMGaugeView.m */; };
 		CA5C059421E4517D00E68E44 /* CSLMQTTClientSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5C059321E4517D00E68E44 /* CSLMQTTClientSettings.m */; };
 		CA5C05A021E4736700E68E44 /* CSLMQTTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5C059F21E4736700E68E44 /* CSLMQTTSettings.m */; };
-		CA5C05A121E483DE00E68E44 /* MQTTClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA5C059C21E4710000E68E44 /* MQTTClient.framework */; };
-		CA5C05A221E483DE00E68E44 /* MQTTClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA5C059C21E4710000E68E44 /* MQTTClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CA5C05A621E4874800E68E44 /* SocketRocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA5C05A421E4873000E68E44 /* SocketRocket.framework */; };
-		CA5C05A721E4874800E68E44 /* SocketRocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA5C05A421E4873000E68E44 /* SocketRocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CA5C9BA1217FF7400079827C /* CSLBleReader+AccessControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5C9BA0217FF7400079827C /* CSLBleReader+AccessControl.m */; };
 		CA787361214CC154009B7FE6 /* CSLHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA787360214CC153009B7FE6 /* CSLHomeVC.m */; };
 		CA787367214CC9C8009B7FE6 /* CSLTabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA787366214CC9C8009B7FE6 /* CSLTabVC.m */; };
@@ -57,8 +54,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CA5C05A221E483DE00E68E44 /* MQTTClient.framework in Embed Frameworks */,
-				CA5C05A721E4874800E68E44 /* SocketRocket.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,6 +61,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		57F9447957572ACB6DCB964E /* Pods_CS108iOSClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CS108iOSClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C113074B365A9123BEB8DC91 /* Pods-CS108iOSClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS108iOSClient.release.xcconfig"; path = "Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient.release.xcconfig"; sourceTree = "<group>"; };
 		CA411CDD21D8C59F0029E779 /* CSLTagLockVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagLockVC.h; sourceTree = "<group>"; };
 		CA411CDE21D8C59F0029E779 /* CSLTagLockVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTagLockVC.m; sourceTree = "<group>"; };
 		CA4E78E4213528FC0035F075 /* CSLBleReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLBleReader.h; sourceTree = "<group>"; };
@@ -79,10 +76,8 @@
 		CA57AA7721CAC45E00D081F9 /* LMGaugeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMGaugeView.h; sourceTree = "<group>"; };
 		CA5C059221E4517D00E68E44 /* CSLMQTTClientSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLMQTTClientSettings.h; sourceTree = "<group>"; };
 		CA5C059321E4517D00E68E44 /* CSLMQTTClientSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLMQTTClientSettings.m; sourceTree = "<group>"; };
-		CA5C059C21E4710000E68E44 /* MQTTClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MQTTClient.framework; sourceTree = "<group>"; };
 		CA5C059E21E4736700E68E44 /* CSLMQTTSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLMQTTSettings.h; sourceTree = "<group>"; };
 		CA5C059F21E4736700E68E44 /* CSLMQTTSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLMQTTSettings.m; sourceTree = "<group>"; };
-		CA5C05A421E4873000E68E44 /* SocketRocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SocketRocket.framework; sourceTree = "<group>"; };
 		CA5C9B9F217FF7400079827C /* CSLBleReader+AccessControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSLBleReader+AccessControl.h"; sourceTree = "<group>"; };
 		CA5C9BA0217FF7400079827C /* CSLBleReader+AccessControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CSLBleReader+AccessControl.m"; sourceTree = "<group>"; };
 		CA78735F214CC153009B7FE6 /* CSLHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLHomeVC.h; sourceTree = "<group>"; };
@@ -134,6 +129,7 @@
 		CAF5CC2A21640E7F00C420EF /* CSLReaderBarcode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderBarcode.m; sourceTree = "<group>"; };
 		CAFF2696221D3F7000D89112 /* CSLMultibankAccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLMultibankAccessVC.h; sourceTree = "<group>"; };
 		CAFF2697221D3F7000D89112 /* CSLMultibankAccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLMultibankAccessVC.m; sourceTree = "<group>"; };
+		E192BA5EB01CF6048E9452C2 /* Pods-CS108iOSClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS108iOSClient.debug.xcconfig"; path = "Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,17 +138,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				CADDF6AA21DDF41E00E05D75 /* CoreGraphics.framework in Frameworks */,
-				CA5C05A621E4874800E68E44 /* SocketRocket.framework in Frameworks */,
-				CA5C05A121E483DE00E68E44 /* MQTTClient.framework in Frameworks */,
 				CA787372214CD7CF009B7FE6 /* Foundation.framework in Frameworks */,
 				CA787370214CD7C4009B7FE6 /* UIKit.framework in Frameworks */,
 				CAB810842133E16F009D2F8F /* CoreBluetooth.framework in Frameworks */,
+				2EA900284254819337E0A31A /* Pods_CS108iOSClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		660A82CFCEC2215BB03911C2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E192BA5EB01CF6048E9452C2 /* Pods-CS108iOSClient.debug.xcconfig */,
+				C113074B365A9123BEB8DC91 /* Pods-CS108iOSClient.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CA5066422159962000C3C9C8 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,12 +244,11 @@
 		CAB810822133E16F009D2F8F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CA5C05A421E4873000E68E44 /* SocketRocket.framework */,
-				CA5C059C21E4710000E68E44 /* MQTTClient.framework */,
 				CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */,
 				CA787371214CD7CF009B7FE6 /* Foundation.framework */,
 				CA78736F214CD7C4009B7FE6 /* UIKit.framework */,
 				CAB810832133E16F009D2F8F /* CoreBluetooth.framework */,
+				57F9447957572ACB6DCB964E /* Pods_CS108iOSClient.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				CABA714721325BF500D15BB1 /* CS108iOSClient */,
 				CABA714621325BF500D15BB1 /* Products */,
 				CAB810822133E16F009D2F8F /* Frameworks */,
+				660A82CFCEC2215BB03911C2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -290,10 +294,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CABA715B21325BF600D15BB1 /* Build configuration list for PBXNativeTarget "CS108iOSClient" */;
 			buildPhases = (
+				CE4E024E693E529CEF924D1B /* [CP] Check Pods Manifest.lock */,
 				CABA714121325BF500D15BB1 /* Sources */,
 				CABA714221325BF500D15BB1 /* Frameworks */,
 				CABA714321325BF500D15BB1 /* Resources */,
 				CA5C05A321E483DF00E68E44 /* Embed Frameworks */,
+				BF0062EE3E6AA41EC6CA42A5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -355,6 +361,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BF0062EE3E6AA41EC6CA42A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MQTTClient/MQTTClient.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MQTTClient.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE4E024E693E529CEF924D1B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CS108iOSClient-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CABA714121325BF500D15BB1 /* Sources */ = {
@@ -518,10 +571,11 @@
 		};
 		CABA715C21325BF600D15BB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E192BA5EB01CF6048E9452C2 /* Pods-CS108iOSClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZDHT9HGJF7;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -539,10 +593,11 @@
 		};
 		CABA715D21325BF600D15BB1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C113074B365A9123BEB8DC91 /* Pods-CS108iOSClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZDHT9HGJF7;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
