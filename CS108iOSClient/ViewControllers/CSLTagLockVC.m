@@ -36,7 +36,7 @@
     self.btnUserSecurity.layer.borderColor=[UIColor lightGrayColor].CGColor;
     self.btnUserSecurity.layer.cornerRadius=5.0f;
     self.btnApplySecurity.layer.borderWidth=1.0f;
-    self.btnApplySecurity.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    self.btnApplySecurity.layer.borderColor=[UIColor clearColor].CGColor;
     self.btnApplySecurity.layer.cornerRadius=5.0f;
 }
 

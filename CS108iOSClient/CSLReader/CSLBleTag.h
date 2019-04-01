@@ -37,7 +37,7 @@ Tag data information
 ///Return RRSI of the tag response
 @property (assign) Byte rssi;
 ///Return timestamp of the tag readtime
-@property (assign) NSDate* timestamp;
+@property NSDate* timestamp;
 ///CRC error flag
 @property (assign) BOOL CRCError;
 ///command of the tag access operation

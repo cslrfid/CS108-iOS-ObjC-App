@@ -36,7 +36,8 @@
     
     
     self.btnSearch.layer.borderWidth=1.0f;
-    self.btnSearch.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    self.btnSearch.layer.borderColor=[UIColor clearColor].CGColor;
+    self.btnSearch.layer.cornerRadius=5.0f;
     
 }
 
@@ -62,7 +63,7 @@
     //stop inventory if it is still running
     if (self.btnSearch.enabled)
     {
-        if ([[self.btnSearch currentTitle] isEqualToString:@"STOP"])
+        if ([[self.btnSearch currentTitle] isEqualToString:@"Stop"])
             [self.btnSearch sendActionsForControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -143,11 +144,11 @@
         if (self->_btnSearch.enabled)
         {
             if (state) {
-                if ([[self->_btnSearch currentTitle] isEqualToString:@"START"])
+                if ([[self->_btnSearch currentTitle] isEqualToString:@"Start"])
                     [self->_btnSearch sendActionsForControlEvents:UIControlEventTouchUpInside];
             }
             else {
-                if ([[self->_btnSearch currentTitle] isEqualToString:@"STOP"])
+                if ([[self->_btnSearch currentTitle] isEqualToString:@"Stop"])
                     [self->_btnSearch sendActionsForControlEvents:UIControlEventTouchUpInside];
             }
         }
@@ -178,7 +179,7 @@
     BOOL result=true;
     rollingAvgRssi = [[CSLCircularQueue alloc] initWithCapacity:ROLLING_AVG_COUNT];
     
-    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED && [[self.btnSearch currentTitle] isEqualToString:@"START"])
+    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED && [[self.btnSearch currentTitle] isEqualToString:@"Start"])
     {
         
         //timer event on updating UI
@@ -200,11 +201,11 @@
 
         
         if (result) {
-            [self.btnSearch setTitle:@"STOP" forState:UIControlStateNormal];
+            [self.btnSearch setTitle:@"Stop" forState:UIControlStateNormal];
             self.btnSearch.enabled=true;
         }
     }
-    else if ([[self.btnSearch currentTitle] isEqualToString:@"STOP"])
+    else if ([[self.btnSearch currentTitle] isEqualToString:@"Stop"])
     {
         [gaugeRefreshTimer invalidate];
         gaugeRefreshTimer=nil;
@@ -212,12 +213,12 @@
         [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         if([[CSLRfidAppEngine sharedAppEngine].reader stopTagSearch])
         {
-            [self.btnSearch setTitle:@"START" forState:UIControlStateNormal];
+            [self.btnSearch setTitle:@"Start" forState:UIControlStateNormal];
             self.btnSearch.enabled=true;
         }
         else
         {
-            [self.btnSearch setTitle:@"STOP" forState:UIControlStateNormal];
+            [self.btnSearch setTitle:@"Stop" forState:UIControlStateNormal];
             self.btnSearch.enabled=true;
         }
     }

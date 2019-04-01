@@ -15,6 +15,17 @@
     
     [CSLRfidAppEngine sharedAppEngine];
     
+    [[UIBarButtonItem appearance] setTintColor:UIColorFromRGB(0xFFFFFF)];
+    
+    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x1F4788)];
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+    shadow.shadowOffset = CGSizeMake(0, 0);
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           UIColorFromRGB(0xFFFFFF), NSForegroundColorAttributeName,
+                                                           shadow, NSShadowAttributeName,
+                                                           [UIFont fontWithName:@"Lato-Bold.ttf" size:25.0], NSFontAttributeName, nil]];
+    
     [[UIApplication sharedApplication] setIdleTimerDisabled: YES];
     // Override point for customization after application launch.
     return YES;

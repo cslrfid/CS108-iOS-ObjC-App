@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2EA900284254819337E0A31A /* Pods_CS108iOSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F9447957572ACB6DCB964E /* Pods_CS108iOSClient.framework */; };
 		CA411CDF21D8C59F0029E779 /* CSLTagLockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA411CDE21D8C59F0029E779 /* CSLTagLockVC.m */; };
+		CA4661A1223AD3A80028333B /* CSLTemperatureTagSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4661A0223AD3A80028333B /* CSLTemperatureTagSettingsVC.m */; };
+		CA4D5CA0222860DA007A55B3 /* CSLTemperatureTabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4D5C9F222860DA007A55B3 /* CSLTemperatureTabVC.m */; };
+		CA4D5CA32228EF91007A55B3 /* CSLTemperatureReadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4D5CA22228EF91007A55B3 /* CSLTemperatureReadVC.m */; };
 		CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E5213528FC0035F075 /* CSLBleReader.m */; };
 		CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4E78E8213698DD0035F075 /* CSLBleTag.m */; };
 		CA5066412157889C00C3C9C8 /* CSLAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5066402157889C00C3C9C8 /* CSLAboutVC.m */; };
@@ -17,16 +19,19 @@
 		CA5C059421E4517D00E68E44 /* CSLMQTTClientSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5C059321E4517D00E68E44 /* CSLMQTTClientSettings.m */; };
 		CA5C05A021E4736700E68E44 /* CSLMQTTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5C059F21E4736700E68E44 /* CSLMQTTSettings.m */; };
 		CA5C9BA1217FF7400079827C /* CSLBleReader+AccessControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5C9BA0217FF7400079827C /* CSLBleReader+AccessControl.m */; };
+		CA722980222AB13300D8C2CF /* CSLTemperatureTagListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA72297E222AB13300D8C2CF /* CSLTemperatureTagListCell.m */; };
+		CA722981222AB13300D8C2CF /* CSLTemperatureTagListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA72297F222AB13300D8C2CF /* CSLTemperatureTagListCell.xib */; };
 		CA787361214CC154009B7FE6 /* CSLHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA787360214CC153009B7FE6 /* CSLHomeVC.m */; };
 		CA787367214CC9C8009B7FE6 /* CSLTabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA787366214CC9C8009B7FE6 /* CSLTabVC.m */; };
 		CA78736A214CCA47009B7FE6 /* CSLSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA787369214CCA47009B7FE6 /* CSLSettingsVC.m */; };
 		CA78736D214CD49D009B7FE6 /* CSLInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78736C214CD49D009B7FE6 /* CSLInventoryVC.m */; };
 		CA787370214CD7C4009B7FE6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA78736F214CD7C4009B7FE6 /* UIKit.framework */; };
-		CA787372214CD7CF009B7FE6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA787371214CD7CF009B7FE6 /* Foundation.framework */; };
+		CA787372214CD7CF009B7FE6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA787371214CD7CF009B7FE6 /* Foundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		CA7873782150DF7A009B7FE6 /* CSLDeviceTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7873772150DF7A009B7FE6 /* CSLDeviceTV.m */; };
 		CA78737C21514E61009B7FE6 /* CSLRfidAppEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78737B21514E61009B7FE6 /* CSLRfidAppEngine.m */; };
 		CA78737F21543B6F009B7FE6 /* CSLReaderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78737E21543B6F009B7FE6 /* CSLReaderSettings.m */; };
 		CA7873822155F59C009B7FE6 /* CSLReaderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7873812155F59C009B7FE6 /* CSLReaderInfo.m */; };
+		CAA89F45223D23D50066B601 /* CSLTemperatureUploadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA89F44223D23D50066B601 /* CSLTemperatureUploadVC.m */; };
 		CAB31377221A75330048DA62 /* CSLTagListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB31375221A75330048DA62 /* CSLTagListCell.m */; };
 		CAB31378221A75330048DA62 /* CSLTagListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB31376221A75330048DA62 /* CSLTagListCell.xib */; };
 		CAB3137B221BE17D0048DA62 /* CSLMoreFunctionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3137A221BE17D0048DA62 /* CSLMoreFunctionsVC.m */; };
@@ -41,14 +46,21 @@
 		CACFBBBB21C8E4D0001161F6 /* CSLTagSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CACFBBBA21C8E4D0001161F6 /* CSLTagSearchVC.m */; };
 		CAD168572175AD6600DC218E /* CSLTagAccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD168562175AD6600DC218E /* CSLTagAccessVC.m */; };
 		CADDF6AA21DDF41E00E05D75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */; };
+		CAE95309222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE95308222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m */; };
 		CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */; };
 		CAF5CC2821626F1500C420EF /* CSLReaderBattery.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF5CC2721626F1500C420EF /* CSLReaderBattery.m */; };
 		CAF5CC2B21640E7F00C420EF /* CSLReaderBarcode.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF5CC2A21640E7F00C420EF /* CSLReaderBarcode.m */; };
+		CAF7FFF822376AB00016F6E7 /* CSLTemperatureTagSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7FFF722376AB00016F6E7 /* CSLTemperatureTagSettings.m */; };
+		CAF8351D2226901B002F90AC /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAF8351922268F96002F90AC /* Lato-Bold.ttf */; };
+		CAF8351E2226901D002F90AC /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAF8351C22268F97002F90AC /* Lato-Italic.ttf */; };
+		CAF8351F22269021002F90AC /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAF8351A22268F97002F90AC /* Lato-Regular.ttf */; };
+		CAF8352022269024002F90AC /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAF8351B22268F97002F90AC /* Lato-Light.ttf */; };
 		CAFF2698221D3F7000D89112 /* CSLMultibankAccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFF2697221D3F7000D89112 /* CSLMultibankAccessVC.m */; };
+		F5ECCDD9EA81EA7C6A3EFD87 /* Pods_CS108iOSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88353A6E485674B1C2AB0B20 /* Pods_CS108iOSClient.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CA5C05A321E483DF00E68E44 /* Embed Frameworks */ = {
+		CA4661A4223B49430028333B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
@@ -61,10 +73,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		57F9447957572ACB6DCB964E /* Pods_CS108iOSClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CS108iOSClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C113074B365A9123BEB8DC91 /* Pods-CS108iOSClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS108iOSClient.release.xcconfig"; path = "Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient.release.xcconfig"; sourceTree = "<group>"; };
+		84CF1AC1DC7B7241A83886CF /* Pods-CS108iOSClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS108iOSClient.debug.xcconfig"; path = "Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient.debug.xcconfig"; sourceTree = "<group>"; };
+		88353A6E485674B1C2AB0B20 /* Pods_CS108iOSClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CS108iOSClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C38EEE82B5D5911C071188B /* Pods-CS108iOSClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS108iOSClient.release.xcconfig"; path = "Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient.release.xcconfig"; sourceTree = "<group>"; };
 		CA411CDD21D8C59F0029E779 /* CSLTagLockVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagLockVC.h; sourceTree = "<group>"; };
 		CA411CDE21D8C59F0029E779 /* CSLTagLockVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTagLockVC.m; sourceTree = "<group>"; };
+		CA46619F223AD3A80028333B /* CSLTemperatureTagSettingsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureTagSettingsVC.h; sourceTree = "<group>"; };
+		CA4661A0223AD3A80028333B /* CSLTemperatureTagSettingsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureTagSettingsVC.m; sourceTree = "<group>"; };
+		CA4D5C9E222860DA007A55B3 /* CSLTemperatureTabVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureTabVC.h; sourceTree = "<group>"; };
+		CA4D5C9F222860DA007A55B3 /* CSLTemperatureTabVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureTabVC.m; sourceTree = "<group>"; };
+		CA4D5CA12228EF91007A55B3 /* CSLTemperatureReadVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureReadVC.h; sourceTree = "<group>"; };
+		CA4D5CA22228EF91007A55B3 /* CSLTemperatureReadVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureReadVC.m; sourceTree = "<group>"; };
 		CA4E78E4213528FC0035F075 /* CSLBleReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLBleReader.h; sourceTree = "<group>"; };
 		CA4E78E5213528FC0035F075 /* CSLBleReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLBleReader.m; sourceTree = "<group>"; };
 		CA4E78E7213698DD0035F075 /* CSLBleTag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLBleTag.h; sourceTree = "<group>"; };
@@ -80,6 +99,9 @@
 		CA5C059F21E4736700E68E44 /* CSLMQTTSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLMQTTSettings.m; sourceTree = "<group>"; };
 		CA5C9B9F217FF7400079827C /* CSLBleReader+AccessControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSLBleReader+AccessControl.h"; sourceTree = "<group>"; };
 		CA5C9BA0217FF7400079827C /* CSLBleReader+AccessControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CSLBleReader+AccessControl.m"; sourceTree = "<group>"; };
+		CA72297D222AB13300D8C2CF /* CSLTemperatureTagListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureTagListCell.h; sourceTree = "<group>"; };
+		CA72297E222AB13300D8C2CF /* CSLTemperatureTagListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureTagListCell.m; sourceTree = "<group>"; };
+		CA72297F222AB13300D8C2CF /* CSLTemperatureTagListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CSLTemperatureTagListCell.xib; sourceTree = "<group>"; };
 		CA78735F214CC153009B7FE6 /* CSLHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLHomeVC.h; sourceTree = "<group>"; };
 		CA787360214CC153009B7FE6 /* CSLHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLHomeVC.m; sourceTree = "<group>"; };
 		CA787365214CC9C8009B7FE6 /* CSLTabVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTabVC.h; sourceTree = "<group>"; };
@@ -98,6 +120,8 @@
 		CA78737E21543B6F009B7FE6 /* CSLReaderSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderSettings.m; sourceTree = "<group>"; };
 		CA7873802155F59C009B7FE6 /* CSLReaderInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLReaderInfo.h; sourceTree = "<group>"; };
 		CA7873812155F59C009B7FE6 /* CSLReaderInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderInfo.m; sourceTree = "<group>"; };
+		CAA89F43223D23D50066B601 /* CSLTemperatureUploadVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureUploadVC.h; sourceTree = "<group>"; };
+		CAA89F44223D23D50066B601 /* CSLTemperatureUploadVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureUploadVC.m; sourceTree = "<group>"; };
 		CAB31374221A75330048DA62 /* CSLTagListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagListCell.h; sourceTree = "<group>"; };
 		CAB31375221A75330048DA62 /* CSLTagListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTagListCell.m; sourceTree = "<group>"; };
 		CAB31376221A75330048DA62 /* CSLTagListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CSLTagListCell.xib; sourceTree = "<group>"; };
@@ -122,14 +146,21 @@
 		CAD168552175AD6600DC218E /* CSLTagAccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagAccessVC.h; sourceTree = "<group>"; };
 		CAD168562175AD6600DC218E /* CSLTagAccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTagAccessVC.m; sourceTree = "<group>"; };
 		CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CAE95307222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureDetailsVC.h; sourceTree = "<group>"; };
+		CAE95308222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureDetailsVC.m; sourceTree = "<group>"; };
 		CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CSLRfidDemoApp.storyboard; sourceTree = "<group>"; };
 		CAF5CC2621626F1500C420EF /* CSLReaderBattery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLReaderBattery.h; sourceTree = "<group>"; };
 		CAF5CC2721626F1500C420EF /* CSLReaderBattery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderBattery.m; sourceTree = "<group>"; };
 		CAF5CC2921640E7F00C420EF /* CSLReaderBarcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLReaderBarcode.h; sourceTree = "<group>"; };
 		CAF5CC2A21640E7F00C420EF /* CSLReaderBarcode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderBarcode.m; sourceTree = "<group>"; };
+		CAF7FFF622376AB00016F6E7 /* CSLTemperatureTagSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureTagSettings.h; sourceTree = "<group>"; };
+		CAF7FFF722376AB00016F6E7 /* CSLTemperatureTagSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureTagSettings.m; sourceTree = "<group>"; };
+		CAF8351922268F96002F90AC /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		CAF8351A22268F97002F90AC /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		CAF8351B22268F97002F90AC /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
+		CAF8351C22268F97002F90AC /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		CAFF2696221D3F7000D89112 /* CSLMultibankAccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLMultibankAccessVC.h; sourceTree = "<group>"; };
 		CAFF2697221D3F7000D89112 /* CSLMultibankAccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLMultibankAccessVC.m; sourceTree = "<group>"; };
-		E192BA5EB01CF6048E9452C2 /* Pods-CS108iOSClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS108iOSClient.debug.xcconfig"; path = "Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,18 +172,18 @@
 				CA787372214CD7CF009B7FE6 /* Foundation.framework in Frameworks */,
 				CA787370214CD7C4009B7FE6 /* UIKit.framework in Frameworks */,
 				CAB810842133E16F009D2F8F /* CoreBluetooth.framework in Frameworks */,
-				2EA900284254819337E0A31A /* Pods_CS108iOSClient.framework in Frameworks */,
+				F5ECCDD9EA81EA7C6A3EFD87 /* Pods_CS108iOSClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		660A82CFCEC2215BB03911C2 /* Pods */ = {
+		B5D80DFEDCD0D58B42FFA1C2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E192BA5EB01CF6048E9452C2 /* Pods-CS108iOSClient.debug.xcconfig */,
-				C113074B365A9123BEB8DC91 /* Pods-CS108iOSClient.release.xcconfig */,
+				84CF1AC1DC7B7241A83886CF /* Pods-CS108iOSClient.debug.xcconfig */,
+				8C38EEE82B5D5911C071188B /* Pods-CS108iOSClient.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -160,6 +191,10 @@
 		CA5066422159962000C3C9C8 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				CAF8351922268F96002F90AC /* Lato-Bold.ttf */,
+				CAF8351C22268F97002F90AC /* Lato-Italic.ttf */,
+				CAF8351B22268F97002F90AC /* Lato-Light.ttf */,
+				CAF8351A22268F97002F90AC /* Lato-Regular.ttf */,
 				CA506643215996A000C3C9C8 /* digital-7 (mono).ttf */,
 			);
 			path = fonts;
@@ -199,6 +234,19 @@
 				CAB3137A221BE17D0048DA62 /* CSLMoreFunctionsVC.m */,
 				CAFF2696221D3F7000D89112 /* CSLMultibankAccessVC.h */,
 				CAFF2697221D3F7000D89112 /* CSLMultibankAccessVC.m */,
+				CA4D5C9E222860DA007A55B3 /* CSLTemperatureTabVC.h */,
+				CA4D5C9F222860DA007A55B3 /* CSLTemperatureTabVC.m */,
+				CA4D5CA12228EF91007A55B3 /* CSLTemperatureReadVC.h */,
+				CA4D5CA22228EF91007A55B3 /* CSLTemperatureReadVC.m */,
+				CA72297D222AB13300D8C2CF /* CSLTemperatureTagListCell.h */,
+				CA72297E222AB13300D8C2CF /* CSLTemperatureTagListCell.m */,
+				CA72297F222AB13300D8C2CF /* CSLTemperatureTagListCell.xib */,
+				CAE95307222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.h */,
+				CAE95308222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m */,
+				CA46619F223AD3A80028333B /* CSLTemperatureTagSettingsVC.h */,
+				CA4661A0223AD3A80028333B /* CSLTemperatureTagSettingsVC.m */,
+				CAA89F43223D23D50066B601 /* CSLTemperatureUploadVC.h */,
+				CAA89F44223D23D50066B601 /* CSLTemperatureUploadVC.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -237,6 +285,8 @@
 				CAF5CC2A21640E7F00C420EF /* CSLReaderBarcode.m */,
 				CA5C059E21E4736700E68E44 /* CSLMQTTSettings.h */,
 				CA5C059F21E4736700E68E44 /* CSLMQTTSettings.m */,
+				CAF7FFF622376AB00016F6E7 /* CSLTemperatureTagSettings.h */,
+				CAF7FFF722376AB00016F6E7 /* CSLTemperatureTagSettings.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -248,7 +298,7 @@
 				CA787371214CD7CF009B7FE6 /* Foundation.framework */,
 				CA78736F214CD7C4009B7FE6 /* UIKit.framework */,
 				CAB810832133E16F009D2F8F /* CoreBluetooth.framework */,
-				57F9447957572ACB6DCB964E /* Pods_CS108iOSClient.framework */,
+				88353A6E485674B1C2AB0B20 /* Pods_CS108iOSClient.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -259,7 +309,7 @@
 				CABA714721325BF500D15BB1 /* CS108iOSClient */,
 				CABA714621325BF500D15BB1 /* Products */,
 				CAB810822133E16F009D2F8F /* Frameworks */,
-				660A82CFCEC2215BB03911C2 /* Pods */,
+				B5D80DFEDCD0D58B42FFA1C2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -294,12 +344,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CABA715B21325BF600D15BB1 /* Build configuration list for PBXNativeTarget "CS108iOSClient" */;
 			buildPhases = (
-				CE4E024E693E529CEF924D1B /* [CP] Check Pods Manifest.lock */,
+				DC3B9B209519BC5F553A8C5A /* [CP] Check Pods Manifest.lock */,
 				CABA714121325BF500D15BB1 /* Sources */,
 				CABA714221325BF500D15BB1 /* Frameworks */,
 				CABA714321325BF500D15BB1 /* Resources */,
-				CA5C05A321E483DF00E68E44 /* Embed Frameworks */,
-				BF0062EE3E6AA41EC6CA42A5 /* [CP] Embed Pods Frameworks */,
+				CA4661A4223B49430028333B /* Embed Frameworks */,
+				DE8D8319B4FB861B398A4EE8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -353,7 +403,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CABA715521325BF600D15BB1 /* LaunchScreen.storyboard in Resources */,
+				CAF8351E2226901D002F90AC /* Lato-Italic.ttf in Resources */,
+				CAF8351D2226901B002F90AC /* Lato-Bold.ttf in Resources */,
+				CAF8352022269024002F90AC /* Lato-Light.ttf in Resources */,
+				CAF8351F22269021002F90AC /* Lato-Regular.ttf in Resources */,
 				CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */,
+				CA722981222AB13300D8C2CF /* CSLTemperatureTagListCell.xib in Resources */,
 				CAB31378221A75330048DA62 /* CSLTagListCell.xib in Resources */,
 				CABA715221325BF600D15BB1 /* Assets.xcassets in Resources */,
 				CA506644215996A000C3C9C8 /* digital-7 (mono).ttf in Resources */,
@@ -363,29 +418,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BF0062EE3E6AA41EC6CA42A5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MQTTClient/MQTTClient.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MQTTClient.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CE4E024E693E529CEF924D1B /* [CP] Check Pods Manifest.lock */ = {
+		DC3B9B209519BC5F553A8C5A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -407,6 +440,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DE8D8319B4FB861B398A4EE8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MQTTClient/MQTTClient.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MQTTClient.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -415,14 +470,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				CABA71682132631F00D15BB1 /* CSLBleInterface.m in Sources */,
+				CA4D5CA0222860DA007A55B3 /* CSLTemperatureTabVC.m in Sources */,
+				CAA89F45223D23D50066B601 /* CSLTemperatureUploadVC.m in Sources */,
 				CAFF2698221D3F7000D89112 /* CSLMultibankAccessVC.m in Sources */,
+				CAF7FFF822376AB00016F6E7 /* CSLTemperatureTagSettings.m in Sources */,
+				CAE95309222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m in Sources */,
 				CA78737C21514E61009B7FE6 /* CSLRfidAppEngine.m in Sources */,
 				CA5066412157889C00C3C9C8 /* CSLAboutVC.m in Sources */,
 				CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */,
+				CA4D5CA32228EF91007A55B3 /* CSLTemperatureReadVC.m in Sources */,
 				CA787367214CC9C8009B7FE6 /* CSLTabVC.m in Sources */,
 				CA7873782150DF7A009B7FE6 /* CSLDeviceTV.m in Sources */,
+				CA722980222AB13300D8C2CF /* CSLTemperatureTagListCell.m in Sources */,
 				CA411CDF21D8C59F0029E779 /* CSLTagLockVC.m in Sources */,
 				CA78736D214CD49D009B7FE6 /* CSLInventoryVC.m in Sources */,
+				CA4661A1223AD3A80028333B /* CSLTemperatureTagSettingsVC.m in Sources */,
 				CA57AA7821CAC45E00D081F9 /* LMGaugeView.m in Sources */,
 				CAB31377221A75330048DA62 /* CSLTagListCell.m in Sources */,
 				CAF5CC2821626F1500C420EF /* CSLReaderBattery.m in Sources */,
@@ -571,11 +633,11 @@
 		};
 		CABA715C21325BF600D15BB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E192BA5EB01CF6048E9452C2 /* Pods-CS108iOSClient.debug.xcconfig */;
+			baseConfigurationReference = 84CF1AC1DC7B7241A83886CF /* Pods-CS108iOSClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZDHT9HGJF7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -593,11 +655,11 @@
 		};
 		CABA715D21325BF600D15BB1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C113074B365A9123BEB8DC91 /* Pods-CS108iOSClient.release.xcconfig */;
+			baseConfigurationReference = 8C38EEE82B5D5911C071188B /* Pods-CS108iOSClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZDHT9HGJF7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

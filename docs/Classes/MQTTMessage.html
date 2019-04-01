@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MQTTMessage Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Class/MQTTMessage" class="dashAnchor"></a>
+    <a title="MQTTMessage Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">CS108iOSClient Docs</a> (56% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">CS108iOSClient Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        MQTTMessage Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Categories.html">Categories</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Categories/NSMutableData(MQTT).html">NSMutableData(MQTT)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleInterface.html">CSLBleInterface</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBlePacket.html">CSLBlePacket</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleReader.html">CSLBleReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleTag.html">CSLBleTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLCircularQueue.html">CSLCircularQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLMQTTSettings.html">CSLMQTTSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBarcode.html">CSLReaderBarcode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderInfo.html">CSLReaderInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderSettings.html">CSLReaderSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLRfidAppEngine.html">CSLRfidAppEngine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLTemperatureTagSettings.html">CSLTemperatureTagSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketDecoder.html">MQTTCFSocketDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketEncoder.html">MQTTCFSocketEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketTransport.html">MQTTCFSocketTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTCoreDataFlow">MQTTCoreDataFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTCoreDataPersistence">MQTTCoreDataPersistence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTDecoder.html">MQTTDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTFlow">MQTTFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTLog.html">MQTTLog</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTMessage.html">MQTTMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTProperties.html">MQTTProperties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSSLSecurityPolicy.html">MQTTSSLSecurityPolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSSLSecurityPolicyTransport.html">MQTTSSLSecurityPolicyTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSession.html">MQTTSession</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSessionManager.html">MQTTSessionManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTTransport">MQTTTransport</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Constants.html">Constants</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTClientVersionNumber">MQTTClientVersionNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTClientVersionString">MQTTClientVersionString</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTSessionErrorDomain">MQTTSessionErrorDomain</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_MESSAGES">MQTT_MAX_MESSAGES</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_SIZE">MQTT_MAX_SIZE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_WINDOW_SIZE">MQTT_MAX_WINDOW_SIZE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_PERSISTENT">MQTT_PERSISTENT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@ddLogLevel">ddLogLevel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ACCESSCMD.html">ACCESSCMD</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYLEVELSTATUS.html">BATTERYLEVELSTATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYMODE.html">BATTERYMODE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CONNECTION.html">CONNECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DDLogFlag.html">DDLogFlag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DDLogLevel.html">DDLogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DEVICEID.html">DEVICEID</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DIRECTION.html">DIRECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LINKPROFILE.html">LINKPROFILE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MEMORYBANK.html">MEMORYBANK</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCFSocketDecoderState.html">MQTTCFSocketDecoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCFSocketEncoderState.html">MQTTCFSocketEncoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCommandType.html">MQTTCommandType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTDecoderEvent.html">MQTTDecoderEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTDecoderState.html">MQTTDecoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTPropertyIdentifier.html">MQTTPropertyIdentifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSSLPinningMode.html">MQTTSSLPinningMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionError.html">MQTTSessionError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionEvent.html">MQTTSessionEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionManagerState.html">MQTTSessionManagerState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionStatus.html">MQTTSessionStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTStatus.html">MQTTStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTTransportState.html">MQTTTransportState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYSELECT.html">QUERYSELECT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SENSORTYPE.html">SENSORTYPE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SESSION.html">SESSION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/STATUS.html">STATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TARGET.html">TARGET</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TEMPERATUREUNIT.html">TEMPERATUREUNIT</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleInterfaceDelegate.html">CSLBleInterfaceDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTCFSocketDecoderDelegate.html">MQTTCFSocketDecoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTCFSocketEncoderDelegate.html">MQTTCFSocketEncoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTDecoderDelegate.html">MQTTDecoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTFlow.html">MQTTFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTPersistence.html">MQTTPersistence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTSessionDelegate.html">MQTTSessionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTSessionManagerDelegate.html">MQTTSessionManagerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTTransport.html">MQTTTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTTransportDelegate.html">MQTTTransportDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Type Definitions.html">Type Definitions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTConnectHandler">MQTTConnectHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTDisconnectHandler">MQTTDisconnectHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTPublishHandler">MQTTPublishHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTSubscribeHandler">MQTTSubscribeHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTUnsubscribeHandler">MQTTUnsubscribeHandler</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>MQTTMessage</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">MQTTMessage</span> <span class="p">:</span> <span class="nc">NSObject</span>
+
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span> <span class="n">type</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span> <span class="n">qos</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">retainFlag</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">dupFlag</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n">UInt16</span> <span class="n">mid</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSData</span> <span class="o">*</span><span class="n">data</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">returnCode</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">connectAcknowledgeFlags</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n"><a href="../Classes/MQTTProperties.html">MQTTProperties</a></span> <span class="o">*</span><span class="n">properties</span><span class="p">;</span>
+
+<span class="cm">/**
+ Enumeration of MQTT return codes
+ */</span>
+
+<span class="k">typedef</span> <span class="nf">NS_ENUM</span><span class="p">(</span><span class="n">NSUInteger</span><span class="p">,</span> <span class="n"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">MQTTAccepted</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">MQTTRefusedUnacceptableProtocolVersion</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">MQTTRefusedIdentiferRejected</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">MQTTRefusedServerUnavailable</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">MQTTRefusedBadUserNameOrPassword</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">MQTTRefusedNotAuthorized</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+
+    <span class="n">MQTTSuccess</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">MQTTDisconnectWithWillMessage</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">MQTTNoSubscriptionExisted</span> <span class="o">=</span> <span class="mi">17</span><span class="p">,</span>
+    <span class="n">MQTTContinueAuthentication</span> <span class="o">=</span> <span class="mi">24</span><span class="p">,</span>
+    <span class="n">MQTTReAuthenticate</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span>
+    <span class="n">MQTTUnspecifiedError</span> <span class="o">=</span> <span class="mi">128</span><span class="p">,</span>
+    <span class="n">MQTTMalformedPacket</span> <span class="o">=</span> <span class="mi">129</span><span class="p">,</span>
+    <span class="n">MQTTProtocolError</span> <span class="o">=</span> <span class="mi">130</span><span class="p">,</span>
+    <span class="n">MQTTImplementationSpecificError</span> <span class="o">=</span> <span class="mi">131</span><span class="p">,</span>
+    <span class="n">MQTTUnsupportedProtocolVersion</span> <span class="o">=</span> <span class="mi">132</span><span class="p">,</span>
+    <span class="n">MQTTClientIdentifierNotValid</span> <span class="o">=</span> <span class="mi">133</span><span class="p">,</span>
+    <span class="n">MQTTBadUserNameOrPassword</span> <span class="o">=</span> <span class="mi">134</span><span class="p">,</span>
+    <span class="n">MQTTNotAuthorized</span> <span class="o">=</span> <span class="mi">135</span><span class="p">,</span>
+    <span class="n">MQTTServerUnavailable</span> <span class="o">=</span> <span class="mi">136</span><span class="p">,</span>
+    <span class="n">MQTTServerBusy</span> <span class="o">=</span> <span class="mi">137</span><span class="p">,</span>
+    <span class="n">MQTTBanned</span> <span class="o">=</span> <span class="mi">138</span><span class="p">,</span>
+    <span class="n">MQTTServerShuttingDown</span> <span class="o">=</span> <span class="mi">139</span><span class="p">,</span>
+    <span class="n">MQTTBadAuthenticationMethod</span> <span class="o">=</span> <span class="mi">140</span><span class="p">,</span>
+    <span class="n">MQTTKeepAliveTimeout</span> <span class="o">=</span> <span class="mi">141</span><span class="p">,</span>
+    <span class="n">MQTTSessionTakenOver</span> <span class="o">=</span> <span class="mi">142</span><span class="p">,</span>
+    <span class="n">MQTTTopicFilterInvalid</span> <span class="o">=</span> <span class="mi">143</span><span class="p">,</span>
+    <span class="n">MQTTTopicNameInvalid</span> <span class="o">=</span> <span class="mi">144</span><span class="p">,</span>
+    <span class="n">MQTTPacketIdentifierInUse</span> <span class="o">=</span> <span class="mi">145</span><span class="p">,</span>
+    <span class="n">MQTTPacketIdentifierNotFound</span> <span class="o">=</span> <span class="mi">146</span><span class="p">,</span>
+    <span class="n">MQTTReceiveMaximumExceeded</span> <span class="o">=</span> <span class="mi">147</span><span class="p">,</span>
+    <span class="n">MQTTPacketTooLarge</span> <span class="o">=</span> <span class="mi">149</span><span class="p">,</span>
+    <span class="n">MQTTMessageRateTooHigh</span> <span class="o">=</span> <span class="mi">150</span><span class="p">,</span>
+    <span class="n">MQTTQuotaExceeded</span> <span class="o">=</span> <span class="mi">151</span><span class="p">,</span>
+    <span class="n">MQTTAdministrativeAction</span> <span class="o">=</span> <span class="mi">152</span><span class="p">,</span>
+    <span class="n">MQTTPayloadFormatInvalid</span> <span class="o">=</span> <span class="mi">153</span><span class="p">,</span>
+    <span class="n">MQTTRetainNotSupported</span> <span class="o">=</span> <span class="mi">154</span><span class="p">,</span>
+    <span class="n">MQTTQoSNotSupported</span> <span class="o">=</span> <span class="mi">155</span><span class="p">,</span>
+    <span class="n">MQTTUseAnotherServer</span> <span class="o">=</span> <span class="mi">156</span><span class="p">,</span>
+    <span class="n">MQTTServerMoved</span> <span class="o">=</span> <span class="mi">157</span><span class="p">,</span>
+    <span class="n">MQTTSharedSubscriptionNotSupported</span> <span class="o">=</span> <span class="mi">158</span><span class="p">,</span>
+    <span class="n">MQTTConnectionRateExceeded</span> <span class="o">=</span> <span class="mi">159</span><span class="p">,</span>
+    <span class="n">MQTTSubscriptionIdentifiersNotSupported</span> <span class="o">=</span> <span class="mi">161</span><span class="p">,</span>
+    <span class="n">MQTTWildcardSubscriptionNotSupported</span> <span class="o">=</span> <span class="mi">162</span>
+<span class="p">};</span>
+
+<span class="c1">// factory methods</span>
+<span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">connectMessageWithClientId</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">clientId</span>
+                                   <span class="nf">userName</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">userName</span>
+                                   <span class="nf">password</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">password</span>
+                                  <span class="nf">keepAlive</span><span class="p">:(</span><span class="n">NSInteger</span><span class="p">)</span><span class="nv">keeplive</span>
+                               <span class="nf">cleanSession</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">cleanSessionFlag</span>
+                                       <span class="nf">will</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">will</span>
+                                  <span class="nf">willTopic</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">willTopic</span>
+                                    <span class="nf">willMsg</span><span class="p">:(</span><span class="n">NSData</span><span class="o">*</span><span class="p">)</span><span class="nv">willData</span>
+                                    <span class="nf">willQoS</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">)</span><span class="nv">willQoS</span>
+                                 <span class="nf">willRetain</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">willRetainFlag</span>
+                              <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                      <span class="nf">sessionExpiryInterval</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">sessionExpiryInterval</span>
+                                 <span class="nf">authMethod</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">authMethod</span>
+                                   <span class="nf">authData</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">authData</span>
+                  <span class="nf">requestProblemInformation</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">requestProblemInformation</span>
+                          <span class="nf">willDelayInterval</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">willDelayInterval</span>
+                 <span class="nf">requestResponseInformation</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">requestResponseInformation</span>
+                             <span class="nf">receiveMaximum</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">receiveMaximum</span>
+                          <span class="nf">topicAliasMaximum</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">topicAliasMaximum</span>
+                               <span class="nf">userProperty</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">userProperty</span>
+                          <span class="nf">maximumPacketSize</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">maximumPacketSize</span>
+<span class="p">;</span>
+
+<span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="n">pingreqMessage</span><span class="p">;</span>
+
+<span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">disconnectMessage</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                        <span class="nf">returnCode</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">)</span><span class="nv">returnCode</span>
+             <span class="nf">sessionExpiryInterval</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">sessionExpiryInterval</span>
+                      <span class="nf">reasonString</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">reasonString</span>
+                      <span class="nf">userProperty</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">userProperty</span><span class="p">;</span>
+
+<span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">subscribeMessageWithMessageId</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgId</span>
+                                        <span class="nf">topics</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">topics</span>
+                                 <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                        <span class="nf">subscriptionIdentifier</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">subscriptionIdentifier</span><span class="p">;</span>
+
+<span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">unsubscribeMessageWithMessageId</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgId</span>
+                                          <span class="nf">topics</span><span class="p">:(</span><span class="n">NSArray</span> <span class="o">*</span><span class="p">)</span><span class="nv">topics</span>
+                                   <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span><span class="p">;</span>
+
+<span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">publishMessageWithData</span><span class="p">:(</span><span class="n">NSData</span><span class="o">*</span><span class="p">)</span><span class="nv">payload</span>
+                                <span class="nf">onTopic</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">topic</span>
+                                    <span class="nf">qos</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">)</span><span class="nv">qosLevel</span>
+                                  <span class="nf">msgId</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgId</span>
+                             <span class="nf">retainFlag</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">retain</span>
+                                <span class="nf">dupFlag</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">dup</span>
+                          <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                 <span class="nf">payloadFormatIndicator</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">payloadFormatIndicator</span>
+              <span class="nf">publicationExpiryInterval</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">publicationExpiryInterval</span>
+                             <span class="nf">topicAlias</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">topicAlias</span>
+                          <span class="nf">responseTopic</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">responseTopic</span>
+                        <span class="nf">correlationData</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">correlationData</span>
+                           <span class="nf">userProperty</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">userProperty</span>
+                            <span class="nf">contentType</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">contentType</span><span class="p">;</span>
+
+<span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">pubackMessageWithMessageId</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgId</span>
+                              <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                                 <span class="nf">returnCode</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">)</span><span class="nv">returnCode</span>
+                               <span class="nf">reasonString</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">reasonString</span>
+                               <span class="nf">userProperty</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">userProperty</span><span class="p">;</span>
+
+<span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">pubrecMessageWithMessageId</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgId</span>
+                              <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                                 <span class="nf">returnCode</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">)</span><span class="nv">returnCode</span>
+                               <span class="nf">reasonString</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">reasonString</span>
+                               <span class="nf">userProperty</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">userProperty</span><span class="p">;</span>
+
+<span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">pubrelMessageWithMessageId</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgId</span>
+                              <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                                 <span class="nf">returnCode</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">)</span><span class="nv">returnCode</span>
+                               <span class="nf">reasonString</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">reasonString</span>
+                               <span class="nf">userProperty</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">userProperty</span><span class="p">;</span>
+
+<span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">pubcompMessageWithMessageId</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgId</span>
+                               <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                                  <span class="nf">returnCode</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">)</span><span class="nv">returnCode</span>
+                                <span class="nf">reasonString</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">reasonString</span>
+                                <span class="nf">userProperty</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">userProperty</span><span class="p">;</span>
+
+<span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">messageFromData</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span> <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span><span class="p">;</span>
+
+<span class="c1">// instance methods</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithType</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">)</span><span class="nv">type</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithType</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">)</span><span class="nv">type</span>
+                        <span class="nf">data</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithType</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">)</span><span class="nv">type</span>
+                         <span class="nf">qos</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">)</span><span class="nv">qos</span>
+                        <span class="nf">data</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithType</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">)</span><span class="nv">type</span>
+                         <span class="nf">qos</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">)</span><span class="nv">qos</span>
+                  <span class="nf">retainFlag</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">retainFlag</span>
+                     <span class="nf">dupFlag</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">dupFlag</span>
+                        <span class="nf">data</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span>
+
+<span class="k">@property</span> <span class="p">(</span><span class="n">NS_NONATOMIC_IOSONLY</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">copy</span><span class="p">)</span> <span class="n">NSData</span> <span class="o">*</span><span class="n">wireFormat</span><span class="p">;</span>
+
+
+<span class="k">@end</span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(py)type"></a>
+                    <a name="//apple_ref/objc/Property/type" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(py)type">type</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span> <span class="n">type</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(py)qos"></a>
+                    <a name="//apple_ref/objc/Property/qos" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(py)qos">qos</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span> <span class="n">qos</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">qos</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(py)retainFlag"></a>
+                    <a name="//apple_ref/objc/Property/retainFlag" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(py)retainFlag">retainFlag</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">retainFlag</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">retainFlag</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(py)dupFlag"></a>
+                    <a name="//apple_ref/objc/Property/dupFlag" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(py)dupFlag">dupFlag</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">dupFlag</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">dupFlag</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(py)mid"></a>
+                    <a name="//apple_ref/objc/Property/mid" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(py)mid">mid</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n">UInt16</span> <span class="n">mid</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">mid</span><span class="p">:</span> <span class="kt">UInt16</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(py)data"></a>
+                    <a name="//apple_ref/objc/Property/data" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(py)data">data</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSData</span> <span class="o">*</span><span class="n">data</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(py)returnCode"></a>
+                    <a name="//apple_ref/objc/Property/returnCode" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(py)returnCode">returnCode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">returnCode</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">returnCode</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(py)connectAcknowledgeFlags"></a>
+                    <a name="//apple_ref/objc/Property/connectAcknowledgeFlags" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(py)connectAcknowledgeFlags">connectAcknowledgeFlags</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">connectAcknowledgeFlags</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">connectAcknowledgeFlags</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(py)properties"></a>
+                    <a name="//apple_ref/objc/Property/properties" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(py)properties">properties</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n"><a href="../Classes/MQTTProperties.html">MQTTProperties</a></span> <span class="o">*</span><span class="n">properties</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">properties</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTProperties.html">MQTTProperties</a></span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(cm)connectMessageWithClientId:userName:password:keepAlive:cleanSession:will:willTopic:willMsg:willQoS:willRetain:protocolLevel:sessionExpiryInterval:authMethod:authData:requestProblemInformation:willDelayInterval:requestResponseInformation:receiveMaximum:topicAliasMaximum:userProperty:maximumPacketSize:"></a>
+                    <a name="//apple_ref/objc/Method/+connectMessageWithClientId:userName:password:keepAlive:cleanSession:will:willTopic:willMsg:willQoS:willRetain:protocolLevel:sessionExpiryInterval:authMethod:authData:requestProblemInformation:willDelayInterval:requestResponseInformation:receiveMaximum:topicAliasMaximum:userProperty:maximumPacketSize:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(cm)connectMessageWithClientId:userName:password:keepAlive:cleanSession:will:willTopic:willMsg:willQoS:willRetain:protocolLevel:sessionExpiryInterval:authMethod:authData:requestProblemInformation:willDelayInterval:requestResponseInformation:receiveMaximum:topicAliasMaximum:userProperty:maximumPacketSize:">+connectMessageWithClientId:userName:password:keepAlive:cleanSession:will:willTopic:willMsg:willQoS:willRetain:protocolLevel:sessionExpiryInterval:authMethod:authData:requestProblemInformation:willDelayInterval:requestResponseInformation:receiveMaximum:topicAliasMaximum:userProperty:maximumPacketSize:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">connectMessageWithClientId</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">clientId</span>
+                                   <span class="nf">userName</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">userName</span>
+                                   <span class="nf">password</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">password</span>
+                                  <span class="nf">keepAlive</span><span class="p">:(</span><span class="n">NSInteger</span><span class="p">)</span><span class="nv">keeplive</span>
+                               <span class="nf">cleanSession</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">cleanSessionFlag</span>
+                                       <span class="nf">will</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">will</span>
+                                  <span class="nf">willTopic</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">willTopic</span>
+                                    <span class="nf">willMsg</span><span class="p">:(</span><span class="n">NSData</span><span class="o">*</span><span class="p">)</span><span class="nv">willData</span>
+                                    <span class="nf">willQoS</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">)</span><span class="nv">willQoS</span>
+                                 <span class="nf">willRetain</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">willRetainFlag</span>
+                              <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                      <span class="nf">sessionExpiryInterval</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">sessionExpiryInterval</span>
+                                 <span class="nf">authMethod</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">authMethod</span>
+                                   <span class="nf">authData</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">authData</span>
+                  <span class="nf">requestProblemInformation</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">requestProblemInformation</span>
+                          <span class="nf">willDelayInterval</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">willDelayInterval</span>
+                 <span class="nf">requestResponseInformation</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">requestResponseInformation</span>
+                             <span class="nf">receiveMaximum</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">receiveMaximum</span>
+                          <span class="nf">topicAliasMaximum</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">topicAliasMaximum</span>
+                               <span class="nf">userProperty</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">userProperty</span>
+                          <span class="nf">maximumPacketSize</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">maximumPacketSize</span>
+<span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">connect</span><span class="p">(</span><span class="n">withClientId</span> <span class="nv">clientId</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="nv">userName</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="n">keepAlive</span> <span class="nv">keeplive</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">cleanSession</span> <span class="nv">cleanSessionFlag</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">will</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">willTopic</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="n">willMsg</span> <span class="nv">willData</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">,</span> <span class="nv">willQoS</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">,</span> <span class="n">willRetain</span> <span class="nv">willRetainFlag</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">protocolLevel</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">,</span> <span class="nv">sessionExpiryInterval</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span><span class="p">,</span> <span class="nv">authMethod</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="nv">authData</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">,</span> <span class="nv">requestProblemInformation</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span><span class="p">,</span> <span class="nv">willDelayInterval</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span><span class="p">,</span> <span class="nv">requestResponseInformation</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span><span class="p">,</span> <span class="nv">receiveMaximum</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span><span class="p">,</span> <span class="nv">topicAliasMaximum</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span><span class="p">,</span> <span class="nv">userProperty</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span><span class="o">!</span><span class="p">,</span> <span class="nv">maximumPacketSize</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MQTTMessage</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(cm)pingreqMessage"></a>
+                    <a name="//apple_ref/objc/Method/+pingreqMessage" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(cm)pingreqMessage">+pingreqMessage</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="n">pingreqMessage</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">pingreq</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">MQTTMessage</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(cm)disconnectMessage:returnCode:sessionExpiryInterval:reasonString:userProperty:"></a>
+                    <a name="//apple_ref/objc/Method/+disconnectMessage:returnCode:sessionExpiryInterval:reasonString:userProperty:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(cm)disconnectMessage:returnCode:sessionExpiryInterval:reasonString:userProperty:">+disconnectMessage:returnCode:sessionExpiryInterval:reasonString:userProperty:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">disconnectMessage</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                        <span class="nf">returnCode</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">)</span><span class="nv">returnCode</span>
+             <span class="nf">sessionExpiryInterval</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">sessionExpiryInterval</span>
+                      <span class="nf">reasonString</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">reasonString</span>
+                      <span class="nf">userProperty</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">userProperty</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">disconnectMessage</span><span class="p">(</span><span class="n">_</span> <span class="nv">protocolLevel</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">,</span> <span class="nv">returnCode</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">,</span> <span class="nv">sessionExpiryInterval</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span><span class="p">,</span> <span class="nv">reasonString</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="nv">userProperty</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MQTTMessage</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(cm)subscribeMessageWithMessageId:topics:protocolLevel:subscriptionIdentifier:"></a>
+                    <a name="//apple_ref/objc/Method/+subscribeMessageWithMessageId:topics:protocolLevel:subscriptionIdentifier:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(cm)subscribeMessageWithMessageId:topics:protocolLevel:subscriptionIdentifier:">+subscribeMessageWithMessageId:topics:protocolLevel:subscriptionIdentifier:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">subscribeMessageWithMessageId</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgId</span>
+                                        <span class="nf">topics</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">topics</span>
+                                 <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                        <span class="nf">subscriptionIdentifier</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">subscriptionIdentifier</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">subscribeMessage</span><span class="p">(</span><span class="n">withMessageId</span> <span class="nv">msgId</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="nv">topics</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyHashable</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span><span class="o">!</span><span class="p">,</span> <span class="nv">protocolLevel</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">,</span> <span class="nv">subscriptionIdentifier</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MQTTMessage</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(cm)unsubscribeMessageWithMessageId:topics:protocolLevel:"></a>
+                    <a name="//apple_ref/objc/Method/+unsubscribeMessageWithMessageId:topics:protocolLevel:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(cm)unsubscribeMessageWithMessageId:topics:protocolLevel:">+unsubscribeMessageWithMessageId:topics:protocolLevel:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">unsubscribeMessageWithMessageId</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgId</span>
+                                          <span class="nf">topics</span><span class="p">:(</span><span class="n">NSArray</span> <span class="o">*</span><span class="p">)</span><span class="nv">topics</span>
+                                   <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">unsubscribeMessage</span><span class="p">(</span><span class="n">withMessageId</span> <span class="nv">msgId</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="nv">topics</span><span class="p">:</span> <span class="p">[</span><span class="kt">Any</span><span class="p">]</span><span class="o">!</span><span class="p">,</span> <span class="nv">protocolLevel</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MQTTMessage</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(cm)publishMessageWithData:onTopic:qos:msgId:retainFlag:dupFlag:protocolLevel:payloadFormatIndicator:publicationExpiryInterval:topicAlias:responseTopic:correlationData:userProperty:contentType:"></a>
+                    <a name="//apple_ref/objc/Method/+publishMessageWithData:onTopic:qos:msgId:retainFlag:dupFlag:protocolLevel:payloadFormatIndicator:publicationExpiryInterval:topicAlias:responseTopic:correlationData:userProperty:contentType:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(cm)publishMessageWithData:onTopic:qos:msgId:retainFlag:dupFlag:protocolLevel:payloadFormatIndicator:publicationExpiryInterval:topicAlias:responseTopic:correlationData:userProperty:contentType:">+publishMessageWithData:onTopic:qos:msgId:retainFlag:dupFlag:protocolLevel:payloadFormatIndicator:publicationExpiryInterval:topicAlias:responseTopic:correlationData:userProperty:contentType:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">publishMessageWithData</span><span class="p">:(</span><span class="n">NSData</span><span class="o">*</span><span class="p">)</span><span class="nv">payload</span>
+                                <span class="nf">onTopic</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">topic</span>
+                                    <span class="nf">qos</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">)</span><span class="nv">qosLevel</span>
+                                  <span class="nf">msgId</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgId</span>
+                             <span class="nf">retainFlag</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">retain</span>
+                                <span class="nf">dupFlag</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">dup</span>
+                          <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                 <span class="nf">payloadFormatIndicator</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">payloadFormatIndicator</span>
+              <span class="nf">publicationExpiryInterval</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">publicationExpiryInterval</span>
+                             <span class="nf">topicAlias</span><span class="p">:(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">topicAlias</span>
+                          <span class="nf">responseTopic</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">responseTopic</span>
+                        <span class="nf">correlationData</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">correlationData</span>
+                           <span class="nf">userProperty</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">userProperty</span>
+                            <span class="nf">contentType</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">contentType</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">publishMessage</span><span class="p">(</span><span class="n">with</span> <span class="nv">payload</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">,</span> <span class="n">onTopic</span> <span class="nv">topic</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="n"><a href="../Classes/MQTTMessage.html#/c:objc(cs)MQTTMessage(py)qos">qos</a></span> <span class="nv">qosLevel</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">,</span> <span class="nv">msgId</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n"><a href="../Classes/MQTTMessage.html#/c:objc(cs)MQTTMessage(py)retainFlag">retainFlag</a></span> <span class="nv">retain</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n"><a href="../Classes/MQTTMessage.html#/c:objc(cs)MQTTMessage(py)dupFlag">dupFlag</a></span> <span class="nv">dup</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">protocolLevel</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">,</span> <span class="nv">payloadFormatIndicator</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span><span class="p">,</span> <span class="nv">publicationExpiryInterval</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span><span class="p">,</span> <span class="nv">topicAlias</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span><span class="p">,</span> <span class="nv">responseTopic</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="nv">correlationData</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">,</span> <span class="nv">userProperty</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span><span class="o">!</span><span class="p">,</span> <span class="nv">contentType</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MQTTMessage</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(cm)pubackMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:"></a>
+                    <a name="//apple_ref/objc/Method/+pubackMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(cm)pubackMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:">+pubackMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">pubackMessageWithMessageId</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgId</span>
+                              <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                                 <span class="nf">returnCode</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">)</span><span class="nv">returnCode</span>
+                               <span class="nf">reasonString</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">reasonString</span>
+                               <span class="nf">userProperty</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">userProperty</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">pubackMessage</span><span class="p">(</span><span class="n">withMessageId</span> <span class="nv">msgId</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="nv">protocolLevel</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">,</span> <span class="nv">returnCode</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">,</span> <span class="nv">reasonString</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="nv">userProperty</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MQTTMessage</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(cm)pubrecMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:"></a>
+                    <a name="//apple_ref/objc/Method/+pubrecMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(cm)pubrecMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:">+pubrecMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">pubrecMessageWithMessageId</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgId</span>
+                              <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                                 <span class="nf">returnCode</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">)</span><span class="nv">returnCode</span>
+                               <span class="nf">reasonString</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">reasonString</span>
+                               <span class="nf">userProperty</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">userProperty</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">pubrecMessage</span><span class="p">(</span><span class="n">withMessageId</span> <span class="nv">msgId</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="nv">protocolLevel</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">,</span> <span class="nv">returnCode</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">,</span> <span class="nv">reasonString</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="nv">userProperty</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MQTTMessage</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(cm)pubrelMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:"></a>
+                    <a name="//apple_ref/objc/Method/+pubrelMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(cm)pubrelMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:">+pubrelMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">pubrelMessageWithMessageId</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgId</span>
+                              <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                                 <span class="nf">returnCode</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">)</span><span class="nv">returnCode</span>
+                               <span class="nf">reasonString</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">reasonString</span>
+                               <span class="nf">userProperty</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">userProperty</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">pubrelMessage</span><span class="p">(</span><span class="n">withMessageId</span> <span class="nv">msgId</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="nv">protocolLevel</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">,</span> <span class="nv">returnCode</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">,</span> <span class="nv">reasonString</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="nv">userProperty</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MQTTMessage</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(cm)pubcompMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:"></a>
+                    <a name="//apple_ref/objc/Method/+pubcompMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(cm)pubcompMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:">+pubcompMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">pubcompMessageWithMessageId</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgId</span>
+                               <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span>
+                                  <span class="nf">returnCode</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">)</span><span class="nv">returnCode</span>
+                                <span class="nf">reasonString</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">reasonString</span>
+                                <span class="nf">userProperty</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">userProperty</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">pubcompMessage</span><span class="p">(</span><span class="n">withMessageId</span> <span class="nv">msgId</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="nv">protocolLevel</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">,</span> <span class="nv">returnCode</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a></span><span class="p">,</span> <span class="nv">reasonString</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="nv">userProperty</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MQTTMessage</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(cm)messageFromData:protocolLevel:"></a>
+                    <a name="//apple_ref/objc/Method/+messageFromData:protocolLevel:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(cm)messageFromData:protocolLevel:">+messageFromData:protocolLevel:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">MQTTMessage</span> <span class="o">*</span><span class="p">)</span><span class="nf">messageFromData</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span> <span class="nf">protocolLevel</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span><span class="nv">protocolLevel</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="cm">/*not inherited*/</span> <span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="n">from</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">,</span> <span class="nv">protocolLevel</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(im)initWithType:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithType:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(im)initWithType:">-initWithType:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithType</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">)</span><span class="nv">type</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(im)initWithType:data:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithType:data:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(im)initWithType:data:">-initWithType:data:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithType</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">)</span><span class="nv">type</span>
+                        <span class="nf">data</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(im)initWithType:qos:data:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithType:qos:data:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(im)initWithType:qos:data:">-initWithType:qos:data:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithType</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">)</span><span class="nv">type</span>
+                         <span class="nf">qos</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">)</span><span class="nv">qos</span>
+                        <span class="nf">data</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">,</span> <span class="nv">qos</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(im)initWithType:qos:retainFlag:dupFlag:data:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithType:qos:retainFlag:dupFlag:data:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(im)initWithType:qos:retainFlag:dupFlag:data:">-initWithType:qos:retainFlag:dupFlag:data:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithType</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">)</span><span class="nv">type</span>
+                         <span class="nf">qos</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">)</span><span class="nv">qos</span>
+                  <span class="nf">retainFlag</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">retainFlag</span>
+                     <span class="nf">dupFlag</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">dupFlag</span>
+                        <span class="nf">data</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">,</span> <span class="nv">qos</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">,</span> <span class="nv">retainFlag</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">dupFlag</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTMessage(py)wireFormat"></a>
+                    <a name="//apple_ref/objc/Property/wireFormat" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTMessage(py)wireFormat">wireFormat</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">NS_NONATOMIC_IOSONLY</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">copy</span><span class="p">)</span> <span class="n">NSData</span> <span class="o">*</span><span class="n">wireFormat</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">wireFormat</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://www.convergenece.com.hk" target="_blank" rel="external">CSL</a>. All rights reserved. (Last updated: 2019-04-01)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -41,13 +41,13 @@
     // Do any additional setup after loading the view.
 
     self.btnRead.layer.borderWidth=1.0f;
-    self.btnRead.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    self.btnRead.layer.borderColor=[UIColor clearColor].CGColor;
     self.btnRead.layer.cornerRadius=5.0f;
     self.btnWrite.layer.borderWidth=1.0f;
-    self.btnWrite.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    self.btnWrite.layer.borderColor=[UIColor clearColor].CGColor;
     self.btnWrite.layer.cornerRadius=5.0f;
     self.btnSecurity.layer.borderWidth=1.0f;
-    self.btnSecurity.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    self.btnSecurity.layer.borderColor=[UIColor clearColor].CGColor;
     self.btnSecurity.layer.cornerRadius=5.0f;
     
 }

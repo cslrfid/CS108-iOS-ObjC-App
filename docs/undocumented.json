@@ -101,237 +101,244 @@
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
       "line": 45,
-      "symbol": "CSLBleReader.-TAGMSK_DESC_CFG:selectTarget:selectAction:",
+      "symbol": "CSLBleReader.-TAGMSK_DESC_SEL:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
       "line": 46,
-      "symbol": "CSLBleReader.-TAGMSK_BANK:",
+      "symbol": "CSLBleReader.-TAGMSK_DESC_CFG:selectTarget:selectAction:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
       "line": 47,
-      "symbol": "CSLBleReader.-TAGMSK_PTR:",
+      "symbol": "CSLBleReader.-TAGMSK_BANK:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
       "line": 48,
-      "symbol": "CSLBleReader.-TAGMSK_LEN:",
+      "symbol": "CSLBleReader.-TAGMSK_PTR:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
       "line": 49,
+      "symbol": "CSLBleReader.-TAGMSK_LEN:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
+      "line": 50,
       "symbol": "CSLBleReader.-setTAGMSK:tagMask:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
-      "line": 51,
+      "line": 52,
       "symbol": "CSLBleReader.-TAGACC_BANK:acc_bank2:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
-      "line": 52,
+      "line": 53,
       "symbol": "CSLBleReader.-TAGACC_PTR:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
-      "line": 53,
+      "line": 54,
       "symbol": "CSLBleReader.-TAGACC_PTR:secondBank:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
-      "line": 54,
+      "line": 55,
       "symbol": "CSLBleReader.-TAGACC_CNT:secondBank:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
-      "line": 55,
+      "line": 56,
       "symbol": "CSLBleReader.-TAGACC_ACCPWD:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
-      "line": 57,
+      "line": 58,
       "symbol": "CSLBleReader.-setTAGWRDAT:data_word:data_offset:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
-      "line": 59,
+      "line": 60,
       "symbol": "CSLBleReader.-TAGACC_DESC_CFG:retryCount:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
-      "line": 60,
+      "line": 61,
       "symbol": "CSLBleReader.-TAGACC_LOCKCFG:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
-      "line": 62,
+      "line": 63,
       "symbol": "CSLBleReader.-sendHostCommandRead",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
-      "line": 63,
+      "line": 64,
       "symbol": "CSLBleReader.-sendHostCommandWrite",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
-      "line": 64,
+      "line": 65,
       "symbol": "CSLBleReader.-sendHostCommandSearch",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader+AccessControl.h",
-      "line": 65,
+      "line": 66,
       "symbol": "CSLBleReader.-sendHostCommandLock",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 26,
+      "line": 27,
       "symbol": "SESSION.S0",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 27,
+      "line": 28,
       "symbol": "SESSION.S1",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 28,
+      "line": 29,
       "symbol": "SESSION.S2",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 29,
+      "line": 30,
       "symbol": "SESSION.S3",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 35,
+      "line": 36,
       "symbol": "TARGET.A",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 36,
+      "line": 37,
       "symbol": "TARGET.B",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 37,
+      "line": 38,
       "symbol": "TARGET.ToggleAB",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 43,
+      "line": 44,
       "symbol": "QUERYALGORITHM.FIXEDQ",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 44,
+      "line": 45,
       "symbol": "QUERYALGORITHM.DYNAMICQ",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 50,
+      "line": 51,
       "symbol": "LINKPROFILE.MULTIPATH_INTERFERENCE_RESISTANCE",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 51,
+      "line": 52,
       "symbol": "LINKPROFILE.RANGE_DRM",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 52,
+      "line": 53,
       "symbol": "LINKPROFILE.RANGE_THROUGHPUT_DRM",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 53,
+      "line": 54,
       "symbol": "LINKPROFILE.MAX_THROUGHPUT",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 56,
+      "line": 57,
       "symbol": "QUERYSELECT",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 56,
+      "line": 57,
       "symbol": "QUERYSELECT",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 58,
+      "line": 59,
       "symbol": "QUERYSELECT.ALL",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
     },
     {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/CSLReader/CSLBleReader.h",
-      "line": 59,
+      "line": 60,
       "symbol": "QUERYSELECT.SL",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
       "warning": "undocumented"
@@ -372,6 +379,34 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/model/CSLMQTTSettings.h",
+      "line": 18,
+      "symbol": "MQTTStatus.MQTTStatusConnected",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/model/CSLMQTTSettings.h",
+      "line": 19,
+      "symbol": "MQTTStatus.MQTTStatusNotConnected",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/model/CSLMQTTSettings.h",
+      "line": 20,
+      "symbol": "MQTTStatus.MQTTStatusError",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/model/CSLMQTTSettings.h",
+      "line": 23,
+      "symbol": "CSLMQTTSettings",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/model/CSLReaderBarcode.h",
       "line": 22,
       "symbol": "CSLReaderBarcode.-init",
@@ -383,6 +418,2008 @@
       "line": 34,
       "symbol": "CSLReaderBattery.-init",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/model/CSLTemperatureTagSettings.h",
+      "line": 20,
+      "symbol": "SENSORTYPE.MAGNUSS3",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/model/CSLTemperatureTagSettings.h",
+      "line": 26,
+      "symbol": "TEMPERATUREUNIT.CELCIUS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/model/CSLTemperatureTagSettings.h",
+      "line": 27,
+      "symbol": "TEMPERATUREUNIT.FAHRENHEIT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/model/CSLTemperatureTagSettings.h",
+      "line": 30,
+      "symbol": "CSLTemperatureTagSettings",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/CS108iOSClient/model/CSLTemperatureTagSettings.h",
+      "line": 33,
+      "symbol": "CSLTemperatureTagSettings.isTemperatureAlertEnabled",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 10,
+      "symbol": "MQTTCFSocketDecoderState",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 10,
+      "symbol": "MQTTCFSocketDecoderState",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 11,
+      "symbol": "MQTTCFSocketDecoderState.MQTTCFSocketDecoderStateInitializing",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 12,
+      "symbol": "MQTTCFSocketDecoderState.MQTTCFSocketDecoderStateReady",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 13,
+      "symbol": "MQTTCFSocketDecoderState.MQTTCFSocketDecoderStateError",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 18,
+      "symbol": "MQTTCFSocketDecoderDelegate",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 20,
+      "symbol": "MQTTCFSocketDecoderDelegate.-decoder:didReceiveMessage:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 21,
+      "symbol": "MQTTCFSocketDecoderDelegate.-decoderDidOpen:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 22,
+      "symbol": "MQTTCFSocketDecoderDelegate.-decoder:didFailWithError:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 23,
+      "symbol": "MQTTCFSocketDecoderDelegate.-decoderdidClose:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 27,
+      "symbol": "MQTTCFSocketDecoder",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 29,
+      "symbol": "MQTTCFSocketDecoder.state",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 30,
+      "symbol": "MQTTCFSocketDecoder.error",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 31,
+      "symbol": "MQTTCFSocketDecoder.stream",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 32,
+      "symbol": "MQTTCFSocketDecoder.delegate",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 34,
+      "symbol": "MQTTCFSocketDecoder.-open",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketDecoder.h",
+      "line": 35,
+      "symbol": "MQTTCFSocketDecoder.-close",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 10,
+      "symbol": "MQTTCFSocketEncoderState",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 10,
+      "symbol": "MQTTCFSocketEncoderState",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 11,
+      "symbol": "MQTTCFSocketEncoderState.MQTTCFSocketEncoderStateInitializing",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 12,
+      "symbol": "MQTTCFSocketEncoderState.MQTTCFSocketEncoderStateReady",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 13,
+      "symbol": "MQTTCFSocketEncoderState.MQTTCFSocketEncoderStateError",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 18,
+      "symbol": "MQTTCFSocketEncoderDelegate",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 20,
+      "symbol": "MQTTCFSocketEncoderDelegate.-encoderDidOpen:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 21,
+      "symbol": "MQTTCFSocketEncoderDelegate.-encoder:didFailWithError:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 22,
+      "symbol": "MQTTCFSocketEncoderDelegate.-encoderdidClose:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 26,
+      "symbol": "MQTTCFSocketEncoder",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 28,
+      "symbol": "MQTTCFSocketEncoder.state",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 29,
+      "symbol": "MQTTCFSocketEncoder.error",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 30,
+      "symbol": "MQTTCFSocketEncoder.stream",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 31,
+      "symbol": "MQTTCFSocketEncoder.delegate",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 33,
+      "symbol": "MQTTCFSocketEncoder.-open",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 34,
+      "symbol": "MQTTCFSocketEncoder.-close",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCFSocketEncoder.h",
+      "line": 35,
+      "symbol": "MQTTCFSocketEncoder.-send:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTClient.h",
+      "line": 35,
+      "symbol": "MQTTClientVersionNumber",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTClient.h",
+      "line": 38,
+      "symbol": "MQTTClientVersionString",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCoreDataPersistence.h",
+      "line": 13,
+      "symbol": "MQTTCoreDataPersistence",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCoreDataPersistence.h",
+      "line": 17,
+      "symbol": "MQTTFlow",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTCoreDataPersistence.h",
+      "line": 20,
+      "symbol": "MQTTCoreDataFlow",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 23,
+      "symbol": "MQTTDecoderEvent",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 23,
+      "symbol": "MQTTDecoderEvent",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 24,
+      "symbol": "MQTTDecoderEvent.MQTTDecoderEventProtocolError",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 25,
+      "symbol": "MQTTDecoderEvent.MQTTDecoderEventConnectionClosed",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 26,
+      "symbol": "MQTTDecoderEvent.MQTTDecoderEventConnectionError",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 29,
+      "symbol": "MQTTDecoderState",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 29,
+      "symbol": "MQTTDecoderState",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 30,
+      "symbol": "MQTTDecoderState.MQTTDecoderStateInitializing",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 31,
+      "symbol": "MQTTDecoderState.MQTTDecoderStateDecodingHeader",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 32,
+      "symbol": "MQTTDecoderState.MQTTDecoderStateDecodingLength",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 33,
+      "symbol": "MQTTDecoderState.MQTTDecoderStateDecodingData",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 34,
+      "symbol": "MQTTDecoderState.MQTTDecoderStateConnectionClosed",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 35,
+      "symbol": "MQTTDecoderState.MQTTDecoderStateConnectionError",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 36,
+      "symbol": "MQTTDecoderState.MQTTDecoderStateProtocolError",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 41,
+      "symbol": "MQTTDecoderDelegate",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 43,
+      "symbol": "MQTTDecoderDelegate.-decoder:didReceiveMessage:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 44,
+      "symbol": "MQTTDecoderDelegate.-decoder:handleEvent:error:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 49,
+      "symbol": "MQTTDecoder",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 51,
+      "symbol": "MQTTDecoder.state",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 52,
+      "symbol": "MQTTDecoder.queue",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 53,
+      "symbol": "MQTTDecoder.length",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 54,
+      "symbol": "MQTTDecoder.lengthMultiplier",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 55,
+      "symbol": "MQTTDecoder.offset",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 56,
+      "symbol": "MQTTDecoder.dataBuffer",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 58,
+      "symbol": "MQTTDecoder.delegate",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 60,
+      "symbol": "MQTTDecoder.-open",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 61,
+      "symbol": "MQTTDecoder.-close",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTDecoder.h",
+      "line": 62,
+      "symbol": "MQTTDecoder.-decodeMessage:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTLog.h",
+      "line": 18,
+      "symbol": "DDLogFlag",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTLog.h",
+      "line": 18,
+      "symbol": "DDLogFlag",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTLog.h",
+      "line": 46,
+      "symbol": "DDLogLevel",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTLog.h",
+      "line": 46,
+      "symbol": "DDLogLevel",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTLog.h",
+      "line": 47,
+      "symbol": "DDLogLevel.DDLogLevelOff",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTLog.h",
+      "line": 99,
+      "symbol": "ddLogLevel",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 27,
+      "symbol": "MQTTQosLevel.MQTTQosLevelAtMostOnce",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 28,
+      "symbol": "MQTTQosLevel.MQTTQosLevelAtLeastOnce",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 29,
+      "symbol": "MQTTQosLevel.MQTTQosLevelExactlyOnce",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 36,
+      "symbol": "MQTTProtocolVersion.MQTTProtocolVersion0",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 37,
+      "symbol": "MQTTProtocolVersion.MQTTProtocolVersion31",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 38,
+      "symbol": "MQTTProtocolVersion.MQTTProtocolVersion311",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 39,
+      "symbol": "MQTTProtocolVersion.MQTTProtocolVersion50",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 42,
+      "symbol": "MQTTCommandType",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 42,
+      "symbol": "MQTTCommandType",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 43,
+      "symbol": "MQTTCommandType.MQTT_None",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 44,
+      "symbol": "MQTTCommandType.MQTTConnect",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 45,
+      "symbol": "MQTTCommandType.MQTTConnack",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 46,
+      "symbol": "MQTTCommandType.MQTTPublish",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 47,
+      "symbol": "MQTTCommandType.MQTTPuback",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 48,
+      "symbol": "MQTTCommandType.MQTTPubrec",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 49,
+      "symbol": "MQTTCommandType.MQTTPubrel",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 50,
+      "symbol": "MQTTCommandType.MQTTPubcomp",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 51,
+      "symbol": "MQTTCommandType.MQTTSubscribe",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 52,
+      "symbol": "MQTTCommandType.MQTTSuback",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 53,
+      "symbol": "MQTTCommandType.MQTTUnsubscribe",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 54,
+      "symbol": "MQTTCommandType.MQTTUnsuback",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 55,
+      "symbol": "MQTTCommandType.MQTTPingreq",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 56,
+      "symbol": "MQTTCommandType.MQTTPingresp",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 57,
+      "symbol": "MQTTCommandType.MQTTDisconnect",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 58,
+      "symbol": "MQTTCommandType.MQTTAuth",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 61,
+      "symbol": "MQTTMessage",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 63,
+      "symbol": "MQTTMessage.type",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 64,
+      "symbol": "MQTTMessage.qos",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 65,
+      "symbol": "MQTTMessage.retainFlag",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 66,
+      "symbol": "MQTTMessage.dupFlag",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 67,
+      "symbol": "MQTTMessage.mid",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 68,
+      "symbol": "MQTTMessage.data",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 69,
+      "symbol": "MQTTMessage.returnCode",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 70,
+      "symbol": "MQTTMessage.connectAcknowledgeFlags",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 71,
+      "symbol": "MQTTMessage.properties",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 78,
+      "symbol": "MQTTReturnCode.MQTTAccepted",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 79,
+      "symbol": "MQTTReturnCode.MQTTRefusedUnacceptableProtocolVersion",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 80,
+      "symbol": "MQTTReturnCode.MQTTRefusedIdentiferRejected",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 81,
+      "symbol": "MQTTReturnCode.MQTTRefusedServerUnavailable",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 82,
+      "symbol": "MQTTReturnCode.MQTTRefusedBadUserNameOrPassword",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 83,
+      "symbol": "MQTTReturnCode.MQTTRefusedNotAuthorized",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 85,
+      "symbol": "MQTTReturnCode.MQTTSuccess",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 86,
+      "symbol": "MQTTReturnCode.MQTTDisconnectWithWillMessage",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 87,
+      "symbol": "MQTTReturnCode.MQTTNoSubscriptionExisted",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 88,
+      "symbol": "MQTTReturnCode.MQTTContinueAuthentication",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 89,
+      "symbol": "MQTTReturnCode.MQTTReAuthenticate",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 90,
+      "symbol": "MQTTReturnCode.MQTTUnspecifiedError",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 91,
+      "symbol": "MQTTReturnCode.MQTTMalformedPacket",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 92,
+      "symbol": "MQTTReturnCode.MQTTProtocolError",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 93,
+      "symbol": "MQTTReturnCode.MQTTImplementationSpecificError",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 94,
+      "symbol": "MQTTReturnCode.MQTTUnsupportedProtocolVersion",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 95,
+      "symbol": "MQTTReturnCode.MQTTClientIdentifierNotValid",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 96,
+      "symbol": "MQTTReturnCode.MQTTBadUserNameOrPassword",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 97,
+      "symbol": "MQTTReturnCode.MQTTNotAuthorized",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 98,
+      "symbol": "MQTTReturnCode.MQTTServerUnavailable",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 99,
+      "symbol": "MQTTReturnCode.MQTTServerBusy",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 100,
+      "symbol": "MQTTReturnCode.MQTTBanned",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 101,
+      "symbol": "MQTTReturnCode.MQTTServerShuttingDown",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 102,
+      "symbol": "MQTTReturnCode.MQTTBadAuthenticationMethod",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 103,
+      "symbol": "MQTTReturnCode.MQTTKeepAliveTimeout",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 104,
+      "symbol": "MQTTReturnCode.MQTTSessionTakenOver",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 105,
+      "symbol": "MQTTReturnCode.MQTTTopicFilterInvalid",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 106,
+      "symbol": "MQTTReturnCode.MQTTTopicNameInvalid",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 107,
+      "symbol": "MQTTReturnCode.MQTTPacketIdentifierInUse",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 108,
+      "symbol": "MQTTReturnCode.MQTTPacketIdentifierNotFound",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 109,
+      "symbol": "MQTTReturnCode.MQTTReceiveMaximumExceeded",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 110,
+      "symbol": "MQTTReturnCode.MQTTPacketTooLarge",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 111,
+      "symbol": "MQTTReturnCode.MQTTMessageRateTooHigh",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 112,
+      "symbol": "MQTTReturnCode.MQTTQuotaExceeded",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 113,
+      "symbol": "MQTTReturnCode.MQTTAdministrativeAction",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 114,
+      "symbol": "MQTTReturnCode.MQTTPayloadFormatInvalid",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 115,
+      "symbol": "MQTTReturnCode.MQTTRetainNotSupported",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 116,
+      "symbol": "MQTTReturnCode.MQTTQoSNotSupported",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 117,
+      "symbol": "MQTTReturnCode.MQTTUseAnotherServer",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 118,
+      "symbol": "MQTTReturnCode.MQTTServerMoved",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 119,
+      "symbol": "MQTTReturnCode.MQTTSharedSubscriptionNotSupported",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 120,
+      "symbol": "MQTTReturnCode.MQTTConnectionRateExceeded",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 121,
+      "symbol": "MQTTReturnCode.MQTTSubscriptionIdentifiersNotSupported",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 122,
+      "symbol": "MQTTReturnCode.MQTTWildcardSubscriptionNotSupported",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 126,
+      "symbol": "MQTTMessage.+connectMessageWithClientId:userName:password:keepAlive:cleanSession:will:willTopic:willMsg:willQoS:willRetain:protocolLevel:sessionExpiryInterval:authMethod:authData:requestProblemInformation:willDelayInterval:requestResponseInformation:receiveMaximum:topicAliasMaximum:userProperty:maximumPacketSize:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 149,
+      "symbol": "MQTTMessage.+pingreqMessage",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 151,
+      "symbol": "MQTTMessage.+disconnectMessage:returnCode:sessionExpiryInterval:reasonString:userProperty:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 157,
+      "symbol": "MQTTMessage.+subscribeMessageWithMessageId:topics:protocolLevel:subscriptionIdentifier:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 162,
+      "symbol": "MQTTMessage.+unsubscribeMessageWithMessageId:topics:protocolLevel:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 166,
+      "symbol": "MQTTMessage.+publishMessageWithData:onTopic:qos:msgId:retainFlag:dupFlag:protocolLevel:payloadFormatIndicator:publicationExpiryInterval:topicAlias:responseTopic:correlationData:userProperty:contentType:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 181,
+      "symbol": "MQTTMessage.+pubackMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 187,
+      "symbol": "MQTTMessage.+pubrecMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 193,
+      "symbol": "MQTTMessage.+pubrelMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 199,
+      "symbol": "MQTTMessage.+pubcompMessageWithMessageId:protocolLevel:returnCode:reasonString:userProperty:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 205,
+      "symbol": "MQTTMessage.+messageFromData:protocolLevel:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 208,
+      "symbol": "MQTTMessage.-initWithType:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 209,
+      "symbol": "MQTTMessage.-initWithType:data:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 211,
+      "symbol": "MQTTMessage.-initWithType:qos:data:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 214,
+      "symbol": "MQTTMessage.-initWithType:qos:retainFlag:dupFlag:data:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 220,
+      "symbol": "MQTTMessage.wireFormat",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 225,
+      "symbol": "NSMutableData(MQTT)",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.category",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 226,
+      "symbol": "NSMutableData(MQTT).-appendByte:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 227,
+      "symbol": "NSMutableData(MQTT).-appendUInt16BigEndian:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 228,
+      "symbol": "NSMutableData(MQTT).-appendUInt32BigEndian:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 229,
+      "symbol": "NSMutableData(MQTT).-appendVariableLength:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 230,
+      "symbol": "NSMutableData(MQTT).-appendMQTTString:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTMessage.h",
+      "line": 231,
+      "symbol": "NSMutableData(MQTT).-appendBinaryData:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTPersistence.h",
+      "line": 12,
+      "symbol": "MQTT_PERSISTENT",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTPersistence.h",
+      "line": 13,
+      "symbol": "MQTT_MAX_SIZE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTPersistence.h",
+      "line": 14,
+      "symbol": "MQTT_MAX_WINDOW_SIZE",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTPersistence.h",
+      "line": 15,
+      "symbol": "MQTT_MAX_MESSAGES",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 11,
+      "symbol": "MQTTPropertyIdentifier",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 11,
+      "symbol": "MQTTPropertyIdentifier",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 12,
+      "symbol": "MQTTPropertyIdentifier.MQTTPayloadFormatIndicator",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 13,
+      "symbol": "MQTTPropertyIdentifier.MQTTPublicationExpiryInterval",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 14,
+      "symbol": "MQTTPropertyIdentifier.MQTTContentType",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 15,
+      "symbol": "MQTTPropertyIdentifier.MQTTResponseTopic",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 16,
+      "symbol": "MQTTPropertyIdentifier.MQTTCorrelationData",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 17,
+      "symbol": "MQTTPropertyIdentifier.MQTTSubscriptionIdentifier",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 18,
+      "symbol": "MQTTPropertyIdentifier.MQTTSessionExpiryInterval",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 19,
+      "symbol": "MQTTPropertyIdentifier.MQTTAssignedClientIdentifier",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 20,
+      "symbol": "MQTTPropertyIdentifier.MQTTServerKeepAlive",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 21,
+      "symbol": "MQTTPropertyIdentifier.MQTTAuthMethod",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 22,
+      "symbol": "MQTTPropertyIdentifier.MQTTAuthData",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 23,
+      "symbol": "MQTTPropertyIdentifier.MQTTRequestProblemInformation",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 24,
+      "symbol": "MQTTPropertyIdentifier.MQTTWillDelayInterval",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 25,
+      "symbol": "MQTTPropertyIdentifier.MQTTRequestResponseInformation",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 26,
+      "symbol": "MQTTPropertyIdentifier.MQTTResponseInformation",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 27,
+      "symbol": "MQTTPropertyIdentifier.MQTTServerReference",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 28,
+      "symbol": "MQTTPropertyIdentifier.MQTTReasonString",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 29,
+      "symbol": "MQTTPropertyIdentifier.MQTTReceiveMaximum",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 30,
+      "symbol": "MQTTPropertyIdentifier.MQTTTopicAliasMaximum",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 31,
+      "symbol": "MQTTPropertyIdentifier.MQTTTopicAlias",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 32,
+      "symbol": "MQTTPropertyIdentifier.MQTTMaximumQoS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 33,
+      "symbol": "MQTTPropertyIdentifier.MQTTRetainAvailable",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 34,
+      "symbol": "MQTTPropertyIdentifier.MQTTUserProperty",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 35,
+      "symbol": "MQTTPropertyIdentifier.MQTTMaximumPacketSize",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 36,
+      "symbol": "MQTTPropertyIdentifier.MQTTWildcardSubscriptionAvailable",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 37,
+      "symbol": "MQTTPropertyIdentifier.MQTTSubscriptionIdentifiersAvailable",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 38,
+      "symbol": "MQTTPropertyIdentifier.MQTTSharedSubscriptionAvailable",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 42,
+      "symbol": "MQTTProperties",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 44,
+      "symbol": "MQTTProperties.payloadFormatIndicator",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 45,
+      "symbol": "MQTTProperties.publicationExpiryInterval",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 46,
+      "symbol": "MQTTProperties.contentType",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 47,
+      "symbol": "MQTTProperties.responseTopic",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 48,
+      "symbol": "MQTTProperties.correlationData",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 49,
+      "symbol": "MQTTProperties.subscriptionIdentifier",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 50,
+      "symbol": "MQTTProperties.sessionExpiryInterval",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 51,
+      "symbol": "MQTTProperties.assignedClientIdentifier",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 52,
+      "symbol": "MQTTProperties.serverKeepAlive",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 53,
+      "symbol": "MQTTProperties.authMethod",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 54,
+      "symbol": "MQTTProperties.authData",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 55,
+      "symbol": "MQTTProperties.requestProblemInformation",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 56,
+      "symbol": "MQTTProperties.willDelayInterval",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 57,
+      "symbol": "MQTTProperties.requestResponseInformation",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 58,
+      "symbol": "MQTTProperties.responseInformation",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 59,
+      "symbol": "MQTTProperties.serverReference",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 60,
+      "symbol": "MQTTProperties.reasonString",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 61,
+      "symbol": "MQTTProperties.receiveMaximum",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 62,
+      "symbol": "MQTTProperties.topicAliasMaximum",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 63,
+      "symbol": "MQTTProperties.topicAlias",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 64,
+      "symbol": "MQTTProperties.maximumQoS",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 65,
+      "symbol": "MQTTProperties.retainAvailable",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 66,
+      "symbol": "MQTTProperties.userProperty",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 67,
+      "symbol": "MQTTProperties.maximumPacketSize",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 68,
+      "symbol": "MQTTProperties.wildcardSubscriptionAvailable",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 69,
+      "symbol": "MQTTProperties.subscriptionIdentifiersAvailable",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 70,
+      "symbol": "MQTTProperties.sharedSubscriptionAvailable",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.property",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 72,
+      "symbol": "MQTTProperties.-initFromData:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 73,
+      "symbol": "MQTTProperties.+getVariableLength:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTProperties.h",
+      "line": 74,
+      "symbol": "MQTTProperties.+variableIntLength:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSSLSecurityPolicy.h",
+      "line": 54,
+      "symbol": "MQTTSSLPinningMode.MQTTSSLPinningModeNone",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSSLSecurityPolicy.h",
+      "line": 56,
+      "symbol": "MQTTSSLPinningMode.MQTTSSLPinningModePublicKey",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSSLSecurityPolicy.h",
+      "line": 58,
+      "symbol": "MQTTSSLPinningMode.MQTTSSLPinningModeCertificate",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 35,
+      "symbol": "MQTTSessionStatus.MQTTSessionStatusCreated",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 36,
+      "symbol": "MQTTSessionStatus.MQTTSessionStatusConnecting",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 37,
+      "symbol": "MQTTSessionStatus.MQTTSessionStatusConnected",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 38,
+      "symbol": "MQTTSessionStatus.MQTTSessionStatusDisconnecting",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 39,
+      "symbol": "MQTTSessionStatus.MQTTSessionStatusClosed",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 40,
+      "symbol": "MQTTSessionStatus.MQTTSessionStatusError",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 47,
+      "symbol": "MQTTSessionEvent.MQTTSessionEventConnected",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 48,
+      "symbol": "MQTTSessionEvent.MQTTSessionEventConnectionRefused",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 49,
+      "symbol": "MQTTSessionEvent.MQTTSessionEventConnectionClosed",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 50,
+      "symbol": "MQTTSessionEvent.MQTTSessionEventConnectionError",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 51,
+      "symbol": "MQTTSessionEvent.MQTTSessionEventProtocolError",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 52,
+      "symbol": "MQTTSessionEvent.MQTTSessionEventConnectionClosedByBroker",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 64,
+      "symbol": "MQTTSessionError.MQTTSessionErrorConnectionRefused",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 65,
+      "symbol": "MQTTSessionError.MQTTSessionErrorIllegalMessageReceived",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 66,
+      "symbol": "MQTTSessionError.MQTTSessionErrorDroppingOutgoingMessage",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 67,
+      "symbol": "MQTTSessionError.MQTTSessionErrorNoResponse",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 68,
+      "symbol": "MQTTSessionError.MQTTSessionErrorEncoderNotReady",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 69,
+      "symbol": "MQTTSessionError.MQTTSessionErrorInvalidConnackReceived",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 70,
+      "symbol": "MQTTSessionError.MQTTSessionErrorNoConnackReceived",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 72,
+      "symbol": "MQTTSessionError.MQTTSessionErrorConnackUnacceptableProtocolVersion",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 73,
+      "symbol": "MQTTSessionError.MQTTSessionErrorConnackIdentifierRejected",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 74,
+      "symbol": "MQTTSessionError.MQTTSessionErrorConnackServeUnavailable",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 75,
+      "symbol": "MQTTSessionError.MQTTSessionErrorConnackBadUsernameOrPassword",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 76,
+      "symbol": "MQTTSessionError.MQTTSessionErrorConnackNotAuthorized",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 77,
+      "symbol": "MQTTSessionError.MQTTSessionErrorConnackReserved",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 274,
+      "symbol": "MQTTConnectHandler",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 275,
+      "symbol": "MQTTDisconnectHandler",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 276,
+      "symbol": "MQTTSubscribeHandler",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 277,
+      "symbol": "MQTTUnsubscribeHandler",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSession.h",
+      "line": 278,
+      "symbol": "MQTTPublishHandler",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.typedef",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSessionLegacy.h",
+      "line": 26,
+      "symbol": "MQTTSession(Create)",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.category",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSessionManager.h",
+      "line": 27,
+      "symbol": "MQTTSessionManagerState.MQTTSessionManagerStateStarting",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSessionManager.h",
+      "line": 28,
+      "symbol": "MQTTSessionManagerState.MQTTSessionManagerStateConnecting",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSessionManager.h",
+      "line": 29,
+      "symbol": "MQTTSessionManagerState.MQTTSessionManagerStateError",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSessionManager.h",
+      "line": 30,
+      "symbol": "MQTTSessionManagerState.MQTTSessionManagerStateConnected",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSessionManager.h",
+      "line": 31,
+      "symbol": "MQTTSessionManagerState.MQTTSessionManagerStateClosing",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSessionManager.h",
+      "line": 32,
+      "symbol": "MQTTSessionManagerState.MQTTSessionManagerStateClosed",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.enumcase",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTSessionSynchron.h",
+      "line": 18,
+      "symbol": "MQTTSession(Synchron)",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.category",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TurtleMac01/Documents/GitHub/CslCs108iOsApp/Pods/MQTTClient/MQTTClient/MQTTClient/MQTTTransport.h",
+      "line": 112,
+      "symbol": "MQTTTransport",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.class",
       "warning": "undocumented"
     }
   ],

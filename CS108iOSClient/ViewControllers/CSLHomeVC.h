@@ -18,9 +18,12 @@
 - (IBAction)btnTagAccessPressed:(id)sender;
 - (IBAction)btnTagSearchPressed:(id)sender;
 - (IBAction)btnFunctionsPressed:(id)sender;
+- (IBAction)btnReadTemperaturePressed:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnConnectReader;
 @property (weak, nonatomic) IBOutlet UILabel *lbConnectReader;
 @property (weak, nonatomic) IBOutlet UILabel *lbReaderStatus;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actHomeSpinner;
+@property (weak, nonatomic) IBOutlet UIButton *btnReadTemperature;
 
 @end

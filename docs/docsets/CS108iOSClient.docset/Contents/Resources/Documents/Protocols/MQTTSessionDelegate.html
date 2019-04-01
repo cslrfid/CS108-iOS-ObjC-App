@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MQTTSessionDelegate Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Protocol/MQTTSessionDelegate" class="dashAnchor"></a>
+    <a title="MQTTSessionDelegate Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">CS108iOSClient Docs</a> (56% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">CS108iOSClient Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        MQTTSessionDelegate Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Categories.html">Categories</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Categories/NSMutableData(MQTT).html">NSMutableData(MQTT)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleInterface.html">CSLBleInterface</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBlePacket.html">CSLBlePacket</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleReader.html">CSLBleReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleTag.html">CSLBleTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLCircularQueue.html">CSLCircularQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLMQTTSettings.html">CSLMQTTSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBarcode.html">CSLReaderBarcode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderInfo.html">CSLReaderInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderSettings.html">CSLReaderSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLRfidAppEngine.html">CSLRfidAppEngine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLTemperatureTagSettings.html">CSLTemperatureTagSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketDecoder.html">MQTTCFSocketDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketEncoder.html">MQTTCFSocketEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketTransport.html">MQTTCFSocketTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTCoreDataFlow">MQTTCoreDataFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTCoreDataPersistence">MQTTCoreDataPersistence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTDecoder.html">MQTTDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTFlow">MQTTFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTLog.html">MQTTLog</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTMessage.html">MQTTMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTProperties.html">MQTTProperties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSSLSecurityPolicy.html">MQTTSSLSecurityPolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSSLSecurityPolicyTransport.html">MQTTSSLSecurityPolicyTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSession.html">MQTTSession</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSessionManager.html">MQTTSessionManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTTransport">MQTTTransport</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Constants.html">Constants</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTClientVersionNumber">MQTTClientVersionNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTClientVersionString">MQTTClientVersionString</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTSessionErrorDomain">MQTTSessionErrorDomain</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_MESSAGES">MQTT_MAX_MESSAGES</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_SIZE">MQTT_MAX_SIZE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_WINDOW_SIZE">MQTT_MAX_WINDOW_SIZE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_PERSISTENT">MQTT_PERSISTENT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@ddLogLevel">ddLogLevel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ACCESSCMD.html">ACCESSCMD</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYLEVELSTATUS.html">BATTERYLEVELSTATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYMODE.html">BATTERYMODE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CONNECTION.html">CONNECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DDLogFlag.html">DDLogFlag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DDLogLevel.html">DDLogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DEVICEID.html">DEVICEID</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DIRECTION.html">DIRECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LINKPROFILE.html">LINKPROFILE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MEMORYBANK.html">MEMORYBANK</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCFSocketDecoderState.html">MQTTCFSocketDecoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCFSocketEncoderState.html">MQTTCFSocketEncoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCommandType.html">MQTTCommandType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTDecoderEvent.html">MQTTDecoderEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTDecoderState.html">MQTTDecoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTPropertyIdentifier.html">MQTTPropertyIdentifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSSLPinningMode.html">MQTTSSLPinningMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionError.html">MQTTSessionError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionEvent.html">MQTTSessionEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionManagerState.html">MQTTSessionManagerState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionStatus.html">MQTTSessionStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTStatus.html">MQTTStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTTransportState.html">MQTTTransportState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYSELECT.html">QUERYSELECT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SENSORTYPE.html">SENSORTYPE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SESSION.html">SESSION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/STATUS.html">STATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TARGET.html">TARGET</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TEMPERATUREUNIT.html">TEMPERATUREUNIT</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleInterfaceDelegate.html">CSLBleInterfaceDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTCFSocketDecoderDelegate.html">MQTTCFSocketDecoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTCFSocketEncoderDelegate.html">MQTTCFSocketEncoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTDecoderDelegate.html">MQTTDecoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTFlow.html">MQTTFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTPersistence.html">MQTTPersistence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTSessionDelegate.html">MQTTSessionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTSessionManagerDelegate.html">MQTTSessionManagerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTTransport.html">MQTTTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTTransportDelegate.html">MQTTTransportDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Type Definitions.html">Type Definitions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTConnectHandler">MQTTConnectHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTDisconnectHandler">MQTTDisconnectHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTPublishHandler">MQTTPublishHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTSubscribeHandler">MQTTSubscribeHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTUnsubscribeHandler">MQTTUnsubscribeHandler</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>MQTTSessionDelegate</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight objective_c"><code><span class="k">@protocol</span> <span class="nc">MQTTSessionDelegate</span> <span class="o">&lt;</span><span class="n">NSObject</span><span class="o">&gt;</span></code></pre>
+
+                </div>
+              </div>
+            <p>Session delegate gives your application control over the MQTTSession</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    all callback methods are optional
+
+</div>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)newMessage:data:onTopic:qos:retained:mid:"></a>
+                    <a name="//apple_ref/objc/Method/-newMessage:data:onTopic:qos:retained:mid:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)newMessage:data:onTopic:qos:retained:mid:">-newMessage:data:onTopic:qos:retained:mid:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when a new message was received</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">newMessage</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span>
+              <span class="nf">data</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span>
+           <span class="nf">onTopic</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">topic</span>
+               <span class="nf">qos</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">)</span><span class="nv">qos</span>
+          <span class="nf">retained</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">retained</span>
+               <span class="nf">mid</span><span class="p">:(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="nv">mid</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">newMessage</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">,</span> <span class="n">onTopic</span> <span class="nv">topic</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="nv">qos</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">,</span> <span class="nv">retained</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">mid</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the new message</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the data received, might be zero length</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>topic</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the topic the data was published to</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>qos</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the qos of the message</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>retained</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>indicates if the data retransmitted from server storage</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mid</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Message Identifier of the message if qos = 1 or 2, zero otherwise</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)newMessageWithFeedback:data:onTopic:qos:retained:mid:"></a>
+                    <a name="//apple_ref/objc/Method/-newMessageWithFeedback:data:onTopic:qos:retained:mid:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)newMessageWithFeedback:data:onTopic:qos:retained:mid:">-newMessageWithFeedback:data:onTopic:qos:retained:mid:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when a new message was received</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">newMessageWithFeedback</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span>
+                          <span class="nf">data</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span>
+                       <span class="nf">onTopic</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">topic</span>
+                           <span class="nf">qos</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">)</span><span class="nv">qos</span>
+                      <span class="nf">retained</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">retained</span>
+                           <span class="nf">mid</span><span class="p">:(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="nv">mid</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">newMessage</span><span class="p">(</span><span class="n">withFeedback</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">,</span> <span class="n">onTopic</span> <span class="nv">topic</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="nv">qos</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">,</span> <span class="nv">retained</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">mid</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the new message</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the data received, might be zero length</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>topic</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the topic the data was published to</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>qos</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the qos of the message</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>retained</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>indicates if the data retransmitted from server storage</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mid</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Message Identifier of the message if qos = 1 or 2, zero otherwise</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true if the message was or will be processed, false if the message shall not be ack-ed</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)session:newMessage:onTopic:"></a>
+                    <a name="//apple_ref/objc/Method/-session:newMessage:onTopic:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)session:newMessage:onTopic:">-session:newMessage:onTopic:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>for mqttio-OBJC backward compatibility</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">session</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span>
+     <span class="nf">newMessage</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span>
+        <span class="nf">onTopic</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">topic</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">session</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="n">newMessage</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">,</span> <span class="n">onTopic</span> <span class="nv">topic</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>see newMessage for description</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>see newMessage for description</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>topic</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>see newMessage for description</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)handleEvent:event:error:"></a>
+                    <a name="//apple_ref/objc/Method/-handleEvent:event:error:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)handleEvent:event:error:">-handleEvent:event:error:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when a connection is established, closed or a problem occurred</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">handleEvent</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span>
+              <span class="nf">event</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTSessionEvent.html">MQTTSessionEvent</a></span><span class="p">)</span><span class="nv">eventCode</span>
+              <span class="nf">error</span><span class="p">:(</span><span class="n">NSError</span> <span class="o">*</span><span class="p">)</span><span class="nv">error</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">handleEvent</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="n">event</span> <span class="nv">eventCode</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTSessionEvent.html">MQTTSessionEvent</a></span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the event</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>eventCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the code of the event</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an optional additional error object with additional information</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)session:handleEvent:"></a>
+                    <a name="//apple_ref/objc/Method/-session:handleEvent:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)session:handleEvent:">-session:handleEvent:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>for mqttio-OBJC backward compatibility</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">session</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span> <span class="nf">handleEvent</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTSessionEvent.html">MQTTSessionEvent</a></span><span class="p">)</span><span class="nv">eventCode</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">session</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="n">handle</span> <span class="nv">eventCode</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTSessionEvent.html">MQTTSessionEvent</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the event</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>eventCode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the code of the event</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)connected:"></a>
+                    <a name="//apple_ref/objc/Method/-connected:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)connected:">-connected:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when a connection has been successfully established</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">connected</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">connected</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the connect</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)connected:sessionPresent:"></a>
+                    <a name="//apple_ref/objc/Method/-connected:sessionPresent:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)connected:sessionPresent:">-connected:sessionPresent:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when a connection has been successfully established</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">connected</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span> <span class="nf">sessionPresent</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">sessionPresent</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">connected</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">sessionPresent</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the connect</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sessionPresent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>represents the Session Present flag sent by the broker</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)connectionRefused:error:"></a>
+                    <a name="//apple_ref/objc/Method/-connectionRefused:error:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)connectionRefused:error:">-connectionRefused:error:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when a connection has been refused</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">connectionRefused</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span> <span class="nf">error</span><span class="p">:(</span><span class="n">NSError</span> <span class="o">*</span><span class="p">)</span><span class="nv">error</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">connectionRefused</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the refusal</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an optional additional error object with additional information</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)connectionClosed:"></a>
+                    <a name="//apple_ref/objc/Method/-connectionClosed:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)connectionClosed:">-connectionClosed:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when a connection has been closed</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">connectionClosed</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">connectionClosed</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the close</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)connectionError:error:"></a>
+                    <a name="//apple_ref/objc/Method/-connectionError:error:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)connectionError:error:">-connectionError:error:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when a connection error happened</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">connectionError</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span> <span class="nf">error</span><span class="p">:(</span><span class="n">NSError</span> <span class="o">*</span><span class="p">)</span><span class="nv">error</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">connectionError</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the connect error</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an optional additional error object with additional information</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)protocolError:error:"></a>
+                    <a name="//apple_ref/objc/Method/-protocolError:error:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)protocolError:error:">-protocolError:error:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when an MQTT protocol error happened</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">protocolError</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span> <span class="nf">error</span><span class="p">:(</span><span class="n">NSError</span> <span class="o">*</span><span class="p">)</span><span class="nv">error</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">protocolError</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the protocol error</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an optional additional error object with additional information</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)messageDelivered:msgID:"></a>
+                    <a name="//apple_ref/objc/Method/-messageDelivered:msgID:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)messageDelivered:msgID:">-messageDelivered:msgID:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when a published message was actually delivered</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    this method is called after a publish with qos 1 or 2 only
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">messageDelivered</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span> <span class="nf">msgID</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgID</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">messageDelivered</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">msgID</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the delivery</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>msgID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Message Identifier of the delivered message</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)messageDelivered:msgID:topic:data:qos:retainFlag:"></a>
+                    <a name="//apple_ref/objc/Method/-messageDelivered:msgID:topic:data:qos:retainFlag:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)messageDelivered:msgID:topic:data:qos:retainFlag:">-messageDelivered:msgID:topic:data:qos:retainFlag:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when a published message was actually delivered</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    this method is called after a publish with qos 1 or 2 only
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">messageDelivered</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span>
+                   <span class="nf">msgID</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgID</span>
+                   <span class="nf">topic</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">topic</span>
+                    <span class="nf">data</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span>
+                     <span class="nf">qos</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">)</span><span class="nv">qos</span>
+              <span class="nf">retainFlag</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">retainFlag</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">messageDelivered</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">msgID</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="nv">topic</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">,</span> <span class="nv">qos</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">,</span> <span class="nv">retainFlag</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the delivery</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>msgID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Message Identifier of the delivered message</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>topic</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the topic of the delivered message</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the data Identifier of the delivered message</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>qos</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the QoS level of the delivered message</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>retainFlag</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the retain Flag of the delivered message</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)subAckReceived:msgID:grantedQoss:"></a>
+                    <a name="//apple_ref/objc/Method/-subAckReceived:msgID:grantedQoss:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)subAckReceived:msgID:grantedQoss:">-subAckReceived:msgID:grantedQoss:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when a subscription is acknowledged by the MQTT broker</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">subAckReceived</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span>
+                 <span class="nf">msgID</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgID</span>
+           <span class="nf">grantedQoss</span><span class="p">:(</span><span class="n">NSArray</span><span class="o">&lt;</span><span class="n">NSNumber</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">qoss</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">subAckReceived</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">msgID</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="n">grantedQoss</span> <span class="nv">qoss</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSNumber</span><span class="p">]</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the acknowledge</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>msgID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Message Identifier of the SUBSCRIBE message</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>qoss</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an array containing the granted QoS(s) related to the SUBSCRIBE message
+(see subscribeTopic, subscribeTopics)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)unsubAckReceived:msgID:"></a>
+                    <a name="//apple_ref/objc/Method/-unsubAckReceived:msgID:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)unsubAckReceived:msgID:">-unsubAckReceived:msgID:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when an unsubscribe is acknowledged by the MQTT broker</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">unsubAckReceived</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span> <span class="nf">msgID</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">msgID</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">unsubAckReceived</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">msgID</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the acknowledge</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>msgID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Message Identifier of the UNSUBSCRIBE message</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)sending:type:qos:retained:duped:mid:data:"></a>
+                    <a name="//apple_ref/objc/Method/-sending:type:qos:retained:duped:mid:data:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)sending:type:qos:retained:duped:mid:data:">-sending:type:qos:retained:duped:mid:data:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when a command is sent to the MQTT broker
+ use this for low level monitoring of the MQTT connection</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">sending</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span>
+           <span class="nf">type</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">)</span><span class="nv">type</span>
+            <span class="nf">qos</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">)</span><span class="nv">qos</span>
+       <span class="nf">retained</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">retained</span>
+          <span class="nf">duped</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">duped</span>
+            <span class="nf">mid</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">mid</span>
+           <span class="nf">data</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">sending</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">,</span> <span class="nv">qos</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">,</span> <span class="nv">retained</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">duped</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">mid</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the sent command</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTT command type</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>qos</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Quality of Service of the command</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>retained</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the retained status of the command</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>duped</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the duplication status of the command</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mid</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Message Identifier of the command</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the payload data of the command if any, might be zero length</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)received:type:qos:retained:duped:mid:data:"></a>
+                    <a name="//apple_ref/objc/Method/-received:type:qos:retained:duped:mid:data:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)received:type:qos:retained:duped:mid:data:">-received:type:qos:retained:duped:mid:data:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when a command is received from the MQTT broker
+ use this for low level monitoring of the MQTT connection</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">received</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span>
+            <span class="nf">type</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">)</span><span class="nv">type</span>
+             <span class="nf">qos</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">)</span><span class="nv">qos</span>
+        <span class="nf">retained</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">retained</span>
+           <span class="nf">duped</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">duped</span>
+             <span class="nf">mid</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">mid</span>
+            <span class="nf">data</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">received</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">,</span> <span class="nv">qos</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">,</span> <span class="nv">retained</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">duped</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">mid</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the received command</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTT command type</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>qos</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Quality of Service of the command</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>retained</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the retained status of the command</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>duped</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the duplication status of the command</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mid</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Message Identifier of the command</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the payload data of the command if any, might be zero length</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)ignoreReceived:type:qos:retained:duped:mid:data:"></a>
+                    <a name="//apple_ref/objc/Method/-ignoreReceived:type:qos:retained:duped:mid:data:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)ignoreReceived:type:qos:retained:duped:mid:data:">-ignoreReceived:type:qos:retained:duped:mid:data:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when a command is received from the MQTT broker
+ use this for low level control of the MQTT connection</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">ignoreReceived</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span>
+                  <span class="nf">type</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">)</span><span class="nv">type</span>
+                   <span class="nf">qos</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">)</span><span class="nv">qos</span>
+              <span class="nf">retained</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">retained</span>
+                 <span class="nf">duped</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">duped</span>
+                   <span class="nf">mid</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">mid</span>
+                  <span class="nf">data</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">ignoreReceived</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTCommandType.html">MQTTCommandType</a></span><span class="p">,</span> <span class="nv">qos</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a></span><span class="p">,</span> <span class="nv">retained</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">duped</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">mid</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the received command</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTT command type</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>qos</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Quality of Service of the command</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>retained</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the retained status of the command</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>duped</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the duplication status of the command</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mid</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Message Identifier of the command</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the payload data of the command if any, might be zero length</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true if the sessionmanager should ignore the received message</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)buffered:queued:flowingIn:flowingOut:"></a>
+                    <a name="//apple_ref/objc/Method/-buffered:queued:flowingIn:flowingOut:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)buffered:queued:flowingIn:flowingOut:">-buffered:queued:flowingIn:flowingOut:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when the content of MQTTClients internal buffers change
+ use for monitoring the completion of transmitted and received messages</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">buffered</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span>
+          <span class="nf">queued</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">queued</span>
+       <span class="nf">flowingIn</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">flowingIn</span>
+      <span class="nf">flowingOut</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">flowingOut</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">buffered</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">queued</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">,</span> <span class="nv">flowingIn</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">,</span> <span class="nv">flowingOut</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the change</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>queued</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>for backward compatibility only: MQTTClient does not queue messages anymore except during QoS protocol</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>flowingIn</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the number of incoming messages not acknowledged by the MQTTClient yet</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>flowingOut</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the number of outgoing messages not yet acknowledged by the MQTT broker</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(pl)MQTTSessionDelegate(im)buffered:flowingIn:flowingOut:"></a>
+                    <a name="//apple_ref/objc/Method/-buffered:flowingIn:flowingOut:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(pl)MQTTSessionDelegate(im)buffered:flowingIn:flowingOut:">-buffered:flowingIn:flowingOut:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>gets called when the content of MQTTClients internal buffers change
+ use for monitoring the completion of transmitted and received messages</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">buffered</span><span class="p">:(</span><span class="n"><a href="../Classes/MQTTSession.html">MQTTSession</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">session</span>
+       <span class="nf">flowingIn</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">flowingIn</span>
+      <span class="nf">flowingOut</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">flowingOut</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">buffered</span><span class="p">(</span><span class="n">_</span> <span class="nv">session</span><span class="p">:</span> <span class="kt"><a href="../Classes/MQTTSession.html">MQTTSession</a></span><span class="o">!</span><span class="p">,</span> <span class="nv">flowingIn</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">,</span> <span class="nv">flowingOut</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>session</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the MQTTSession reporting the change</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>flowingIn</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the number of incoming messages not acknowledged by the MQTTClient yet</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>flowingOut</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the number of outgoing messages not yet acknowledged by the MQTT broker</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://www.convergenece.com.hk" target="_blank" rel="external">CSL</a>. All rights reserved. (Last updated: 2019-04-01)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
