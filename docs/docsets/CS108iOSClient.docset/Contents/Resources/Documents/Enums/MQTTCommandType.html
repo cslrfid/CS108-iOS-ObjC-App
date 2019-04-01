@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MQTTCommandType Enumeration Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Enum/MQTTCommandType" class="dashAnchor"></a>
+    <a title="MQTTCommandType Enumeration Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">CS108iOSClient Docs</a> (56% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">CS108iOSClient Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        MQTTCommandType Enumeration Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Categories.html">Categories</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Categories/NSMutableData(MQTT).html">NSMutableData(MQTT)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleInterface.html">CSLBleInterface</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBlePacket.html">CSLBlePacket</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleReader.html">CSLBleReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleTag.html">CSLBleTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLCircularQueue.html">CSLCircularQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLMQTTSettings.html">CSLMQTTSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBarcode.html">CSLReaderBarcode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderInfo.html">CSLReaderInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderSettings.html">CSLReaderSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLRfidAppEngine.html">CSLRfidAppEngine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLTemperatureTagSettings.html">CSLTemperatureTagSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketDecoder.html">MQTTCFSocketDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketEncoder.html">MQTTCFSocketEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketTransport.html">MQTTCFSocketTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTCoreDataFlow">MQTTCoreDataFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTCoreDataPersistence">MQTTCoreDataPersistence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTDecoder.html">MQTTDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTFlow">MQTTFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTLog.html">MQTTLog</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTMessage.html">MQTTMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTProperties.html">MQTTProperties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSSLSecurityPolicy.html">MQTTSSLSecurityPolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSSLSecurityPolicyTransport.html">MQTTSSLSecurityPolicyTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSession.html">MQTTSession</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSessionManager.html">MQTTSessionManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTTransport">MQTTTransport</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Constants.html">Constants</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTClientVersionNumber">MQTTClientVersionNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTClientVersionString">MQTTClientVersionString</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTSessionErrorDomain">MQTTSessionErrorDomain</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_MESSAGES">MQTT_MAX_MESSAGES</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_SIZE">MQTT_MAX_SIZE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_WINDOW_SIZE">MQTT_MAX_WINDOW_SIZE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_PERSISTENT">MQTT_PERSISTENT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@ddLogLevel">ddLogLevel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ACCESSCMD.html">ACCESSCMD</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYLEVELSTATUS.html">BATTERYLEVELSTATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYMODE.html">BATTERYMODE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CONNECTION.html">CONNECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DDLogFlag.html">DDLogFlag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DDLogLevel.html">DDLogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DEVICEID.html">DEVICEID</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DIRECTION.html">DIRECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LINKPROFILE.html">LINKPROFILE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MEMORYBANK.html">MEMORYBANK</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCFSocketDecoderState.html">MQTTCFSocketDecoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCFSocketEncoderState.html">MQTTCFSocketEncoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCommandType.html">MQTTCommandType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTDecoderEvent.html">MQTTDecoderEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTDecoderState.html">MQTTDecoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTPropertyIdentifier.html">MQTTPropertyIdentifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSSLPinningMode.html">MQTTSSLPinningMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionError.html">MQTTSessionError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionEvent.html">MQTTSessionEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionManagerState.html">MQTTSessionManagerState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionStatus.html">MQTTSessionStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTStatus.html">MQTTStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTTransportState.html">MQTTTransportState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYSELECT.html">QUERYSELECT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SENSORTYPE.html">SENSORTYPE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SESSION.html">SESSION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/STATUS.html">STATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TARGET.html">TARGET</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TEMPERATUREUNIT.html">TEMPERATUREUNIT</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleInterfaceDelegate.html">CSLBleInterfaceDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTCFSocketDecoderDelegate.html">MQTTCFSocketDecoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTCFSocketEncoderDelegate.html">MQTTCFSocketEncoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTDecoderDelegate.html">MQTTDecoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTFlow.html">MQTTFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTPersistence.html">MQTTPersistence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTSessionDelegate.html">MQTTSessionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTSessionManagerDelegate.html">MQTTSessionManagerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTTransport.html">MQTTTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTTransportDelegate.html">MQTTTransportDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Type Definitions.html">Type Definitions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTConnectHandler">MQTTConnectHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTDisconnectHandler">MQTTDisconnectHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTPublishHandler">MQTTPublishHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTSubscribeHandler">MQTTSubscribeHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTUnsubscribeHandler">MQTTUnsubscribeHandler</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>MQTTCommandType</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight objective_c"><code><span class="n">NS_ENUM</span><span class="p">(</span><span class="n">UInt8</span><span class="p">,</span> <span class="n">MQTTCommandType</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">MQTT_None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">MQTTConnect</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">MQTTConnack</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">MQTTPublish</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">MQTTPuback</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">MQTTPubrec</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">MQTTPubrel</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="n">MQTTPubcomp</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="n">MQTTSubscribe</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="n">MQTTSuback</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
+    <span class="n">MQTTUnsubscribe</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="n">MQTTUnsuback</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span>
+    <span class="n">MQTTPingreq</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="n">MQTTPingresp</span> <span class="o">=</span> <span class="mi">13</span><span class="p">,</span>
+    <span class="n">MQTTDisconnect</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span>
+    <span class="n">MQTTAuth</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="p">}</span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTT_None"></a>
+                    <a name="//apple_ref/objc/Case/MQTT_None" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTT_None">MQTT_None</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTT_None</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">_None</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTTConnect"></a>
+                    <a name="//apple_ref/objc/Case/MQTTConnect" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTTConnect">MQTTConnect</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTTConnect</span> <span class="o">=</span> <span class="mi">1</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">connect</span> <span class="o">=</span> <span class="mi">1</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTTConnack"></a>
+                    <a name="//apple_ref/objc/Case/MQTTConnack" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTTConnack">MQTTConnack</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTTConnack</span> <span class="o">=</span> <span class="mi">2</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">connack</span> <span class="o">=</span> <span class="mi">2</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTTPublish"></a>
+                    <a name="//apple_ref/objc/Case/MQTTPublish" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTTPublish">MQTTPublish</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTTPublish</span> <span class="o">=</span> <span class="mi">3</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">publish</span> <span class="o">=</span> <span class="mi">3</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTTPuback"></a>
+                    <a name="//apple_ref/objc/Case/MQTTPuback" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTTPuback">MQTTPuback</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTTPuback</span> <span class="o">=</span> <span class="mi">4</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">puback</span> <span class="o">=</span> <span class="mi">4</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTTPubrec"></a>
+                    <a name="//apple_ref/objc/Case/MQTTPubrec" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTTPubrec">MQTTPubrec</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTTPubrec</span> <span class="o">=</span> <span class="mi">5</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">pubrec</span> <span class="o">=</span> <span class="mi">5</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTTPubrel"></a>
+                    <a name="//apple_ref/objc/Case/MQTTPubrel" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTTPubrel">MQTTPubrel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTTPubrel</span> <span class="o">=</span> <span class="mi">6</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">pubrel</span> <span class="o">=</span> <span class="mi">6</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTTPubcomp"></a>
+                    <a name="//apple_ref/objc/Case/MQTTPubcomp" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTTPubcomp">MQTTPubcomp</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTTPubcomp</span> <span class="o">=</span> <span class="mi">7</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">pubcomp</span> <span class="o">=</span> <span class="mi">7</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTTSubscribe"></a>
+                    <a name="//apple_ref/objc/Case/MQTTSubscribe" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTTSubscribe">MQTTSubscribe</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTTSubscribe</span> <span class="o">=</span> <span class="mi">8</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">subscribe</span> <span class="o">=</span> <span class="mi">8</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTTSuback"></a>
+                    <a name="//apple_ref/objc/Case/MQTTSuback" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTTSuback">MQTTSuback</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTTSuback</span> <span class="o">=</span> <span class="mi">9</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">suback</span> <span class="o">=</span> <span class="mi">9</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTTUnsubscribe"></a>
+                    <a name="//apple_ref/objc/Case/MQTTUnsubscribe" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTTUnsubscribe">MQTTUnsubscribe</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTTUnsubscribe</span> <span class="o">=</span> <span class="mi">10</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">unsubscribe</span> <span class="o">=</span> <span class="mi">10</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTTUnsuback"></a>
+                    <a name="//apple_ref/objc/Case/MQTTUnsuback" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTTUnsuback">MQTTUnsuback</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTTUnsuback</span> <span class="o">=</span> <span class="mi">11</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">unsuback</span> <span class="o">=</span> <span class="mi">11</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTTPingreq"></a>
+                    <a name="//apple_ref/objc/Case/MQTTPingreq" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTTPingreq">MQTTPingreq</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTTPingreq</span> <span class="o">=</span> <span class="mi">12</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">pingreq</span> <span class="o">=</span> <span class="mi">12</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTTPingresp"></a>
+                    <a name="//apple_ref/objc/Case/MQTTPingresp" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTTPingresp">MQTTPingresp</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTTPingresp</span> <span class="o">=</span> <span class="mi">13</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">pingresp</span> <span class="o">=</span> <span class="mi">13</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTTDisconnect"></a>
+                    <a name="//apple_ref/objc/Case/MQTTDisconnect" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTTDisconnect">MQTTDisconnect</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTTDisconnect</span> <span class="o">=</span> <span class="mi">14</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">disconnect</span> <span class="o">=</span> <span class="mi">14</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@E@MQTTCommandType@MQTTAuth"></a>
+                    <a name="//apple_ref/objc/Case/MQTTAuth" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@E@MQTTCommandType@MQTTAuth">MQTTAuth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="n">MQTTAuth</span> <span class="o">=</span> <span class="mi">15</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">auth</span> <span class="o">=</span> <span class="mi">15</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://www.convergenece.com.hk" target="_blank" rel="external">CSL</a>. All rights reserved. (Last updated: 2019-04-01)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

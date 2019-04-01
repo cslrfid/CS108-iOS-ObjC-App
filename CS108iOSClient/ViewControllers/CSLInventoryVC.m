@@ -40,11 +40,9 @@
     // Do any additional setup after loading the view.
     [self.tabBarController setTitle:@"Inventory"];
     
-    tblTagList.layer.borderWidth=1.0f;
-    tblTagList.layer.borderColor=[UIColor lightGrayColor].CGColor;
-    
     btnInventory.layer.borderWidth=1.0f;
-    btnInventory.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnInventory.layer.borderColor=[UIColor clearColor].CGColor;
+    btnInventory.layer.cornerRadius=5.0f;
     
     swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]
                                    initWithTarget:self
@@ -174,7 +172,7 @@
         session.willFlag=true;
         session.willMsg=[@"offline" dataUsingEncoding:NSUTF8StringEncoding];
         session.willTopic=[NSString stringWithFormat:@"devices/%@/messages/events/", session.clientId];
-        session.willQoS=([CSLRfidAppEngine sharedAppEngine].MQTTSettings.QoS) ? MQTTQosLevelAtLeastOnce : MQTTQosLevelAtMostOnce;
+        session.willQoS=[CSLRfidAppEngine sharedAppEngine].MQTTSettings.QoS;
         session.willRetainFlag=[CSLRfidAppEngine sharedAppEngine].MQTTSettings.retained;
         
         [self->uivSendTagData setHidden:false];
@@ -208,7 +206,7 @@
     //stop inventory if it is still running
     if (btnInventory.enabled)
     {
-        if ([[btnInventory currentTitle] isEqualToString:@"STOP"])
+        if ([[btnInventory currentTitle] isEqualToString:@"Stop"])
             [btnInventory sendActionsForControlEvents:UIControlEventTouchUpInside];
 
     }
@@ -249,24 +247,24 @@
 
 - (IBAction)btnInventoryPressed:(id)sender {
     
-    if ([CSLRfidAppEngine sharedAppEngine].isBarcodeMode && [[btnInventory currentTitle] isEqualToString:@"START"]) {
+    if ([CSLRfidAppEngine sharedAppEngine].isBarcodeMode && [[btnInventory currentTitle] isEqualToString:@"Start"]) {
         [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         btnInventory.enabled=false;
         
         [[CSLRfidAppEngine sharedAppEngine].reader startBarcodeReading];
-        [btnInventory setTitle:@"STOP" forState:UIControlStateNormal];
+        [btnInventory setTitle:@"Stop" forState:UIControlStateNormal];
         btnInventory.enabled=true;
         
     }
-    else if ([CSLRfidAppEngine sharedAppEngine].isBarcodeMode && [[btnInventory currentTitle] isEqualToString:@"STOP"]) {
+    else if ([CSLRfidAppEngine sharedAppEngine].isBarcodeMode && [[btnInventory currentTitle] isEqualToString:@"Stop"]) {
         [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         btnInventory.enabled=false;
         
         [[CSLRfidAppEngine sharedAppEngine].reader stopBarcodeReading];
-        [btnInventory setTitle:@"START" forState:UIControlStateNormal];
+        [btnInventory setTitle:@"Start" forState:UIControlStateNormal];
         btnInventory.enabled=true;
     }
-    else if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED && [[btnInventory currentTitle] isEqualToString:@"START"])
+    else if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED && [[btnInventory currentTitle] isEqualToString:@"Start"])
     {
         [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         btnInventory.enabled=false;
@@ -303,20 +301,20 @@
         //start inventory
         tagRangingStartTime=[NSDate date];
         [[CSLRfidAppEngine sharedAppEngine].reader startInventory];
-        [btnInventory setTitle:@"STOP" forState:UIControlStateNormal];
+        [btnInventory setTitle:@"Stop" forState:UIControlStateNormal];
         btnInventory.enabled=true;
     }
-    else if ([[btnInventory currentTitle] isEqualToString:@"STOP"])
+    else if ([[btnInventory currentTitle] isEqualToString:@"Stop"])
     {
         [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         if([[CSLRfidAppEngine sharedAppEngine].reader stopInventory])
         {
-            [btnInventory setTitle:@"START" forState:UIControlStateNormal];
+            [btnInventory setTitle:@"Start" forState:UIControlStateNormal];
             btnInventory.enabled=true;
         }
         else
         {
-            [btnInventory setTitle:@"STOP" forState:UIControlStateNormal];
+            [btnInventory setTitle:@"Stop" forState:UIControlStateNormal];
             btnInventory.enabled=true;
         }
     }
@@ -353,7 +351,7 @@
                 NSError * err;
                 NSData * jsonData = [NSJSONSerialization dataWithJSONObject:info options:NSJSONWritingPrettyPrinted error:&err];
                 BOOL retain=[CSLRfidAppEngine sharedAppEngine].MQTTSettings.retained;
-                MQTTQosLevel level=([CSLRfidAppEngine sharedAppEngine].MQTTSettings.QoS) ? MQTTQosLevelAtLeastOnce : MQTTQosLevelAtMostOnce;
+                MQTTQosLevel level=[CSLRfidAppEngine sharedAppEngine].MQTTSettings.QoS;
                 NSString* topic=[NSString stringWithFormat:@"devices/%@/messages/events/", self->session.clientId];
                 
                 [self->session publishData:jsonData onTopic:topic retain:retain qos:level publishHandler:^(NSError *error) {
@@ -394,11 +392,11 @@
         if (self->btnInventory.enabled)
         {
             if (state) {
-                if ([[self->btnInventory currentTitle] isEqualToString:@"START"])
+                if ([[self->btnInventory currentTitle] isEqualToString:@"Start"])
                     [self->btnInventory sendActionsForControlEvents:UIControlEventTouchUpInside];
             }
             else {
-                if ([[self->btnInventory currentTitle] isEqualToString:@"STOP"])
+                if ([[self->btnInventory currentTitle] isEqualToString:@"Stop"])
                     [self->btnInventory sendActionsForControlEvents:UIControlEventTouchUpInside];
             }
         }
@@ -433,11 +431,7 @@
             [tableView registerNib:[UINib nibWithNibName:@"CSLTagListCell" bundle:nil] forCellReuseIdentifier:@"TagCell"];
             cell = [tableView dequeueReusableCellWithIdentifier:@"TagCell"];
         }
-        
-        cell.lbCellEPC.font = [UIFont fontWithName:@"Arial" size:14];
-        cell.lbCellBank.font = [UIFont fontWithName:@"Arial" size:14];
-        cell.lbCellBank.textColor =[UIColor grayColor];
-        
+              
         if (data1 != NULL && data2 != NULL ) {
             cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), epc];
             cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\n%@=%@\nRSSI: %d", data1bank, data1, data2bank, data2, rssi];
@@ -460,10 +454,7 @@
             [tableView registerNib:[UINib nibWithNibName:@"CSLTagListCell" bundle:nil] forCellReuseIdentifier:@"TagCell"];
             cell = [tableView dequeueReusableCellWithIdentifier:@"TagCell"];
         }
-        
-        cell.lbCellEPC.font = [UIFont fontWithName:@"Arial" size:14];
-        cell.lbCellBank.font = [UIFont fontWithName:@"Arial" size:14];
-        cell.lbCellBank.textColor =[UIColor grayColor];
+
         cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), bc];
         cell.lbCellBank.text= [NSString stringWithFormat:@"[%@]", ((CSLReaderBarcode*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).codeId];
         

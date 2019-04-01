@@ -21,8 +21,10 @@ CSLRfidAppEngine * appEngine;
 @synthesize readerInfo;
 @synthesize settings;
 @synthesize tagSelected;
+@synthesize CSLBleTagSelected;
 @synthesize isBarcodeMode;
 @synthesize MQTTSettings;
+@synthesize temperatureSettings;
 
 + (CSLRfidAppEngine *) sharedAppEngine
 {
@@ -74,6 +76,8 @@ CSLRfidAppEngine * appEngine;
         [self reloadSettingsFromUserDefaults];
         MQTTSettings = [[CSLMQTTSettings alloc] init];
         [self reloadMQTTSettingsFromUserDefaults];
+        temperatureSettings = [[CSLTemperatureTagSettings alloc] init];
+        [self reloadTemperatureTagSettingsFromUserDefaults];
         readerInfo = [[CSLReaderInfo alloc] init];
     }
     
@@ -150,25 +154,25 @@ CSLRfidAppEngine * appEngine;
 -(void)reloadMQTTSettingsFromUserDefaults {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if([defaults boolForKey:@"isMQTTEnabled"])
+    if([defaults objectForKey:@"isMQTTEnabled"])
         MQTTSettings.isMQTTEnabled = (BOOL)[defaults boolForKey:@"isMQTTEnabled"];
-    if([defaults stringForKey:@"brokerAddress"])
+    if([defaults objectForKey:@"brokerAddress"])
         MQTTSettings.brokerAddress = (NSString*)[defaults stringForKey:@"brokerAddress"];
-    if([defaults stringForKey:@"brokerAddress"])
+    if([defaults objectForKey:@"brokerAddress"])
         MQTTSettings.brokerAddress = (NSString*)[defaults stringForKey:@"brokerAddress"];
-    if([defaults integerForKey:@"brokerPort"])
+    if([defaults objectForKey:@"brokerPort"])
         MQTTSettings.brokerPort = (int)[defaults integerForKey:@"brokerPort"];
-    if([defaults stringForKey:@"clientId"])
+    if([defaults objectForKey:@"clientId"])
         MQTTSettings.clientId =(NSString*)[defaults stringForKey:@"clientId"];
-    if([defaults stringForKey:@"userName"])
+    if([defaults objectForKey:@"userName"])
         MQTTSettings.userName = (NSString*)[defaults stringForKey:@"userName"];
-    if([defaults stringForKey:@"password"])
+    if([defaults objectForKey:@"password"])
         MQTTSettings.password = (NSString*)[defaults stringForKey:@"password"];
-    if([defaults boolForKey:@"isTLSEnabled"])
+    if([defaults objectForKey:@"isTLSEnabled"])
         MQTTSettings.isTLSEnabled = (BOOL)[defaults boolForKey:@"isTLSEnabled"];
-    if([defaults integerForKey:@"QoS"])
+    if([defaults objectForKey:@"QoS"])
         MQTTSettings.QoS = (int)[defaults integerForKey:@"QoS"];
-    if([defaults boolForKey:@"retained"])
+    if([defaults objectForKey:@"retained"])
         MQTTSettings.retained = (BOOL)[defaults boolForKey:@"retained"];
 }
 -(void)saveMQTTSettingsToUserDefaults {
@@ -183,6 +187,39 @@ CSLRfidAppEngine * appEngine;
     [defaults setBool:MQTTSettings.isTLSEnabled forKey:@"isTLSEnabled"];
     [defaults setInteger:MQTTSettings.QoS forKey:@"QoS"];
     [defaults setBool:MQTTSettings.retained forKey:@"retained"];
+    [defaults synchronize];
+    
+}
+
+-(void)reloadTemperatureTagSettingsFromUserDefaults {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    if([defaults objectForKey:@"isTemperatureAlertEnabled"])
+        temperatureSettings.isTemperatureAlertEnabled = (BOOL)[defaults boolForKey:@"isTemperatureAlertEnabled"];
+    if([defaults objectForKey:@"temperatureAlertLowerLimit"])
+        temperatureSettings.temperatureAlertLowerLimit = (double)[defaults doubleForKey:@"temperatureAlertLowerLimit"];
+    if([defaults objectForKey:@"temperatureAlertUpperLimit"])
+        temperatureSettings.temperatureAlertUpperLimit = (double)[defaults doubleForKey:@"temperatureAlertUpperLimit"];
+    if([defaults objectForKey:@"rssiLowerLimit"])
+        temperatureSettings.rssiLowerLimit = (int)[defaults integerForKey:@"rssiLowerLimit"];
+    if([defaults objectForKey:@"rssiUpperLimit"])
+        temperatureSettings.rssiUpperLimit = (int)[defaults integerForKey:@"rssiUpperLimit"];
+    if([defaults objectForKey:@"NumberOfRollingAvergage"])
+        temperatureSettings.NumberOfRollingAvergage = (UInt32)[defaults integerForKey:@"NumberOfRollingAvergage"];
+    if([defaults objectForKey:@"temperatureUnit"])
+        temperatureSettings.unit = (BOOL)[defaults boolForKey:@"temperatureUnit"];
+}
+-(void)saveTemperatureTagSettingsToUserDefaults {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setBool:temperatureSettings.isTemperatureAlertEnabled forKey:@"isTemperatureAlertEnabled"];
+    [defaults setDouble:temperatureSettings.temperatureAlertLowerLimit forKey:@"temperatureAlertLowerLimit"];
+    [defaults setDouble:temperatureSettings.temperatureAlertUpperLimit forKey:@"temperatureAlertUpperLimit"];
+    [defaults setInteger:temperatureSettings.rssiLowerLimit forKey:@"rssiLowerLimit"];
+    [defaults setInteger:temperatureSettings.rssiUpperLimit forKey:@"rssiUpperLimit"];
+    [defaults setInteger:temperatureSettings.NumberOfRollingAvergage forKey:@"NumberOfRollingAvergage"];
+    [defaults setInteger:temperatureSettings.unit forKey:@"temperatureUnit"];
+    
     [defaults synchronize];
     
 }

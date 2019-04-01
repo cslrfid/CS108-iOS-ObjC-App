@@ -14,6 +14,9 @@
 #import "CSLRfidAppEngine.h"
 #import "CSLAboutVC.h"
 #import "CSLMoreFunctionsVC.h"
+#import "CSLTemperatureReadVC.h"
+#import "CSLTemperatureTabVC.h"
+
 
 
 @interface CSLHomeVC () {
@@ -44,6 +47,11 @@
     }
 }
 - (void)viewWillAppear:(BOOL)animated {
+    
+    [self.actHomeSpinner stopAnimating];
+    self.view.userInteractionEnabled=true;
+    self.btnReadTemperature.layer.opacity=1.0;
+    
     //check if reader is connected
     if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus!=NOT_CONNECTED) {
         self.lbConnectReader.text=[NSString stringWithFormat:@"Connected: %@", [CSLRfidAppEngine sharedAppEngine].reader.deviceName];
@@ -55,6 +63,16 @@
         [self.btnConnectReader.imageView setImage:[UIImage imageNamed:@"disconnected"]];
         [self.btnConnectReader.imageView setNeedsDisplay];
     }
+    
+    //remove tag buffer
+    [CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer=nil;
+    [CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer =[[NSMutableArray alloc] init];
+    //refresh MQTT (all previosu connections will drop) and temperature tag settings
+    [CSLRfidAppEngine sharedAppEngine].MQTTSettings = [[CSLMQTTSettings alloc] init];
+    [[CSLRfidAppEngine sharedAppEngine] reloadMQTTSettingsFromUserDefaults];
+    [CSLRfidAppEngine sharedAppEngine].temperatureSettings = [[CSLTemperatureTagSettings alloc] init];
+    [[CSLRfidAppEngine sharedAppEngine] reloadTemperatureTagSettingsFromUserDefaults];
+    
     [CSLRfidAppEngine sharedAppEngine].reader.readerDelegate=self;
     scrRefreshTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                        target:self
@@ -106,6 +124,17 @@
 - (void)showTabInterfaceActiveView:(int)identifier
 {
     CSLTabVC * tabVC = (CSLTabVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_TabVC"];
+    [tabVC setActiveView:identifier];
+    
+    if (tabVC != nil)
+    {
+        [[self navigationController] pushViewController:tabVC animated:YES];
+    }
+}
+
+- (void)showTemperatureTabInterfaceActiveView:(int)identifier
+{
+    CSLTemperatureTabVC * tabVC = (CSLTemperatureTabVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_TempTabVC"];
     [tabVC setActiveView:identifier];
     
     if (tabVC != nil)
@@ -270,6 +299,27 @@
         }
     }
 
+    
+}
+
+- (IBAction)btnReadTemperaturePressed:(id)sender {
+    //if no device is connected, the settings page will not be loaded
+    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reader NOT connected" message:@"Please connect to reader first." preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        [self.actHomeSpinner startAnimating];
+        self.btnReadTemperature.layer.opacity=0.2;
+        self.view.userInteractionEnabled=false;
+        [self showTemperatureTabInterfaceActiveView:CSL_VC_TEMPTAB_READTEMP_VC_IDX];
+    }
+
+    
     
 }
 

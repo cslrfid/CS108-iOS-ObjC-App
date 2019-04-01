@@ -15,7 +15,10 @@
 #import "CSLReaderSettings.h"
 #import "CSLReaderInfo.h"
 #import "CSLMQTTSettings.h"
+#import "CSLTemperatureTagSettings.h"
 #import <MQTTClient/MQTTClient.h>
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 /**
  Singleton class that handles all activities on the reader.  It provides a centralize point and allows data to be moved across different controllers
@@ -32,10 +35,14 @@
 @property CSLReaderInfo* readerInfo;
 ///Tag selected for tag read/write/search
 @property NSString* tagSelected;
+///Tag selected for tag read/write/search
+@property CSLBleTag* CSLBleTagSelected;
 ///Defines the current reader mode (RFID/Barcode)
 @property (assign) BOOL isBarcodeMode;
 ///Reader settings on MQTT broker
 @property CSLMQTTSettings* MQTTSettings;
+///Reader settings for temperature tags
+@property CSLTemperatureTagSettings* temperatureSettings;
 
 ///Initialize the app engine
 ///@return Reference to the singleton class CSLRfidAppEngine
@@ -58,6 +65,10 @@
 -(void)reloadMQTTSettingsFromUserDefaults;
 ///Save current MQTT settings to User Defaults
 -(void)saveMQTTSettingsToUserDefaults;
+///Load temperature tag settings from User Defaults
+-(void)reloadTemperatureTagSettingsFromUserDefaults;
+///Save current temperature tag settings to User Defaults
+-(void)saveTemperatureTagSettingsToUserDefaults;
 ///Play iOS default sound alerts
 -(void)soundAlert:(SystemSoundID) soundId;
 

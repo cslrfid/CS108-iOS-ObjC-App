@@ -19,7 +19,7 @@
     // Do any additional setup after loading the view.
     
     self.btnSave.layer.borderWidth=1.0f;
-    self.btnSave.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    self.btnSave.layer.borderColor=[UIColor clearColor].CGColor;
     self.btnSave.layer.cornerRadius=5.0f;
     
     self.navigationItem.title=@"MQTT Settings";

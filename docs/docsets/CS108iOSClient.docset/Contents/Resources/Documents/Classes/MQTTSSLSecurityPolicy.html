@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MQTTSSLSecurityPolicy Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Class/MQTTSSLSecurityPolicy" class="dashAnchor"></a>
+    <a title="MQTTSSLSecurityPolicy Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">CS108iOSClient Docs</a> (56% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">CS108iOSClient Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        MQTTSSLSecurityPolicy Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Categories.html">Categories</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Categories/NSMutableData(MQTT).html">NSMutableData(MQTT)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleInterface.html">CSLBleInterface</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBlePacket.html">CSLBlePacket</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleReader.html">CSLBleReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleTag.html">CSLBleTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLCircularQueue.html">CSLCircularQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLMQTTSettings.html">CSLMQTTSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBarcode.html">CSLReaderBarcode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderInfo.html">CSLReaderInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderSettings.html">CSLReaderSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLRfidAppEngine.html">CSLRfidAppEngine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLTemperatureTagSettings.html">CSLTemperatureTagSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketDecoder.html">MQTTCFSocketDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketEncoder.html">MQTTCFSocketEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketTransport.html">MQTTCFSocketTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTCoreDataFlow">MQTTCoreDataFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTCoreDataPersistence">MQTTCoreDataPersistence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTDecoder.html">MQTTDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTFlow">MQTTFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTLog.html">MQTTLog</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTMessage.html">MQTTMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTProperties.html">MQTTProperties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSSLSecurityPolicy.html">MQTTSSLSecurityPolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSSLSecurityPolicyTransport.html">MQTTSSLSecurityPolicyTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSession.html">MQTTSession</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSessionManager.html">MQTTSessionManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTTransport">MQTTTransport</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Constants.html">Constants</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTClientVersionNumber">MQTTClientVersionNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTClientVersionString">MQTTClientVersionString</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTSessionErrorDomain">MQTTSessionErrorDomain</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_MESSAGES">MQTT_MAX_MESSAGES</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_SIZE">MQTT_MAX_SIZE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_WINDOW_SIZE">MQTT_MAX_WINDOW_SIZE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_PERSISTENT">MQTT_PERSISTENT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@ddLogLevel">ddLogLevel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ACCESSCMD.html">ACCESSCMD</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYLEVELSTATUS.html">BATTERYLEVELSTATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYMODE.html">BATTERYMODE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CONNECTION.html">CONNECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DDLogFlag.html">DDLogFlag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DDLogLevel.html">DDLogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DEVICEID.html">DEVICEID</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DIRECTION.html">DIRECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LINKPROFILE.html">LINKPROFILE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MEMORYBANK.html">MEMORYBANK</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCFSocketDecoderState.html">MQTTCFSocketDecoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCFSocketEncoderState.html">MQTTCFSocketEncoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCommandType.html">MQTTCommandType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTDecoderEvent.html">MQTTDecoderEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTDecoderState.html">MQTTDecoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTPropertyIdentifier.html">MQTTPropertyIdentifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSSLPinningMode.html">MQTTSSLPinningMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionError.html">MQTTSessionError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionEvent.html">MQTTSessionEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionManagerState.html">MQTTSessionManagerState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionStatus.html">MQTTSessionStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTStatus.html">MQTTStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTTransportState.html">MQTTTransportState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYSELECT.html">QUERYSELECT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SENSORTYPE.html">SENSORTYPE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SESSION.html">SESSION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/STATUS.html">STATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TARGET.html">TARGET</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TEMPERATUREUNIT.html">TEMPERATUREUNIT</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleInterfaceDelegate.html">CSLBleInterfaceDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTCFSocketDecoderDelegate.html">MQTTCFSocketDecoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTCFSocketEncoderDelegate.html">MQTTCFSocketEncoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTDecoderDelegate.html">MQTTDecoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTFlow.html">MQTTFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTPersistence.html">MQTTPersistence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTSessionDelegate.html">MQTTSessionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTSessionManagerDelegate.html">MQTTSessionManagerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTTransport.html">MQTTTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTTransportDelegate.html">MQTTTransportDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Type Definitions.html">Type Definitions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTConnectHandler">MQTTConnectHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTDisconnectHandler">MQTTDisconnectHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTPublishHandler">MQTTPublishHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTSubscribeHandler">MQTTSubscribeHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTUnsubscribeHandler">MQTTUnsubscribeHandler</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>MQTTSSLSecurityPolicy</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">MQTTSSLSecurityPolicy</span> <span class="p">:</span> <span class="nc">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p><code>MQTTSSLSecurityPolicy</code> evaluates server trust against pinned X.509 certificates and public keys over secure connections.</p>
+
+<p>If your app using security model which require pinning SSL certificates to helps prevent man-in-the-middle attacks
+and other vulnerabilities. you need to set securityPolicy to properly value(see MQTTSSLSecurityPolicy.h for more detail).</p>
+
+<p>NOTE: about self-signed server certificates:
+if your server using Self-signed certificates to establish SSL/TLS connection, you need to set property:
+MQTTSSLSecurityPolicy.allowInvalidCertificates=YES.</p>
+
+<p>If SSL is enabled, by default it only evaluate server&rsquo;s certificates using CA infrastructure, and for most case, this type of check is enough.
+However, if your app using security model which require pinning SSL certificates to helps prevent man-in-the-middle attacks
+and other vulnerabilities. you may need to set securityPolicy to properly value(see MQTTSSLSecurityPolicy.h for more detail).</p>
+
+<p>NOTE: about self-signed server certificates:
+In CA infrastructure, you may establish a SSL/TLS connection with server which using self-signed certificates
+by install the certificates into OS keychain(either programmatically or manually). however, this method has some disadvantages:</p>
+
+<ol>
+<li>every socket you app created will trust certificates you added.</li>
+<li>if user choice to remove certificates from keychain, you app need to handling certificates re-adding.</li>
+</ol>
+
+<p>If you only want to verify the cert for the socket you are creating and for no other sockets in your app, you need to use
+MQTTSSLSecurityPolicy.
+And if you use self-signed server certificates, your need to set property: MQTTSSLSecurityPolicy.allowInvalidCertificates=YES</p>
+
+<p>Adding pinned SSL certificates to your app helps prevent man-in-the-middle attacks and other vulnerabilities.
+Applications dealing with sensitive customer data or financial information are strongly encouraged to route all communication
+over an SSL/TLS connection with SSL pinning configured and enabled.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTSSLSecurityPolicy(py)SSLPinningMode"></a>
+                    <a name="//apple_ref/objc/Property/SSLPinningMode" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTSSLSecurityPolicy(py)SSLPinningMode">SSLPinningMode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The criteria by which server trust should be evaluated against the pinned SSL certificates. Defaults to <code><a href="../Enums/MQTTSSLPinningMode.html">MQTTSSLPinningMode</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">assign</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n"><a href="../Enums/MQTTSSLPinningMode.html">MQTTSSLPinningMode</a></span> <span class="n">SSLPinningMode</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">sslPinningMode</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTSSLPinningMode.html">MQTTSSLPinningMode</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTSSLSecurityPolicy(py)validatesCertificateChain"></a>
+                    <a name="//apple_ref/objc/Property/validatesCertificateChain" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTSSLSecurityPolicy(py)validatesCertificateChain">validatesCertificateChain</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether to evaluate an entire SSL certificate chain, or just the leaf certificate. Defaults to <code>YES</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">validatesCertificateChain</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">validatesCertificateChain</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTSSLSecurityPolicy(py)pinnedCertificates"></a>
+                    <a name="//apple_ref/objc/Property/pinnedCertificates" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTSSLSecurityPolicy(py)pinnedCertificates">pinnedCertificates</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The certificates used to evaluate server trust according to the SSL pinning mode. By default, this property is set to any (<code>.cer</code>) certificates included in the app bundle.
+Note: Array item type: NSData - Bytes of X.509 certificate file in der format.
+Note that if you create an array with duplicate certificates, the duplicate certificates will be removed.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSArray</span> <span class="o">*</span><span class="n">pinnedCertificates</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">pinnedCertificates</span><span class="p">:</span> <span class="p">[</span><span class="kt">Any</span><span class="p">]</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTSSLSecurityPolicy(py)allowInvalidCertificates"></a>
+                    <a name="//apple_ref/objc/Property/allowInvalidCertificates" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTSSLSecurityPolicy(py)allowInvalidCertificates">allowInvalidCertificates</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether or not to trust servers with an invalid or expired SSL certificates. Defaults to <code>NO</code>.
+Note: If your server-certificates are self signed, your should set this property to &lsquo;YES&rsquo;.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">allowInvalidCertificates</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">allowInvalidCertificates</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTSSLSecurityPolicy(py)validatesDomainName"></a>
+                    <a name="//apple_ref/objc/Property/validatesDomainName" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTSSLSecurityPolicy(py)validatesDomainName">validatesDomainName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether or not to validate the domain name in the certificate&rsquo;s CN field. Defaults to <code>YES</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">validatesDomainName</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">validatesDomainName</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Getting%20Specific%20Security%20Policies"></a>
+                <a name="//apple_ref/objc/Section/Getting Specific Security Policies" class="dashAnchor"></a>
+                <a href="#/Getting%20Specific%20Security%20Policies">
+                  <h3 class="section-name">Getting Specific Security Policies</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTSSLSecurityPolicy(cm)defaultPolicy"></a>
+                    <a name="//apple_ref/objc/Method/+defaultPolicy" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTSSLSecurityPolicy(cm)defaultPolicy">+defaultPolicy</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the shared default security policy, which does not allow invalid certificates, validates domain name, and does not validate against pinned certificates or public keys.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="n">defaultPolicy</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="p">`</span><span class="nv">default</span><span class="p">`()</span> <span class="o">-&gt;</span> <span class="k">Self</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The default security policy.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initialization"></a>
+                <a name="//apple_ref/objc/Section/Initialization" class="dashAnchor"></a>
+                <a href="#/Initialization">
+                  <h3 class="section-name">Initialization</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTSSLSecurityPolicy(cm)policyWithPinningMode:"></a>
+                    <a name="//apple_ref/objc/Method/+policyWithPinningMode:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTSSLSecurityPolicy(cm)policyWithPinningMode:">+policyWithPinningMode:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and returns a security policy with the specified pinning mode.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">policyWithPinningMode</span><span class="p">:(</span><span class="n"><a href="../Enums/MQTTSSLPinningMode.html">MQTTSSLPinningMode</a></span><span class="p">)</span><span class="nv">pinningMode</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">convenience</span> <span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="nv">pinningMode</span><span class="p">:</span> <span class="kt"><a href="../Enums/MQTTSSLPinningMode.html">MQTTSSLPinningMode</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pinningMode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The SSL pinning mode.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new security policy.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Evaluating%20Server%20Trust"></a>
+                <a name="//apple_ref/objc/Section/Evaluating Server Trust" class="dashAnchor"></a>
+                <a href="#/Evaluating%20Server%20Trust">
+                  <h3 class="section-name">Evaluating Server Trust</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTSSLSecurityPolicy(im)evaluateServerTrust:forDomain:"></a>
+                    <a name="//apple_ref/objc/Method/-evaluateServerTrust:forDomain:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTSSLSecurityPolicy(im)evaluateServerTrust:forDomain:">-evaluateServerTrust:forDomain:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether or not the specified server trust should be accepted, based on the security policy.</p>
+
+<p>This method should be used when responding to an authentication challenge from a server.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">evaluateServerTrust</span><span class="p">:(</span><span class="n">SecTrustRef</span><span class="p">)</span><span class="nv">serverTrust</span>
+                  <span class="nf">forDomain</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">domain</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">evaluateServerTrust</span><span class="p">(</span><span class="n">_</span> <span class="nv">serverTrust</span><span class="p">:</span> <span class="kt">SecTrust</span><span class="o">!</span><span class="p">,</span> <span class="n">forDomain</span> <span class="nv">domain</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>serverTrust</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The X.509 certificate trust of the server.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>domain</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The domain of serverTrust. If <code>nil</code>, the domain will not be validated.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Whether or not to trust the server.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://www.convergenece.com.hk" target="_blank" rel="external">CSL</a>. All rights reserved. (Last updated: 2019-04-01)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

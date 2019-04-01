@@ -7,10 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MQTTClient/MQTTClient.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CSLMQTTSettings : NSObject
+/**
+ Enumeration of MQTT status
+ */
+typedef NS_ENUM(NSInteger, MQTTStatus) {
+    MQTTStatusConnected,
+    MQTTStatusNotConnected,
+    MQTTStatusError
+};
+
+@interface CSLMQTTSettings : NSObject<MQTTSessionDelegate>
 
 ///MQTT enable/disable
 @property (assign) BOOL isMQTTEnabled;
@@ -30,8 +40,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign) int QoS;
 ///LWT setting - retaind messages
 @property (assign) BOOL retained;
+///MQTT connection status
+@property (assign) MQTTStatus mqttStatus;
+///MQTT submission counter
+@property (assign) int publishTopicCounter;
 
-
+/** Connect to MQTT broker
+ @param topicToPublish Topic to be published for retain message
+ */
+- (void)connectToMQTTBroker:(NSString*)topicToPublish;
+/**
+ Pulbish data to a defined topic
+ @param jsonData Data to be published in JSON format
+ @param topic Topic where the data will be published
+ */
+- (void)publishData:(NSData*)jsonData onTopic:(NSString*)topic;
 @end
 
 NS_ASSUME_NONNULL_END

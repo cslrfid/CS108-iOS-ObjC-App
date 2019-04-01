@@ -25,7 +25,7 @@
     self.btnMultibank2Select.layer.borderColor=[UIColor lightGrayColor].CGColor;
     self.btnMultibank2Select.layer.cornerRadius=5.0f;
     self.btnMultibankSave.layer.borderWidth=1.0f;
-    self.btnMultibankSave.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    self.btnMultibankSave.layer.borderColor=[UIColor clearColor].CGColor;
     self.btnMultibankSave.layer.cornerRadius=5.0f;
     
     [self.txtMultibank1Offset setDelegate:self];
@@ -38,7 +38,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     //reload previously stored settings
-    [[CSLRfidAppEngine sharedAppEngine] reloadMQTTSettingsFromUserDefaults];
+    [[CSLRfidAppEngine sharedAppEngine] reloadSettingsFromUserDefaults];
     
     //refresh UI with stored values
     [self.swEnableMultibank1 setOn:[CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled];

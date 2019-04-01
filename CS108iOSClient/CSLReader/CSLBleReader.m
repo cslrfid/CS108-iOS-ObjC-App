@@ -1911,6 +1911,7 @@
                         CSLBleTag* tag=[[CSLBleTag alloc] init];
                         tag.EPC=@"";
                         tag.rssi=0;
+                        tag.timestamp=[NSDate date];
                         
                         NSLog(@"[decodePacketsInBufferAsync] Tag search response with no tag found recieved: %@", rfidPacketBufferInHexString);
                         //return packet directly to the API for decoding
@@ -1986,6 +1987,7 @@
                         ptr+= datalen;
                         
                         NSLog(@"[decodePacketsInBufferAsync] Tag data found: PC=%04X EPC=%@ rssi=%d", tag.PC, tag.EPC, tag.rssi);
+                        tag.timestamp=[NSDate date];
                         
                         if (tagInventoryPacketOnly) {
                             NSLog(@"[decodePacketsInBufferAsync] Finished decode inventory response (full) packet.");
@@ -2122,37 +2124,40 @@
                             [self.readerDelegate didReceiveTagResponsePacket:self tagReceived:tag]; //this will call the method for handling the tag response.
                             
                             NSLog(@"[decodePacketsInBufferAsync] Tag data found: PC=%04X EPC=%@ DATA1=%@ DATA2=%@ rssi=%d", tag.PC, tag.EPC, tag.DATA1, tag.DATA2, tag.rssi);
+                            tag.timestamp=[NSDate date];
                             rangingTagCount++;
                             
-                            //insert the tag data to the sorted filteredBuffer if not duplicated
-                            
-                            //check and see if epc exists on the array using binary search
-                            NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
-                            NSUInteger findIndex = [filteredBuffer indexOfObject:tag
-                                                                   inSortedRange:searchRange
-                                                                         options:NSBinarySearchingInsertionIndex
-                                                                 usingComparator:^(id obj1, id obj2)
-                                                    {
-                                                        NSString* str1=((CSLBleTag*)obj1).EPC;
-                                                        NSString* str2=((CSLBleTag*)obj2).EPC;
-                                                        return [str1 compare:str2 options:NSCaseInsensitiveSearch];
-                                                    }];
-                            
-                            if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
-                            {
-                                [filteredBuffer insertObject:tag atIndex:findIndex];
-                                uniqueTagCount++;
+                            @synchronized(filteredBuffer) {
+                                //insert the tag data to the sorted filteredBuffer if not duplicated
                                 
-                            }
-                            else if ( [((CSLBleTag*)filteredBuffer[findIndex]).EPC caseInsensitiveCompare:tag.EPC] != NSOrderedSame)
-                            {
-                                //new tag found.  insert into buffer in sorted order
-                                [filteredBuffer insertObject:tag atIndex:findIndex];
-                                uniqueTagCount++;
-                            }
-                            else    //tag is duplicated, but will replace the existing tag information with the new one for updating the RRSI value.
-                            {
-                                [filteredBuffer replaceObjectAtIndex:findIndex withObject:tag];
+                                //check and see if epc exists on the array using binary search
+                                NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
+                                NSUInteger findIndex = [filteredBuffer indexOfObject:tag
+                                                                       inSortedRange:searchRange
+                                                                             options:NSBinarySearchingInsertionIndex
+                                                                     usingComparator:^(id obj1, id obj2)
+                                                        {
+                                                            NSString* str1=((CSLBleTag*)obj1).EPC;
+                                                            NSString* str2=((CSLBleTag*)obj2).EPC;
+                                                            return [str1 compare:str2 options:NSCaseInsensitiveSearch];
+                                                        }];
+                                
+                                if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
+                                {
+                                    [filteredBuffer insertObject:tag atIndex:findIndex];
+                                    uniqueTagCount++;
+                                    
+                                }
+                                else if ( [((CSLBleTag*)filteredBuffer[findIndex]).EPC caseInsensitiveCompare:tag.EPC] != NSOrderedSame)
+                                {
+                                    //new tag found.  insert into buffer in sorted order
+                                    [filteredBuffer insertObject:tag atIndex:findIndex];
+                                    uniqueTagCount++;
+                                }
+                                else    //tag is duplicated, but will replace the existing tag information with the new one for updating the RRSI value.
+                                {
+                                    [filteredBuffer replaceObjectAtIndex:findIndex withObject:tag];
+                                }
                             }
                             
                             //for the cases where we reaches the end of the RFID reponse packet but there are still data within the bluetooth reader packet.
@@ -2237,35 +2242,37 @@
                             NSLog(@"[decodePacketsInBufferAsync] Tag data found: PC=%04X EPC=%@ rssi=%d", tag.PC, tag.EPC, tag.rssi);
                             rangingTagCount++;
                             
-                            //insert the tag data to the sorted filteredBuffer if not duplicated
-                            
-                            //check and see if epc exists on the array using binary search
-                            NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
-                            NSUInteger findIndex = [filteredBuffer indexOfObject:tag
-                                                                inSortedRange:searchRange
-                                                                      options:NSBinarySearchingInsertionIndex
-                                                              usingComparator:^(id obj1, id obj2)
-                                                                {
-                                                                    NSString* str1=((CSLBleTag*)obj1).EPC;
-                                                                    NSString* str2=((CSLBleTag*)obj2).EPC;
-                                                                    return [str1 compare:str2 options:NSCaseInsensitiveSearch];
-                                                                }];
-                            
-                            if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
-                            {
-                                [filteredBuffer insertObject:tag atIndex:findIndex];
-                                uniqueTagCount++;
+                            @synchronized(filteredBuffer) {
+                                //insert the tag data to the sorted filteredBuffer if not duplicated
                                 
-                            }
-                            else if ( [((CSLBleTag*)filteredBuffer[findIndex]).EPC caseInsensitiveCompare:tag.EPC] != NSOrderedSame)
-                            {
-                                //new tag found.  insert into buffer in sorted order
-                                [filteredBuffer insertObject:tag atIndex:findIndex];
-                                uniqueTagCount++;
-                            }
-                            else    //tag is duplicated, but will replace the existing tag information with the new one for updating the RRSI value.
-                            {
-                                [filteredBuffer replaceObjectAtIndex:findIndex withObject:tag];
+                                //check and see if epc exists on the array using binary search
+                                NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
+                                NSUInteger findIndex = [filteredBuffer indexOfObject:tag
+                                                                    inSortedRange:searchRange
+                                                                          options:NSBinarySearchingInsertionIndex
+                                                                  usingComparator:^(id obj1, id obj2)
+                                                                    {
+                                                                        NSString* str1=((CSLBleTag*)obj1).EPC;
+                                                                        NSString* str2=((CSLBleTag*)obj2).EPC;
+                                                                        return [str1 compare:str2 options:NSCaseInsensitiveSearch];
+                                                                    }];
+                                
+                                if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
+                                {
+                                    [filteredBuffer insertObject:tag atIndex:findIndex];
+                                    uniqueTagCount++;
+                                    
+                                }
+                                else if ( [((CSLBleTag*)filteredBuffer[findIndex]).EPC caseInsensitiveCompare:tag.EPC] != NSOrderedSame)
+                                {
+                                    //new tag found.  insert into buffer in sorted order
+                                    [filteredBuffer insertObject:tag atIndex:findIndex];
+                                    uniqueTagCount++;
+                                }
+                                else    //tag is duplicated, but will replace the existing tag information with the new one for updating the RRSI value.
+                                {
+                                    [filteredBuffer replaceObjectAtIndex:findIndex withObject:tag];
+                                }
                             }
                             
                             //for the cases where we reaches the end of the RFID reponse packet but there are still data within the bluetooth reader packet.
@@ -2401,25 +2408,27 @@
                 if (barcode.aimId != nil && barcode.codeId != nil && barcode.barcodeValue!=nil) {
                     NSLog(@"[decodePacketsInBufferAsync] Barcode received: Code ID=%@ AIM ID=%@ Barcode=%@", barcode.codeId, barcode.aimId, barcode.barcodeValue);
                     
-                    //check and see if epc exists on the array using binary search
-                    NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
-                    NSUInteger findIndex = [filteredBuffer indexOfObject:barcode
-                                                           inSortedRange:searchRange
-                                                                 options:NSBinarySearchingInsertionIndex
-                                                         usingComparator:^(id obj1, id obj2)
-                                            {
-                                                NSString* str1=((CSLReaderBarcode*)obj1).barcodeValue;
-                                                NSString* str2=((CSLReaderBarcode*)obj2).barcodeValue;
-                                                return [str1 compare:str2 options:NSCaseInsensitiveSearch];
-                                            }];
-                    
-                    if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
-                        [filteredBuffer insertObject:barcode atIndex:findIndex];
-                    else if ( [((CSLReaderBarcode*)filteredBuffer[findIndex]).barcodeValue caseInsensitiveCompare:barcode.barcodeValue] != NSOrderedSame)
-                        //new tag found.  insert into buffer in sorted order
-                        [filteredBuffer insertObject:barcode atIndex:findIndex];
-                    else    //tag is duplicated, but will replace the existing tag information with the new one for updating the RRSI value.
-                        [filteredBuffer replaceObjectAtIndex:findIndex withObject:barcode];
+                    @synchronized(filteredBuffer) {
+                        //check and see if epc exists on the array using binary search
+                        NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
+                        NSUInteger findIndex = [filteredBuffer indexOfObject:barcode
+                                                               inSortedRange:searchRange
+                                                                     options:NSBinarySearchingInsertionIndex
+                                                             usingComparator:^(id obj1, id obj2)
+                                                {
+                                                    NSString* str1=((CSLReaderBarcode*)obj1).barcodeValue;
+                                                    NSString* str2=((CSLReaderBarcode*)obj2).barcodeValue;
+                                                    return [str1 compare:str2 options:NSCaseInsensitiveSearch];
+                                                }];
+                        
+                        if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
+                            [filteredBuffer insertObject:barcode atIndex:findIndex];
+                        else if ( [((CSLReaderBarcode*)filteredBuffer[findIndex]).barcodeValue caseInsensitiveCompare:barcode.barcodeValue] != NSOrderedSame)
+                            //new tag found.  insert into buffer in sorted order
+                            [filteredBuffer insertObject:barcode atIndex:findIndex];
+                        else    //tag is duplicated, but will replace the existing tag information with the new one for updating the RRSI value.
+                            [filteredBuffer replaceObjectAtIndex:findIndex withObject:barcode];
+                    }
                     [self.readerDelegate didReceiveBarcodeData:self scannedBarcode:barcode];
                 }
                 [rfidPacketBuffer setLength:0];

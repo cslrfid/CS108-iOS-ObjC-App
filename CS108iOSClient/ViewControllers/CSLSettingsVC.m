@@ -29,8 +29,9 @@
     
 
     btnSaveConfig.layer.borderWidth=1.0f;
-    btnSaveConfig.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnSaveConfig.layer.borderColor=[UIColor clearColor].CGColor;
     btnSaveConfig.layer.cornerRadius=5.0f;
+
 
     btnSession.layer.borderWidth=1.0f;
     btnSession.layer.borderColor=[UIColor lightGrayColor].CGColor;

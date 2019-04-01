@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CSLTemperatureTagSettings Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Class/CSLTemperatureTagSettings" class="dashAnchor"></a>
+    <a title="CSLTemperatureTagSettings Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">CS108iOSClient Docs</a> (56% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">CS108iOSClient Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CSLTemperatureTagSettings Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Categories.html">Categories</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Categories/NSMutableData(MQTT).html">NSMutableData(MQTT)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleInterface.html">CSLBleInterface</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBlePacket.html">CSLBlePacket</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleReader.html">CSLBleReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleTag.html">CSLBleTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLCircularQueue.html">CSLCircularQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLMQTTSettings.html">CSLMQTTSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBarcode.html">CSLReaderBarcode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderInfo.html">CSLReaderInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderSettings.html">CSLReaderSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLRfidAppEngine.html">CSLRfidAppEngine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLTemperatureTagSettings.html">CSLTemperatureTagSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketDecoder.html">MQTTCFSocketDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketEncoder.html">MQTTCFSocketEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketTransport.html">MQTTCFSocketTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTCoreDataFlow">MQTTCoreDataFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTCoreDataPersistence">MQTTCoreDataPersistence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTDecoder.html">MQTTDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTFlow">MQTTFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTLog.html">MQTTLog</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTMessage.html">MQTTMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTProperties.html">MQTTProperties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSSLSecurityPolicy.html">MQTTSSLSecurityPolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSSLSecurityPolicyTransport.html">MQTTSSLSecurityPolicyTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSession.html">MQTTSession</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSessionManager.html">MQTTSessionManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTTransport">MQTTTransport</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Constants.html">Constants</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTClientVersionNumber">MQTTClientVersionNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTClientVersionString">MQTTClientVersionString</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTSessionErrorDomain">MQTTSessionErrorDomain</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_MESSAGES">MQTT_MAX_MESSAGES</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_SIZE">MQTT_MAX_SIZE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_WINDOW_SIZE">MQTT_MAX_WINDOW_SIZE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_PERSISTENT">MQTT_PERSISTENT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@ddLogLevel">ddLogLevel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ACCESSCMD.html">ACCESSCMD</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYLEVELSTATUS.html">BATTERYLEVELSTATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYMODE.html">BATTERYMODE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CONNECTION.html">CONNECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DDLogFlag.html">DDLogFlag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DDLogLevel.html">DDLogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DEVICEID.html">DEVICEID</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DIRECTION.html">DIRECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LINKPROFILE.html">LINKPROFILE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MEMORYBANK.html">MEMORYBANK</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCFSocketDecoderState.html">MQTTCFSocketDecoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCFSocketEncoderState.html">MQTTCFSocketEncoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCommandType.html">MQTTCommandType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTDecoderEvent.html">MQTTDecoderEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTDecoderState.html">MQTTDecoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTPropertyIdentifier.html">MQTTPropertyIdentifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSSLPinningMode.html">MQTTSSLPinningMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionError.html">MQTTSessionError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionEvent.html">MQTTSessionEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionManagerState.html">MQTTSessionManagerState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionStatus.html">MQTTSessionStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTStatus.html">MQTTStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTTransportState.html">MQTTTransportState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYSELECT.html">QUERYSELECT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SENSORTYPE.html">SENSORTYPE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SESSION.html">SESSION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/STATUS.html">STATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TARGET.html">TARGET</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TEMPERATUREUNIT.html">TEMPERATUREUNIT</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleInterfaceDelegate.html">CSLBleInterfaceDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTCFSocketDecoderDelegate.html">MQTTCFSocketDecoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTCFSocketEncoderDelegate.html">MQTTCFSocketEncoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTDecoderDelegate.html">MQTTDecoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTFlow.html">MQTTFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTPersistence.html">MQTTPersistence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTSessionDelegate.html">MQTTSessionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTSessionManagerDelegate.html">MQTTSessionManagerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTTransport.html">MQTTTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTTransportDelegate.html">MQTTTransportDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Type Definitions.html">Type Definitions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTConnectHandler">MQTTConnectHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTDisconnectHandler">MQTTDisconnectHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTPublishHandler">MQTTPublishHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTSubscribeHandler">MQTTSubscribeHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTUnsubscribeHandler">MQTTUnsubscribeHandler</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CSLTemperatureTagSettings</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">CSLTemperatureTagSettings</span> <span class="p">:</span> <span class="nc">NSObject</span>
+
+<span class="c1">//Temperature alert enable/disable</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">isTemperatureAlertEnabled</span><span class="p">;</span>
+<span class="c1">///Temperature alert upper limit</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="kt">double</span> <span class="n">temperatureAlertUpperLimit</span><span class="p">;</span>
+<span class="c1">///Temperature alert lower limit</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="kt">double</span> <span class="n">temperatureAlertLowerLimit</span><span class="p">;</span>
+<span class="c1">///On-chip RSSI filter upper limit</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="kt">int</span> <span class="n">rssiUpperLimit</span><span class="p">;</span>
+<span class="c1">///On-chip RSSI filter lower limit</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="kt">int</span> <span class="n">rssiLowerLimit</span><span class="p">;</span>
+<span class="c1">///Temperature sensor type</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="n"><a href="../Enums/SENSORTYPE.html">SENSORTYPE</a></span> <span class="n">sensorType</span><span class="p">;</span>
+<span class="c1">///Number of samples on rolling average for temperature values</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="kt">int</span> <span class="n">NumberOfRollingAvergage</span><span class="p">;</span>
+<span class="c1">///Temperature Unit being displayed</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="n"><a href="../Enums/TEMPERATUREUNIT.html">TEMPERATUREUNIT</a></span> <span class="n">unit</span><span class="p">;</span>
+
+<span class="c1">///Hold a list of circular queues for each of the tag read</span>
+<span class="k">@property</span> <span class="n">NSMutableDictionary</span> <span class="o">*</span> <span class="n">temperatureAveragingBuffer</span><span class="p">;</span>
+<span class="c1">///Hold a list of last good read timestamp</span>
+<span class="k">@property</span> <span class="n">NSMutableDictionary</span> <span class="o">*</span> <span class="n">lastGoodReadBuffer</span><span class="p">;</span>
+
+<span class="cm">/**
+ This will add the temperature data to the cirular buffer, with buffer size deinfed on the settings page
+ @param temperatureValue Temperature data to be added to the buffer
+ @param epc EPC value of the tag
+ */</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setTemperatureValueForAveraging</span><span class="p">:(</span><span class="n">NSNumber</span><span class="o">*</span><span class="p">)</span><span class="nv">temperatureValue</span> <span class="nf">EPCID</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">epc</span><span class="p">;</span>
+<span class="cm">/**
+ Calculate and return the average temperature based on data within the rolling window
+ @param epc EPC value of the tag
+ @return Average temperature value calculated
+ */</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">NSNumber</span><span class="o">*</span><span class="p">)</span> <span class="nf">getTemperatureValueAveraging</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">epc</span><span class="p">;</span>
+<span class="cm">/**
+ Remove the temperature data in the circular buffer for a specific tag
+ @param epc EPC value of the tag
+ */</span>
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">removeTemperatureAverageForEpc</span><span class="p">:(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">epc</span><span class="p">;</span>
+<span class="cm">/**
+ Convert temperature value from Celicus to Fahrenheit
+ @param temperatureInCelcius Temperature in Celcius
+ @return Temperature in Fahrenheit
+ */</span>
+<span class="k">+</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="nf">convertCelciusToFahrenheit</span><span class="p">:(</span><span class="kt">double</span><span class="p">)</span><span class="nv">temperatureInCelcius</span><span class="p">;</span>
+<span class="cm">/**
+ Convert temperature value from Fahrenheit to Celicus
+ @param temperatureInFahrenheit Temperature in Fahrenheit
+ @return Temperature in Celicus
+ */</span>
+<span class="k">+</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="nf">convertFahrenheitToCelcius</span><span class="p">:(</span><span class="kt">double</span><span class="p">)</span><span class="nv">temperatureInFahrenheit</span><span class="p">;</span>
+
+<span class="k">@end</span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLTemperatureTagSettings(py)isTemperatureAlertEnabled"></a>
+                    <a name="//apple_ref/objc/Property/isTemperatureAlertEnabled" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLTemperatureTagSettings(py)isTemperatureAlertEnabled">isTemperatureAlertEnabled</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">isTemperatureAlertEnabled</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isTemperatureAlertEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLTemperatureTagSettings(py)temperatureAlertUpperLimit"></a>
+                    <a name="//apple_ref/objc/Property/temperatureAlertUpperLimit" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLTemperatureTagSettings(py)temperatureAlertUpperLimit">temperatureAlertUpperLimit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Temperature alert upper limit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span> <span class="kt">double</span> <span class="n">temperatureAlertUpperLimit</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">temperatureAlertUpperLimit</span><span class="p">:</span> <span class="kt">Double</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLTemperatureTagSettings(py)temperatureAlertLowerLimit"></a>
+                    <a name="//apple_ref/objc/Property/temperatureAlertLowerLimit" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLTemperatureTagSettings(py)temperatureAlertLowerLimit">temperatureAlertLowerLimit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Temperature alert lower limit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span> <span class="kt">double</span> <span class="n">temperatureAlertLowerLimit</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">temperatureAlertLowerLimit</span><span class="p">:</span> <span class="kt">Double</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLTemperatureTagSettings(py)rssiUpperLimit"></a>
+                    <a name="//apple_ref/objc/Property/rssiUpperLimit" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLTemperatureTagSettings(py)rssiUpperLimit">rssiUpperLimit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>On-chip RSSI filter upper limit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span> <span class="kt">int</span> <span class="n">rssiUpperLimit</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">rssiUpperLimit</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLTemperatureTagSettings(py)rssiLowerLimit"></a>
+                    <a name="//apple_ref/objc/Property/rssiLowerLimit" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLTemperatureTagSettings(py)rssiLowerLimit">rssiLowerLimit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>On-chip RSSI filter lower limit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span> <span class="kt">int</span> <span class="n">rssiLowerLimit</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">rssiLowerLimit</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLTemperatureTagSettings(py)sensorType"></a>
+                    <a name="//apple_ref/objc/Property/sensorType" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLTemperatureTagSettings(py)sensorType">sensorType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Temperature sensor type</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span> <span class="n"><a href="../Enums/SENSORTYPE.html">SENSORTYPE</a></span> <span class="n">sensorType</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">sensorType</span><span class="p">:</span> <span class="kt"><a href="../Enums/SENSORTYPE.html">SENSORTYPE</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLTemperatureTagSettings(py)NumberOfRollingAvergage"></a>
+                    <a name="//apple_ref/objc/Property/NumberOfRollingAvergage" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLTemperatureTagSettings(py)NumberOfRollingAvergage">NumberOfRollingAvergage</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Number of samples on rolling average for temperature values</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span> <span class="kt">int</span> <span class="n">NumberOfRollingAvergage</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">numberOfRollingAvergage</span><span class="p">:</span> <span class="kt">Int32</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLTemperatureTagSettings(py)unit"></a>
+                    <a name="//apple_ref/objc/Property/unit" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLTemperatureTagSettings(py)unit">unit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Temperature Unit being displayed</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span> <span class="n"><a href="../Enums/TEMPERATUREUNIT.html">TEMPERATUREUNIT</a></span> <span class="n">unit</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">unit</span><span class="p">:</span> <span class="kt"><a href="../Enums/TEMPERATUREUNIT.html">TEMPERATUREUNIT</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLTemperatureTagSettings(py)temperatureAveragingBuffer"></a>
+                    <a name="//apple_ref/objc/Property/temperatureAveragingBuffer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLTemperatureTagSettings(py)temperatureAveragingBuffer">temperatureAveragingBuffer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Hold a list of circular queues for each of the tag read</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span>
+    <span class="n">NSMutableDictionary</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">temperatureAveragingBuffer</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">temperatureAveragingBuffer</span><span class="p">:</span> <span class="kt">NSMutableDictionary</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLTemperatureTagSettings(py)lastGoodReadBuffer"></a>
+                    <a name="//apple_ref/objc/Property/lastGoodReadBuffer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLTemperatureTagSettings(py)lastGoodReadBuffer">lastGoodReadBuffer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Hold a list of last good read timestamp</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">atomic</span><span class="p">)</span>
+    <span class="n">NSMutableDictionary</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">lastGoodReadBuffer</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">lastGoodReadBuffer</span><span class="p">:</span> <span class="kt">NSMutableDictionary</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLTemperatureTagSettings(im)setTemperatureValueForAveraging:EPCID:"></a>
+                    <a name="//apple_ref/objc/Method/-setTemperatureValueForAveraging:EPCID:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLTemperatureTagSettings(im)setTemperatureValueForAveraging:EPCID:">-setTemperatureValueForAveraging:EPCID:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This will add the temperature data to the cirular buffer, with buffer size deinfed on the settings page</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setTemperatureValueForAveraging</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">temperatureValue</span>
+                                  <span class="nf">EPCID</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">epc</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setTemperatureValueForAveraging</span><span class="p">(</span><span class="n">_</span> <span class="nv">temperatureValue</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="p">,</span> <span class="n">epcid</span> <span class="nv">epc</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>temperatureValue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Temperature data to be added to the buffer</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>epc</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>EPC value of the tag</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLTemperatureTagSettings(im)getTemperatureValueAveraging:"></a>
+                    <a name="//apple_ref/objc/Method/-getTemperatureValueAveraging:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLTemperatureTagSettings(im)getTemperatureValueAveraging:">-getTemperatureValueAveraging:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Calculate and return the average temperature based on data within the rolling window</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nf">getTemperatureValueAveraging</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">epc</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getTemperatureValueAveraging</span><span class="p">(</span><span class="n">_</span> <span class="nv">epc</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSNumber</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>epc</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>EPC value of the tag</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Average temperature value calculated</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLTemperatureTagSettings(im)removeTemperatureAverageForEpc:"></a>
+                    <a name="//apple_ref/objc/Method/-removeTemperatureAverageForEpc:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLTemperatureTagSettings(im)removeTemperatureAverageForEpc:">-removeTemperatureAverageForEpc:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Remove the temperature data in the circular buffer for a specific tag</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">removeTemperatureAverageForEpc</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">epc</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">removeTemperatureAverage</span><span class="p">(</span><span class="n">forEpc</span> <span class="nv">epc</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>epc</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>EPC value of the tag</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLTemperatureTagSettings(cm)convertCelciusToFahrenheit:"></a>
+                    <a name="//apple_ref/objc/Method/+convertCelciusToFahrenheit:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLTemperatureTagSettings(cm)convertCelciusToFahrenheit:">+convertCelciusToFahrenheit:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert temperature value from Celicus to Fahrenheit</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="nf">convertCelciusToFahrenheit</span><span class="p">:(</span><span class="kt">double</span><span class="p">)</span><span class="nv">temperatureInCelcius</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">convertCelcius</span><span class="p">(</span><span class="n">toFahrenheit</span> <span class="nv">temperatureInCelcius</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Double</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>temperatureInCelcius</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Temperature in Celcius</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Temperature in Fahrenheit</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)CSLTemperatureTagSettings(cm)convertFahrenheitToCelcius:"></a>
+                    <a name="//apple_ref/objc/Method/+convertFahrenheitToCelcius:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)CSLTemperatureTagSettings(cm)convertFahrenheitToCelcius:">+convertFahrenheitToCelcius:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convert temperature value from Fahrenheit to Celicus</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="nf">convertFahrenheitToCelcius</span><span class="p">:(</span><span class="kt">double</span><span class="p">)</span><span class="nv">temperatureInFahrenheit</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">convertFahrenheit</span><span class="p">(</span><span class="n">toCelcius</span> <span class="nv">temperatureInFahrenheit</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Double</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>temperatureInFahrenheit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Temperature in Fahrenheit</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Temperature in Celicus</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://www.convergenece.com.hk" target="_blank" rel="external">CSL</a>. All rights reserved. (Last updated: 2019-04-01)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

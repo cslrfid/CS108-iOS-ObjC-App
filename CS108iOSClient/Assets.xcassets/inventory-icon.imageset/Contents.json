@@ -1,0 +1,26 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "inventory-icon.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "inventory-icon-50.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "inventory-icon-75.png",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "properties" : {
+    "auto-scaling" : "auto"
+  }
+}

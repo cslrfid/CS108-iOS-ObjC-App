@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MQTTProperties Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Class/MQTTProperties" class="dashAnchor"></a>
+    <a title="MQTTProperties Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">CS108iOSClient Docs</a> (56% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">CS108iOSClient Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        MQTTProperties Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Categories.html">Categories</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Categories/NSMutableData(MQTT).html">NSMutableData(MQTT)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleInterface.html">CSLBleInterface</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBlePacket.html">CSLBlePacket</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleReader.html">CSLBleReader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLBleTag.html">CSLBleTag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLCircularQueue.html">CSLCircularQueue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLMQTTSettings.html">CSLMQTTSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBarcode.html">CSLReaderBarcode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderBattery.html">CSLReaderBattery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderInfo.html">CSLReaderInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLReaderSettings.html">CSLReaderSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLRfidAppEngine.html">CSLRfidAppEngine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CSLTemperatureTagSettings.html">CSLTemperatureTagSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketDecoder.html">MQTTCFSocketDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketEncoder.html">MQTTCFSocketEncoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTCFSocketTransport.html">MQTTCFSocketTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTCoreDataFlow">MQTTCoreDataFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTCoreDataPersistence">MQTTCoreDataPersistence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTDecoder.html">MQTTDecoder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTFlow">MQTTFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTLog.html">MQTTLog</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTMessage.html">MQTTMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTProperties.html">MQTTProperties</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSSLSecurityPolicy.html">MQTTSSLSecurityPolicy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSSLSecurityPolicyTransport.html">MQTTSSLSecurityPolicyTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSession.html">MQTTSession</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MQTTSessionManager.html">MQTTSessionManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)MQTTTransport">MQTTTransport</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Constants.html">Constants</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTClientVersionNumber">MQTTClientVersionNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTClientVersionString">MQTTClientVersionString</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@MQTTSessionErrorDomain">MQTTSessionErrorDomain</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_MESSAGES">MQTT_MAX_MESSAGES</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_SIZE">MQTT_MAX_SIZE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_MAX_WINDOW_SIZE">MQTT_MAX_WINDOW_SIZE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:MQTTPersistence.h@MQTT_PERSISTENT">MQTT_PERSISTENT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Constants.html#/c:@ddLogLevel">ddLogLevel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ACCESSCMD.html">ACCESSCMD</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYLEVELSTATUS.html">BATTERYLEVELSTATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BATTERYMODE.html">BATTERYMODE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CONNECTION.html">CONNECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DDLogFlag.html">DDLogFlag</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DDLogLevel.html">DDLogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DEVICEID.html">DEVICEID</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DIRECTION.html">DIRECTION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LINKPROFILE.html">LINKPROFILE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MEMORYBANK.html">MEMORYBANK</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCFSocketDecoderState.html">MQTTCFSocketDecoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCFSocketEncoderState.html">MQTTCFSocketEncoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTCommandType.html">MQTTCommandType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTDecoderEvent.html">MQTTDecoderEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTDecoderState.html">MQTTDecoderState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTPropertyIdentifier.html">MQTTPropertyIdentifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTProtocolVersion.html">MQTTProtocolVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTQosLevel.html">MQTTQosLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTReturnCode.html">MQTTReturnCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSSLPinningMode.html">MQTTSSLPinningMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionError.html">MQTTSessionError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionEvent.html">MQTTSessionEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionManagerState.html">MQTTSessionManagerState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTSessionStatus.html">MQTTSessionStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTStatus.html">MQTTStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MQTTTransportState.html">MQTTTransportState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYALGORITHM.html">QUERYALGORITHM</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/QUERYSELECT.html">QUERYSELECT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SENSORTYPE.html">SENSORTYPE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SESSION.html">SESSION</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/STATUS.html">STATUS</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TARGET.html">TARGET</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TEMPERATUREUNIT.html">TEMPERATUREUNIT</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleInterfaceDelegate.html">CSLBleInterfaceDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CSLBleReaderDelegate.html">CSLBleReaderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTCFSocketDecoderDelegate.html">MQTTCFSocketDecoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTCFSocketEncoderDelegate.html">MQTTCFSocketEncoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTDecoderDelegate.html">MQTTDecoderDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTFlow.html">MQTTFlow</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTPersistence.html">MQTTPersistence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTSessionDelegate.html">MQTTSessionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTSessionManagerDelegate.html">MQTTSessionManagerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTTransport.html">MQTTTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MQTTTransportDelegate.html">MQTTTransportDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Type Definitions.html">Type Definitions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTConnectHandler">MQTTConnectHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTDisconnectHandler">MQTTDisconnectHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTPublishHandler">MQTTPublishHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTSubscribeHandler">MQTTSubscribeHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:MQTTSession.h@T@MQTTUnsubscribeHandler">MQTTUnsubscribeHandler</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>MQTTProperties</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">MQTTProperties</span> <span class="p">:</span> <span class="nc">NSObject</span>
+
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">payloadFormatIndicator</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">publicationExpiryInterval</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">contentType</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">responseTopic</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSData</span> <span class="o">*</span><span class="n">correlationData</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">subscriptionIdentifier</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">sessionExpiryInterval</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">assignedClientIdentifier</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">serverKeepAlive</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">authMethod</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSData</span> <span class="o">*</span><span class="n">authData</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">requestProblemInformation</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">willDelayInterval</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">requestResponseInformation</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">responseInformation</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">serverReference</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">reasonString</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">receiveMaximum</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">topicAliasMaximum</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">topicAlias</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">maximumQoS</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">retainAvailable</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSMutableDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">userProperty</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">maximumPacketSize</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">wildcardSubscriptionAvailable</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">subscriptionIdentifiersAvailable</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">sharedSubscriptionAvailable</span><span class="p">;</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initFromData</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span> <span class="n">NS_DESIGNATED_INITIALIZER</span><span class="p">;</span>
+<span class="k">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nf">getVariableLength</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span>
+<span class="k">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nf">variableIntLength</span><span class="p">:(</span><span class="kt">int</span><span class="p">)</span><span class="nv">length</span><span class="p">;</span>
+
+<span class="k">@end</span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)payloadFormatIndicator"></a>
+                    <a name="//apple_ref/objc/Property/payloadFormatIndicator" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)payloadFormatIndicator">payloadFormatIndicator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">payloadFormatIndicator</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">payloadFormatIndicator</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)publicationExpiryInterval"></a>
+                    <a name="//apple_ref/objc/Property/publicationExpiryInterval" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)publicationExpiryInterval">publicationExpiryInterval</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">publicationExpiryInterval</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">publicationExpiryInterval</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)contentType"></a>
+                    <a name="//apple_ref/objc/Property/contentType" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)contentType">contentType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">contentType</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">contentType</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)responseTopic"></a>
+                    <a name="//apple_ref/objc/Property/responseTopic" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)responseTopic">responseTopic</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">responseTopic</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">responseTopic</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)correlationData"></a>
+                    <a name="//apple_ref/objc/Property/correlationData" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)correlationData">correlationData</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSData</span> <span class="o">*</span><span class="n">correlationData</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">correlationData</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)subscriptionIdentifier"></a>
+                    <a name="//apple_ref/objc/Property/subscriptionIdentifier" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)subscriptionIdentifier">subscriptionIdentifier</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">subscriptionIdentifier</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">subscriptionIdentifier</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)sessionExpiryInterval"></a>
+                    <a name="//apple_ref/objc/Property/sessionExpiryInterval" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)sessionExpiryInterval">sessionExpiryInterval</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">sessionExpiryInterval</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">sessionExpiryInterval</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)assignedClientIdentifier"></a>
+                    <a name="//apple_ref/objc/Property/assignedClientIdentifier" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)assignedClientIdentifier">assignedClientIdentifier</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">assignedClientIdentifier</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">assignedClientIdentifier</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)serverKeepAlive"></a>
+                    <a name="//apple_ref/objc/Property/serverKeepAlive" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)serverKeepAlive">serverKeepAlive</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">serverKeepAlive</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">serverKeepAlive</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)authMethod"></a>
+                    <a name="//apple_ref/objc/Property/authMethod" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)authMethod">authMethod</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">authMethod</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">authMethod</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)authData"></a>
+                    <a name="//apple_ref/objc/Property/authData" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)authData">authData</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSData</span> <span class="o">*</span><span class="n">authData</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">authData</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)requestProblemInformation"></a>
+                    <a name="//apple_ref/objc/Property/requestProblemInformation" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)requestProblemInformation">requestProblemInformation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">requestProblemInformation</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">requestProblemInformation</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)willDelayInterval"></a>
+                    <a name="//apple_ref/objc/Property/willDelayInterval" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)willDelayInterval">willDelayInterval</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">willDelayInterval</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">willDelayInterval</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)requestResponseInformation"></a>
+                    <a name="//apple_ref/objc/Property/requestResponseInformation" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)requestResponseInformation">requestResponseInformation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">requestResponseInformation</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">requestResponseInformation</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)responseInformation"></a>
+                    <a name="//apple_ref/objc/Property/responseInformation" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)responseInformation">responseInformation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">responseInformation</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">responseInformation</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)serverReference"></a>
+                    <a name="//apple_ref/objc/Property/serverReference" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)serverReference">serverReference</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">serverReference</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">serverReference</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)reasonString"></a>
+                    <a name="//apple_ref/objc/Property/reasonString" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)reasonString">reasonString</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">reasonString</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">reasonString</span><span class="p">:</span> <span class="kt">String</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)receiveMaximum"></a>
+                    <a name="//apple_ref/objc/Property/receiveMaximum" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)receiveMaximum">receiveMaximum</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">receiveMaximum</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">receiveMaximum</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)topicAliasMaximum"></a>
+                    <a name="//apple_ref/objc/Property/topicAliasMaximum" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)topicAliasMaximum">topicAliasMaximum</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">topicAliasMaximum</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">topicAliasMaximum</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)topicAlias"></a>
+                    <a name="//apple_ref/objc/Property/topicAlias" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)topicAlias">topicAlias</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">topicAlias</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">topicAlias</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)maximumQoS"></a>
+                    <a name="//apple_ref/objc/Property/maximumQoS" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)maximumQoS">maximumQoS</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">maximumQoS</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">maximumQoS</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)retainAvailable"></a>
+                    <a name="//apple_ref/objc/Property/retainAvailable" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)retainAvailable">retainAvailable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">retainAvailable</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">retainAvailable</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)userProperty"></a>
+                    <a name="//apple_ref/objc/Property/userProperty" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)userProperty">userProperty</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSMutableDictionary</span> <span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">userProperty</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">userProperty</span><span class="p">:</span> <span class="kt">NSMutableDictionary</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)maximumPacketSize"></a>
+                    <a name="//apple_ref/objc/Property/maximumPacketSize" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)maximumPacketSize">maximumPacketSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">maximumPacketSize</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">maximumPacketSize</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)wildcardSubscriptionAvailable"></a>
+                    <a name="//apple_ref/objc/Property/wildcardSubscriptionAvailable" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)wildcardSubscriptionAvailable">wildcardSubscriptionAvailable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">wildcardSubscriptionAvailable</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">wildcardSubscriptionAvailable</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)subscriptionIdentifiersAvailable"></a>
+                    <a name="//apple_ref/objc/Property/subscriptionIdentifiersAvailable" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)subscriptionIdentifiersAvailable">subscriptionIdentifiersAvailable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">subscriptionIdentifiersAvailable</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">subscriptionIdentifiersAvailable</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(py)sharedSubscriptionAvailable"></a>
+                    <a name="//apple_ref/objc/Property/sharedSubscriptionAvailable" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(py)sharedSubscriptionAvailable">sharedSubscriptionAvailable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">sharedSubscriptionAvailable</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">sharedSubscriptionAvailable</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="o">!</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(im)initFromData:"></a>
+                    <a name="//apple_ref/objc/Method/-initFromData:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(im)initFromData:">-initFromData:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initFromData</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span> <span class="n">NS_DESIGNATED_INITIALIZER</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="o">!</span><span class="p">(</span><span class="n">from</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(cm)getVariableLength:"></a>
+                    <a name="//apple_ref/objc/Method/+getVariableLength:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(cm)getVariableLength:">+getVariableLength:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nf">getVariableLength</span><span class="p">:(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">getVariableLength</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)MQTTProperties(cm)variableIntLength:"></a>
+                    <a name="//apple_ref/objc/Method/+variableIntLength:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)MQTTProperties(cm)variableIntLength:">+variableIntLength:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nf">variableIntLength</span><span class="p">:(</span><span class="kt">int</span><span class="p">)</span><span class="nv">length</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">variableIntLength</span><span class="p">(</span><span class="n">_</span> <span class="nv">length</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://www.convergenece.com.hk" target="_blank" rel="external">CSL</a>. All rights reserved. (Last updated: 2019-04-01)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
