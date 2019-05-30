@@ -53,31 +53,89 @@
         NSString *stringFromDate = [dateFormatter stringFromDate:date];
         
         double temperatureValue=[[[CSLRfidAppEngine sharedAppEngine].temperatureSettings getTemperatureValueAveraging:epc] doubleValue];
-        
-        if (temperatureValue > MIN_TEMP_VALUE && temperatureValue < MAX_TEMP_VALUE) {
-            if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.unit == CELCIUS)
-                self.lbTemperature.text=[NSString stringWithFormat:@"%3.1f\u00BA%@", temperatureValue, [CSLRfidAppEngine sharedAppEngine].temperatureSettings.unit ? @"F" : @"C"];
+        if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==TEMPERATURE) {
+            if (temperatureValue > MIN_TEMP_VALUE && temperatureValue < MAX_TEMP_VALUE) {
+                if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.unit == CELCIUS)
+                    self.lbTemperature.text=[NSString stringWithFormat:@"%3.1f\u00BA%@", temperatureValue, [CSLRfidAppEngine sharedAppEngine].temperatureSettings.unit ? @"F" : @"C"];
+                else
+                    self.lbTemperature.text=[NSString stringWithFormat:@"%3.1f\u00BA%@", [CSLTemperatureTagSettings convertCelciusToFahrenheit:temperatureValue], [CSLRfidAppEngine sharedAppEngine].temperatureSettings.unit ? @"F" : @"C"];
+            }
             else
-                self.lbTemperature.text=[NSString stringWithFormat:@"%3.1f\u00BA%@", [CSLTemperatureTagSettings convertCelciusToFahrenheit:temperatureValue], [CSLRfidAppEngine sharedAppEngine].temperatureSettings.unit ? @"F" : @"C"];
-                                         }
-        else
-            self.lbTemperature.text = @"  -  ";
+                self.lbTemperature.text = @"  -  ";
+        }
+        else {
+            if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3)
+                self.lbTemperature.text = [NSString stringWithFormat:@"%3.1f%%", (((490.00 - temperatureValue) / (490.00 - 5.00)) * 100.00)];
+            else
+                self.lbTemperature.text = [NSString stringWithFormat:@"%3.1f%%", (((31 - temperatureValue) / (31)) * 100.00)];
+        }
+        
         self.lbEPC.text=epc;
         self.lbTimestamp.text=stringFromDate;
         
         //temperature alert
         if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.isTemperatureAlertEnabled) {
-            if (temperatureValue < [CSLRfidAppEngine sharedAppEngine].temperatureSettings.temperatureAlertLowerLimit) {
-                self.btnTagStatus.backgroundColor=UIColorFromRGB(0x74b9ff);
-                [self.btnTagStatus setTitle:@"Low" forState:UIControlStateNormal];
-            }
-            else if (temperatureValue > [CSLRfidAppEngine sharedAppEngine].temperatureSettings.temperatureAlertUpperLimit) {
-                self.btnTagStatus.backgroundColor=UIColorFromRGB(0xd63031);
-                [self.btnTagStatus setTitle:@"High" forState:UIControlStateNormal];
+            if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==TEMPERATURE) {
+                //for temperature measurements
+                if (temperatureValue < [CSLRfidAppEngine sharedAppEngine].temperatureSettings.temperatureAlertLowerLimit) {
+                    self.btnTagStatus.backgroundColor=UIColorFromRGB(0x74b9ff);
+                    [self.btnTagStatus setTitle:@"Low" forState:UIControlStateNormal];
+                }
+                else if (temperatureValue > [CSLRfidAppEngine sharedAppEngine].temperatureSettings.temperatureAlertUpperLimit) {
+                    self.btnTagStatus.backgroundColor=UIColorFromRGB(0xd63031);
+                    [self.btnTagStatus setTitle:@"High" forState:UIControlStateNormal];
+                }
+                else {
+                    self.btnTagStatus.backgroundColor=UIColorFromRGB(0x26A65B);
+                    [self.btnTagStatus setTitle:@"Normal" forState:UIControlStateNormal];
+                }
             }
             else {
-                self.btnTagStatus.backgroundColor=UIColorFromRGB(0x26A65B);
-                [self.btnTagStatus setTitle:@"Normal" forState:UIControlStateNormal];
+                //for moisture mesurements
+                if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
+                    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertCondition==GREATER) {
+                        if ((((490.00 - temperatureValue) / (490.00 - 5.00)) * 100.00) > [CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertValue) {
+                            self.btnTagStatus.backgroundColor=UIColorFromRGB(0xd63031);
+                            [self.btnTagStatus setTitle:@"High" forState:UIControlStateNormal];
+                        }
+                        else {
+                            self.btnTagStatus.backgroundColor=UIColorFromRGB(0x26A65B);
+                            [self.btnTagStatus setTitle:@"Normal" forState:UIControlStateNormal];
+                        }
+                    }
+                    else {
+                        if ((((490.00 - temperatureValue) / (490.00 - 5.00)) * 100.00) < [CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertValue) {
+                            self.btnTagStatus.backgroundColor=UIColorFromRGB(0x74b9ff);
+                            [self.btnTagStatus setTitle:@"Low" forState:UIControlStateNormal];
+                        }
+                        else {
+                            self.btnTagStatus.backgroundColor=UIColorFromRGB(0x26A65B);
+                            [self.btnTagStatus setTitle:@"Normal" forState:UIControlStateNormal];
+                        }
+                    }
+                }
+                else { //S2 chip with lower moisture resolution
+                    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertCondition==GREATER) {
+                        if ((((31 - temperatureValue) / (31)) * 100.00) > [CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertValue) {
+                            self.btnTagStatus.backgroundColor=UIColorFromRGB(0xd63031);
+                            [self.btnTagStatus setTitle:@"High" forState:UIControlStateNormal];
+                        }
+                        else {
+                            self.btnTagStatus.backgroundColor=UIColorFromRGB(0x26A65B);
+                            [self.btnTagStatus setTitle:@"Normal" forState:UIControlStateNormal];
+                        }
+                    }
+                    else {
+                        if ((((31 - temperatureValue) / (31)) * 100.00) < [CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertValue) {
+                            self.btnTagStatus.backgroundColor=UIColorFromRGB(0x74b9ff);
+                            [self.btnTagStatus setTitle:@"Low" forState:UIControlStateNormal];
+                        }
+                        else {
+                            self.btnTagStatus.backgroundColor=UIColorFromRGB(0x26A65B);
+                            [self.btnTagStatus setTitle:@"Normal" forState:UIControlStateNormal];
+                        }
+                    }
+                }
             }
         }
         else {
@@ -85,13 +143,24 @@
             [self.btnTagStatus setTitle:@"Normal" forState:UIControlStateNormal];
         }
         
-        if (data2.length >= 16)
-            self.lbCalibration.text=[data2 substringToIndex:15];
-        if (data1.length >= 12) {
-            self.lbSensorCode.text=[data1 substringWithRange:NSMakeRange(0, 4)];
-            self.lbOCRSSI.text=[data1 substringWithRange:NSMakeRange(4, 4)];
-            self.lbTemperatureCode.text=[data1 substringWithRange:NSMakeRange(8, 4)];
+        if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
+            if (data2.length >= 16)
+                self.lbCalibration.text=[data2 substringToIndex:15];
+            if (data1.length >= 12) {
+                self.lbSensorCode.text=[data1 substringWithRange:NSMakeRange(0, 4)];
+                self.lbOCRSSI.text=[data1 substringWithRange:NSMakeRange(4, 4)];
+                self.lbTemperatureCode.text=[data1 substringWithRange:NSMakeRange(8, 4)];
+            }
         }
+        else {
+            if (data1.length >= 4 && data2.length >= 4) {
+                self.lbCalibration.text=@"-";
+                self.lbSensorCode.text=[data1 substringWithRange:NSMakeRange(0, 4)];
+                self.lbOCRSSI.text=[data2 substringWithRange:NSMakeRange(0, 4)];
+                self.lbTemperatureCode.text=@"-";
+            }
+        }
+        
     }
     else {
         self.lbTemperature.text=@"  -  ";

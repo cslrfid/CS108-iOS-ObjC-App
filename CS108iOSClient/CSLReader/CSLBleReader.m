@@ -1434,7 +1434,7 @@
     //Select which set of algorithm parameter registers to access (INV_SEL) reg_addr = 0x0902
     //Byte Inv_algo=0x03, match_rep=0, tag_sel=0, disable_inv=0, tag_read=0, crc_err_read=1, QT_mode=0, tag_delay=0, inv_mode=1;  //inventory algorithm #3, enable crc error read, compact mode inventory
     NSLog(@"----------------------------------------------------------------------");
-    NSLog(@"Set inventory configurations (INV_CFG) addr:0x0902...");
+    NSLog(@"Set inventory configurations (INV_CFG) addr:0x0901...");
     NSLog(@"----------------------------------------------------------------------");
     
     unsigned char INV_CFG[] = {0x80, 0x02, 0x70, 0x01, 0x01, 0x09, (inventoryAlgorithm & 0x3F) + ((match_rep & 0x03) << 6), ((match_rep & 0xFC) >> 2) + ((tag_sel & 0x01) << 6) + ((disable_inventory & 0x01) << 7), (tag_read & 0x03) + ((crc_err_read & 0x01) << 2) + ((QT_mode & 0x01) << 3) + ((tag_delay & 0x0F) << 4), ((tag_delay & 0x30) >> 4) + ((inv_mode & 0x01) << 2)};

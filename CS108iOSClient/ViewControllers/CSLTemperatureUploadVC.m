@@ -84,6 +84,11 @@
         [self.btnMQTTUpload setEnabled:true];
     }
     
+    if ([[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer count] > 0)
+        self.btnSaveToFile.enabled=true;
+    else
+        self.btnSaveToFile.enabled=false;
+    
     //timer event on updating MQTT status UI
     scrMQTTStatusRefresh = [NSTimer scheduledTimerWithTimeInterval:0.5
                                                        target:self
@@ -226,6 +231,55 @@
         
     }
     [self.btnMQTTUpload setEnabled:true];
+}
+
+- (IBAction)btnSaveToFilePressed:(id)sender {
+    
+    NSString* fileContent = @"TIMESTAMP,EPC,TEMPERATURE,CALIBRATION,SENSORCODE,ON-CHIP RSSI,TEMPERATURE CODE,RSSI\n";
+
+    for (CSLBleTag* tag in [CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer) {
+        CSLBleTag* lastGoodRead=[[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer objectForKey:tag.EPC];
+        //tag read timestamp
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd/MM/YY HH:mm:ss"];
+        NSDate* date=lastGoodRead.timestamp;
+        NSString *stringFromDate = [dateFormatter stringFromDate:date];
+        
+        NSNumber* average=[[CSLRfidAppEngine sharedAppEngine].temperatureSettings getTemperatureValueAveraging:tag.EPC];
+        NSString* averageText;
+        if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==TEMPERATURE) {
+            if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.unit == CELCIUS)
+                averageText = [NSString stringWithFormat:@"%3.1f\u00BA", [average doubleValue]];
+            else
+                averageText = [NSString stringWithFormat:@"%3.1f\u00BA", [CSLTemperatureTagSettings convertCelciusToFahrenheit:[average doubleValue]]];
+            //build the text file content
+            fileContent=[fileContent stringByAppendingString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@,%@,%@\n", stringFromDate, tag.EPC, averageText, lastGoodRead.DATA2, [lastGoodRead.DATA1 substringWithRange:NSMakeRange(0, 4)], [lastGoodRead.DATA1 substringWithRange:NSMakeRange(4, 4)], [lastGoodRead.DATA1 substringWithRange:NSMakeRange(8, 4)], [NSString stringWithFormat:@"%d",tag.rssi]]];
+        }
+        else {
+            if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3)
+                averageText = [NSString stringWithFormat:@"%3.1f%%", (((490.00 - [average doubleValue]) / (490.00 - 5.00)) * 100.00)];
+            else
+                averageText = [NSString stringWithFormat:@"%3.1f%%", (((31 - [average doubleValue]) / (31)) * 100.00)];
+            //build the text file content
+            fileContent=[fileContent stringByAppendingString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@,%@,%@\n", stringFromDate, tag.EPC, averageText, @"", lastGoodRead.DATA1, lastGoodRead.DATA2, @"", [NSString stringWithFormat:@"%d",tag.rssi]]];
+        }
+        
+    }
+    
+    NSArray *objectsToShare = @[fileContent];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+    
+    NSArray *excludeActivities = @[UIActivityTypeAssignToContact,
+                                   UIActivityTypeSaveToCameraRoll,
+                                   UIActivityTypeAddToReadingList,
+                                   UIActivityTypePostToFlickr,
+                                   UIActivityTypePostToVimeo];
+    
+    activityVC.excludedActivityTypes = excludeActivities;
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
+    
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{

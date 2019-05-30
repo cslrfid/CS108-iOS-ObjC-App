@@ -63,7 +63,7 @@
     NSLog(@"----------------------------------------------------------------------");
     NSLog(@"TAGMSK_DESC_SEL - Write this register to select which Select descriptor and corresponding mask register set to access.");
     NSLog(@"----------------------------------------------------------------------");
-    unsigned char TAGMSK_DESC_SEL[] = {0x80, 0x02, 0x70, 0x01, 0x00, 0x08, desc_idx & 0x03, 0x00, 0x00, 0x00};
+    unsigned char TAGMSK_DESC_SEL[] = {0x80, 0x02, 0x70, 0x01, 0x00, 0x08, desc_idx & 0x07, 0x00, 0x00, 0x00};
     packet.prefix=0xA7;
     packet.connection = Bluetooth;
     packet.payloadLength=0x0A;
@@ -1090,6 +1090,141 @@
     }
     
     return true;
+}
+
+- (BOOL) clearAllTagSelect {
+    BOOL result=true;
+    
+    for (int i=0;i<8;i++) {
+        result=[self TAGMSK_DESC_SEL:i];
+        result=[self TAGMSK_DESC_CFG:false selectTarget:0 selectAction:0];
+    }
+    
+    return result;
+}
+
+- (BOOL) setEpcMatchConfiguration:(BOOL)match_enable matchOn:(BOOL)epc_notEpc matchLength:(UInt16)match_length matchOffset:(UInt16)match_offset {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [self.cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    NSData * payloadData;
+    
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"INV_EPC_MATCH_CFG - Epc match configuration register .");
+    NSLog(@"----------------------------------------------------------------------");
+    unsigned char INV_EPC_MATCH_CFG[] = {0x80, 0x02, 0x70, 0x01, 0x11, 0x09, match_enable + ((epc_notEpc & 0x02) << 1) + ((match_length & 0x3F) << 2) , ((match_length & 0x01C0) >> 6) + ((match_offset & 0x1F) << 3), ((match_length & 0x01E0) >> 5), 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:INV_EPC_MATCH_CFG length:sizeof(INV_EPC_MATCH_CFG)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
+        if([self.cmdRespQueue count] != 0)
+            break;
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+    }
+    if ([self.cmdRespQueue count] != 0)
+        payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
+    else
+    {
+        NSLog(@"Command timed out.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes
+        return false;
+    }
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    if (memcmp([payloadData bytes], INV_EPC_MATCH_CFG, 2) == 0 && ((Byte *)[payloadData bytes])[2] == 0x00) {
+        NSLog(@"INV_EPC_MATCH_CFG sent OK");
+        return true;
+    }
+    else {
+        NSLog(@"INV_EPC_MATCH_CFG sent FAILED");
+        return false;
+    }
+
+}
+
+- (BOOL) setInventoryCycleDelay:(UInt32) cycle_delay {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [self.cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    NSData * payloadData;
+    
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"INV_CYCLE_DELAY - Delay time between inventory cycle.");
+    NSLog(@"----------------------------------------------------------------------");
+    unsigned char INV_CYCLE_DELAY[] = {0x80, 0x02, 0x70, 0x01, 0x0F, 0x0F, cycle_delay & 0x000000FF, (cycle_delay & 0x0000FF00) >> 8, (cycle_delay & 0x00FF0000) >> 16, (cycle_delay & 0xFF000000) >> 24};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:INV_CYCLE_DELAY length:sizeof(INV_CYCLE_DELAY)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
+        if([self.cmdRespQueue count] != 0)
+            break;
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+    }
+    if ([self.cmdRespQueue count] != 0)
+        payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
+    else
+    {
+        NSLog(@"Command timed out.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes
+        return false;
+    }
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    if (memcmp([payloadData bytes], INV_CYCLE_DELAY, 2) == 0 && ((Byte *)[payloadData bytes])[2] == 0x00) {
+        NSLog(@"INV_CYCLE_DELAY sent OK");
+        return true;
+    }
+    else {
+        NSLog(@"INV_CYCLE_DELAY sent FAILED");
+        return false;
+    }
+    
 }
 
 - (BOOL) selectTagForInventory:(MEMORYBANK)maskbank maskPointer:(UInt16)ptr maskLength:(UInt32)length maskData:(NSData*)mask sel_action:(Byte)action {
