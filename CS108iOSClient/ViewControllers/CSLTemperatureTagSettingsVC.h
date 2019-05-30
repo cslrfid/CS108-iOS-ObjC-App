@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "CSLRfidAppEngine.h"
+#import "CSLTemperatureTabVC.h"
+#import "CSLTemperatureReadVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +23,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *txtNumberOfTemperatureAveraging;
 @property (weak, nonatomic) IBOutlet UIButton *btnSave;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *scTemperatureUnit;
+@property (weak, nonatomic) IBOutlet UIButton *btnSensorType;
+@property (weak, nonatomic) IBOutlet UIButton *btnMoistureCompare;
+@property (weak, nonatomic) IBOutlet UITextField *txtMoistureValue;
+@property (weak, nonatomic) IBOutlet UIButton *btnPowerLevel;
+@property (weak, nonatomic) IBOutlet UISwitch *swDisplayTagInAscii;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actSaveConfig;
 
 - (IBAction)btnSavePressed:(id)sender;
 - (IBAction)txtLowTemperatureThresholdChanged:(id)sender;
@@ -28,6 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)txtOcrssiMinChanged:(id)sender;
 - (IBAction)txtOcrssiMaxChanged:(id)sender;
 - (IBAction)txtNumberOfTemperatureAveragingChanged:(id)sender;
+- (IBAction)btnSensorTypePressed:(id)sender;
+- (IBAction)btnMoistureComparePressed:(id)sender;
+- (IBAction)btnMoistureValueChanged:(id)sender;
+- (IBAction)btnPowerLevelChanged:(id)sender;
 
 @end
 

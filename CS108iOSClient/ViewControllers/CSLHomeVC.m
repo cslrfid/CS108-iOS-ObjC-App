@@ -52,6 +52,9 @@
     self.view.userInteractionEnabled=true;
     self.btnReadTemperature.layer.opacity=1.0;
     
+    //reload configurations from Users Defaults to memory
+    [[CSLRfidAppEngine sharedAppEngine] reloadSettingsFromUserDefaults];
+    
     //check if reader is connected
     if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus!=NOT_CONNECTED) {
         self.lbConnectReader.text=[NSString stringWithFormat:@"Connected: %@", [CSLRfidAppEngine sharedAppEngine].reader.deviceName];

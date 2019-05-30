@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setActiveView:(int)identifier;
+- (void) setConfigurationsForTemperatureTags;
 
 @end
 

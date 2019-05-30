@@ -20,7 +20,12 @@
         self.rssiLowerLimit=8;
         self.rssiUpperLimit=18;
         self.sensorType=MAGNUSS3;
-        self.NumberOfRollingAvergage=5;
+        self.reading=TEMPERATURE;
+        self.powerLevel=SYSTEMSETTING;
+        self.tagIdFormat=HEX;
+        self.moistureAlertCondition=GREATER;
+        self.moistureAlertValue=100;
+        self.NumberOfRollingAvergage=3;
         self.unit=CELCIUS;
         self.temperatureAveragingBuffer = [[NSMutableDictionary alloc] init];
     }

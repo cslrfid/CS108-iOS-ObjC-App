@@ -18,8 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *txtMQTTPublishTopic;
 @property (weak, nonatomic) IBOutlet UIButton *btnMQTTUpload;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actMQTTConnectIndicator;
+@property (weak, nonatomic) IBOutlet UIButton *btnSaveToFile;
 
 - (IBAction)btnMQTTUpload:(id)sender;
+- (IBAction)btnSaveToFilePressed:(id)sender;
 
 @end
 

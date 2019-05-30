@@ -20,58 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
-    
-    //pre-configure inventory
-    //hardcode multibank inventory parameter for RFMicron tag reading (EPC+OCRSSI+TEMPERATURE)
-    [CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled = true;
-    [CSLRfidAppEngine sharedAppEngine].settings.isMultibank2Enabled = true;
-    [CSLRfidAppEngine sharedAppEngine].settings.multibank1=RESERVED;
-    [CSLRfidAppEngine sharedAppEngine].settings.multibank1Offset=12;
-    [CSLRfidAppEngine sharedAppEngine].settings.multibank1Length=3;
-    [CSLRfidAppEngine sharedAppEngine].settings.multibank2=USER;
-    [CSLRfidAppEngine sharedAppEngine].settings.multibank2Offset=8;
-    [CSLRfidAppEngine sharedAppEngine].settings.multibank2Length=4;
-    
-    //for multiplebank inventory
-    Byte tagRead=0;
-    if ([CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled && [CSLRfidAppEngine sharedAppEngine].settings.isMultibank2Enabled)
-        tagRead=2;
-    else if ([CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled)
-        tagRead=1;
-    else
-        tagRead=0;
-    
-    [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
-    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaCycle:COMMAND_ANTCYCLE_CONTINUOUS];
-    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:0];
-    [[CSLRfidAppEngine sharedAppEngine].reader setQueryConfigurations:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? A : [CSLRfidAppEngine sharedAppEngine].settings.target) querySession:[CSLRfidAppEngine sharedAppEngine].settings.session querySelect:ALL];
-    [[CSLRfidAppEngine sharedAppEngine].reader selectAlgorithmParameter:[CSLRfidAppEngine sharedAppEngine].settings.algorithm];
-    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters0:[CSLRfidAppEngine sharedAppEngine].settings.QValue maximumQ:15 minimumQ:0 ThresholdMultiplier:4];
-    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters1:5];
-    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters2:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? true : false) RunTillZero:false];
-    
-    [[CSLRfidAppEngine sharedAppEngine].reader setLinkProfile:[CSLRfidAppEngine sharedAppEngine].settings.linkProfile];
-    
-    //multiple bank select
-    unsigned char emptyByte[] = {0x00};
-    unsigned char OCRSSI[] = {0x20};
-    //[[CSLRfidAppEngine sharedAppEngine].reader TAGMSK_DESC_SEL:0];
-    [[CSLRfidAppEngine sharedAppEngine].reader selectTagForInventory:TID maskPointer:0 maskLength:28 maskData:[CSLBleReader convertHexStringToData:@"E2824030"] sel_action:0];
-    [[CSLRfidAppEngine sharedAppEngine].reader TAGMSK_DESC_SEL:1];
-    [[CSLRfidAppEngine sharedAppEngine].reader selectTagForInventory:USER maskPointer:0xE0 maskLength:0 maskData:[NSData dataWithBytes:emptyByte length:sizeof(emptyByte)] sel_action:1];
-    [[CSLRfidAppEngine sharedAppEngine].reader TAGMSK_DESC_SEL:2];
-    [[CSLRfidAppEngine sharedAppEngine].reader selectTagForInventory:USER maskPointer:0xD0 maskLength:8 maskData:[NSData dataWithBytes:OCRSSI length:sizeof(OCRSSI)] sel_action:2];
-    
-    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:tagRead crcErrorRead:(tagRead ? 0 : 1) QTMode:0 tagDelay:(tagRead ? 30 : 0) inventoryMode:(tagRead ? 0 : 1)];
-    
-    // if multibank read is enabled
-    if (tagRead) {
-        [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_BANK:[CSLRfidAppEngine sharedAppEngine].settings.multibank1 acc_bank2:[CSLRfidAppEngine sharedAppEngine].settings.multibank2];
-        [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_PTR:([CSLRfidAppEngine sharedAppEngine].settings.multibank2Offset << 16) + [CSLRfidAppEngine sharedAppEngine].settings.multibank1Offset];
-        [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_CNT:(tagRead ? [CSLRfidAppEngine sharedAppEngine].settings.multibank1Length : 0) secondBank:(tagRead==2 ? [CSLRfidAppEngine sharedAppEngine].settings.multibank2Length : 0)];
-        [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:1 disableInventory:0 tagRead:tagRead crcErrorRead:(tagRead ? 0 : 1) QTMode:0 tagDelay:(tagRead ? 30 : 0) inventoryMode:(tagRead ? 0 : 1)];
-    }
+    [((CSLTemperatureTabVC*)self.tabBarController) setConfigurationsForTemperatureTags];
     
     //initialize averaging buffer
     [CSLRfidAppEngine sharedAppEngine].temperatureSettings.temperatureAveragingBuffer = [[NSMutableDictionary alloc] init];
@@ -412,27 +363,80 @@
                 cell = [tableView dequeueReusableCellWithIdentifier:@"TemperatureTagCell"];
             }
             
-            temperatureValue=[CSLTemperatureTagListCell calculateCalibratedTemperatureValue:[data1 substringWithRange:NSMakeRange(8, 4)] calibration:data2];
+            if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==TEMPERATURE)
+                temperatureValue=[CSLTemperatureTagListCell calculateCalibratedTemperatureValue:[data1 substringWithRange:NSMakeRange(8, 4)] calibration:data2];
+            else {
+                unsigned result = 0;
+                NSScanner *scanner;
+                scanner = [NSScanner scannerWithString:[data1 substringWithRange:NSMakeRange(0, 4)]];
+                [scanner setScanLocation:1]; // bypass '#' character
+                [scanner scanHexInt:&result];
+                if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
+                    result &= 0x1FF;  //only account for the 9 bits
+                }
+                else {
+                    result &= 0x1F;  //only account for the 5 bits
+                }
+                temperatureValue=(double)result;
+            }
             
             //grey out tag from list if it is outside the on-chip rssi limits
-            scanner = [NSScanner scannerWithString:[data1 substringWithRange:NSMakeRange(4, 4)]];
+            if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
+                scanner = [NSScanner scannerWithString:[data1 substringWithRange:NSMakeRange(4, 4)]];
+            }
+            else {
+                scanner = [NSScanner scannerWithString:[data2 substringWithRange:NSMakeRange(0, 4)]];
+            }
             [scanner scanHexInt:&ocrssi];
             ocrssi &= 0x0000001F;
-            if (ocrssi >= [CSLRfidAppEngine sharedAppEngine].temperatureSettings.rssiLowerLimit &&  //when the last read packet in the buffer is with ocrssi limits
-                ocrssi <= [CSLRfidAppEngine sharedAppEngine].temperatureSettings.rssiUpperLimit &&
-                currentBleTag != [[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer objectForKey:epc] &&    //avoid decoding packet being processed before
-                (temperatureValue > MIN_TEMP_VALUE && temperatureValue < MAX_TEMP_VALUE)) {         //filter out invalid packets that are out of temperature range on spec
-                [[CSLRfidAppEngine sharedAppEngine].temperatureSettings setTemperatureValueForAveraging:[NSNumber numberWithDouble:temperatureValue] EPCID:epc];
-                [[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer setObject:currentBleTag forKey:epc];
+            
+            //for temperature measurements
+            if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==TEMPERATURE) {
+                if (ocrssi >= [CSLRfidAppEngine sharedAppEngine].temperatureSettings.rssiLowerLimit &&  //when the last read packet in the buffer is with ocrssi limits
+                    ocrssi <= [CSLRfidAppEngine sharedAppEngine].temperatureSettings.rssiUpperLimit &&
+                    currentBleTag != [[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer objectForKey:epc] &&    //avoid decoding packet being processed before
+                    (temperatureValue > MIN_TEMP_VALUE && temperatureValue < MAX_TEMP_VALUE)) {         //filter out invalid packets that are out of temperature range on spec
+                    [[CSLRfidAppEngine sharedAppEngine].temperatureSettings setTemperatureValueForAveraging:[NSNumber numberWithDouble:temperatureValue] EPCID:epc];
+                    [[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer setObject:currentBleTag forKey:epc];
+                }
             }
+            else { //moisture measurements
+                if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
+                    if (ocrssi >= [CSLRfidAppEngine sharedAppEngine].temperatureSettings.rssiLowerLimit &&  //when the last read packet in the buffer is with ocrssi limits
+                        ocrssi <= [CSLRfidAppEngine sharedAppEngine].temperatureSettings.rssiUpperLimit &&
+                        currentBleTag != [[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer objectForKey:epc] &&    //avoid decoding packet being processed before
+                        (temperatureValue > MIN_MOISTURE_VALUE && temperatureValue < MAX_MOISTURE_VALUE)) {         //filter out invalid packets that are out of moisture range on spec
+                        [[CSLRfidAppEngine sharedAppEngine].temperatureSettings setTemperatureValueForAveraging:[NSNumber numberWithDouble:temperatureValue] EPCID:epc];
+                        [[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer setObject:currentBleTag forKey:epc];
+                    }
+                }
+                else {
+                    if (ocrssi >= [CSLRfidAppEngine sharedAppEngine].temperatureSettings.rssiLowerLimit &&  //when the last read packet in the buffer is with ocrssi limits
+                        ocrssi <= [CSLRfidAppEngine sharedAppEngine].temperatureSettings.rssiUpperLimit &&
+                        currentBleTag != [[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer objectForKey:epc] &&    //avoid decoding packet being processed before
+                        (temperatureValue > MIN_MOISTURE_VALUE_S2 && temperatureValue < MAX_MOISTURE_VALUE_S2)) {         //filter out invalid packets that are out of moisture range on spec
+                        [[CSLRfidAppEngine sharedAppEngine].temperatureSettings setTemperatureValueForAveraging:[NSNumber numberWithDouble:temperatureValue] EPCID:epc];
+                        [[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer setObject:currentBleTag forKey:epc];
+                    }
+                }
+            }
+            
 
             NSNumber* average=[[CSLRfidAppEngine sharedAppEngine].temperatureSettings getTemperatureValueAveraging:epc];
             if (average != nil) {
                 cell.viTemperatureCell.layer.opacity=1.0;
-                if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.unit == CELCIUS)
-                    cell.lbTemperature.text = [NSString stringWithFormat:@"%3.1f\u00BA", [average doubleValue]];
-                else
-                    cell.lbTemperature.text = [NSString stringWithFormat:@"%3.1f\u00BA", [CSLTemperatureTagSettings convertCelciusToFahrenheit:[average doubleValue]]];
+                if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==TEMPERATURE) {
+                    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.unit == CELCIUS)
+                        cell.lbTemperature.text = [NSString stringWithFormat:@"%3.1f\u00BA", [average doubleValue]];
+                    else
+                        cell.lbTemperature.text = [NSString stringWithFormat:@"%3.1f\u00BA", [CSLTemperatureTagSettings convertCelciusToFahrenheit:[average doubleValue]]];
+                }
+                else {
+                    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3)
+                        cell.lbTemperature.text = [NSString stringWithFormat:@"%3.1f%%", (((490.00 - [average doubleValue]) / (490.00 - 5.00)) * 100.00)];
+                    else
+                        cell.lbTemperature.text = [NSString stringWithFormat:@"%3.1f%%", (((31 - [average doubleValue]) / (31)) * 100.00)];
+                }
             }
             else {
                 cell.viTemperatureCell.layer.opacity=0.5;
@@ -451,7 +455,10 @@
             else
                 stringFromDate=@"";
             
-            cell.lbEPC.text = [NSString stringWithFormat:@"%@", epc];
+            if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.tagIdFormat==ASCII)
+                cell.lbEPC.text = [NSString stringWithFormat:@"%@", [self asciiStringFromHexString:epc]];
+            else
+                cell.lbEPC.text = [NSString stringWithFormat:@"%@", epc];
             cell.lbRssi.text= [NSString stringWithFormat:@"%3d", rssi > 100 ? 100 : rssi];
             cell.lbDate.text=stringFromDate;
             
@@ -470,17 +477,67 @@
                 cell.lbTagStatus.layer.opacity=1.0;
             
             if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.isTemperatureAlertEnabled && average != nil) {
-                if ([average doubleValue] < [CSLRfidAppEngine sharedAppEngine].temperatureSettings.temperatureAlertLowerLimit) {
-                    cell.lbTagStatus.backgroundColor=UIColorFromRGB(0x74b9ff);
-                    [cell.lbTagStatus setTitle:@"Low" forState:UIControlStateNormal];
-                }
-                else if ([average doubleValue] > [CSLRfidAppEngine sharedAppEngine].temperatureSettings.temperatureAlertUpperLimit) {
-                    cell.lbTagStatus.backgroundColor=UIColorFromRGB(0xd63031);
-                    [cell.lbTagStatus setTitle:@"High" forState:UIControlStateNormal];
+                if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==TEMPERATURE) {
+                    //for temperature measurements
+                    if ([average doubleValue] < [CSLRfidAppEngine sharedAppEngine].temperatureSettings.temperatureAlertLowerLimit) {
+                        cell.lbTagStatus.backgroundColor=UIColorFromRGB(0x74b9ff);
+                        [cell.lbTagStatus setTitle:@"Low" forState:UIControlStateNormal];
+                    }
+                    else if ([average doubleValue] > [CSLRfidAppEngine sharedAppEngine].temperatureSettings.temperatureAlertUpperLimit) {
+                        cell.lbTagStatus.backgroundColor=UIColorFromRGB(0xd63031);
+                        [cell.lbTagStatus setTitle:@"High" forState:UIControlStateNormal];
+                    }
+                    else {
+                        cell.lbTagStatus.backgroundColor=UIColorFromRGB(0x26A65B);
+                        [cell.lbTagStatus setTitle:@"Normal" forState:UIControlStateNormal];
+                    }
                 }
                 else {
-                    cell.lbTagStatus.backgroundColor=UIColorFromRGB(0x26A65B);
-                    [cell.lbTagStatus setTitle:@"Normal" forState:UIControlStateNormal];
+                    //for moisture mesurements
+                    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
+                        if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertCondition==GREATER) {
+                            if ((((490.00 - [average doubleValue]) / (490.00 - 5.00)) * 100.00) > [CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertValue) {
+                                cell.lbTagStatus.backgroundColor=UIColorFromRGB(0xd63031);
+                                [cell.lbTagStatus setTitle:@"High" forState:UIControlStateNormal];
+                            }
+                            else {
+                                cell.lbTagStatus.backgroundColor=UIColorFromRGB(0x26A65B);
+                                [cell.lbTagStatus setTitle:@"Normal" forState:UIControlStateNormal];
+                            }
+                        }
+                        else {
+                            if ((((490.00 - [average doubleValue]) / (490.00 - 5.00)) * 100.00) < [CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertValue) {
+                                cell.lbTagStatus.backgroundColor=UIColorFromRGB(0x74b9ff);
+                                [cell.lbTagStatus setTitle:@"Low" forState:UIControlStateNormal];
+                            }
+                            else {
+                                cell.lbTagStatus.backgroundColor=UIColorFromRGB(0x26A65B);
+                                [cell.lbTagStatus setTitle:@"Normal" forState:UIControlStateNormal];
+                            }
+                        }
+                    }
+                    else { //S2 chip with lower moisture resolution
+                        if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertCondition==GREATER) {
+                            if ((((31 - [average doubleValue]) / (31)) * 100.00) > [CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertValue) {
+                                cell.lbTagStatus.backgroundColor=UIColorFromRGB(0xd63031);
+                                [cell.lbTagStatus setTitle:@"High" forState:UIControlStateNormal];
+                            }
+                            else {
+                                cell.lbTagStatus.backgroundColor=UIColorFromRGB(0x26A65B);
+                                [cell.lbTagStatus setTitle:@"Normal" forState:UIControlStateNormal];
+                            }
+                        }
+                        else {
+                            if ((((31 - [average doubleValue]) / (31)) * 100.00) < [CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertValue) {
+                                cell.lbTagStatus.backgroundColor=UIColorFromRGB(0x74b9ff);
+                                [cell.lbTagStatus setTitle:@"Low" forState:UIControlStateNormal];
+                            }
+                            else {
+                                cell.lbTagStatus.backgroundColor=UIColorFromRGB(0x26A65B);
+                                [cell.lbTagStatus setTitle:@"Normal" forState:UIControlStateNormal];
+                            }
+                        }
+                    }
                 }
             }
             else {
@@ -549,5 +606,23 @@
     return result;
 }
 
+- (NSString *)asciiStringFromHexString:(NSString *)hexString {
+    
+    
+    // The hex codes should all be two characters.
+    if (([hexString length] % 2) != 0)
+        return nil;
+    
+    NSMutableString *string = [NSMutableString string];
+    
+    for (NSInteger i = 0; i < [hexString length]; i += 2) {
+        
+        NSString *hex = [hexString substringWithRange:NSMakeRange(i, 2)];
+        int value=0;
+        sscanf([hex cStringUsingEncoding:NSASCIIStringEncoding], "%x", &value);
+        [string appendFormat:@"%c", (char)value];
+    }
+    return string;
+}
 
 @end

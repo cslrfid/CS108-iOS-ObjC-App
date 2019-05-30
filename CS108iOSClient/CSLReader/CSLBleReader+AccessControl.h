@@ -66,6 +66,26 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) sendHostCommandLock;
 
 /**
+ Clear all tag select criteria (8 in total)
+ @return TRUE if the operation is successful
+ */
+- (BOOL) clearAllTagSelect;
+/**
+ EPC match configuration
+ @param match_enable 1 = EPC matching enabled, 0 = EPC matching disabled
+ @param epc_notEpc 0 = match on EPC, 1 = match on ~EPC
+ @param match_length Length of EPC match data in bits
+ @param match_offset Offset in bits of where to start the compare in the EPC read from the tag
+ @return TRUE if the operation is successful
+ */
+- (BOOL) setEpcMatchConfiguration:(BOOL)match_enable matchOn:(BOOL)epc_notEpc matchLength:(UInt16)match_length matchOffset:(UInt16)match_offset;
+/**
+ Delay time between inventory cycle.
+ @param cycle_delay Time delay in-between each inventory cycle in ms (use to reduce tag rate).  The values should be between 0 to 2000.  0 means fastest tag rate.
+ @return TRUE if the operation is successful
+ */
+- (BOOL) setInventoryCycleDelay:(UInt32) cycle_delay;
+/**
  Select tag before tag access (read/write) operation
  @param maskbank Mask bank to be used for tag selection
  @param ptr Pointer to the start of the memory address, to be expressed by bits

@@ -208,6 +208,18 @@ CSLRfidAppEngine * appEngine;
         temperatureSettings.NumberOfRollingAvergage = (UInt32)[defaults integerForKey:@"NumberOfRollingAvergage"];
     if([defaults objectForKey:@"temperatureUnit"])
         temperatureSettings.unit = (BOOL)[defaults boolForKey:@"temperatureUnit"];
+    if([defaults objectForKey:@"sensorType"])
+        temperatureSettings.sensorType = (SENSORTYPE)[defaults integerForKey:@"sensorType"];
+    if([defaults objectForKey:@"reading"])
+        temperatureSettings.reading = (BOOL)[defaults boolForKey:@"reading"];
+    if([defaults objectForKey:@"powerLevel"])
+        temperatureSettings.powerLevel = (POWERLEVEL)[defaults integerForKey:@"powerLevel"];
+    if([defaults objectForKey:@"tagIdFormat"])
+        temperatureSettings.tagIdFormat = (TAGIDFORMAT)[defaults boolForKey:@"tagIdFormat"];
+    if([defaults objectForKey:@"moistureAlertCondition"])
+        temperatureSettings.moistureAlertCondition = (BOOL)[defaults boolForKey:@"moistureAlertCondition"];
+    if([defaults objectForKey:@"moistureAlertValue"])
+        temperatureSettings.moistureAlertValue = (int)[defaults integerForKey:@"moistureAlertValue"];
 }
 -(void)saveTemperatureTagSettingsToUserDefaults {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -219,6 +231,12 @@ CSLRfidAppEngine * appEngine;
     [defaults setInteger:temperatureSettings.rssiUpperLimit forKey:@"rssiUpperLimit"];
     [defaults setInteger:temperatureSettings.NumberOfRollingAvergage forKey:@"NumberOfRollingAvergage"];
     [defaults setInteger:temperatureSettings.unit forKey:@"temperatureUnit"];
+    [defaults setInteger:temperatureSettings.sensorType forKey:@"sensorType"];
+    [defaults setBool:temperatureSettings.reading forKey:@"reading"];
+    [defaults setInteger:temperatureSettings.powerLevel forKey:@"powerLevel"];
+    [defaults setBool:temperatureSettings.tagIdFormat forKey:@"tagIdFormat"];
+    [defaults setBool:temperatureSettings.moistureAlertCondition forKey:@"moistureAlertCondition"];
+    [defaults setInteger:temperatureSettings.moistureAlertValue forKey:@"moistureAlertValue"];
     
     [defaults synchronize];
     

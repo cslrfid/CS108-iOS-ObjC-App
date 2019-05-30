@@ -11,6 +11,10 @@
 
 #define MIN_TEMP_VALUE -40.0
 #define MAX_TEMP_VALUE +85.0
+#define MIN_MOISTURE_VALUE 5
+#define MAX_MOISTURE_VALUE 490
+#define MIN_MOISTURE_VALUE_S2 0
+#define MAX_MOISTURE_VALUE_S2 31
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,13 +22,44 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(UInt32, SENSORTYPE)
 {
     MAGNUSS3 = 0xE2824030,
+    MAGNUSS2 = 0xE2824020
 };
 
 ///Temperature Unit
 typedef NS_ENUM(BOOL, TEMPERATUREUNIT)
 {
     CELCIUS = 0,
-    FAHRENHEIT=1
+    FAHRENHEIT = 1
+};
+
+///Sensor Reading
+typedef NS_ENUM(BOOL, SENSORREADING)
+{
+    TEMPERATURE = 0,
+    MOISTURE=  1
+};
+
+///Sensor Reading
+typedef NS_ENUM(BOOL, TAGIDFORMAT)
+{
+    HEX = 0,
+    ASCII=1
+};
+
+///Sensor Reading Power Level
+typedef NS_ENUM(Byte, POWERLEVEL)
+{
+    SYSTEMSETTING = 0x00,
+    LOWPOWER = 0x01,
+    MEDIUMPOWER = 0x02,
+    HIGHPOWER = 0x03
+};
+
+///Sensor Reading
+typedef NS_ENUM(BOOL, ALERTCONDITION)
+{
+    GREATER = 0,
+    LESSTHAN=1
 };
 
 @interface CSLTemperatureTagSettings : NSObject
@@ -45,6 +80,17 @@ typedef NS_ENUM(BOOL, TEMPERATUREUNIT)
 @property (assign) int NumberOfRollingAvergage;
 ///Temperature Unit being displayed
 @property (assign) TEMPERATUREUNIT unit;
+///Sensor value to be decoded (temperature/moisture)
+@property (assign) SENSORREADING reading;
+///Sensor reading power level
+@property (assign) POWERLEVEL powerLevel;
+///Tag ID display mode (HEX or ASCII)
+@property (assign) TAGIDFORMAT tagIdFormat;
+///Moisture sensing - alert condition
+@property (assign) ALERTCONDITION moistureAlertCondition;
+///Moisture sensing - alert value
+@property (assign) int moistureAlertValue;
+
 
 ///Hold a list of circular queues for each of the tag read
 @property NSMutableDictionary * temperatureAveragingBuffer;
