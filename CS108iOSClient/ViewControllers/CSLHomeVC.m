@@ -75,6 +75,8 @@
     [[CSLRfidAppEngine sharedAppEngine] reloadMQTTSettingsFromUserDefaults];
     [CSLRfidAppEngine sharedAppEngine].temperatureSettings = [[CSLTemperatureTagSettings alloc] init];
     [[CSLRfidAppEngine sharedAppEngine] reloadTemperatureTagSettingsFromUserDefaults];
+    [CSLRfidAppEngine sharedAppEngine].settings = [[CSLReaderSettings alloc] init];
+    [[CSLRfidAppEngine sharedAppEngine] reloadSettingsFromUserDefaults];
     
     [CSLRfidAppEngine sharedAppEngine].reader.readerDelegate=self;
     scrRefreshTimer = [NSTimer scheduledTimerWithTimeInterval:1.0

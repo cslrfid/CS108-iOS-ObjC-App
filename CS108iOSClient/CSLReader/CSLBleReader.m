@@ -1835,6 +1835,9 @@
                 {
                     //dequque the next packet received
                     packet=((CSLBlePacket *)[self.recvQueue deqObject]);
+                    if ([packet isKindOfClass:[NSNull class]]) {
+                        continue;
+                    }
                 }
                 else
                     continue;

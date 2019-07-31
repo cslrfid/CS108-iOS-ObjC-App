@@ -61,8 +61,8 @@
                                                                 <rect key="frame" x="58" y="37" width="37" height="37"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             </activityIndicatorView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huf-M0-haL">
-                                                                <rect key="frame" x="40.5" y="106.5" width="98.5" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Read Sensors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huf-M0-haL">
+                                                                <rect key="frame" x="39" y="106" width="101.5" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="huf-M0-haL" secondAttribute="height" multiplier="97:20" id="QR7-iW-mzg"/>
                                                                 </constraints>
@@ -71,7 +71,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4b-VQ-L5K" userLabel="Read Temperature">
-                                                                <rect key="frame" x="42.5" y="11" width="94.5" height="95"/>
+                                                                <rect key="frame" x="42.5" y="11" width="94.5" height="94.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="v4b-VQ-L5K" secondAttribute="height" multiplier="1:1" id="tO8-km-qMT"/>
                                                                 </constraints>
@@ -2388,13 +2388,13 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="5" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zKZ-nu-zUM">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="3" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zKZ-nu-zUM">
                                                 <rect key="frame" x="267" y="10" width="100" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="AMn-sK-feu"/>
                                                 </constraints>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <action selector="txtNumberOfTemperatureAveragingChanged:" destination="j72-cb-617" eventType="editingDidEnd" id="0dF-Bg-lbA"/>
