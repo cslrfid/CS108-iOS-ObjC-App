@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *viTemperatureCell;
 
 + (double) calculateCalibratedTemperatureValue:(NSString*) tempCodeInHexString calibration:(NSString*) calibrationInHexString;
++ (double) calculateCalibratedTemperatureValueForXerxes:(UInt16)tempCode TemperatureCode2:(UInt16)tempCode2 Temperature2:(UInt16)temp2 TemperatureCode1:(UInt16)tempCode1 Temperature1:(UInt16)temp1;
 - (void) spinTemperatureValueIndicator;
 @end
 

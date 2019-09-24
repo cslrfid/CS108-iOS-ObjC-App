@@ -364,10 +364,42 @@
             }
             
             if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==TEMPERATURE)
-                temperatureValue=[CSLTemperatureTagListCell calculateCalibratedTemperatureValue:[data1 substringWithRange:NSMakeRange(8, 4)] calibration:data2];
+            {
+                if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==XERXES) {
+                    unsigned result = 0;
+                    NSScanner *scanner;
+                    int tempCode, tempCode2, temp2, tempCode1, temp1;
+                    
+                    scanner = [NSScanner scannerWithString:[data2 substringWithRange:NSMakeRange(16, 4)]];
+                    [scanner scanHexInt:&result];
+                    result &= 0xFFF;
+                    tempCode=result;
+                    
+                    scanner = [NSScanner scannerWithString:[data1 substringWithRange:NSMakeRange(0, 4)]];
+                    [scanner scanHexInt:&result];
+                    result &= 0xFFFF;
+                    tempCode2=result;
+                    scanner = [NSScanner scannerWithString:[data1 substringWithRange:NSMakeRange(4, 4)]];
+                    [scanner scanHexInt:&result];
+                    result &= 0x7FF;
+                    temp2=result;
+                    scanner = [NSScanner scannerWithString:[data1 substringWithRange:NSMakeRange(8, 4)]];
+                    [scanner scanHexInt:&result];
+                    result &= 0xFFFF;
+                    tempCode1=result;
+                    scanner = [NSScanner scannerWithString:[data1 substringWithRange:NSMakeRange(12, 4)]];
+                    [scanner scanHexInt:&result];
+                    result &= 0x7FF;
+                    temp1=result;
+                    
+                    temperatureValue=[CSLTemperatureTagListCell calculateCalibratedTemperatureValueForXerxes:tempCode TemperatureCode2:tempCode2 Temperature2:temp2 TemperatureCode1:tempCode1 Temperature1:temp1];
+                }
+                else
+                    temperatureValue=[CSLTemperatureTagListCell calculateCalibratedTemperatureValue:[data1 substringWithRange:NSMakeRange(8, 4)] calibration:data2];
+            }
             else {
                 unsigned result = 0;
-                NSScanner *scanner;
+
                 scanner = [NSScanner scannerWithString:[data1 substringWithRange:NSMakeRange(0, 4)]];
                 [scanner setScanLocation:1]; // bypass '#' character
                 [scanner scanHexInt:&result];
@@ -381,14 +413,21 @@
             }
             
             //grey out tag from list if it is outside the on-chip rssi limits
-            if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
-                scanner = [NSScanner scannerWithString:[data1 substringWithRange:NSMakeRange(4, 4)]];
+            if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==XERXES) {
+                scanner = [NSScanner scannerWithString:[data2 substringWithRange:NSMakeRange(12, 4)]];
+                [scanner scanHexInt:&ocrssi];
+                ocrssi &= 0x0000001F;
             }
             else {
-                scanner = [NSScanner scannerWithString:[data2 substringWithRange:NSMakeRange(0, 4)]];
+                if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
+                    scanner = [NSScanner scannerWithString:[data1 substringWithRange:NSMakeRange(4, 4)]];
+                }
+                else {
+                    scanner = [NSScanner scannerWithString:[data2 substringWithRange:NSMakeRange(0, 4)]];
+                }
+                [scanner scanHexInt:&ocrssi];
+                ocrssi &= 0x0000001F;
             }
-            [scanner scanHexInt:&ocrssi];
-            ocrssi &= 0x0000001F;
             
             //for temperature measurements
             if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==TEMPERATURE) {
@@ -623,6 +662,30 @@
         [string appendFormat:@"%c", (char)value];
     }
     return string;
+}
+
+double temp(int CODE, int add_12, int add_13, int add_14, int add_15)
+{
+    //int FormatCode = (add_15 >> 13) & 0x07;
+    //int Parity1 = (add_15 >> 12) & 0x01;
+    //int Parity2 = (add_15 >> 11) & 0x01;
+    int Temperature1 = add_15 & 0x07ff;
+    int TemperatureCode1 = add_14 & 0xffff;
+    //int RFU = (add_13 >> 13) & 0x07;
+    //int Parity3 = (add_13 >> 12) & 0x01;
+    //int Parity4 = (add_13 >> 11) & 0x01;
+    int Temperature2 = add_13 & 0x07ff;
+    int TemperatureCode2 = add_12 & 0xffff;
+    
+    double CalTemp1 = 0.1 * Temperature1 - 60;
+    double CalTemp2 = 0.1 * Temperature2 - 60;
+    double CalCode1 = 0.0625 * TemperatureCode1;
+    double CalCode2 = 0.0625 * TemperatureCode2;
+    
+    double slope = (CalTemp2 - CalTemp1) / (CalCode2 - CalCode1);
+    double TEMP = slope * (CODE - CalCode1) + CalTemp1;
+    
+    return TEMP;
 }
 
 @end

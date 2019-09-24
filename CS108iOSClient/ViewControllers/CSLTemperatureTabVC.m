@@ -103,26 +103,37 @@
     [CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled = true;
     [CSLRfidAppEngine sharedAppEngine].settings.isMultibank2Enabled = true;
     
-    //check and see if this is S2 or S3 chip for capturing sensor code
-    [CSLRfidAppEngine sharedAppEngine].settings.multibank1=RESERVED;
-    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
-        [CSLRfidAppEngine sharedAppEngine].settings.multibank1Offset=12;    //word address 0xC in the RESERVE bank
-        [CSLRfidAppEngine sharedAppEngine].settings.multibank1Length=3;
-    }
-    else {
-        [CSLRfidAppEngine sharedAppEngine].settings.multibank1Offset=11;    //word address 0xB in the RESERVE bank
-        [CSLRfidAppEngine sharedAppEngine].settings.multibank1Length=1;
-    }
-    
-    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
-        [CSLRfidAppEngine sharedAppEngine].settings.multibank2=USER;
-        [CSLRfidAppEngine sharedAppEngine].settings.multibank2Offset=8;
-        [CSLRfidAppEngine sharedAppEngine].settings.multibank2Length=4;
-    }
-    else {
+    //check if Xerxes or Magnus tag
+    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==XERXES) {
+        [CSLRfidAppEngine sharedAppEngine].settings.multibank1=USER;
+        [CSLRfidAppEngine sharedAppEngine].settings.multibank1Offset=0x12;    //word address 0xC in the RESERVE bank
+        [CSLRfidAppEngine sharedAppEngine].settings.multibank1Length=0x04;
         [CSLRfidAppEngine sharedAppEngine].settings.multibank2=RESERVED;
-        [CSLRfidAppEngine sharedAppEngine].settings.multibank2Offset=13;
-        [CSLRfidAppEngine sharedAppEngine].settings.multibank2Length=1;
+        [CSLRfidAppEngine sharedAppEngine].settings.multibank2Offset=0x0A;
+        [CSLRfidAppEngine sharedAppEngine].settings.multibank2Length=0x05;
+    }
+    else {
+        //check and see if this is S2 or S3 chip for capturing sensor code
+        [CSLRfidAppEngine sharedAppEngine].settings.multibank1=RESERVED;
+        if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
+            [CSLRfidAppEngine sharedAppEngine].settings.multibank1Offset=12;    //word address 0xC in the RESERVE bank
+            [CSLRfidAppEngine sharedAppEngine].settings.multibank1Length=3;
+        }
+        else {
+            [CSLRfidAppEngine sharedAppEngine].settings.multibank1Offset=11;    //word address 0xB in the RESERVE bank
+            [CSLRfidAppEngine sharedAppEngine].settings.multibank1Length=1;
+        }
+        
+        if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
+            [CSLRfidAppEngine sharedAppEngine].settings.multibank2=USER;
+            [CSLRfidAppEngine sharedAppEngine].settings.multibank2Offset=8;
+            [CSLRfidAppEngine sharedAppEngine].settings.multibank2Length=4;
+        }
+        else {
+            [CSLRfidAppEngine sharedAppEngine].settings.multibank2=RESERVED;
+            [CSLRfidAppEngine sharedAppEngine].settings.multibank2Offset=13;
+            [CSLRfidAppEngine sharedAppEngine].settings.multibank2Length=1;
+        }
     }
     //for multiplebank inventory
     Byte tagRead=0;
@@ -168,7 +179,15 @@
     //select the TID for either S2 or S3 chip
     [[CSLRfidAppEngine sharedAppEngine].reader clearAllTagSelect];
     
-    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
+    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==XERXES) {
+        
+        [[CSLRfidAppEngine sharedAppEngine].reader TAGMSK_DESC_SEL:0];
+        [[CSLRfidAppEngine sharedAppEngine].reader selectTagForInventory:TID maskPointer:0 maskLength:32 maskData:[CSLBleReader convertHexStringToData:[NSString stringWithFormat:@"%8X", XERXES]] sel_action:0];
+        [[CSLRfidAppEngine sharedAppEngine].reader TAGMSK_DESC_SEL:1];
+        [[CSLRfidAppEngine sharedAppEngine].reader selectTagForInventory:USER maskPointer:0x03B0 maskLength:8 maskData:[NSData dataWithBytes:emptyByte length:sizeof(emptyByte)] sel_action:5 delayTime:15];
+	
+    }
+    else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
         
         [[CSLRfidAppEngine sharedAppEngine].reader TAGMSK_DESC_SEL:0];
         [[CSLRfidAppEngine sharedAppEngine].reader selectTagForInventory:TID maskPointer:0 maskLength:28 maskData:[CSLBleReader convertHexStringToData:[NSString stringWithFormat:@"%8X", MAGNUSS3]] sel_action:0];
