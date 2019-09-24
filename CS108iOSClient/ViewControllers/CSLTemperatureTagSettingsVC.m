@@ -64,7 +64,10 @@
     self.txtNumberOfTemperatureAveraging.text=[NSString stringWithFormat:@"%d", [CSLRfidAppEngine sharedAppEngine].temperatureSettings.NumberOfRollingAvergage];
     ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.unit) ? (self.scTemperatureUnit.selectedSegmentIndex = 1) : (self.scTemperatureUnit.selectedSegmentIndex = 0);
     
-    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3 && [CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==TEMPERATURE)
+    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==XERXES) {
+        [self.btnSensorType setTitle:@"Axzon Xerxes - Temperature" forState:UIControlStateNormal];
+    }
+    else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3 && [CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==TEMPERATURE)
         [self.btnSensorType setTitle:@"Axzon Magnus S3 - Temperature" forState:UIControlStateNormal];
     else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3 && [CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==MOISTURE)
         [self.btnSensorType setTitle:@"Axzon Magnus S3 - Moisture" forState:UIControlStateNormal];
@@ -121,7 +124,10 @@
     [CSLRfidAppEngine sharedAppEngine].temperatureSettings.rssiLowerLimit=[self.txtOcrssiMin.text intValue];
     [CSLRfidAppEngine sharedAppEngine].temperatureSettings.NumberOfRollingAvergage=[self.txtNumberOfTemperatureAveraging.text intValue];
     [CSLRfidAppEngine sharedAppEngine].temperatureSettings.unit=(TEMPERATUREUNIT)self.scTemperatureUnit.selectedSegmentIndex;
-    [CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType=[self.btnSensorType.currentTitle containsString:@"S3"] ? MAGNUSS3 : MAGNUSS2;
+    if ([self.btnSensorType.currentTitle containsString:@"Xerxes"])
+        [CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType=XERXES;
+    else
+        [CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType=[self.btnSensorType.currentTitle containsString:@"S3"] ? MAGNUSS3 : MAGNUSS2;
     [CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading=[self.btnSensorType.currentTitle containsString:@"Temperature"] ? TEMPERATURE : MOISTURE;
     
     if ([self.btnPowerLevel.currentTitle isEqualToString:@"Low (16dBm)"])
@@ -253,13 +259,16 @@
     UIAlertAction *s3Moist = [UIAlertAction actionWithTitle:@"Axzon Magnus S3 - Moisture" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
                                   { [self.btnSensorType setTitle:@"Axzon Magnus S3 - Moisture" forState:UIControlStateNormal]; }]; // S3 - Moisture
     UIAlertAction *s2Moist = [UIAlertAction actionWithTitle:@"Axzon Magnus S2 - Moisture" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                                { [self.btnSensorType setTitle:@"Axzon Magnus S2 - Moisture" forState:UIControlStateNormal]; }]; // S2 - Moisture
+                                { [self.btnSensorType setTitle:@"Axzon Magnus S2 - Moisture" forState:UIControlStateNormal]; }]; // Magnus - Moisture
+    UIAlertAction *xerxesTemp = [UIAlertAction actionWithTitle:@"Axzon Xerxes - Temperature" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                              { [self.btnSensorType setTitle:@"Axzon Xerxes - Temperature" forState:UIControlStateNormal]; }]; // S2 - Moisture
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]; // cancel
     
     [alert addAction:s3Temp];
     [alert addAction:s3Moist];
     [alert addAction:s2Moist];
+    [alert addAction:xerxesTemp];
     [alert addAction:cancel];
     
     [self presentViewController:alert animated:YES completion:nil];

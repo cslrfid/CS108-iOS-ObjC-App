@@ -165,7 +165,18 @@ NS_ASSUME_NONNULL_BEGIN
  @return TRUE if the operation is successful
  */
 - (BOOL) selectTagForInventory:(MEMORYBANK)maskbank maskPointer:(UInt16)ptr maskLength:(UInt32)length maskData:(NSData*)mask sel_action:(Byte)action;
-
+/**
+ Select tag before tag inventory operation
+ @param maskbank Mask bank to be used for tag selection
+ @param ptr Pointer to the start of the memory address, to be expressed by bits
+ @param length Size of the mask expressed in number of bits
+ @param mask mask value
+ @param action What action to perform on inventories or SL flags as indicated to tags during
+ Select operation
+ @param delay CW hold time in ms after Select command.
+ @return TRUE if the operation is successful
+ */
+- (BOOL) selectTagForInventory:(MEMORYBANK)maskbank maskPointer:(UInt16)ptr maskLength:(UInt32)length maskData:(NSData*)mask sel_action:(Byte)action delayTime:(Byte)delay;
 @end
 
 NS_ASSUME_NONNULL_END

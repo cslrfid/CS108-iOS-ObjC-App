@@ -143,7 +143,16 @@
             [self.btnTagStatus setTitle:@"Normal" forState:UIControlStateNormal];
         }
         
-        if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
+        if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==XERXES) {
+            if (data1.length >= 16)
+                self.lbCalibration.text=[data1 substringToIndex:15];
+            if (data2.length >= 20) {
+                self.lbSensorCode.text=[data2 substringWithRange:NSMakeRange(8, 4)];
+                self.lbOCRSSI.text=[data2 substringWithRange:NSMakeRange(12, 4)];
+                self.lbTemperatureCode.text=[data2 substringWithRange:NSMakeRange(16, 4)];
+            }
+        }
+        else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
             if (data2.length >= 16)
                 self.lbCalibration.text=[data2 substringToIndex:15];
             if (data1.length >= 12) {

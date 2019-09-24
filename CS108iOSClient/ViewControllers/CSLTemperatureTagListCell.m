@@ -68,6 +68,30 @@
     
     return temperatureValue;
 }
+
++ (double) calculateCalibratedTemperatureValueForXerxes:(UInt16)tempCode TemperatureCode2:(UInt16)tempCode2 Temperature2:(UInt16)temp2 TemperatureCode1:(UInt16)tempCode1 Temperature1:(UInt16)temp1 {
+    //int FormatCode = (add_15 >> 13) & 0x07;
+    //int Parity1 = (add_15 >> 12) & 0x01;
+    //int Parity2 = (add_15 >> 11) & 0x01;
+    UInt16 Temperature1 = temp1 & 0x07ff;
+    UInt16 TemperatureCode1 = tempCode1 & 0xffff;
+    //int RFU = (add_13 >> 13) & 0x07;
+    //int Parity3 = (add_13 >> 12) & 0x01;
+    //int Parity4 = (add_13 >> 11) & 0x01;
+    UInt16 Temperature2 = temp2 & 0x07ff;
+    UInt16 TemperatureCode2 = tempCode2 & 0xffff;
+    
+    double CalTemp1 = 0.1 * Temperature1 - 60;
+    double CalTemp2 = 0.1 * Temperature2 - 60;
+    double CalCode1 = 0.0625 * TemperatureCode1;
+    double CalCode2 = 0.0625 * TemperatureCode2;
+    
+    double slope = (CalTemp2 - CalTemp1) / (CalCode2 - CalCode1);
+    double TEMP = slope * (tempCode - CalCode1) + CalTemp1;
+    
+    return TEMP;
+}
+
 - (void) spinTemperatureValueIndicator {
     if ([self.lbTemperature.text isEqualToString:@"  -  "])
         self.lbTemperature.text = @"  \\  ";
