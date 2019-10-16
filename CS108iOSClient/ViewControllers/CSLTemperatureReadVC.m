@@ -350,11 +350,13 @@
             NSScanner *scanner;
             double temperatureValue = 0.0;
             int rssi;
+            int portNumber;
             
             CSLBleTag* currentBleTag=(CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row];
             NSString* epc=currentBleTag.EPC;
             NSString* data1=currentBleTag.DATA1;
             NSString* data2=currentBleTag.DATA2;
+            portNumber=(int)currentBleTag.portNumber;
             rssi=(int)currentBleTag.rssi;
             
             cell=[tableView dequeueReusableCellWithIdentifier:@"TemperatureTagCell"];
@@ -500,6 +502,10 @@
                 cell.lbEPC.text = [NSString stringWithFormat:@"%@", epc];
             cell.lbRssi.text= [NSString stringWithFormat:@"%3d", rssi > 100 ? 100 : rssi];
             cell.lbDate.text=stringFromDate;
+            if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber==CS463)
+                cell.lbPortNumber.text=[NSString stringWithFormat:@"Port %2d", portNumber+1];
+            else
+                cell.lbPortNumber.text=@"";
             
             //temperature alert
             cell.lbTagStatus.layer.borderWidth=1.0f;

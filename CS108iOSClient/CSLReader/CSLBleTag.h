@@ -34,6 +34,10 @@ Tag data information
 @property NSString* DATA2;
 ///DATA2 length
 @property (assign) Byte DATA2Length;
+///DATA1+DATA2 string
+@property NSString* DATA;
+///DATA1+DATA2 length
+@property (assign) Byte DATALength;
 ///Return RRSI of the tag response
 @property (assign) Byte rssi;
 ///Return timestamp of the tag readtime

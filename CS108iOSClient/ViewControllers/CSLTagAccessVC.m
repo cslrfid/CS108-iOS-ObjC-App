@@ -586,21 +586,21 @@
                 if (self->swPC.isOn)
                     self->txtPC.text=[NSString stringWithFormat:@"%04X", tag.PC];
                 if (self->swTidUid.isOn)
-                    self->txtTidUid.text=tag.DATA1;
+                    self->txtTidUid.text=tag.DATA;
             }
             else if (self->bankSelected == USER) {
-                self->txtUser.text=tag.DATA1;
+                self->txtUser.text=tag.DATA;
             }
             else if (self->bankSelected == RESERVED && self->memItem==mACCPWD) {
-                if ([tag.DATA1 length] == 8) {
+                if ([tag.DATA length] == 16) {
                     if (self->swAccPwd.isOn)
-                        self->txtAccPwd.text=tag.DATA1;
+                        self->txtAccPwd.text=[tag.DATA substringToIndex:8];
                 }
             }
             else if (self->bankSelected == RESERVED && self->memItem==mKILLPWD) {
-                if ([tag.DATA1 length] == 8) {
+                if ([tag.DATA length] == 16) {
                     if (self->swKillPwd.isOn)
-                        self->txtKillPwd.text=tag.DATA1;
+                        self->txtKillPwd.text=[tag.DATA substringFromIndex:8];
                 }
             }
             

@@ -27,6 +27,7 @@
 @synthesize recvQueue;
 @synthesize connectStatus;
 @synthesize deviceName;
+@synthesize deviceListName;
 
 @synthesize delegate; //synthesize CSLBleInterfaceDelegate delegate
 
@@ -36,6 +37,7 @@
     {
         manager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)];
         bleDeviceList = [NSMutableArray array];
+        deviceListName = [NSMutableArray array];
         recvQueue=[[CSLCircularQueue alloc] initWithCapacity:16000];
     }
     return self;
@@ -106,6 +108,7 @@
                 {
                     NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:FALSE], CBCentralManagerScanOptionAllowDuplicatesKey, nil];
                     [bleDeviceList removeAllObjects];
+                    [deviceListName removeAllObjects];
                     [manager scanForPeripheralsWithServices:[NSArray arrayWithObject:[CBUUID UUIDWithString:@"9800"]] options:options];
                     connectStatus=SCANNING;
                     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
@@ -229,10 +232,16 @@
 {
     NSLog(@"Did discover peripheral. peripheral: %@ rssi: %@, UUID: %@ advertisementData: %@ ", peripheral, RSSI, peripheral.identifier, advertisementData);
     
+    //for CS463 BT mode, copy the kCBAdvDataLocalName value to the peripheral name.
+    NSString* peripheralName=(NSString*)[advertisementData objectForKey:@"kCBAdvDataLocalName"];
     
-    NSMutableArray *peripherals = [self mutableArrayValueForKey:@"bleDeviceList"];
-    if( ![bleDeviceList containsObject:peripheral] )
-        [peripherals addObject:peripheral];
+    if (peripheralName) {
+        NSMutableArray *peripherals = [self mutableArrayValueForKey:@"bleDeviceList"];
+        if( ![bleDeviceList containsObject:peripheral] ) {
+            [deviceListName addObject:peripheralName];
+            [peripherals addObject:peripheral];
+        }
+    }
 
 }
 
@@ -377,13 +386,12 @@
                 NSLog(@"Found a Device Manufacturer Name Characteristic");
             }
         }
-        
-        if (bleSend && bleReceive)
-        {
-            connectStatus=CONNECTED;
-            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-            [bleDevice setNotifyValue:true forCharacteristic:bleReceive];
-        }
+    }
+    if (bleSend && bleReceive)
+    {
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        [bleDevice setNotifyValue:true forCharacteristic:bleReceive];
     }
 }
 

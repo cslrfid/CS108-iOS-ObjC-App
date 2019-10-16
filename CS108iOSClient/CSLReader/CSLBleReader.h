@@ -60,6 +60,13 @@ typedef NS_ENUM(Byte, QUERYSELECT)
     SL = 0x03
 };
 
+//Reader type (fixed or handheld)
+typedef NS_ENUM(Byte, READERTYPE)
+{
+    CS108 = 0x00,
+    CS463 = 0x01
+};
+
 @class CSLBleReader;             //define class, so protocol can see CSLBleReader class
 /**
  Delegate of the reader events
@@ -114,6 +121,8 @@ Insertion/update of tag data is based on binary searching algorithm for better e
 @property CSLReaderBattery* batteryInfo;
 ///This property indicates if the reader is either in tag access or inventory mode
 @property BOOL isTagAccessMode;
+///Reader type (fixed or handheld)
+@property READERTYPE readerModelNumber;
 ///
 @property CSLCircularQueue * cmdRespQueue;
 ///Delegate instance that follows the CSLBleReaderDelegate protocol
