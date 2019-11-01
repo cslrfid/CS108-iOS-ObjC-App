@@ -48,6 +48,11 @@
 @property (assign) Byte multibank2Offset;
 ///Multibank bank1 Length
 @property (assign) Byte multibank2Length;
-
+///Number of Power Level
+@property (assign) int numberOfPowerLevel;
+///Power Level (up to 16 stages)
+@property NSMutableArray* powerLevel;
+///Dwell time
+@property NSMutableArray* dwellTime;
 
 @end

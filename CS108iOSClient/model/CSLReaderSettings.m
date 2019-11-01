@@ -40,6 +40,14 @@
         self.multibank2=USER;
         self.multibank2Offset=0;
         self.multibank2Length=2;
+        self.numberOfPowerLevel=16;
+        self.powerLevel = [NSMutableArray array];
+        //150, 160, 170....
+        for (int n = 0; n < 16; n++)
+            [self.powerLevel addObject:@(150+n*10)];
+        self.dwellTime = [NSMutableArray array];
+        for (int n = 0; n < 16; n++)
+            [self.dwellTime addObject:@(200)];
     }
     return self;
 }
