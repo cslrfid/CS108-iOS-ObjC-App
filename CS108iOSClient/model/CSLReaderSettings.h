@@ -54,5 +54,7 @@
 @property NSMutableArray* powerLevel;
 ///Dwell time
 @property NSMutableArray* dwellTime;
+///Antenna port enable/disable (for CS463 only)
+@property NSMutableArray* isPortEnabled;
 
 @end

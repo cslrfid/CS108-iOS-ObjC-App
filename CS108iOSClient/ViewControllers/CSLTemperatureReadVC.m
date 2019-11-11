@@ -22,7 +22,9 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
+    [((CSLTemperatureTabVC*)self.tabBarController) setAntennaPortsAndPowerForTemperatureTags];
     [((CSLTemperatureTabVC*)self.tabBarController) setConfigurationsForTemperatureTags];
+
     
     //initialize averaging buffer
     [CSLRfidAppEngine sharedAppEngine].temperatureSettings.temperatureAveragingBuffer = [[NSMutableDictionary alloc] init];

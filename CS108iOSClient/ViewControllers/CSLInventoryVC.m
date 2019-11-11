@@ -60,6 +60,10 @@
     
     tblTagList.estimatedRowHeight=45.0;
     tblTagList.rowHeight = UITableViewAutomaticDimension;
+    
+    // Do any additional setup after loading the view.
+    [((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTags];
+    [((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
 }
 
 - (void)handleSwipes:(UISwipeGestureRecognizer*)gestureRecognizer {
@@ -199,6 +203,10 @@
     else {
                 [self->uivSendTagData setHidden:true];
     }
+    
+    // Do any additional setup after loading the view.
+    [((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -268,36 +276,10 @@
     {
         [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         btnInventory.enabled=false;
-        //reader configurations before inventory
-        //set inventory configurations
         
-        //for multiplebank inventory
-        Byte tagRead=0;
-        if ([CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled && [CSLRfidAppEngine sharedAppEngine].settings.isMultibank2Enabled)
-            tagRead=2;
-        else if ([CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled)
-            tagRead=1;
-        else
-            tagRead=0;
-        
-        [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
-        [[CSLRfidAppEngine sharedAppEngine].reader setAntennaCycle:COMMAND_ANTCYCLE_CONTINUOUS];
-        [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:0];
-        [[CSLRfidAppEngine sharedAppEngine].reader setQueryConfigurations:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? A : [CSLRfidAppEngine sharedAppEngine].settings.target) querySession:[CSLRfidAppEngine sharedAppEngine].settings.session querySelect:ALL];
-        [[CSLRfidAppEngine sharedAppEngine].reader selectAlgorithmParameter:[CSLRfidAppEngine sharedAppEngine].settings.algorithm];
-        [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters0:[CSLRfidAppEngine sharedAppEngine].settings.QValue maximumQ:15 minimumQ:0 ThresholdMultiplier:4];
-        [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters1:0];
-        [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters2:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? true : false) RunTillZero:false];
-        [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:tagRead crcErrorRead:(tagRead ? 0 : 1) QTMode:0 tagDelay:(tagRead ? 30 : 0) inventoryMode:(tagRead ? 0 : 1)];
-        [[CSLRfidAppEngine sharedAppEngine].reader setLinkProfile:[CSLRfidAppEngine sharedAppEngine].settings.linkProfile];
-        
-        // if multibank read is enabled
-        if (tagRead) {
-            [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_BANK:[CSLRfidAppEngine sharedAppEngine].settings.multibank1 acc_bank2:[CSLRfidAppEngine sharedAppEngine].settings.multibank2];
-            [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_PTR:([CSLRfidAppEngine sharedAppEngine].settings.multibank2Offset << 16) + [CSLRfidAppEngine sharedAppEngine].settings.multibank1Offset];
-            [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_CNT:(tagRead ? [CSLRfidAppEngine sharedAppEngine].settings.multibank1Length : 0) secondBank:(tagRead==2 ? [CSLRfidAppEngine sharedAppEngine].settings.multibank2Length : 0)];
-        }
-        
+        // Do any additional setup after loading the view.
+        //[((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
+
         //start inventory
         tagRangingStartTime=[NSDate date];
         [[CSLRfidAppEngine sharedAppEngine].reader startInventory];

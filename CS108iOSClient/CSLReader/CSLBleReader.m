@@ -90,7 +90,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] !=0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
 
     if ([cmdRespQueue count] != 0)
@@ -132,7 +132,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] >= 2)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] >= 2)
@@ -218,7 +218,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -282,7 +282,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -367,7 +367,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -429,7 +429,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
        if([cmdRespQueue count] != 0)
            break;
-           [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+           [NSThread sleepForTimeInterval:0.1f];
     }
     if ([cmdRespQueue count] != 0)
         versionInfo = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -489,7 +489,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+            [NSThread sleepForTimeInterval:0.1f];
     }
         
     if ([cmdRespQueue count] != 0) {
@@ -548,7 +548,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([cmdRespQueue count] != 0) {
         NSData * versionInfo = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -607,7 +607,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -669,7 +669,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -740,7 +740,7 @@
             
         }
         else
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+            [NSThread sleepForTimeInterval:0.1f];
     }
     
     if (isAborted) {
@@ -790,7 +790,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] !=0)
@@ -851,7 +851,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] !=0)
@@ -917,7 +917,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] >= 2)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] >= 2) {
@@ -990,7 +990,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1057,7 +1057,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1124,7 +1124,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1149,6 +1149,218 @@
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
     return true;
 }
+
+- (BOOL)selectAntennaPort:(NSUInteger) portIndex {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    CSLBlePacket * recvPacket;
+    
+    //Select antenna port (ANT_PORT_SEL)
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Select antenna port (ANT_PORT_SEL)...");
+    NSLog(@"----------------------------------------------------------------------");
+    
+    unsigned char ANT_PORT[] = {0x80, 0x02, 0x70, 0x01, 0x01, 0x07, portIndex & 0xF, 0x00, 0x00, 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:ANT_PORT length:sizeof(ANT_PORT)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if([cmdRespQueue count] != 0)
+            break;
+        [NSThread sleepForTimeInterval:0.1f];
+    }
+    
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+        if (memcmp([recvPacket.payload bytes], ANT_PORT, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+            NSLog(@"Set antenna port: OK");
+        else {
+            NSLog(@"Set antenna port: FAILED");
+            connectStatus=CONNECTED;
+            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+            return false;
+        }
+    }
+    else {
+        NSLog(@"Command response failure.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    return true;
+}
+
+- (BOOL)setAntennaConfig:(BOOL)isEnable
+           InventoryMode:(Byte)mode
+           InventoryAlgo:(Byte)algo
+                  StartQ:(Byte)qValue
+             ProfileMode:(Byte)pMode
+                 Profile:(Byte)pValue
+           FrequencyMode:(Byte)fMode
+        FrequencyChannel:(Byte)fChannel
+            isEASEnabled:(BOOL)eas {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    CSLBlePacket * recvPacket;
+    
+    //Set antenna config (ANT_PORT_CFG)
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Set antenna config (ANT_PORT_CFG)...");
+    NSLog(@"----------------------------------------------------------------------");
+    
+    unsigned char ANT_PORT_CFG[] = {0x80, 0x02, 0x70, 0x01, 0x02, 0x07, isEnable | ((mode & 0x01) << 1) | ((algo & 0x03) << 2) | ((qValue & 0x0F) << 4), pMode | ((pValue & 0x0F) << 1) | ((fMode & 0x01) << 5) | ((fChannel & 0x03) << 6), ((fChannel & 0x3C) >> 6) | (eas << 4), 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:ANT_PORT_CFG length:sizeof(ANT_PORT_CFG)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if([cmdRespQueue count] != 0)
+            break;
+        [NSThread sleepForTimeInterval:0.1f];
+    }
+    
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+        if (memcmp([recvPacket.payload bytes], ANT_PORT_CFG, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+            NSLog(@"Set antenna port config: OK");
+        else {
+            NSLog(@"Set antenna port config: FAILED");
+            connectStatus=CONNECTED;
+            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+            return false;
+        }
+    }
+    else {
+        NSLog(@"Command response failure.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    return true;
+}
+
+- (BOOL)setAntennaInventoryCount:(NSUInteger) count {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    CSLBlePacket * recvPacket;
+    
+    //Set antenna inventory count (ANT_PORT_INV_CNT)
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Set antenna inventory count (ANT_PORT_INV_CNT)...");
+    NSLog(@"----------------------------------------------------------------------");
+    
+    unsigned char ANT_INV_CNT[] = {0x80, 0x02, 0x70, 0x01, 0x07, 0x07, count & 0xFF, (count & 0xFF00) >> 8, (count & 0xFF0000) >> 16, (count & 0xFF000000) >> 24};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:ANT_INV_CNT length:sizeof(ANT_INV_CNT)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if([cmdRespQueue count] != 0)
+            break;
+        [NSThread sleepForTimeInterval:0.1f];
+    }
+    
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+        if (memcmp([recvPacket.payload bytes], ANT_INV_CNT, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+            NSLog(@"Set antenna dwell: OK");
+        else {
+            NSLog(@"Set antenna dwell: FAILED");
+            connectStatus=CONNECTED;
+            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+            return false;
+        }
+    }
+    else {
+        NSLog(@"Command response failure.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    return true;
+}
+
+
+
 
 
 - (BOOL)selectAlgorithmParameter:(QUERYALGORITHM) algorithm {
@@ -1193,7 +1405,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1260,7 +1472,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1327,7 +1539,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1393,7 +1605,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1461,7 +1673,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1529,7 +1741,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1593,7 +1805,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] !=0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0)
@@ -1635,7 +1847,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] >= 3) //command response + command begin + command end
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] >= 3)
@@ -1736,7 +1948,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {

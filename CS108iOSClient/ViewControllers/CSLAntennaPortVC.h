@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *btnAntennaPorts;
 - (IBAction)btnAntennaPortsPressed:(id)sender;
 
+@property (strong, nonatomic) IBOutletCollection(UISwitch) NSArray *swAntennaPort;
+
 @end
 
 NS_ASSUME_NONNULL_END

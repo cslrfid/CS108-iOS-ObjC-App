@@ -50,7 +50,7 @@
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //wait for 5s for connection
                 if([CSLRfidAppEngine sharedAppEngine].MQTTSettings.mqttStatus==MQTTStatusConnected || [CSLRfidAppEngine sharedAppEngine].MQTTSettings.mqttStatus==MQTTStatusError)
                     break;
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+                [NSThread sleepForTimeInterval:0.1f];
             }
             [self.actMQTTConnectIndicator stopAnimating];
             if ([CSLRfidAppEngine sharedAppEngine].MQTTSettings.mqttStatus==MQTTStatusConnected) {
@@ -216,7 +216,7 @@
         for (int i=0;i<COMMAND_TIMEOUT_10S;i++) { //wait for 5s for connection
             if([CSLRfidAppEngine sharedAppEngine].MQTTSettings.publishTopicCounter==[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer count])
                 break;
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+            [NSThread sleepForTimeInterval:0.1f];
         }
         
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Data Upload"

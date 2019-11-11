@@ -80,7 +80,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -141,7 +141,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -202,7 +202,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -263,7 +263,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -324,7 +324,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -384,7 +384,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -444,7 +444,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -505,7 +505,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -566,7 +566,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -626,7 +626,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -686,7 +686,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -747,7 +747,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -807,7 +807,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -867,7 +867,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -930,7 +930,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([self.cmdRespQueue count] >= 3) //command response + command begin + command end
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([self.cmdRespQueue count] >= 3)
@@ -995,7 +995,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([self.cmdRespQueue count] >= 1) //command response + command begin + command end
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([self.cmdRespQueue count] >= 1)
@@ -1061,7 +1061,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([self.cmdRespQueue count] >= 1) //command response + command begin + command end
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([self.cmdRespQueue count] >= 1)
@@ -1127,7 +1127,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([self.cmdRespQueue count] >= 1) //command response + command begin + command end
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([self.cmdRespQueue count] >= 1)
@@ -1202,7 +1202,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -1264,7 +1264,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -1472,7 +1472,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([self.cmdRespQueue count] >= 2)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([self.cmdRespQueue count] < 2) {
@@ -1578,7 +1578,7 @@
         for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
             if ([self.cmdRespQueue count] >= 2)
                 break;
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+            [NSThread sleepForTimeInterval:0.1f];
         }
         
         if ([self.cmdRespQueue count] < 2) {
@@ -1643,7 +1643,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([self.cmdRespQueue count] >= 1)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([self.cmdRespQueue count] < 1) {
@@ -1769,7 +1769,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([self.cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([self.cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
@@ -1813,7 +1813,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([self.cmdRespQueue count] >= 2)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([self.cmdRespQueue count] < 2) {

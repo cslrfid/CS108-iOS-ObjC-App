@@ -42,12 +42,17 @@
         self.multibank2Length=2;
         self.numberOfPowerLevel=16;
         self.powerLevel = [NSMutableArray array];
-        //150, 160, 170....
+        //I150, 160, 170....
         for (int n = 0; n < 16; n++)
-            [self.powerLevel addObject:@(150+n*10)];
+            [self.powerLevel addObject:[NSString stringWithFormat:@"%d", 150+n*10]];
         self.dwellTime = [NSMutableArray array];
+        //Set dwell time to 200ms for all ports
         for (int n = 0; n < 16; n++)
-            [self.dwellTime addObject:@(200)];
+            [self.dwellTime addObject:@"200"];
+        //For CS463, disable all ports except port 0
+        [self.isPortEnabled addObject:[[NSNumber alloc] initWithBool:TRUE]];
+        for (int n = 1 ; n < 4; n++)
+            [self.isPortEnabled addObject:[[NSNumber alloc] initWithBool:FALSE]];
     }
     return self;
 }
