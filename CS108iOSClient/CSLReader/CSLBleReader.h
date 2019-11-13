@@ -170,6 +170,12 @@ Insertion/update of tag data is based on binary searching algorithm for better e
  */
 - (BOOL)barcodeReader:(BOOL)enable;
 /**
+Send command to barcode reader
+@param command Serial command to be sent to the barcode reader module
+@return TRUE if the operation is successful
+*/
+- (BOOL)barcodeReaderSendCommand:(NSData*)command;
+/**
  Start barcode reading continuously
  @return TRUE if the operation is successful
  */
