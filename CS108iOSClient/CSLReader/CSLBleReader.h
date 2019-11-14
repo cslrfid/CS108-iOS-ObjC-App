@@ -60,6 +60,13 @@ typedef NS_ENUM(Byte, QUERYSELECT)
     SL = 0x03
 };
 
+//Reader type (fixed or handheld)
+typedef NS_ENUM(Byte, READERTYPE)
+{
+    CS108 = 0x00,
+    CS463 = 0x01
+};
+
 @class CSLBleReader;             //define class, so protocol can see CSLBleReader class
 /**
  Delegate of the reader events
@@ -114,6 +121,8 @@ Insertion/update of tag data is based on binary searching algorithm for better e
 @property CSLReaderBattery* batteryInfo;
 ///This property indicates if the reader is either in tag access or inventory mode
 @property BOOL isTagAccessMode;
+///Reader type (fixed or handheld)
+@property READERTYPE readerModelNumber;
 ///
 @property CSLCircularQueue * cmdRespQueue;
 ///Delegate instance that follows the CSLBleReaderDelegate protocol
@@ -160,6 +169,12 @@ Insertion/update of tag data is based on binary searching algorithm for better e
  @return TRUE if the operation is successful
  */
 - (BOOL)barcodeReader:(BOOL)enable;
+/**
+Send command to barcode reader
+@param command Serial command to be sent to the barcode reader module
+@return TRUE if the operation is successful
+*/
+- (BOOL)barcodeReaderSendCommand:(NSData*)command;
 /**
  Start barcode reading continuously
  @return TRUE if the operation is successful
@@ -253,6 +268,49 @@ Set output power of the reader
  @return TRUE if the operation is successful
  */
 - (BOOL)setAntennaDwell:(NSUInteger) timeInMilliseconds;
+/**
+Select antenna port
+@param portIndex Port number between 0-15
+@return TRUE if the operation is successful
+*/
+- (BOOL)selectAntennaPort:(NSUInteger) portIndex;
+/**
+Set antenna configurations
+@param isEnable Enable/disable antenna port
+@param mode Inventory mode
+0 = Global mode (use global parameters). CS108 must set as 0.
+1 = Local mode (use port dedicated parameters)
+@param algo Inventory algorithm
+@param qValue Starting Q value. 0 - 15
+@param pMode Profile mode
+0 = Global mode (use last CURRENT_PROFILE parameters). CS108 must set as 0.
+1 = Local mode (use port dedicated parameters)
+@param pValue 0-3
+@param fMode Frequency mode
+0 = Global mode (use first enabled frequency). CS108 must set as 0.
+1 = Local mode (use port dedicated frequency)
+@param fChannel Frequency channel
+@param eas Eas_enable
+1=EAS detection enabled
+0=EAS detection disabled
+@return TRUE if the operation is successful
+*/
+- (BOOL)setAntennaConfig:(BOOL)isEnable
+   InventoryMode:(Byte)mode
+   InventoryAlgo:(Byte)algo
+          StartQ:(Byte)qValue
+     ProfileMode:(Byte)pMode
+         Profile:(Byte)pValue
+   FrequencyMode:(Byte)fMode
+FrequencyChannel:(Byte)fChannel
+            isEASEnabled:(BOOL)eas;
+/**
+Set antenna inventory count
+@param count Number of inventory rounds for current port
+0x00000000 indicates that inventory round count should not be used.
+@return TRUE if the operation is successful
+*/
+- (BOOL)setAntennaInventoryCount:(NSUInteger) count;
 /**
  Set link profile from the four selections
  @param profile LINKPROFILE data type that represents 1 of the 4 link profile

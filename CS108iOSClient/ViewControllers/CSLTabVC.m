@@ -77,6 +77,103 @@
     
     return YES;
 }
+- (void) setAntennaPortsAndPowerForTags {
+    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaCycle:COMMAND_ANTCYCLE_CONTINUOUS];
+    if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber==CS108) {
+        if([CSLRfidAppEngine sharedAppEngine].settings.numberOfPowerLevel == 0) {
+            //use global settings
+            [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:0];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:TRUE
+                                                          InventoryMode:0
+                                                          InventoryAlgo:0
+                                                                 StartQ:0
+                                                            ProfileMode:0
+                                                                Profile:0
+                                                          FrequencyMode:0
+                                                       FrequencyChannel:0
+                                                           isEASEnabled:0];
+            [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:0];
+            //disable all other ports
+            for (int i=1;i<16;i++) {
+                [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
+                [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:FALSE
+                                                              InventoryMode:0
+                                                              InventoryAlgo:0
+                                                                     StartQ:0
+                                                                ProfileMode:0
+                                                                    Profile:0
+                                                              FrequencyMode:0
+                                                           FrequencyChannel:0
+                                                               isEASEnabled:0];
+            }
+        }
+        else {
+            //iterate through all the power level
+            for (int i=0;i<16;i++) {
+                [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
+                NSLog(@"Power level %d: %@", i, (i >= [CSLRfidAppEngine sharedAppEngine].settings.numberOfPowerLevel) ? @"OFF" : @"ON");
+                [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:((i >= [CSLRfidAppEngine sharedAppEngine].settings.numberOfPowerLevel) ? FALSE : TRUE)
+                                                              InventoryMode:0
+                                                              InventoryAlgo:0
+                                                                     StartQ:0
+                                                                ProfileMode:0
+                                                                    Profile:0
+                                                              FrequencyMode:0
+                                                           FrequencyChannel:0
+                                                               isEASEnabled:0];
+                [[CSLRfidAppEngine sharedAppEngine].reader setPower:[[CSLRfidAppEngine sharedAppEngine].settings.powerLevel[i] intValue] / 10];
+                [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:[[CSLRfidAppEngine sharedAppEngine].settings.dwellTime[i] intValue]];
+                [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:0];
+            }
+        }
+    }
+    else {
+        //iterate through all the power level
+        for (int i=0;i<4;i++) {
+            [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
+            NSLog(@"Antenna %d: %@", i, [(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.isPortEnabled[i] boolValue] ? @"ON" : @"OFF");
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:[(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.isPortEnabled[i] boolValue]
+                                                          InventoryMode:0
+                                                          InventoryAlgo:0
+                                                                 StartQ:0
+                                                            ProfileMode:0
+                                                                Profile:0
+                                                          FrequencyMode:0
+                                                       FrequencyChannel:0
+                                                           isEASEnabled:0];
+            [[CSLRfidAppEngine sharedAppEngine].reader setPower:[[CSLRfidAppEngine sharedAppEngine].settings.powerLevel[i] intValue] / 10];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:[[CSLRfidAppEngine sharedAppEngine].settings.dwellTime[i] intValue]];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:0];
+        }
+    }
+}
+- (void) setConfigurationsForTags {
 
+    //set inventory configurations
+    //for multiplebank inventory
+    Byte tagRead=0;
+    if ([CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled && [CSLRfidAppEngine sharedAppEngine].settings.isMultibank2Enabled)
+        tagRead=2;
+    else if ([CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled)
+        tagRead=1;
+    else
+        tagRead=0;
+    
+    [[CSLRfidAppEngine sharedAppEngine].reader setQueryConfigurations:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? A : [CSLRfidAppEngine sharedAppEngine].settings.target) querySession:[CSLRfidAppEngine sharedAppEngine].settings.session querySelect:ALL];
+    [[CSLRfidAppEngine sharedAppEngine].reader selectAlgorithmParameter:[CSLRfidAppEngine sharedAppEngine].settings.algorithm];
+    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters0:[CSLRfidAppEngine sharedAppEngine].settings.QValue maximumQ:15 minimumQ:0 ThresholdMultiplier:4];
+    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters1:0];
+    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters2:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? true : false) RunTillZero:false];
+    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:tagRead crcErrorRead:(tagRead ? 0 : 1) QTMode:0 tagDelay:(tagRead ? 30 : 0) inventoryMode:(tagRead ? 0 : 1)];
+    [[CSLRfidAppEngine sharedAppEngine].reader setLinkProfile:[CSLRfidAppEngine sharedAppEngine].settings.linkProfile];
+    
+    // if multibank read is enabled
+    if (tagRead) {
+        [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_BANK:[CSLRfidAppEngine sharedAppEngine].settings.multibank1 acc_bank2:[CSLRfidAppEngine sharedAppEngine].settings.multibank2];
+        [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_PTR:([CSLRfidAppEngine sharedAppEngine].settings.multibank2Offset << 16) + [CSLRfidAppEngine sharedAppEngine].settings.multibank1Offset];
+        [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_CNT:(tagRead ? [CSLRfidAppEngine sharedAppEngine].settings.multibank1Length : 0) secondBank:(tagRead==2 ? [CSLRfidAppEngine sharedAppEngine].settings.multibank2Length : 0)];
+    }
+}
 
 @end

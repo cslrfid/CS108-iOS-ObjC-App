@@ -10,6 +10,8 @@
 #import "CSLReaderSettings.h"
 #import "CSLMQTTClientSettings.h"
 #import "CSLRfidAppEngine.h"
+#import "CSLPowerLevelVC.h"
+#import "CSLAntennaPortVC.h"
 
 @interface CSLSettingsVC : UIViewController<UITextFieldDelegate>
 
@@ -23,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtTagPopulation;
 @property (weak, nonatomic) IBOutlet UITextField *txtPower;
 @property (weak, nonatomic) IBOutlet UISwitch *swSound;
+@property (weak, nonatomic) IBOutlet UIButton *btnPowerLevel;
+@property (weak, nonatomic) IBOutlet UIButton *btnAntennaSettings;
 
 - (IBAction)btnSessionPressed:(id)sender;
 - (IBAction)btnAlgorithmPressed:(id)sender;
@@ -33,6 +37,8 @@
 - (IBAction)txtTagPopulationChanged:(id)sender;
 - (IBAction)txtPowerChanged:(id)sender;
 - (IBAction)btnSaveConfigPressed:(id)sender;
+- (IBAction)btnPowerLevelPressed:(id)sender;
+- (IBAction)btnAntennaSettingsPressed:(id)sender;
 
 
 @end

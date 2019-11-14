@@ -126,6 +126,15 @@ CSLRfidAppEngine * appEngine;
         settings.multibank2Offset = (Byte)[defaults integerForKey:@"multibank2Offset"];
     if([defaults objectForKey:@"multibank2Size"])
         settings.multibank2Length = (Byte)[defaults integerForKey:@"multibank2Size"];
+    if([defaults objectForKey:@"numberOfPowerLevel"])
+        settings.numberOfPowerLevel = (int)[defaults integerForKey:@"numberOfPowerLevel"];
+    if([defaults objectForKey:@"powerLevel"])
+        settings.powerLevel = (NSMutableArray*)[defaults arrayForKey:@"powerLevel"];
+    if([defaults objectForKey:@"dwellTime"])
+        settings.dwellTime = (NSMutableArray*)[defaults arrayForKey:@"dwellTime"];
+    if([defaults objectForKey:@"isPortEnabled"])
+        settings.isPortEnabled = (NSMutableArray*)[defaults arrayForKey:@"isPortEnabled"];
+    
 }
 -(void)saveSettingsToUserDefaults {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -147,6 +156,10 @@ CSLRfidAppEngine * appEngine;
     [defaults setInteger:settings.multibank2 forKey:@"multibank2Select"];
     [defaults setInteger:settings.multibank2Offset forKey:@"multibank2Offset"];
     [defaults setInteger:settings.multibank2Length forKey:@"multibank2Size"];
+    [defaults setInteger:settings.numberOfPowerLevel forKey:@"numberOfPowerLevel"];
+    [defaults setObject:settings.powerLevel forKey:@"powerLevel"];
+    [defaults setObject:settings.dwellTime forKey:@"dwellTime"];
+    [defaults setObject:settings.isPortEnabled forKey:@"isPortEnabled"];
     [defaults synchronize];
     
 }

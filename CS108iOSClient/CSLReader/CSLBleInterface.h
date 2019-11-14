@@ -53,6 +53,8 @@ typedef NS_ENUM(Byte, STATUS) {
 @property NSException* LastException;
 ///Array of CBPeripheral object after device discovery
 @property NSMutableArray * bleDeviceList;
+///Array of NSString objects for the name of the devices
+@property NSMutableArray * deviceListName;
 ///Connected BLE device
 @property CBPeripheral* bleDevice;
 ///Queue for the data packets returned

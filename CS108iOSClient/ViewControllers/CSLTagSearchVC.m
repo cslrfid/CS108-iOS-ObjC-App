@@ -72,6 +72,9 @@
     [CSLRfidAppEngine sharedAppEngine].reader.delegate = nil;
     [CSLRfidAppEngine sharedAppEngine].reader.readerDelegate=nil;
     
+    [gaugeRefreshTimer invalidate];
+    gaugeRefreshTimer=nil;
+    
     [CSLRfidAppEngine sharedAppEngine].isBarcodeMode=false;
 }
 

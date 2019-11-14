@@ -90,7 +90,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] !=0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
 
     if ([cmdRespQueue count] != 0)
@@ -132,7 +132,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] >= 2)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] >= 2)
@@ -218,7 +218,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -239,6 +239,89 @@
         NSLog(@"Power %s barcode module FAILED", enable ? "on" : "off");
         return false;
     }
+}
+
+
+- (BOOL)barcodeReaderSendCommand:(NSData*)command
+{
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
+
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    NSData * payloadData;
+    
+    //power on barcode
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Send command to barcode reader");
+    NSLog(@"----------------------------------------------------------------------");
+    unsigned char barcodeCmd[]= {0x90, 0x03};
+    unsigned char barcodeRsp[]= {0x91, 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x02+[command length];
+    packet.deviceId=Barcode;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    
+    NSMutableData *payload = [[NSData dataWithBytes:barcodeCmd length:sizeof(barcodeCmd)] mutableCopy];
+    [payload appendData:command];
+    packet.payload=[payload copy];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if ([cmdRespQueue count] > 1)
+            break;
+        [NSThread sleepForTimeInterval:0.1f];
+    }
+    if ([cmdRespQueue count] > 1)
+        payloadData = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
+    else
+    {
+        NSLog(@"Command timed out.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    if (memcmp([payloadData bytes], barcodeCmd, sizeof(barcodeCmd)) == 0 && ((Byte *)[payloadData bytes])[2] == 0x00) {
+        NSLog(@"Send barcode command OK");
+    }
+    else {
+        NSLog(@"end barcode command FAILED");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    payloadData = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
+
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    if (memcmp([payloadData bytes], barcodeRsp, sizeof(barcodeRsp)) == 0 && ((Byte *)[payloadData bytes])[2] == 0x06) {
+        NSLog(@"Barcode command ACCEPTED");
+        return true;
+    }
+    else {
+        NSLog(@"Barcode command REJECTED");
+        return false;
+    }
+    
+    
 }
 
 - (BOOL)sendBarcodeCommandData: (NSData*)data
@@ -282,7 +365,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -308,10 +391,10 @@
 
 - (BOOL)startBarcodeReading
 {
-    unsigned char dataBytes[] = {0x90, 0x03, 0x1B, 0x33};
-    NSData* data=[NSData dataWithBytes:dataBytes length:4];
+    unsigned char dataBytes[] = {0x1B, 0x33};
+    NSData* data=[NSData dataWithBytes:dataBytes length:2];
     NSLog(@"Start barcode reading...");
-    if ([self sendBarcodeCommandData:data])
+    if ([self barcodeReaderSendCommand:data])
         return true;
     else
         return false;
@@ -319,10 +402,10 @@
 
 - (BOOL)stopBarcodeReading
 {
-    unsigned char dataBytes[] = {0x90, 0x03, 0x1B, 0x30};
-    NSData* data=[NSData dataWithBytes:dataBytes length:4];
+    unsigned char dataBytes[] = {0x1B, 0x30};
+    NSData* data=[NSData dataWithBytes:dataBytes length:2];
     NSLog(@"Stop barcode reading...");
-    if ([self sendBarcodeCommandData:data])
+    if ([self barcodeReaderSendCommand:data])
         return true;
     else
         return false;
@@ -367,7 +450,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -429,7 +512,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
        if([cmdRespQueue count] != 0)
            break;
-           [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+           [NSThread sleepForTimeInterval:0.1f];
     }
     if ([cmdRespQueue count] != 0)
         versionInfo = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -489,7 +572,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+            [NSThread sleepForTimeInterval:0.1f];
     }
         
     if ([cmdRespQueue count] != 0) {
@@ -548,7 +631,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     if ([cmdRespQueue count] != 0) {
         NSData * versionInfo = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -607,21 +690,24 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
-        NSData * name = [((CSLBlePacket *)[cmdRespQueue deqObject]).payload subdataWithRange:NSMakeRange(2, 13)];
-        *serialNumber=[NSString stringWithUTF8String:[name bytes]];
-        NSLog(@"13 byte serial number: %@", *serialNumber);
+        CSLBlePacket* packet = (CSLBlePacket *)[cmdRespQueue deqObject];
+        if ([packet.payload length] >= 15) {
+            NSData * name = [packet.payload subdataWithRange:NSMakeRange(2, 13)];
+            *serialNumber=[NSString stringWithUTF8String:[name bytes]];
+            NSLog(@"13 byte serial number: %@", *serialNumber);
+        }
     }
-    else {
-        NSLog(@"Command timed out.");
+    if ([*serialNumber length] != 13) {
         NSLog(@"Get 13 byte serial number: FAILED");
         connectStatus=CONNECTED;
         [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
         return false;
     }
+    
     connectStatus=CONNECTED;
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
     return true;
@@ -666,21 +752,25 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
-        NSData * name = [((CSLBlePacket *)[cmdRespQueue deqObject]).payload subdataWithRange:NSMakeRange(15, 3)];
-        *boardVersion=[NSString stringWithFormat:@"%@.%@", [[NSString stringWithUTF8String:[name bytes]] substringToIndex:1], [[NSString stringWithUTF8String:[name bytes]] substringFromIndex:1]];
-        NSLog(@"PCB board version: %@", *boardVersion);
+        CSLBlePacket* packet=(CSLBlePacket *)[cmdRespQueue deqObject];
+        if([packet.payload length]>=18) {
+            NSData * name =[packet.payload subdataWithRange:NSMakeRange(15, 3)];
+            *boardVersion=[NSString stringWithFormat:@"%@.%@", [[NSString stringWithUTF8String:[name bytes]] substringToIndex:1], [[NSString stringWithUTF8String:[name bytes]] substringFromIndex:1]];
+            NSLog(@"PCB board version: %@", *boardVersion);
+        }
     }
-    else {
+    if([*boardVersion length] < 3) {
         NSLog(@"Command timed out.");
         NSLog(@"Get PCB board version: FAILED");
         connectStatus=CONNECTED;
         [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
         return false;
     }
+    
     connectStatus=CONNECTED;
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
     return true;
@@ -733,7 +823,7 @@
             
         }
         else
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+            [NSThread sleepForTimeInterval:0.1f];
     }
     
     if (isAborted) {
@@ -783,7 +873,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] !=0)
@@ -844,7 +934,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] !=0)
@@ -910,7 +1000,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] >= 2)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] >= 2) {
@@ -983,7 +1073,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1050,7 +1140,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1117,7 +1207,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1142,6 +1232,218 @@
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
     return true;
 }
+
+- (BOOL)selectAntennaPort:(NSUInteger) portIndex {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    CSLBlePacket * recvPacket;
+    
+    //Select antenna port (ANT_PORT_SEL)
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Select antenna port (ANT_PORT_SEL)...");
+    NSLog(@"----------------------------------------------------------------------");
+    
+    unsigned char ANT_PORT[] = {0x80, 0x02, 0x70, 0x01, 0x01, 0x07, portIndex & 0xF, 0x00, 0x00, 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:ANT_PORT length:sizeof(ANT_PORT)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if([cmdRespQueue count] != 0)
+            break;
+        [NSThread sleepForTimeInterval:0.1f];
+    }
+    
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+        if (memcmp([recvPacket.payload bytes], ANT_PORT, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+            NSLog(@"Set antenna port: OK");
+        else {
+            NSLog(@"Set antenna port: FAILED");
+            connectStatus=CONNECTED;
+            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+            return false;
+        }
+    }
+    else {
+        NSLog(@"Command response failure.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    return true;
+}
+
+- (BOOL)setAntennaConfig:(BOOL)isEnable
+           InventoryMode:(Byte)mode
+           InventoryAlgo:(Byte)algo
+                  StartQ:(Byte)qValue
+             ProfileMode:(Byte)pMode
+                 Profile:(Byte)pValue
+           FrequencyMode:(Byte)fMode
+        FrequencyChannel:(Byte)fChannel
+            isEASEnabled:(BOOL)eas {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    CSLBlePacket * recvPacket;
+    
+    //Set antenna config (ANT_PORT_CFG)
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Set antenna config (ANT_PORT_CFG)...");
+    NSLog(@"----------------------------------------------------------------------");
+    
+    unsigned char ANT_PORT_CFG[] = {0x80, 0x02, 0x70, 0x01, 0x02, 0x07, isEnable | ((mode & 0x01) << 1) | ((algo & 0x03) << 2) | ((qValue & 0x0F) << 4), pMode | ((pValue & 0x0F) << 1) | ((fMode & 0x01) << 5) | ((fChannel & 0x03) << 6), ((fChannel & 0x3C) >> 6) | (eas << 4), 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:ANT_PORT_CFG length:sizeof(ANT_PORT_CFG)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if([cmdRespQueue count] != 0)
+            break;
+        [NSThread sleepForTimeInterval:0.1f];
+    }
+    
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+        if (memcmp([recvPacket.payload bytes], ANT_PORT_CFG, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+            NSLog(@"Set antenna port config: OK");
+        else {
+            NSLog(@"Set antenna port config: FAILED");
+            connectStatus=CONNECTED;
+            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+            return false;
+        }
+    }
+    else {
+        NSLog(@"Command response failure.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    return true;
+}
+
+- (BOOL)setAntennaInventoryCount:(NSUInteger) count {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    CSLBlePacket * recvPacket;
+    
+    //Set antenna inventory count (ANT_PORT_INV_CNT)
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Set antenna inventory count (ANT_PORT_INV_CNT)...");
+    NSLog(@"----------------------------------------------------------------------");
+    
+    unsigned char ANT_INV_CNT[] = {0x80, 0x02, 0x70, 0x01, 0x07, 0x07, count & 0xFF, (count & 0xFF00) >> 8, (count & 0xFF0000) >> 16, (count & 0xFF000000) >> 24};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:ANT_INV_CNT length:sizeof(ANT_INV_CNT)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if([cmdRespQueue count] != 0)
+            break;
+        [NSThread sleepForTimeInterval:0.1f];
+    }
+    
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+        if (memcmp([recvPacket.payload bytes], ANT_INV_CNT, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+            NSLog(@"Set antenna dwell: OK");
+        else {
+            NSLog(@"Set antenna dwell: FAILED");
+            connectStatus=CONNECTED;
+            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+            return false;
+        }
+    }
+    else {
+        NSLog(@"Command response failure.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    return true;
+}
+
+
+
 
 
 - (BOOL)selectAlgorithmParameter:(QUERYALGORITHM) algorithm {
@@ -1186,7 +1488,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1253,7 +1555,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1320,7 +1622,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1386,7 +1688,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1454,7 +1756,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1522,7 +1824,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1586,7 +1888,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] !=0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0)
@@ -1628,7 +1930,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] >= 3) //command response + command begin + command end
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] >= 3)
@@ -1653,7 +1955,9 @@
     
     //command-begin
     recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
-    if ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"])
+    if (([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"]) ||
+        ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] && [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0000"])
+        )
         NSLog(@"Receive HST_CMD 0x19 command-begin response: OK");
     else
     {
@@ -1665,7 +1969,10 @@
     
     //command-end
     recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
-    if ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0180"] && ((Byte *)[recvPacket.payload bytes])[14] == 0x00 && ((Byte *)[recvPacket.payload bytes])[15] == 0x00)
+    if (([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] || [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"]) &&
+        ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0180"] || [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0100"]) &&
+        ((Byte *)[recvPacket.payload bytes])[14] == 0x00 &&
+        ((Byte *)[recvPacket.payload bytes])[15] == 0x00)
         NSLog(@"Receive HST_CMD 0x19 command-end response: OK");
     else
     {
@@ -1724,7 +2031,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        [NSThread sleepForTimeInterval:0.1f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1884,7 +2191,10 @@
                 //command begin response
                 if ([rfidPacketBufferInHexString length] >= 12)
                 {
-                    if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"]) {
+                    if (
+                        ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"]) ||
+                        ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0000"])
+                        ) {
                         NSLog(@"[decodePacketsInBufferAsync] Command-begin response recieved: %@", rfidPacketBufferInHexString);
                         //return packet directly to the API for decoding
                         [cmdRespQueue enqObject:packet];
@@ -1896,7 +2206,10 @@
                 //command end response
                 if ([rfidPacketBufferInHexString length] >= 12)
                 {
-                    if ([[[CSLBleReader convertDataToHexString:rfidPacketBuffer] substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0180"]) {
+                    if (
+                        ([[[CSLBleReader convertDataToHexString:rfidPacketBuffer] substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0180"]) ||
+                        ([[[CSLBleReader convertDataToHexString:rfidPacketBuffer] substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0100"])
+                        ) {
                         NSLog(@"[decodePacketsInBufferAsync] Command-end response recieved: %@", rfidPacketBufferInHexString);
                         //return packet directly to the API for decoding
                         [cmdRespQueue enqObject:packet];
@@ -1924,9 +2237,29 @@
                     }
                 }
                 
+                //antenna cycle
+                if ([rfidPacketBufferInHexString length] >= 12)
+                {
+                    if (
+                        ([[[CSLBleReader convertDataToHexString:rfidPacketBuffer] substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0007"]) ||
+                        ([[[CSLBleReader convertDataToHexString:rfidPacketBuffer] substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0007"])
+                        ) {
+                        
+                        //discard data for now
+                        NSLog(@"[decodePacketsInBufferAsync] Antenna cycle recieved: %@", rfidPacketBufferInHexString);
+                        [rfidPacketBuffer setLength:0];
+                        continue;
+                    }
+                }
+                
+                
                 if ([rfidPacketBufferInHexString length] >= 8)
                 {
-                    if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4,4)] isEqualToString:@"7000"] || [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4,4)] isEqualToString:@"7001"]) {
+                    if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4,4)] isEqualToString:@"7000"] ||
+                        [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4,4)] isEqualToString:@"7001"] ||
+                        [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4,4)] isEqualToString:@"0000"] ||
+                        [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4,4)] isEqualToString:@"0001"]
+                        ) {
                         //response when reading/writing registers.  Return packet directly to the API for decoding
                         [cmdRespQueue enqObject:packet];
                         [rfidPacketBuffer setLength:0];
@@ -1940,7 +2273,11 @@
                 //packet much be longer than 44 hex characteres (0x8100 + 20 bytes of header)
                 if ([rfidPacketBufferInHexString length] >= 44) {
                     //inventory response packet (full packet mode)during tag access (not inventory mode)
-                    if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"03"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0580"] && [self isTagAccessMode]) {
+                    if (
+                        ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"03"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0580"] && [self isTagAccessMode]) ||
+                        ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"03"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0500"] && [self isTagAccessMode])
+                        
+                        ) {
                         //start decode message
                         //first need to check if we have received the complete message if this is a tag-access response.  Otherwise, will return and wait for the partial packet to return on the next round.
                         int tagAccessPktLen=0;
@@ -1984,6 +2321,7 @@
                         }
                         tag.EPC=[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr*2)+4, ((tag.PC >> 11) * 2) * 2)];
                         tag.rssi = ((Byte *)[rfidPacketBuffer bytes])[15];
+                        tag.portNumber=((Byte *)[rfidPacketBuffer bytes])[20];
                         tag.CRCError=((Byte *)[rfidPacketBuffer bytes])[3] & 0x01;
                         
                         //shifting pointer beginning of tag access packet
@@ -2009,12 +2347,15 @@
                             if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2), 2)] isEqualToString:@"01"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)+4, 4)] isEqualToString:@"0600"]) {
                                 
                                 NSLog(@"[decodePacketsInBufferAsync] Tag-access packet received.");
-                                tag.DATA1Length=((Byte *)[rfidPacketBuffer bytes])[18];
-                                tag.DATA2Length=((Byte *)[rfidPacketBuffer bytes])[19];
+                                //tag.DATA1Length=((Byte *)[rfidPacketBuffer bytes])[18];
+                                //tag.DATA2Length=((Byte *)[rfidPacketBuffer bytes])[19];
                                 
                                 //start decode taq-response message
                                 //length of data field (in bytes) = ((pkt_len – 3) * 4) – ((flags >> 6) & 3)
                                 datalen=(((((Byte *)[rfidPacketBuffer bytes])[ptr+4] + (((((Byte *)[rfidPacketBuffer bytes])[ptr+5] << 8) & 0xFF00)))-3) * 4) - ((((Byte *)[rfidPacketBuffer bytes])[ptr+1] >> 6) & 3);
+                                tag.DATALength=datalen;
+                                
+                                /*
                                 if (tag.DATA1Length > 0 && (((tag.DATA1Length + tag.DATA2Length) * 2) == datalen))
                                     tag.DATA1 = [rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2) + 40, tag.DATA1Length * 4)];  //20 byte tag response header = 40 hex digits
                                 else
@@ -2024,6 +2365,11 @@
                                 else
                                     tag.DATA2=@"";
                                 NSLog(@"[decodePacketsInBufferAsync] Tag-access packet.  DATA1=%@ DATA2=%@", tag.DATA1, tag.DATA2);
+                                 */
+                                if (tag.DATALength > 0) {
+                                    tag.DATA = [rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2) + 40, tag.DATALength * 4)];  //20 byte tag response header = 40 hex digits
+                                }
+                                NSLog(@"[decodePacketsInBufferAsync] Tag-access packet.  DATA1+DATA2=%@", tag.DATA);
                                 tag.timestamp=[NSDate date];
                                 
                                 //set flags
@@ -2057,7 +2403,10 @@
 
                                 //check and see if we have received a complete RFID response packet (command-end)
                                 if ([rfidPacketBuffer length] >= (ptr+4)) {
-                                    if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, 2)] isEqualToString:@"02"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr+2) * 2, 4)] isEqualToString:@"0180"]) {
+                                    if (
+                                        ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, 2)] isEqualToString:@"02"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr+2) * 2, 4)] isEqualToString:@"0180"]) ||
+                                        ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, 2)] isEqualToString:@"01"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr+2) * 2, 4)] isEqualToString:@"0100"])
+                                        ) {
                                         
                                         //partial command-end packet received
                                         //remove decoded data from rfid buffer and leave the partial packet on the buffer with 8100 appended to the beginning
@@ -2123,6 +2472,7 @@
                                 tag.DATA2 = [rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr*2)+4+(((tag.PC >> 11) * 2) * 2)+(tag.DATA1Length * 4), tag.DATA2Length * 4)];
                             }
                             tag.rssi = ((Byte *)[rfidPacketBuffer bytes])[15];
+                            tag.portNumber = ((Byte *)[rfidPacketBuffer bytes])[20];
                             ptr+= datalen;
                             [self.readerDelegate didReceiveTagResponsePacket:self tagReceived:tag]; //this will call the method for handling the tag response.
                             
@@ -2190,7 +2540,10 @@
                                     
                                 }
                                 //check if we are getting the beginning of another 8100 packet.  If so, extract header of the response
-                                else if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)  + 4, 2)] isEqualToString:@"03"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)+8, 4)] isEqualToString:@"0580"]) {
+                                else if (
+                                         ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)  + 4, 2)] isEqualToString:@"03"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)+8, 4)] isEqualToString:@"0580"]) ||
+                                         ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)  + 4, 2)] isEqualToString:@"03"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)+8, 4)] isEqualToString:@"0500"])
+                                         ) {
                                     NSLog(@"[decodePacketsInBufferAsync] Remove decoded data from rfid buffer and leave the partial packet on the buffer");
                                     //remove decoded data from rfid buffer and leave the partial packet on the buffer
                                     rfidPacketBuffer=[[rfidPacketBuffer subdataWithRange:NSMakeRange(ptr, [rfidPacketBuffer length]-ptr)] mutableCopy];
@@ -2217,7 +2570,10 @@
                 }
                 //check if packet is compact response packet (inventory)
                 if ([rfidPacketBufferInHexString length] >= 12) {
-                    if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"04"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0580"])
+                    if (
+                        ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"04"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0580"]) ||
+                        ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"04"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0500"])
+                        )
                     {
                         //start decode message
                         datalen=((Byte *)[rfidPacketBuffer bytes])[6] + (((((Byte *)[rfidPacketBuffer bytes])[7] << 8) & 0xFF00)) ;
@@ -2239,6 +2595,7 @@
                             
                             tag.EPC=[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr*2)+4, ((tag.PC >> 11) * 2) * 2)];
                             tag.rssi=(Byte)((Byte *)[rfidPacketBuffer bytes])[(ptr + 2) + ((tag.PC >> 11) * 2)];
+                            tag.portNumber=(Byte)((Byte *)[rfidPacketBuffer bytes])[8];
                             ptr+= (2 + ((tag.PC >> 11) * 2) + 1);
                             [self.readerDelegate didReceiveTagResponsePacket:self tagReceived:tag]; //this will call the method for handling the tag response.
                             
@@ -2305,7 +2662,10 @@
                                     
                                 }
                                 //check if we are getting the beginning of another 8100 packet.  If so, extract header of the response
-                                else if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)  + 4, 2)] isEqualToString:@"04"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)+8, 4)] isEqualToString:@"0580"]) {
+                                else if (
+                                         ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)  + 4, 2)] isEqualToString:@"04"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)+8, 4)] isEqualToString:@"0580"]) ||
+                                        ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)  + 4, 2)] isEqualToString:@"04"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)+8, 4)] isEqualToString:@"0500"])
+                                        ) {
                                     NSLog(@"[decodePacketsInBufferAsync] Remove decoded data from rfid buffer and leave the partial packet on the buffer");
                                     //remove decoded data from rfid buffer and leave the partial packet on the buffer
                                     rfidPacketBuffer=[[rfidPacketBuffer subdataWithRange:NSMakeRange(ptr, [rfidPacketBuffer length]-ptr)] mutableCopy];
@@ -2407,32 +2767,39 @@
             }
             else if ([eventCode isEqualToString:@"9100"]) {
                 NSLog(@"[decodePacketsInBufferAsync] Barcode data received.");
-                barcode=[[CSLReaderBarcode alloc] initWithSerialData:[rfidPacketBuffer subdataWithRange:NSMakeRange(2, [rfidPacketBuffer length]-2)]];
-                if (barcode.aimId != nil && barcode.codeId != nil && barcode.barcodeValue!=nil) {
-                    NSLog(@"[decodePacketsInBufferAsync] Barcode received: Code ID=%@ AIM ID=%@ Barcode=%@", barcode.codeId, barcode.aimId, barcode.barcodeValue);
-                    
-                    @synchronized(filteredBuffer) {
-                        //check and see if epc exists on the array using binary search
-                        NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
-                        NSUInteger findIndex = [filteredBuffer indexOfObject:barcode
-                                                               inSortedRange:searchRange
-                                                                     options:NSBinarySearchingInsertionIndex
-                                                             usingComparator:^(id obj1, id obj2)
-                                                {
-                                                    NSString* str1=((CSLReaderBarcode*)obj1).barcodeValue;
-                                                    NSString* str2=((CSLReaderBarcode*)obj2).barcodeValue;
-                                                    return [str1 compare:str2 options:NSCaseInsensitiveSearch];
-                                                }];
+                NSData* barcodeRsp=[rfidPacketBuffer subdataWithRange:NSMakeRange(2, [rfidPacketBuffer length]-2)];
+                if ([barcodeRsp length] == 1) {
+                    NSLog(@"[decodePacketsInBufferAsync] Barcode command sent.");
+                    [cmdRespQueue enqObject:packet];
+                }
+                else {
+                    barcode=[[CSLReaderBarcode alloc] initWithSerialData:[rfidPacketBuffer subdataWithRange:NSMakeRange(2, [rfidPacketBuffer length]-2)]];
+                    if (barcode.aimId != nil && barcode.codeId != nil && barcode.barcodeValue!=nil) {
+                        NSLog(@"[decodePacketsInBufferAsync] Barcode received: Code ID=%@ AIM ID=%@ Barcode=%@", barcode.codeId, barcode.aimId, barcode.barcodeValue);
                         
-                        if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
-                            [filteredBuffer insertObject:barcode atIndex:findIndex];
-                        else if ( [((CSLReaderBarcode*)filteredBuffer[findIndex]).barcodeValue caseInsensitiveCompare:barcode.barcodeValue] != NSOrderedSame)
-                            //new tag found.  insert into buffer in sorted order
-                            [filteredBuffer insertObject:barcode atIndex:findIndex];
-                        else    //tag is duplicated, but will replace the existing tag information with the new one for updating the RRSI value.
-                            [filteredBuffer replaceObjectAtIndex:findIndex withObject:barcode];
+                        @synchronized(filteredBuffer) {
+                            //check and see if epc exists on the array using binary search
+                            NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
+                            NSUInteger findIndex = [filteredBuffer indexOfObject:barcode
+                                                                   inSortedRange:searchRange
+                                                                         options:NSBinarySearchingInsertionIndex
+                                                                 usingComparator:^(id obj1, id obj2)
+                                                    {
+                                                        NSString* str1=((CSLReaderBarcode*)obj1).barcodeValue;
+                                                        NSString* str2=((CSLReaderBarcode*)obj2).barcodeValue;
+                                                        return [str1 compare:str2 options:NSCaseInsensitiveSearch];
+                                                    }];
+                            
+                            if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
+                                [filteredBuffer insertObject:barcode atIndex:findIndex];
+                            else if ( [((CSLReaderBarcode*)filteredBuffer[findIndex]).barcodeValue caseInsensitiveCompare:barcode.barcodeValue] != NSOrderedSame)
+                                //new tag found.  insert into buffer in sorted order
+                                [filteredBuffer insertObject:barcode atIndex:findIndex];
+                            else    //tag is duplicated, but will replace the existing tag information with the new one for updating the RRSI value.
+                                [filteredBuffer replaceObjectAtIndex:findIndex withObject:barcode];
+                        }
+                        [self.readerDelegate didReceiveBarcodeData:self scannedBarcode:barcode];
                     }
-                    [self.readerDelegate didReceiveBarcodeData:self scannedBarcode:barcode];
                 }
                 [rfidPacketBuffer setLength:0];
             }

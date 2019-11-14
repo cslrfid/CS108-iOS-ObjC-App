@@ -64,7 +64,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSString * deviceName=[[[CSLRfidAppEngine sharedAppEngine].reader.bleDeviceList objectAtIndex:indexPath.row] name];
+    NSString * deviceName=[[CSLRfidAppEngine sharedAppEngine].reader.deviceListName objectAtIndex:indexPath.row];
     UITableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:deviceName];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deviceName];
@@ -76,7 +76,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[[[CSLRfidAppEngine sharedAppEngine].reader.bleDeviceList objectAtIndex:indexPath.row] name] message:@"Connect to reader selected?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[[CSLRfidAppEngine sharedAppEngine].reader.deviceListName objectAtIndex:indexPath.row] message:@"Connect to reader selected?" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
     {
@@ -98,7 +98,7 @@
         else {
             
             //set device name to singleton object
-            [CSLRfidAppEngine sharedAppEngine].reader.deviceName=[[[CSLRfidAppEngine sharedAppEngine].reader.bleDeviceList objectAtIndex:indexPath.row] name];
+            [CSLRfidAppEngine sharedAppEngine].reader.deviceName=[[CSLRfidAppEngine sharedAppEngine].reader.deviceListName objectAtIndex:indexPath.row];
             NSString * btFwVersion;
             NSString * slVersion;
             NSString * rfidBoardSn;
@@ -130,8 +130,8 @@
             [CSLRfidAppEngine sharedAppEngine].readerInfo.appVersion=appVersion;
             
              //read OEM data: to be implemented for getting reader regional settings and parameters
-             NSData* OEMData;
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000002 forData:OEMData];
+             //NSData* OEMData;
+            //[[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000002 forData:OEMData];
             /*
             [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000008 forData:OEMData];
             [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000008E forData:OEMData];
@@ -146,7 +146,18 @@
             [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x000000A5 forData:OEMData];
              */
             
-            [[CSLRfidAppEngine sharedAppEngine].reader startBatteryAutoReporting];
+            if ([btFwVersion length]>=5)
+            {
+                if ([[btFwVersion substringToIndex:1] isEqualToString:@"3"]) {
+                    //if BT firmware version is greater than v3, it is connecting to CS463
+                    [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber=CS463;
+                }
+                else {
+                    [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber=CS108;
+                    [[CSLRfidAppEngine sharedAppEngine].reader startBatteryAutoReporting];
+                }
+            }
+
             
             [self->actSpinner stopAnimating];
         }

@@ -96,6 +96,131 @@
     return YES;
 }
 
+- (void) setAntennaPortsAndPowerForTemperatureTags {
+
+    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaCycle:COMMAND_ANTCYCLE_CONTINUOUS];    //0x0700
+    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.powerLevel==HIGHPOWER)
+        [[CSLRfidAppEngine sharedAppEngine].reader setPower:30];
+    else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.powerLevel==LOWPOWER)
+        [[CSLRfidAppEngine sharedAppEngine].reader setPower:16];
+    else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.powerLevel==MEDIUMPOWER)
+        [[CSLRfidAppEngine sharedAppEngine].reader setPower:23];
+    else
+        [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
+    
+
+    if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber==CS108) {
+        if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.powerLevel!=SYSTEMSETTING) {
+            //use pre-defined three level settings
+            [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:0];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:TRUE
+                                                          InventoryMode:0
+                                                          InventoryAlgo:0
+                                                                 StartQ:0
+                                                            ProfileMode:0
+                                                                Profile:0
+                                                          FrequencyMode:0
+                                                       FrequencyChannel:0
+                                                           isEASEnabled:0];
+            if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.powerLevel==HIGHPOWER)
+                [[CSLRfidAppEngine sharedAppEngine].reader setPower:30];
+            else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.powerLevel==LOWPOWER)
+                [[CSLRfidAppEngine sharedAppEngine].reader setPower:16];
+            else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.powerLevel==MEDIUMPOWER)
+                [[CSLRfidAppEngine sharedAppEngine].reader setPower:23];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:0];
+            //disable all other channels
+            for (int i=1;i<16;i++) {
+                [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
+                [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:FALSE
+                                                              InventoryMode:0
+                                                              InventoryAlgo:0
+                                                                     StartQ:0
+                                                                ProfileMode:0
+                                                                    Profile:0
+                                                              FrequencyMode:0
+                                                           FrequencyChannel:0
+                                                               isEASEnabled:0];
+            }
+        }
+        else {
+            if([CSLRfidAppEngine sharedAppEngine].settings.numberOfPowerLevel == 0) {
+                //use global settings
+                [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:0];
+                [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:TRUE
+                                                              InventoryMode:0
+                                                              InventoryAlgo:0
+                                                                     StartQ:0
+                                                                ProfileMode:0
+                                                                    Profile:0
+                                                              FrequencyMode:0
+                                                           FrequencyChannel:0
+                                                               isEASEnabled:0];
+                [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
+                [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:0];
+                //disable all other ports
+                for (int i=1;i<16;i++) {
+                    [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
+                    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:FALSE
+                                                                  InventoryMode:0
+                                                                  InventoryAlgo:0
+                                                                         StartQ:0
+                                                                    ProfileMode:0
+                                                                        Profile:0
+                                                                  FrequencyMode:0
+                                                               FrequencyChannel:0
+                                                                   isEASEnabled:0];
+                }
+            }
+            else {
+                //iterate through all the power level
+                for (int i=0;i<16;i++) {
+                    [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
+                    NSLog(@"Power level %d: %@", i, (i >= [CSLRfidAppEngine sharedAppEngine].settings.numberOfPowerLevel) ? @"OFF" : @"ON");
+                    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:((i >= [CSLRfidAppEngine sharedAppEngine].settings.numberOfPowerLevel) ? FALSE : TRUE)
+                                                                  InventoryMode:0
+                                                                  InventoryAlgo:0
+                                                                         StartQ:0
+                                                                    ProfileMode:0
+                                                                        Profile:0
+                                                                  FrequencyMode:0
+                                                               FrequencyChannel:0
+                                                                   isEASEnabled:0];
+                    [[CSLRfidAppEngine sharedAppEngine].reader setPower:[(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.powerLevel[i] intValue] / 10];
+                    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:[[CSLRfidAppEngine sharedAppEngine].settings.dwellTime[i] intValue]];
+                    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:0];
+                }
+            }
+        }
+    }
+    else {  //CS463
+        //iterate through all the power level
+        for (int i=0;i<4;i++) {
+            [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
+            NSLog(@"Antenna %d: %@", i, [(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.isPortEnabled[i] boolValue] ? @"ON" : @"OFF");
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:[(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.isPortEnabled[i] boolValue]
+                                                          InventoryMode:0
+                                                          InventoryAlgo:0
+                                                                 StartQ:0
+                                                            ProfileMode:0
+                                                                Profile:0
+                                                          FrequencyMode:0
+                                                       FrequencyChannel:0
+                                                           isEASEnabled:0];
+            if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.powerLevel==HIGHPOWER)
+                [[CSLRfidAppEngine sharedAppEngine].reader setPower:30];
+            else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.powerLevel==LOWPOWER)
+                [[CSLRfidAppEngine sharedAppEngine].reader setPower:16];
+            else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.powerLevel==MEDIUMPOWER)
+                [[CSLRfidAppEngine sharedAppEngine].reader setPower:23];
+            else
+                [[CSLRfidAppEngine sharedAppEngine].reader setPower:[(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.powerLevel[i] intValue] / 10];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:[[CSLRfidAppEngine sharedAppEngine].settings.dwellTime[i] intValue]];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:0];
+        }
+    }
+}
+
 - (void) setConfigurationsForTemperatureTags {
     
     //pre-configure inventory
@@ -143,18 +268,6 @@
         tagRead=1;
     else
         tagRead=0;
-    
-    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.powerLevel==HIGHPOWER)
-        [[CSLRfidAppEngine sharedAppEngine].reader setPower:30];
-    else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.powerLevel==LOWPOWER)
-        [[CSLRfidAppEngine sharedAppEngine].reader setPower:16];
-    else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.powerLevel==MEDIUMPOWER)
-        [[CSLRfidAppEngine sharedAppEngine].reader setPower:23];
-    else
-        [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
-    
-    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaCycle:COMMAND_ANTCYCLE_CONTINUOUS];    //0x0700
-    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:0x00000000];  //0x0705
     
     [[CSLRfidAppEngine sharedAppEngine].reader selectAlgorithmParameter:DYNAMICQ];
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters0:[CSLRfidAppEngine sharedAppEngine].settings.QValue maximumQ:15 minimumQ:0 ThresholdMultiplier:4];   //0x0903

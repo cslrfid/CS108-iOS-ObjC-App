@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -68,18 +68,27 @@
                                         <color key="textColor" red="0.63921568627450975" green="0.63921568627450975" blue="0.63921568627450975" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Port 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycr-Z1-WDf">
+                                        <rect key="frame" x="190.5" y="18" width="35.5" height="16"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
+                                        <color key="textColor" red="0.63921568627450975" green="0.63921568627450975" blue="0.63921568627450975" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="yjn-1u-Y5e" firstAttribute="leading" secondItem="FCs-Fm-y9n" secondAttribute="leading" id="0v7-p1-ub6"/>
+                                    <constraint firstItem="ycr-Z1-WDf" firstAttribute="top" secondItem="FCs-Fm-y9n" secondAttribute="bottom" id="CyP-p2-nJ0"/>
                                     <constraint firstAttribute="bottom" secondItem="yjn-1u-Y5e" secondAttribute="bottom" constant="7.5" id="EWb-6U-CDD"/>
                                     <constraint firstItem="QUh-bF-8Jw" firstAttribute="top" secondItem="FCs-Fm-y9n" secondAttribute="bottom" constant="9.5" id="FBU-Cw-kZs"/>
                                     <constraint firstAttribute="bottom" secondItem="QUh-bF-8Jw" secondAttribute="bottom" constant="5" id="OsI-cH-fV9"/>
                                     <constraint firstItem="FCs-Fm-y9n" firstAttribute="leading" secondItem="WeK-WA-5s2" secondAttribute="leading" constant="8" id="Rdb-zB-niB"/>
+                                    <constraint firstAttribute="trailing" secondItem="ycr-Z1-WDf" secondAttribute="trailing" constant="5" id="UGb-SN-SLi"/>
                                     <constraint firstItem="FCs-Fm-y9n" firstAttribute="top" secondItem="WeK-WA-5s2" secondAttribute="top" constant="2" id="Ube-O9-e6s"/>
                                     <constraint firstItem="vZb-Bp-cet" firstAttribute="leading" secondItem="yjn-1u-Y5e" secondAttribute="trailing" constant="26" id="X2E-eF-djN"/>
                                     <constraint firstItem="yjn-1u-Y5e" firstAttribute="leading" secondItem="WeK-WA-5s2" secondAttribute="leading" constant="8" id="cqp-X0-fTC"/>
                                     <constraint firstItem="yjn-1u-Y5e" firstAttribute="top" secondItem="FCs-Fm-y9n" secondAttribute="bottom" constant="8" id="fib-pV-045"/>
+                                    <constraint firstAttribute="trailing" secondItem="FCs-Fm-y9n" secondAttribute="trailing" id="iJh-jG-gnX"/>
                                     <constraint firstItem="vZb-Bp-cet" firstAttribute="top" secondItem="FCs-Fm-y9n" secondAttribute="bottom" constant="7" id="lqV-0a-gmR"/>
                                     <constraint firstItem="060-EK-ul9" firstAttribute="top" secondItem="FCs-Fm-y9n" secondAttribute="bottom" constant="14" id="m2O-p4-Tnf"/>
                                     <constraint firstItem="QUh-bF-8Jw" firstAttribute="leading" secondItem="yjn-1u-Y5e" secondAttribute="trailing" constant="1" id="ngi-Ha-xf9"/>
@@ -148,6 +157,7 @@
                 <outlet property="accessory" destination="6oJ-53-cdh" id="sOo-tl-mqV"/>
                 <outlet property="lbDate" destination="060-EK-ul9" id="Yuc-ro-PHe"/>
                 <outlet property="lbEPC" destination="FCs-Fm-y9n" id="DaA-lY-3Gs"/>
+                <outlet property="lbPortNumber" destination="ycr-Z1-WDf" id="ioW-fT-Azg"/>
                 <outlet property="lbRssi" destination="QUh-bF-8Jw" id="6Gr-xJ-9Qh"/>
                 <outlet property="lbTagStatus" destination="vZb-Bp-cet" id="abq-0Q-1p4"/>
                 <outlet property="lbTemperature" destination="pfh-bu-VRo" id="dMV-3C-POL"/>
@@ -158,7 +168,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Signal-icon" width="50" height="50"/>
-        <image name="arrow" width="192" height="192"/>
+        <image name="Signal-icon" width="25" height="25"/>
+        <image name="arrow" width="256" height="256"/>
     </resources>
 </document>

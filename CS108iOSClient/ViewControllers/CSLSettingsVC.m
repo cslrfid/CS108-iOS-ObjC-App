@@ -20,6 +20,8 @@
 @synthesize txtTagPopulation;
 @synthesize btnTarget;
 @synthesize swSound;
+@synthesize btnPowerLevel;
+@synthesize btnAntennaSettings;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,9 +51,24 @@
     btnTarget.layer.borderColor=[UIColor lightGrayColor].CGColor;
     btnTarget.layer.cornerRadius=5.0f;
     
+    btnPowerLevel.layer.borderWidth=1.0f;
+    btnPowerLevel.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnPowerLevel.layer.cornerRadius=5.0f;
+    
+    btnAntennaSettings.layer.borderWidth=1.0f;
+    btnAntennaSettings.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnAntennaSettings.layer.cornerRadius=5.0f;
+    
     [txtQValue setDelegate:self];
     [txtTagPopulation setDelegate:self];
     [txtPower setDelegate:self];
+    
+    if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS463) {
+        [btnAntennaSettings setHidden:false];
+    }
+    else {
+        [btnAntennaSettings setHidden:true];
+    }
     
 }
 
@@ -321,6 +338,31 @@
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:ok];
     [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+- (IBAction)btnPowerLevelPressed:(id)sender {
+    
+    CSLPowerLevelVC* powerLevelVC;
+    powerLevelVC = (CSLPowerLevelVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_PowerLevelVC"];
+    
+    if (powerLevelVC != nil)
+    {
+        [[self navigationController] pushViewController:powerLevelVC animated:YES];
+    }
+    
+    
+}
+
+- (IBAction)btnAntennaSettingsPressed:(id)sender {
+    
+    CSLAntennaPortVC* antennaPortVC;
+    antennaPortVC = (CSLAntennaPortVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_AntennaPortVC"];
+    
+    if (antennaPortVC != nil)
+    {
+        [[self navigationController] pushViewController:antennaPortVC animated:YES];
+    }
     
 }
 

@@ -49,8 +49,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [self.actHomeSpinner stopAnimating];
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
     self.view.userInteractionEnabled=true;
-    self.btnReadTemperature.layer.opacity=1.0;
     
     //reload configurations from Users Defaults to memory
     [[CSLRfidAppEngine sharedAppEngine] reloadSettingsFromUserDefaults];
@@ -119,7 +119,8 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
     else {
-        
+        [self.actHomeSpinner startAnimating];
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
         [self showTabInterfaceActiveView:CSL_VC_RFIDTAB_INVENTORY_VC_IDX];
     }
 
@@ -319,7 +320,7 @@
     }
     else {
         [self.actHomeSpinner startAnimating];
-        self.btnReadTemperature.layer.opacity=0.2;
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
         self.view.userInteractionEnabled=false;
         [self showTemperatureTabInterfaceActiveView:CSL_VC_TEMPTAB_READTEMP_VC_IDX];
     }

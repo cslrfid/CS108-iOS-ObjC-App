@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA150B70236C0DFB00ACF53D /* CSLAntennaPortVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA150B6F236C0DFB00ACF53D /* CSLAntennaPortVC.m */; };
 		CA411CDF21D8C59F0029E779 /* CSLTagLockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA411CDE21D8C59F0029E779 /* CSLTagLockVC.m */; };
 		CA4661A1223AD3A80028333B /* CSLTemperatureTagSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4661A0223AD3A80028333B /* CSLTemperatureTagSettingsVC.m */; };
 		CA4D5CA0222860DA007A55B3 /* CSLTemperatureTabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4D5C9F222860DA007A55B3 /* CSLTemperatureTabVC.m */; };
@@ -31,6 +32,7 @@
 		CA78737C21514E61009B7FE6 /* CSLRfidAppEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78737B21514E61009B7FE6 /* CSLRfidAppEngine.m */; };
 		CA78737F21543B6F009B7FE6 /* CSLReaderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78737E21543B6F009B7FE6 /* CSLReaderSettings.m */; };
 		CA7873822155F59C009B7FE6 /* CSLReaderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7873812155F59C009B7FE6 /* CSLReaderInfo.m */; };
+		CA8212BA236B1C4000911EF2 /* CSLPowerLevelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8212B9236B1C4000911EF2 /* CSLPowerLevelVC.m */; };
 		CAA89F45223D23D50066B601 /* CSLTemperatureUploadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA89F44223D23D50066B601 /* CSLTemperatureUploadVC.m */; };
 		CAB31377221A75330048DA62 /* CSLTagListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB31375221A75330048DA62 /* CSLTagListCell.m */; };
 		CAB31378221A75330048DA62 /* CSLTagListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB31376221A75330048DA62 /* CSLTagListCell.xib */; };
@@ -76,6 +78,8 @@
 		84CF1AC1DC7B7241A83886CF /* Pods-CS108iOSClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS108iOSClient.debug.xcconfig"; path = "Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient.debug.xcconfig"; sourceTree = "<group>"; };
 		88353A6E485674B1C2AB0B20 /* Pods_CS108iOSClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CS108iOSClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C38EEE82B5D5911C071188B /* Pods-CS108iOSClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS108iOSClient.release.xcconfig"; path = "Target Support Files/Pods-CS108iOSClient/Pods-CS108iOSClient.release.xcconfig"; sourceTree = "<group>"; };
+		CA150B6E236C0DFB00ACF53D /* CSLAntennaPortVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLAntennaPortVC.h; sourceTree = "<group>"; };
+		CA150B6F236C0DFB00ACF53D /* CSLAntennaPortVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLAntennaPortVC.m; sourceTree = "<group>"; };
 		CA411CDD21D8C59F0029E779 /* CSLTagLockVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagLockVC.h; sourceTree = "<group>"; };
 		CA411CDE21D8C59F0029E779 /* CSLTagLockVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTagLockVC.m; sourceTree = "<group>"; };
 		CA46619F223AD3A80028333B /* CSLTemperatureTagSettingsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureTagSettingsVC.h; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 		CA78737E21543B6F009B7FE6 /* CSLReaderSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderSettings.m; sourceTree = "<group>"; };
 		CA7873802155F59C009B7FE6 /* CSLReaderInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLReaderInfo.h; sourceTree = "<group>"; };
 		CA7873812155F59C009B7FE6 /* CSLReaderInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderInfo.m; sourceTree = "<group>"; };
+		CA8212B8236B1C4000911EF2 /* CSLPowerLevelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLPowerLevelVC.h; sourceTree = "<group>"; };
+		CA8212B9236B1C4000911EF2 /* CSLPowerLevelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLPowerLevelVC.m; sourceTree = "<group>"; };
 		CAA89F43223D23D50066B601 /* CSLTemperatureUploadVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureUploadVC.h; sourceTree = "<group>"; };
 		CAA89F44223D23D50066B601 /* CSLTemperatureUploadVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureUploadVC.m; sourceTree = "<group>"; };
 		CAB31374221A75330048DA62 /* CSLTagListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagListCell.h; sourceTree = "<group>"; };
@@ -247,6 +253,10 @@
 				CA4661A0223AD3A80028333B /* CSLTemperatureTagSettingsVC.m */,
 				CAA89F43223D23D50066B601 /* CSLTemperatureUploadVC.h */,
 				CAA89F44223D23D50066B601 /* CSLTemperatureUploadVC.m */,
+				CA8212B8236B1C4000911EF2 /* CSLPowerLevelVC.h */,
+				CA8212B9236B1C4000911EF2 /* CSLPowerLevelVC.m */,
+				CA150B6E236C0DFB00ACF53D /* CSLAntennaPortVC.h */,
+				CA150B6F236C0DFB00ACF53D /* CSLAntennaPortVC.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -478,6 +488,7 @@
 				CA78737C21514E61009B7FE6 /* CSLRfidAppEngine.m in Sources */,
 				CA5066412157889C00C3C9C8 /* CSLAboutVC.m in Sources */,
 				CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */,
+				CA150B70236C0DFB00ACF53D /* CSLAntennaPortVC.m in Sources */,
 				CA4D5CA32228EF91007A55B3 /* CSLTemperatureReadVC.m in Sources */,
 				CA787367214CC9C8009B7FE6 /* CSLTabVC.m in Sources */,
 				CA7873782150DF7A009B7FE6 /* CSLDeviceTV.m in Sources */,
@@ -501,6 +512,7 @@
 				CA5C059421E4517D00E68E44 /* CSLMQTTClientSettings.m in Sources */,
 				CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */,
 				CA78737F21543B6F009B7FE6 /* CSLReaderSettings.m in Sources */,
+				CA8212BA236B1C4000911EF2 /* CSLPowerLevelVC.m in Sources */,
 				CA78736A214CCA47009B7FE6 /* CSLSettingsVC.m in Sources */,
 				CAD168572175AD6600DC218E /* CSLTagAccessVC.m in Sources */,
 				CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */,
