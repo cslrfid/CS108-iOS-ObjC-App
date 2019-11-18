@@ -19,11 +19,13 @@
 	<key>CFBundleShortVersionString</key>
 	<string>2.7</string>
 	<key>CFBundleVersion</key>
-	<string>2547</string>
+	<string>2549</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>$(PRODUCT_NAME) Bluetooth Peripheral use</string>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) uses camera</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>digital-7 (mono).ttf</string>
