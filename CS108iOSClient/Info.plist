@@ -19,9 +19,11 @@
 	<key>CFBundleShortVersionString</key>
 	<string>2.7</string>
 	<key>CFBundleVersion</key>
-	<string>2549</string>
+	<string>2552</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>This app uses Blutooth to transfter RFID data from the BLE-enable reader to iOS device</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>$(PRODUCT_NAME) Bluetooth Peripheral use</string>
 	<key>NSCameraUsageDescription</key>
