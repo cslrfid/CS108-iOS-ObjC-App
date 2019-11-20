@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>2.7</string>
 	<key>CFBundleVersion</key>
-	<string>2552</string>
+	<string>2553</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
@@ -61,6 +61,6 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>UIUserInterfaceStyle</key>
-	<string>UIUserInterfaceStyleLight</string>
+	<string>Light</string>
 </dict>
 </plist>
