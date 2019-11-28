@@ -36,9 +36,13 @@
 - (BOOL)  tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     
     NSUInteger controllerIndex = [self.viewControllers indexOfObject:viewController];
-    
     if (controllerIndex == tabBarController.selectedIndex) {
         return NO;
+    }
+    else {
+        [(UIActivityIndicatorView*)[[[self selectedViewController] view] viewWithTag:99] startAnimating];
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+        [[self selectedViewController] view].userInteractionEnabled=false;
     }
     
     // Get the views.
@@ -93,7 +97,8 @@
                                                        FrequencyChannel:0
                                                            isEASEnabled:0];
             [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
-            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:0];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:2000];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:0];
             //disable all other ports
             for (int i=1;i<16;i++) {
                 [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
@@ -111,6 +116,7 @@
         else {
             //iterate through all the power level
             for (int i=0;i<16;i++) {
+                int dwell=[[CSLRfidAppEngine sharedAppEngine].settings.dwellTime[i] intValue];
                 [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
                 NSLog(@"Power level %d: %@", i, (i >= [CSLRfidAppEngine sharedAppEngine].settings.numberOfPowerLevel) ? @"OFF" : @"ON");
                 [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:((i >= [CSLRfidAppEngine sharedAppEngine].settings.numberOfPowerLevel) ? FALSE : TRUE)
@@ -123,14 +129,15 @@
                                                            FrequencyChannel:0
                                                                isEASEnabled:0];
                 [[CSLRfidAppEngine sharedAppEngine].reader setPower:[[CSLRfidAppEngine sharedAppEngine].settings.powerLevel[i] intValue] / 10];
-                [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:[[CSLRfidAppEngine sharedAppEngine].settings.dwellTime[i] intValue]];
-                [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:0];
+                [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:dwell];
+                [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:dwell == 0 ? 65535 : 0];
             }
         }
     }
     else {
         //iterate through all the power level
         for (int i=0;i<4;i++) {
+            int dwell=[[CSLRfidAppEngine sharedAppEngine].settings.dwellTime[i] intValue];
             [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
             NSLog(@"Antenna %d: %@", i, [(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.isPortEnabled[i] boolValue] ? @"ON" : @"OFF");
             [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:[(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.isPortEnabled[i] boolValue]
@@ -143,11 +150,121 @@
                                                        FrequencyChannel:0
                                                            isEASEnabled:0];
             [[CSLRfidAppEngine sharedAppEngine].reader setPower:[[CSLRfidAppEngine sharedAppEngine].settings.powerLevel[i] intValue] / 10];
-            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:[[CSLRfidAppEngine sharedAppEngine].settings.dwellTime[i] intValue]];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:dwell];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:dwell == 0 ? 65535 : 0];
+        }
+    }
+
+}
+
+- (void) setAntennaPortsAndPowerForTagAccess {
+    
+    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaCycle:COMMAND_ANTCYCLE_CONTINUOUS];
+    if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber==CS108) {
+        //disable power level ramping
+        [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:0];
+        [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:TRUE
+                                                      InventoryMode:0
+                                                      InventoryAlgo:0
+                                                             StartQ:0
+                                                        ProfileMode:0
+                                                            Profile:0
+                                                      FrequencyMode:0
+                                                   FrequencyChannel:0
+                                                       isEASEnabled:0];
+        [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
+        [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:2000];
+        [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:0];
+        //disable all other ports
+        for (int i=1;i<16;i++) {
+            [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:FALSE
+                                                          InventoryMode:0
+                                                          InventoryAlgo:0
+                                                                 StartQ:0
+                                                            ProfileMode:0
+                                                                Profile:0
+                                                          FrequencyMode:0
+                                                       FrequencyChannel:0
+                                                           isEASEnabled:0];
+        }
+    }
+    else {
+        //enable power output on selected port
+        for (int i=0;i<4;i++) {
+            [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
+            NSLog(@"Antenna %d: %@", i, [(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.isPortEnabled[i] boolValue] ? @"ON" : @"OFF");
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:[CSLRfidAppEngine sharedAppEngine].settings.tagAccessPort == i ? true : false
+                                                          InventoryMode:0
+                                                          InventoryAlgo:0
+                                                                 StartQ:0
+                                                            ProfileMode:0
+                                                                Profile:0
+                                                          FrequencyMode:0
+                                                       FrequencyChannel:0
+                                                           isEASEnabled:0];
+            [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:2000];
             [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:0];
         }
     }
+
 }
+
+- (void) setAntennaPortsAndPowerForTagSearch {
+    
+    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaCycle:COMMAND_ANTCYCLE_CONTINUOUS];
+    if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber==CS108) {
+        //disable power level ramping
+        [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:0];
+        [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:TRUE
+                                                      InventoryMode:0
+                                                      InventoryAlgo:0
+                                                             StartQ:0
+                                                        ProfileMode:0
+                                                            Profile:0
+                                                      FrequencyMode:0
+                                                   FrequencyChannel:0
+                                                       isEASEnabled:0];
+        [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
+        [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:2000];
+        [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:0];
+        //disable all other ports
+        for (int i=1;i<16;i++) {
+            [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:FALSE
+                                                          InventoryMode:0
+                                                          InventoryAlgo:0
+                                                                 StartQ:0
+                                                            ProfileMode:0
+                                                                Profile:0
+                                                          FrequencyMode:0
+                                                       FrequencyChannel:0
+                                                           isEASEnabled:0];
+        }
+    }
+    else {
+        //enable power output on selected port
+        for (int i=0;i<4;i++) {
+            [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
+            NSLog(@"Antenna %d: %@", i, [(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.isPortEnabled[i] boolValue] ? @"ON" : @"OFF");
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:[(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.isPortEnabled[i] boolValue]
+                                                          InventoryMode:0
+                                                          InventoryAlgo:0
+                                                                 StartQ:0
+                                                            ProfileMode:0
+                                                                Profile:0
+                                                          FrequencyMode:0
+                                                       FrequencyChannel:0
+                                                           isEASEnabled:0];
+            [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:2000];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:0];
+        }
+    }
+
+}
+
 - (void) setConfigurationsForTags {
 
     //set inventory configurations

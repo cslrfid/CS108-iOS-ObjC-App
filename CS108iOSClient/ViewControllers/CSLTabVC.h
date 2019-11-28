@@ -21,4 +21,5 @@
 - (void)setActiveView:(int)identifier;
 - (void)setConfigurationsForTags;
 - (void)setAntennaPortsAndPowerForTags;
+- (void) setAntennaPortsAndPowerForTagAccess;
 @end

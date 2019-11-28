@@ -62,8 +62,8 @@
     tblTagList.rowHeight = UITableViewAutomaticDimension;
     
     // Do any additional setup after loading the view.
-    [((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTags];
-    [((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
+    //[((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTags];
+    //[((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
 }
 
 - (void)handleSwipes:(UISwipeGestureRecognizer*)gestureRecognizer {
@@ -205,11 +205,15 @@
     }
     
     // Do any additional setup after loading the view.
+    [((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTags];
     [((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
     
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    
+    [self.actInventorySpinner stopAnimating];
+    self.view.userInteractionEnabled=true;
     
     //stop inventory if it is still running
     if (btnInventory.enabled)

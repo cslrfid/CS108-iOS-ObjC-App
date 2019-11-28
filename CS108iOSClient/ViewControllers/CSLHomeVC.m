@@ -121,6 +121,7 @@
     else {
         [self.actHomeSpinner startAnimating];
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+        self.view.userInteractionEnabled=false;
         [self showTabInterfaceActiveView:CSL_VC_RFIDTAB_INVENTORY_VC_IDX];
     }
 
@@ -255,7 +256,9 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
     else {
-        
+        [self.actHomeSpinner startAnimating];
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+        self.view.userInteractionEnabled=false;
         [self showTabInterfaceActiveView:CSL_VC_RFIDTAB_ACCESS_VC_IDX];
     }
 
@@ -276,7 +279,9 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
     else {
-        
+        [self.actHomeSpinner startAnimating];
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+        self.view.userInteractionEnabled=false;
         [self showTabInterfaceActiveView:CSL_VC_RFIDTAB_SEARCH_VC_IDX];
     }
     

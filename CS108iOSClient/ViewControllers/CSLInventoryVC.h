@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *lbClear;
 @property (weak, nonatomic) IBOutlet UILabel *lbMode;
 @property (weak, nonatomic) IBOutlet UIView *uivSendTagData;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actInventorySpinner;
 
 - (IBAction)btnInventoryPressed:(id)sender;
 - (IBAction)btnClearTable:(id)sender;

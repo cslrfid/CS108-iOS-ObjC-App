@@ -35,6 +35,7 @@
 @synthesize btnUserWord;
 @synthesize btnRead;
 @synthesize btnWrite;
+@synthesize txtPower;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,6 +58,9 @@
  
     [self.tabBarController setTitle:@"Access Control"];
     
+    [self.actTagAccessSpinner stopAnimating];
+    self.view.userInteractionEnabled=true;
+    
     if (![[CSLRfidAppEngine sharedAppEngine].tagSelected isEqualToString:@""]) {
         self.txtSelectedEPC.text=[CSLRfidAppEngine sharedAppEngine].tagSelected;
         self.txtEPC.text=[CSLRfidAppEngine sharedAppEngine].tagSelected;
@@ -73,6 +77,23 @@
     [txtKillPwd setDelegate:self];
     [txtTidUid setDelegate:self];
     [txtUser setDelegate:self];
+    [txtPower setDelegate:self];
+    
+    //hide port selection on CS108
+    if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber==CS108) {
+        [self.lbPort setHidden:true];
+        [self.txtPort setHidden:true];
+    }
+    else {
+        [self.lbPort setHidden:false];
+        [self.txtPort setHidden:false];
+    }
+    
+    self.txtPower.text=[NSString stringWithFormat:@"%d", [CSLRfidAppEngine sharedAppEngine].settings.power];
+    
+    // Do any additional setup after loading the view.
+    [((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTagAccess];
+    [((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -569,7 +590,53 @@
         self.txtUser.text = @"";
     }
 }
- 
+
+- (IBAction)txtPowerChanged:(id)sender {
+    NSScanner* scan = [NSScanner scannerWithString:self.txtPower.text];
+    int val;
+    if ([scan scanInt:&val] && [scan isAtEnd] && [self.txtPower.text intValue] >= 0 && [self.txtPower.text intValue] <= 320) //valid int between 0 to 320
+    {
+        NSLog(@"Power value entered: OK");
+        [CSLRfidAppEngine sharedAppEngine].settings.power=[self.txtPower.text intValue];
+        [[CSLRfidAppEngine sharedAppEngine] saveSettingsToUserDefaults];
+        
+        //set power and port
+        if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber==CS108) {
+            [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:0];
+        }
+        else {
+            [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:[CSLRfidAppEngine sharedAppEngine].settings.tagAccessPort];
+        }
+        [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
+    }
+    else    //invalid input.  reset to stored configurations
+        self.txtPower.text=[NSString stringWithFormat:@"%d", [CSLRfidAppEngine sharedAppEngine].settings.power];
+    
+}
+
+- (IBAction)txtPortChanged:(id)sender {
+    NSScanner* scan = [NSScanner scannerWithString:self.txtPort.text];
+    int val; bool isIntValue;
+    isIntValue=[scan scanInt:&val];
+    if (isIntValue && [scan isAtEnd] && [self.txtPort.text intValue] >= 1 && [self.txtPort.text intValue] <= 4 && [(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.isPortEnabled[val] boolValue]) //valid int between 1 to 4 and port is enabled globally
+    {
+        NSLog(@"Port value entered: OK");
+        [CSLRfidAppEngine sharedAppEngine].settings.tagAccessPort=[self.txtPort.text intValue]-1;
+        [[CSLRfidAppEngine sharedAppEngine] saveSettingsToUserDefaults];
+        
+        //set power and port
+        if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber==CS108) {
+            [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:0];
+        }
+        else {
+            [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:[CSLRfidAppEngine sharedAppEngine].settings.tagAccessPort];
+        }
+        [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
+    }
+    else    //invalid input.  reset to stored configurations
+        self.txtPort.text=[NSString stringWithFormat:@"%d", [CSLRfidAppEngine sharedAppEngine].settings.tagAccessPort+1];
+}
+
 - (void) didInterfaceChangeConnectStatus: (CSLBleInterface *) sender {
     
 }
