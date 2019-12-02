@@ -247,17 +247,17 @@
         Byte EPCWordCount = [[self.txtSelectedEPC text] length] / 4;
         
         //clear UI
-        if ([self.swTidUid isOn])
+        //if ([self.swTidUid isOn])
             self.txtTidUid.text=@"";
-        if ([self.swUser isOn])
+        //if ([self.swUser isOn])
             self.txtUser.text=@"";
-        if ([self.swEPC isOn])
+        //if ([self.swEPC isOn])
             self.txtEPC.text=@"";
-        if ([self.swPC isOn])
+        //if ([self.swPC isOn])
             self.txtPC.text=@"";
-        if ([self.swAccPwd isOn])
+        //if ([self.swAccPwd isOn])
             self.txtAccPwd.text=@"";
-        if ([self.swKillPwd isOn])
+        //if ([self.swKillPwd isOn])
             self.txtKillPwd.text=@"";
 
         [self.txtTidUid setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
@@ -266,15 +266,17 @@
         [self.txtPC setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
         [self.txtAccPwd setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
         [self.txtKillPwd setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
+        //refresh UI
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
         
         //get access password
         UInt32 accPwd=0;
         NSScanner* scanner = [NSScanner scannerWithString:[self.txtAccessPwd text]];
         [scanner scanHexInt:&accPwd];
         
-        bankSelected=TID;
         //read PC+EPC if TID is not needed.  Otherwise, read PC+EPC+TID all in one shot
         if ([self.swEPC isOn] || [self.swPC isOn] || [self.swTidUid isOn]) {
+            bankSelected=TID;
             if ([self.swTidUid isOn]) {
                 result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:TID dataOffset:tidOffset dataCount:tidWordCount ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             }
@@ -283,7 +285,7 @@
             }
             
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                if([self.txtEPC.text length] != 0)
+                if([self.txtEPC.text length] != 0 || [self.txtPC.text length] != 0 || [self.txtTidUid.text length] != 0)
                     break;
                 [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
             }
@@ -302,11 +304,14 @@
             } else if ([self.txtTidUid.text length] != 0 && [self.swTidUid isOn]) {
                 [self.txtTidUid setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
             }
+            //refresh UI
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
         }
-        bankSelected=RESERVED;
-        memItem=mACCPWD;
+
         //read access password and kill password
         if ([self.swAccPwd isOn]) {
+            bankSelected=RESERVED;
+            memItem=mACCPWD;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:RESERVED dataOffset:2 dataCount:2 ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
@@ -319,10 +324,12 @@
             } else if ([self.txtAccPwd.text length] != 0 && [self.swAccPwd isOn]) {
                 [self.txtAccPwd setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
             }
-        
+            //refresh UI
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
         }
-        memItem=mKILLPWD;
         if ([self.swKillPwd isOn]) {
+            bankSelected=RESERVED;
+            memItem=mKILLPWD;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:RESERVED dataOffset:0 dataCount:2 ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
@@ -335,11 +342,13 @@
             } else if ([self.txtKillPwd.text length] != 0 && [self.swKillPwd isOn]) {
                 [self.txtKillPwd setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
             }
+            //refresh UI
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
         }
         
-        bankSelected=USER;
         //read USER
         if ([self.swUser isOn]) {
+            bankSelected=USER;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:USER dataOffset:userOffset dataCount:userWordCount ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
         
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
@@ -352,6 +361,8 @@
             } else if ([self.txtUser.text length] != 0 && [self.swUser isOn]) {
                 [self.txtUser setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
             }
+            //refresh UI
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
         }
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Tag Read" message:@"Completed" preferredStyle:UIAlertControllerStyleAlert];
@@ -384,9 +395,9 @@
             validationMsg=[validationMsg stringByAppendingString:@"EPC "];
         if ([self.swUser isOn] && ([[self.txtUser text] length] != (userWordCount * 4) || ([[self.txtUser text] length] == 0)))
             validationMsg=[validationMsg stringByAppendingString:@"USER "];
-        if ([[self.txtAccPwd text] length] != 8)
+        if ([self.swAccPwd isOn] && [[self.txtAccPwd text] length] != 8)
             validationMsg=[validationMsg stringByAppendingString:@"AccPWD "];
-        if ([[self.txtKillPwd text] length] != 8)
+        if ([self.swKillPwd isOn] && [[self.txtKillPwd text] length] != 8)
             validationMsg=[validationMsg stringByAppendingString:@"KillPWD "];
         if (([[self.txtSelectedEPC text] length] % 4) != 0)
             validationMsg=[validationMsg stringByAppendingString:@"SelectedEPC "];
@@ -408,16 +419,18 @@
         [self.txtPC setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
         [self.txtAccPwd setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
         [self.txtKillPwd setBackgroundColor:UIColorFromRGB(0xFFFFFF)];
+        //refresh UI
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
         
         //get access password
         UInt32 accPwd=0;
         NSScanner* scanner = [NSScanner scannerWithString:[self.txtAccessPwd text]];
         [scanner scanHexInt:&accPwd];
         
-        bankSelected=EPC;
-        memItem=mPC;
         //write PC if it is enabled
         if ([self.swPC isOn]) {
+            bankSelected=EPC;
+            memItem=mPC;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:EPC dataOffset:1 dataCount:((UInt32)[self.txtPC text].length / 4) writeData:[CSLBleReader convertHexStringToData:[self.txtPC text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
@@ -429,12 +442,14 @@
             if([[self.txtPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
                 [self.txtPC setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
             }
+            //refresh UI
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
         }
         
-        bankSelected=EPC;
-        memItem=mEPC;
         //write EPC if it is enabled
         if ([self.swEPC isOn]) {
+            bankSelected=EPC;
+            memItem=mEPC;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:EPC dataOffset:2 dataCount:((UInt32)[self.txtEPC text].length / 4) writeData:[CSLBleReader convertHexStringToData:[self.txtEPC text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
@@ -446,12 +461,14 @@
             if([[self.txtEPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
                 [self.txtEPC setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
             }
+            //refresh UI
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
         }
         
-        bankSelected=RESERVED;
-        memItem=mACCPWD;
         //write access password
         if ([self.swAccPwd isOn]) {
+            bankSelected=RESERVED;
+            memItem=mACCPWD;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:RESERVED dataOffset:2 dataCount:2 writeData:[CSLBleReader convertHexStringToData:[self.txtAccPwd text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
@@ -463,11 +480,14 @@
             if([[self.txtAccPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
                 [self.txtAccPwd setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
             }
+            //refresh UI
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
         }
+        
         //write kill password
-        bankSelected=RESERVED;
-        memItem=mKILLPWD;
         if ([self.swKillPwd isOn]) {
+            bankSelected=RESERVED;
+            memItem=mKILLPWD;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:RESERVED dataOffset:0 dataCount:2 writeData:[CSLBleReader convertHexStringToData:[self.txtKillPwd text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
@@ -479,12 +499,14 @@
             if([[self.txtKillPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
                 [self.txtKillPwd setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
             }
+            //refresh UI
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
         }
         
-        bankSelected=USER;
-        memItem=mUSER;
         //write USER
         if ([self.swUser isOn]) {
+            bankSelected=USER;
+            memItem=mUSER;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:USER dataOffset:userOffset dataCount:userWordCount writeData:[CSLBleReader convertHexStringToData:[self.txtUser text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
             
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
@@ -496,6 +518,8 @@
             if([[self.txtUser backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
                 [self.txtUser setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
             }
+            //refresh UI
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
         }
         
         alert = [UIAlertController alertControllerWithTitle:@"Tag Write" message:@"Completed" preferredStyle:UIAlertControllerStyleAlert];
@@ -652,22 +676,45 @@
                     self->txtEPC.text=tag.EPC;
                 if (self->swPC.isOn)
                     self->txtPC.text=[NSString stringWithFormat:@"%04X", tag.PC];
-                if (self->swTidUid.isOn)
-                    self->txtTidUid.text=tag.DATA;
+                if ((tag.AccessError == 0xFF) &&
+                    !tag.CRCError &&
+                    tag.BackScatterError == 0xFF &&
+                    !tag.ACKTimeout &&
+                    !tag.CRCError &&
+                    self->swTidUid.isOn) {
+                    self->txtTidUid.text=[tag.DATA copy];
+                }
             }
             else if (self->bankSelected == USER) {
-                self->txtUser.text=tag.DATA;
+                if ((tag.AccessError == 0xFF) &&
+                    !tag.CRCError &&
+                    tag.BackScatterError == 0xFF &&
+                    !tag.ACKTimeout &&
+                    !tag.CRCError &&
+                    self->swUser.isOn) {
+                        self->txtUser.text=[tag.DATA copy];
+                }
             }
             else if (self->bankSelected == RESERVED && self->memItem==mACCPWD) {
-                if ([tag.DATA length] == 16) {
+                if ([tag.DATA length] == 8 &&
+                    (tag.AccessError == 0xFF) &&
+                    !tag.CRCError &&
+                    tag.BackScatterError == 0xFF &&
+                    !tag.ACKTimeout &&
+                    !tag.CRCError) {
                     if (self->swAccPwd.isOn)
-                        self->txtAccPwd.text=[tag.DATA substringToIndex:8];
+                        self->txtAccPwd.text=[tag.DATA copy];
                 }
             }
             else if (self->bankSelected == RESERVED && self->memItem==mKILLPWD) {
-                if ([tag.DATA length] == 16) {
+                if ([tag.DATA length] == 8 &&
+                    (tag.AccessError == 0xFF) &&
+                    !tag.CRCError &&
+                    tag.BackScatterError == 0xFF &&
+                    !tag.ACKTimeout &&
+                    !tag.CRCError) {
                     if (self->swKillPwd.isOn)
-                        self->txtKillPwd.text=[tag.DATA substringFromIndex:8];
+                        self->txtKillPwd.text=[tag.DATA copy];
                 }
             }
             

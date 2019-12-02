@@ -45,7 +45,7 @@
         self.powerLevel = [NSMutableArray array];
         //300, 290, 280....
         for (int n = 0; n < 16; n++)
-            [self.powerLevel addObject:[NSString stringWithFormat:@"%d", 300-(n*10)]];
+            [self.powerLevel addObject:[NSString stringWithFormat:@"%d", 300]];
         self.dwellTime = [NSMutableArray array];
         //Set dwell time to 200ms for all ports
         for (int n = 0; n < 16; n++)

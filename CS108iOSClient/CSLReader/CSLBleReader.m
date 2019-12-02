@@ -2353,7 +2353,7 @@
                                 //start decode taq-response message
                                 //length of data field (in bytes) = ((pkt_len – 3) * 4) – ((flags >> 6) & 3)
                                 datalen=(((((Byte *)[rfidPacketBuffer bytes])[ptr+4] + (((((Byte *)[rfidPacketBuffer bytes])[ptr+5] << 8) & 0xFF00)))-3) * 4) - ((((Byte *)[rfidPacketBuffer bytes])[ptr+1] >> 6) & 3);
-                                tag.DATALength=datalen;
+                                tag.DATALength=datalen / 2;
                                 
                                 /*
                                 if (tag.DATA1Length > 0 && (((tag.DATA1Length + tag.DATA2Length) * 2) == datalen))
@@ -2384,7 +2384,9 @@
                                 
                                 tag.ACKTimeout=(((Byte *)[rfidPacketBuffer bytes])[ptr+1] & 0x04) >> 2;
                                 
-                                if ((((Byte *)[rfidPacketBuffer bytes])[ptr+1] & 0x02) >> 1 && tag.BackScatterError == 0xFF && !tag.CRCError && !tag.ACKTimeout) {
+                                //if access error occurred and nothg of the following: tag backscatter error, ack time out, crc error indicated a fault,
+                                //read error code form the data field
+                                if ((((Byte *)[rfidPacketBuffer bytes])[ptr+1] & 0x01) && tag.BackScatterError == 0xFF && !tag.CRCError && !tag.ACKTimeout) {
                                     tag.AccessError=((Byte *)[rfidPacketBuffer bytes])[ptr+20];
                                 }
                                 else
