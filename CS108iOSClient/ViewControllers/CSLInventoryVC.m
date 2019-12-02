@@ -120,12 +120,12 @@
             [tblTagList reloadData];
         }
             
-
-        if ([CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage < 0 || [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage > 100)
-            self.lbStatus.text=@"Battery: -";
-        else
-            self.lbStatus.text=[NSString stringWithFormat:@"Battery: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
-        
+        if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber==CS108) {
+            if ([CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage < 0 || [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage > 100)
+                self.lbStatus.text=@"Battery: -";
+            else
+                self.lbStatus.text=[NSString stringWithFormat:@"Battery: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
+        }
     }
 }
 

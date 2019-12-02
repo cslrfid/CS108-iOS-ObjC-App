@@ -36,10 +36,12 @@
     @autoreleasepool {
         if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus!=NOT_CONNECTED)
         {
-            if ([CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage < 0 || [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage > 100)
-                self.lbReaderStatus.text=@"Battery: -";
-            else
-                self.lbReaderStatus.text=[NSString stringWithFormat:@"Battery: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
+            if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber==CS108) {
+                if ([CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage < 0 || [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage > 100)
+                    self.lbReaderStatus.text=@"Battery: -";
+                else
+                    self.lbReaderStatus.text=[NSString stringWithFormat:@"Battery: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
+            }
         }
         else
             self.lbReaderStatus.text=@"";
