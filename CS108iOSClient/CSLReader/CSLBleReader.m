@@ -2589,7 +2589,8 @@
                             tag.PC =((((Byte *)[rfidPacketBuffer bytes])[ptr] << 8) & 0xFF00)+ ((Byte *)[rfidPacketBuffer bytes])[ptr+1];
                             
                             //for the case where we reaches to the end of the BLE packet but not the RFID response packet, where there will be partial packet to be returned from the next packet.  The partial tag data will be combined with the next packet being returned.
-                            if ((ptr + (2 + ((tag.PC >> 11) * 2) + 1)) > ([rfidPacketBuffer length])) {
+                            //8100 (two bytes) + 8 bytes RFID packet header + payload length being calcuated ont he header
+                            if ((10 + datalen) > [rfidPacketBuffer length]) {
                                 //stop decoding and wait for the partial tag data to be appended in the next packet arrival
                                 NSLog(@"[decodePacketsInBufferAsync] partial tag data being returned.  Wait for next rfid response packet for complete tag data.");
                                 break;
