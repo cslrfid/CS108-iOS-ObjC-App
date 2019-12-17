@@ -49,6 +49,8 @@ Data information of a Bluetooth LE packet
 @property (assign) Byte crc1;
 ///CRC of data packet (byte 2)
 @property (assign) Byte crc2;
+///Calculated CRC of the data packet  - Pass/Fail
+@property (assign) BOOL isCRCPassed;
 ///payload of data packet (first two bytes would be event code)
 @property NSData* payload;
 

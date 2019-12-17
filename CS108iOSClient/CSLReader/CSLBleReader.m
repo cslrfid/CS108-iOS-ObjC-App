@@ -2134,6 +2134,8 @@
     rfidPacketBufferInHexString=[[NSString alloc] init];
     
     int datalen;        //data length given on the RFID packet
+    int sequenceNumber=0;
+    
     while (self.bleDevice)  //packet decoding will continue as long as there is a connected device instance
     {
         @autoreleasepool {
@@ -2144,6 +2146,30 @@
                     packet=((CSLBlePacket *)[self.recvQueue deqObject]);
                     if ([packet isKindOfClass:[NSNull class]]) {
                         continue;
+                    }
+                    
+                    if (packet.direction==Uplink && packet.deviceId==RFID) {
+                        
+                        NSLog(@"[decodePacketsInBufferAsync] Current sequence number: %d", sequenceNumber);
+                        
+                        //validate checksum of packet
+                        if (!packet.isCRCPassed) {
+                            NSLog(@"[decodePacketsInBufferAsync] Checksum verification failed.  Discarding data in buffer");
+                            [rfidPacketBuffer setLength:0];
+                            continue;
+                        }
+                    
+                        if ([rfidPacketBuffer length] == 0)
+                            sequenceNumber=packet.Reserve;
+                        else {
+                            if (packet.Reserve != (sequenceNumber+1)) {
+                                NSLog(@"[decodePacketsInBufferAsync] Packet out-of-order based on sequence number.  Discarding data in buffer");
+                                [rfidPacketBuffer setLength:0];
+                                continue;
+                            }
+                            else
+                                sequenceNumber++;
+                        }
                     }
                 }
                 else

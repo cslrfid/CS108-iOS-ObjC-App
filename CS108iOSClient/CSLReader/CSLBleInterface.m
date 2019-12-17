@@ -453,10 +453,15 @@
             NSLog(@"Checksum calculated: %02X%02X", ((Byte*)[cs bytes])[1], ((Byte*)[cs bytes])[0]);
             if (((Byte*)[cs bytes])[1] == packet.crc1 && ((Byte*)[cs bytes])[0] == packet.crc2) {
                 NSLog(@"Checksum verification: PASSED");
-                [recvQueue enqObject:packet];
+                packet.isCRCPassed=true;
             }
-            else
+            else {
                 NSLog(@"Checksum verification: FAILED");
+                packet.isCRCPassed=false;
+            }
+            
+            //always enqueue the packet even it has a checksum verification fail.  This will be caught during decoding
+            [recvQueue enqObject:packet];
             
             NSLog(@"Received packet payload size: 0x%2X byte(s)", ((unsigned char *)[recvBuffer bytes])[2] );
 
