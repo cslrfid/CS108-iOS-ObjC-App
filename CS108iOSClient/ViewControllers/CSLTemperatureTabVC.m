@@ -128,7 +128,8 @@
                 [[CSLRfidAppEngine sharedAppEngine].reader setPower:16];
             else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.powerLevel==MEDIUMPOWER)
                 [[CSLRfidAppEngine sharedAppEngine].reader setPower:23];
-            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:0];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:2000];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:0];
             //disable all other channels
             for (int i=1;i<16;i++) {
                 [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
@@ -157,7 +158,8 @@
                                                            FrequencyChannel:0
                                                                isEASEnabled:0];
                 [[CSLRfidAppEngine sharedAppEngine].reader setPower:[CSLRfidAppEngine sharedAppEngine].settings.power / 10];
-                [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:0];
+                [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:2000];
+                [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:0];
                 //disable all other ports
                 for (int i=1;i<16;i++) {
                     [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
@@ -175,6 +177,7 @@
             else {
                 //iterate through all the power level
                 for (int i=0;i<16;i++) {
+                    int dwell=[[CSLRfidAppEngine sharedAppEngine].settings.dwellTime[i] intValue];
                     [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
                     NSLog(@"Power level %d: %@", i, (i >= [CSLRfidAppEngine sharedAppEngine].settings.numberOfPowerLevel) ? @"OFF" : @"ON");
                     [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:((i >= [CSLRfidAppEngine sharedAppEngine].settings.numberOfPowerLevel) ? FALSE : TRUE)
@@ -187,8 +190,8 @@
                                                                FrequencyChannel:0
                                                                    isEASEnabled:0];
                     [[CSLRfidAppEngine sharedAppEngine].reader setPower:[(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.powerLevel[i] intValue] / 10];
-                    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:[[CSLRfidAppEngine sharedAppEngine].settings.dwellTime[i] intValue]];
-                    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:0];
+                    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:dwell];
+                    [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:dwell == 0 ? 65535 : 0];
                 }
             }
         }
@@ -196,6 +199,7 @@
     else {  //CS463
         //iterate through all the power level
         for (int i=0;i<4;i++) {
+            int dwell=[[CSLRfidAppEngine sharedAppEngine].settings.dwellTime[i] intValue];
             [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
             NSLog(@"Antenna %d: %@", i, [(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.isPortEnabled[i] boolValue] ? @"ON" : @"OFF");
             [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:[(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.isPortEnabled[i] boolValue]
@@ -215,8 +219,8 @@
                 [[CSLRfidAppEngine sharedAppEngine].reader setPower:23];
             else
                 [[CSLRfidAppEngine sharedAppEngine].reader setPower:[(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.powerLevel[i] intValue] / 10];
-            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:[[CSLRfidAppEngine sharedAppEngine].settings.dwellTime[i] intValue]];
-            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:0];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaDwell:dwell];
+            [[CSLRfidAppEngine sharedAppEngine].reader setAntennaInventoryCount:dwell == 0 ? 65535 : 0];
         }
     }
 }

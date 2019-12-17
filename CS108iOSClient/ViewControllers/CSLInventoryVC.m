@@ -62,8 +62,8 @@
     tblTagList.rowHeight = UITableViewAutomaticDimension;
     
     // Do any additional setup after loading the view.
-    [((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTags];
-    [((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
+    //[((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTags];
+    //[((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
 }
 
 - (void)handleSwipes:(UISwipeGestureRecognizer*)gestureRecognizer {
@@ -120,12 +120,12 @@
             [tblTagList reloadData];
         }
             
-
-        if ([CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage < 0 || [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage > 100)
-            self.lbStatus.text=@"Battery: -";
-        else
-            self.lbStatus.text=[NSString stringWithFormat:@"Battery: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
-        
+        if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber==CS108) {
+            if ([CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage < 0 || [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage > 100)
+                self.lbStatus.text=@"Battery: -";
+            else
+                self.lbStatus.text=[NSString stringWithFormat:@"Battery: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
+        }
     }
 }
 
@@ -205,11 +205,15 @@
     }
     
     // Do any additional setup after loading the view.
+    [((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTags];
     [((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
     
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    
+    [self.actInventorySpinner stopAnimating];
+    self.view.userInteractionEnabled=true;
     
     //stop inventory if it is still running
     if (btnInventory.enabled)

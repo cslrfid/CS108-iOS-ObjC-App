@@ -152,6 +152,7 @@
     [sensorVC.btnSelectAllTag sendActionsForControlEvents:UIControlEventTouchUpInside];
     [sensorVC.btnRemoveAllTag sendActionsForControlEvents:UIControlEventTouchUpInside];
     [self.actSaveConfig startAnimating];
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
     [sensorVC viewWillDisappear:YES]; [sensorVC viewDidLoad]; [sensorVC viewWillAppear:YES];
     [self.actSaveConfig stopAnimating];
     

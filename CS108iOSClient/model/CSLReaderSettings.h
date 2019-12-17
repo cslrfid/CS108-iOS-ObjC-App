@@ -16,6 +16,8 @@
 
 ///Reader output power
 @property (assign) int power;
+///Reader port being used during  tag read/write
+@property (assign) int tagAccessPort;
 ///Estimated tag population in the reading environment
 @property (assign) int tagPopulation;
 ///Enable/disable Q overriding, where Q should be defined manually or calcuated based on the estimated tag population

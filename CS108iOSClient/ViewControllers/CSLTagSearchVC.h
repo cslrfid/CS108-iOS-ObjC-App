@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CSLRfidAppEngine.h"
 #import "LMGaugeView.h"
+#import "CSLTabVC.h"
 
 #define ROLLING_AVG_COUNT 10
 
@@ -19,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet LMGaugeView *gaugeView;
 @property (weak, nonatomic) IBOutlet UIButton *btnSearch;
 @property (weak, nonatomic) IBOutlet UITextField *txtEPC;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actSearchSpinner;
 
 
 

@@ -27,6 +27,7 @@
         self.isQOverride=false;
         self.QValue=6;
         self.power = 300;
+        self.tagAccessPort = 0;
         self.session = S1;
         self.target = ToggleAB;
         self.algorithm = DYNAMICQ;
@@ -40,15 +41,15 @@
         self.multibank2=USER;
         self.multibank2Offset=0;
         self.multibank2Length=2;
-        self.numberOfPowerLevel=16;
+        self.numberOfPowerLevel=0;
         self.powerLevel = [NSMutableArray array];
-        //I150, 160, 170....
+        //300, 290, 280....
         for (int n = 0; n < 16; n++)
-            [self.powerLevel addObject:[NSString stringWithFormat:@"%d", 150+n*10]];
+            [self.powerLevel addObject:[NSString stringWithFormat:@"%d", 300]];
         self.dwellTime = [NSMutableArray array];
         //Set dwell time to 200ms for all ports
         for (int n = 0; n < 16; n++)
-            [self.dwellTime addObject:@"200"];
+            [self.dwellTime addObject:@"2000"];
         //For CS463, disable all ports except port 0
         [self.isPortEnabled addObject:[[NSNumber alloc] initWithBool:TRUE]];
         for (int n = 1 ; n < 4; n++)

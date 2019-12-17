@@ -2134,6 +2134,8 @@
     rfidPacketBufferInHexString=[[NSString alloc] init];
     
     int datalen;        //data length given on the RFID packet
+    int sequenceNumber=0;
+    
     while (self.bleDevice)  //packet decoding will continue as long as there is a connected device instance
     {
         @autoreleasepool {
@@ -2144,6 +2146,30 @@
                     packet=((CSLBlePacket *)[self.recvQueue deqObject]);
                     if ([packet isKindOfClass:[NSNull class]]) {
                         continue;
+                    }
+                    
+                    if (packet.direction==Uplink && packet.deviceId==RFID) {
+                        
+                        NSLog(@"[decodePacketsInBufferAsync] Current sequence number: %d", sequenceNumber);
+                        
+                        //validate checksum of packet
+                        if (!packet.isCRCPassed) {
+                            NSLog(@"[decodePacketsInBufferAsync] Checksum verification failed.  Discarding data in buffer");
+                            [rfidPacketBuffer setLength:0];
+                            continue;
+                        }
+                    
+                        if ([rfidPacketBuffer length] == 0)
+                            sequenceNumber=packet.Reserve;
+                        else {
+                            if (packet.Reserve != (sequenceNumber+1)) {
+                                NSLog(@"[decodePacketsInBufferAsync] Packet out-of-order based on sequence number.  Discarding data in buffer");
+                                [rfidPacketBuffer setLength:0];
+                                continue;
+                            }
+                            else
+                                sequenceNumber++;
+                        }
                     }
                 }
                 else
@@ -2353,7 +2379,7 @@
                                 //start decode taq-response message
                                 //length of data field (in bytes) = ((pkt_len – 3) * 4) – ((flags >> 6) & 3)
                                 datalen=(((((Byte *)[rfidPacketBuffer bytes])[ptr+4] + (((((Byte *)[rfidPacketBuffer bytes])[ptr+5] << 8) & 0xFF00)))-3) * 4) - ((((Byte *)[rfidPacketBuffer bytes])[ptr+1] >> 6) & 3);
-                                tag.DATALength=datalen;
+                                tag.DATALength=datalen / 2;
                                 
                                 /*
                                 if (tag.DATA1Length > 0 && (((tag.DATA1Length + tag.DATA2Length) * 2) == datalen))
@@ -2384,7 +2410,9 @@
                                 
                                 tag.ACKTimeout=(((Byte *)[rfidPacketBuffer bytes])[ptr+1] & 0x04) >> 2;
                                 
-                                if ((((Byte *)[rfidPacketBuffer bytes])[ptr+1] & 0x02) >> 1 && tag.BackScatterError == 0xFF && !tag.CRCError && !tag.ACKTimeout) {
+                                //if access error occurred and nothg of the following: tag backscatter error, ack time out, crc error indicated a fault,
+                                //read error code form the data field
+                                if ((((Byte *)[rfidPacketBuffer bytes])[ptr+1] & 0x01) && tag.BackScatterError == 0xFF && !tag.CRCError && !tag.ACKTimeout) {
                                     tag.AccessError=((Byte *)[rfidPacketBuffer bytes])[ptr+20];
                                 }
                                 else
@@ -2587,7 +2615,8 @@
                             tag.PC =((((Byte *)[rfidPacketBuffer bytes])[ptr] << 8) & 0xFF00)+ ((Byte *)[rfidPacketBuffer bytes])[ptr+1];
                             
                             //for the case where we reaches to the end of the BLE packet but not the RFID response packet, where there will be partial packet to be returned from the next packet.  The partial tag data will be combined with the next packet being returned.
-                            if ((ptr + (2 + ((tag.PC >> 11) * 2) + 1)) > ([rfidPacketBuffer length])) {
+                            //8100 (two bytes) + 8 bytes RFID packet header + payload length being calcuated ont he header
+                            if ((10 + datalen) > [rfidPacketBuffer length]) {
                                 //stop decoding and wait for the partial tag data to be appended in the next packet arrival
                                 NSLog(@"[decodePacketsInBufferAsync] partial tag data being returned.  Wait for next rfid response packet for complete tag data.");
                                 break;

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CSLRfidAppEngine.h"
+#import "CSLTabVC.h"
 
 typedef NS_ENUM(Byte, MEMORYITEM)
 {
@@ -47,6 +48,10 @@ typedef NS_ENUM(Byte, MEMORYITEM)
 @property (weak, nonatomic) IBOutlet UIButton *btnRead;
 @property (weak, nonatomic) IBOutlet UIButton *btnWrite;
 @property (weak, nonatomic) IBOutlet UIButton *btnSecurity;
+@property (weak, nonatomic) IBOutlet UITextField *txtPower;
+@property (weak, nonatomic) IBOutlet UILabel *lbPort;
+@property (weak, nonatomic) IBOutlet UITextField *txtPort;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actTagAccessSpinner;
 
 - (IBAction)swPCPressed:(id)sender;
 - (IBAction)swEPCPressed:(id)sender;
@@ -73,6 +78,9 @@ typedef NS_ENUM(Byte, MEMORYITEM)
 - (IBAction)txtKillPwdChanged:(id)sender;
 - (IBAction)txtTidUidChanged:(id)sender;
 - (IBAction)txtUserChanged:(id)sender;
+
+- (IBAction)txtPowerChanged:(id)sender;
+- (IBAction)txtPortChanged:(id)sender;
 
 
 @end

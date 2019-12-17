@@ -46,6 +46,9 @@
     
     [self.tabBarController setTitle:@"Tag Search"];
     
+    [self.actSearchSpinner stopAnimating];
+    self.view.userInteractionEnabled=true;
+    
     if (![[CSLRfidAppEngine sharedAppEngine].tagSelected isEqualToString:@""]) {
         self.txtEPC.text=[CSLRfidAppEngine sharedAppEngine].tagSelected;
     }
@@ -56,6 +59,10 @@
     [CSLRfidAppEngine sharedAppEngine].reader.readerDelegate=self;
     
     rollingAvgRssi = [[CSLCircularQueue alloc] initWithCapacity:ROLLING_AVG_COUNT];
+    
+    // Do any additional setup after loading the view.
+    [((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTags];
+    [((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
