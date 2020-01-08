@@ -43,6 +43,13 @@
 }
 
 - (IBAction)btnFiltersPressed:(id)sender {
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Not Available" message:@"Feature to be implemented" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
+    
 }
 
 - (IBAction)btnMQTTPressed:(id)sender {
