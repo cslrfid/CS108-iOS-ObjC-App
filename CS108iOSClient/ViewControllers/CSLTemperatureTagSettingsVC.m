@@ -221,7 +221,7 @@
 - (IBAction)txtOcrssiMinChanged:(id)sender {
     NSScanner* scan = [NSScanner scannerWithString:self.txtOcrssiMin.text];
     int val;
-    if ([scan scanInt:&val] && [scan isAtEnd] && [self.txtOcrssiMin.text intValue] >= 0 && [self.txtOcrssiMin.text intValue] <= 15) //valid int between 0 to 15
+    if ([scan scanInt:&val] && [scan isAtEnd] && [self.txtOcrssiMin.text intValue] >= 0 && [self.txtOcrssiMin.text intValue] <= 31) //valid int between 0 to 15
     {
         NSLog(@"On-chip RSSI low value entered: OK");
     }
@@ -232,7 +232,7 @@
 - (IBAction)txtOcrssiMaxChanged:(id)sender {
     NSScanner* scan = [NSScanner scannerWithString:self.txtOcrssiMax.text];
     int val;
-    if ([scan scanInt:&val] && [scan isAtEnd] && [self.txtOcrssiMax.text intValue] >= 0 && [self.txtOcrssiMax.text intValue] <= 15) //valid int between 0 to 15
+    if ([scan scanInt:&val] && [scan isAtEnd] && [self.txtOcrssiMax.text intValue] >= 0 && [self.txtOcrssiMax.text intValue] <= 31) //valid int between 0 to 15
     {
         NSLog(@"On-chip RSSI high value entered: OK");
     }
