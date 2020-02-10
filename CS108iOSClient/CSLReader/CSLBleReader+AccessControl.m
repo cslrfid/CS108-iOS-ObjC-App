@@ -1488,8 +1488,10 @@
         [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"]) ||
         ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] &&
          [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0000"])
-        )
+        ) {
+        self.lastMacErrorCode=0x0000;
         NSLog(@"Receive read command-begin response: OK");
+    }
     else
     {
         NSLog(@"Receive read command-begin response: FAILED");
@@ -1594,8 +1596,10 @@
              [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"]) ||
             ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] &&
              [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0000"])
-            )
+            ) {
+            self.lastMacErrorCode=0x0000;
             NSLog(@"Receive read command-begin response: OK");
+        }
         else
         {
             NSLog(@"Receive read command-begin response: FAILED");
@@ -1659,8 +1663,10 @@
          [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"]) ||
         ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] &&
          [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0000"])
-        )
+        ) {
+        self.lastMacErrorCode=0x0000;
         NSLog(@"Receive search command-begin response: OK");
+    }
     else
     {
         NSLog(@"Receive search command-begin response: FAILED");
@@ -1829,8 +1835,10 @@
          [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"]) ||
         ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] &&
          [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0000"])
-        )
+        ) {
+        self.lastMacErrorCode=0x0000;
         NSLog(@"Receive read command-begin response: OK");
+    }
     else
     {
         NSLog(@"Receive read command-begin response: FAILED");
