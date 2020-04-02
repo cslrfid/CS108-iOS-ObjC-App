@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uy9-1K-dab">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uy9-1K-dab">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -2658,10 +2658,12 @@
                                     <constraint firstAttribute="bottom" secondItem="hJV-Ao-sxN" secondAttribute="bottom" id="yoZ-AT-Y0i"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjw-Xx-9N2">
-                                <rect key="frame" x="81" y="410" width="158" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjw-Xx-9N2">
+                                <rect key="frame" x="85" y="404" width="150" height="33"/>
                                 <color key="backgroundColor" red="0.63921568627450975" green="0.63921568627450975" blue="0.63921568627450975" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="equ-qw-vrU"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                 <color key="tintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Save to File"/>
@@ -2672,6 +2674,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="wjw-Xx-9N2" firstAttribute="centerX" secondItem="LvH-Ge-MiT" secondAttribute="centerX" id="7ao-oF-ShI"/>
                             <constraint firstItem="tYY-tp-tY8" firstAttribute="leading" secondItem="r7x-TT-Fdx" secondAttribute="leading" constant="20" id="8Qt-JU-qrA"/>
                             <constraint firstItem="izk-vN-mQS" firstAttribute="top" secondItem="pkm-Tr-lhN" secondAttribute="bottom" constant="15" id="8Yt-6O-qcn"/>
                             <constraint firstItem="SiA-vG-TOw" firstAttribute="top" secondItem="izk-vN-mQS" secondAttribute="bottom" constant="8" symbolic="YES" id="AL8-Fh-h4H"/>
@@ -2681,6 +2684,7 @@
                             <constraint firstItem="pkm-Tr-lhN" firstAttribute="top" secondItem="dSd-N2-8Sh" secondAttribute="bottom" constant="20" id="Gc3-ZG-AJc"/>
                             <constraint firstItem="r7x-TT-Fdx" firstAttribute="trailing" secondItem="SiA-vG-TOw" secondAttribute="trailing" constant="20" id="PRa-aT-Ew6"/>
                             <constraint firstItem="tYY-tp-tY8" firstAttribute="top" secondItem="SiA-vG-TOw" secondAttribute="bottom" constant="8" id="TEv-BR-xvx"/>
+                            <constraint firstItem="wjw-Xx-9N2" firstAttribute="top" secondItem="tYY-tp-tY8" secondAttribute="bottom" constant="30" id="Xjj-Dy-HNe"/>
                             <constraint firstItem="izk-vN-mQS" firstAttribute="centerX" secondItem="pkm-Tr-lhN" secondAttribute="centerX" id="eXe-2y-tAQ"/>
                             <constraint firstItem="SiA-vG-TOw" firstAttribute="leading" secondItem="r7x-TT-Fdx" secondAttribute="leading" constant="20" id="fMy-as-M0X"/>
                             <constraint firstItem="dSd-N2-8Sh" firstAttribute="top" secondItem="3DD-BR-tCD" secondAttribute="bottom" constant="28" id="kxn-xE-q34"/>
