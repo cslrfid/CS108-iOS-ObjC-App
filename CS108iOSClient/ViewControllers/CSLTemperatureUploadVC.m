@@ -216,7 +216,7 @@
         for (int i=0;i<COMMAND_TIMEOUT_10S;i++) { //wait for 5s for connection
             if([CSLRfidAppEngine sharedAppEngine].MQTTSettings.publishTopicCounter==[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer count])
                 break;
-            [NSThread sleepForTimeInterval:0.1f];
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
         }
         
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Data Upload"
