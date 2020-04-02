@@ -128,6 +128,9 @@ Insertion/update of tag data is based on binary searching algorithm for better e
 ///Delegate instance that follows the CSLBleReaderDelegate protocol
 @property (nonatomic, weak) id <CSLBleReaderDelegate> readerDelegate;
 
+///This error will be cleared every time when a host command is being initiated and set after and command-end response
+@property unsigned short lastMacErrorCode;
+
 /**
  Static method that converts hexdcecimal string to binary data
  

@@ -126,6 +126,17 @@
             else
                 self.lbStatus.text=[NSString stringWithFormat:@"Battery: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
         }
+        
+        if ([CSLRfidAppEngine sharedAppEngine].reader.lastMacErrorCode != 0x0000)
+        {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"RFID Error"
+                                                                           message:[NSString stringWithFormat:@"Error Code: 0x%04X", [CSLRfidAppEngine sharedAppEngine].reader.lastMacErrorCode]
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
+            [CSLRfidAppEngine sharedAppEngine].reader.lastMacErrorCode=0x0000;
+        }
     }
 }
 

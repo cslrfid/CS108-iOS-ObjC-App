@@ -51,6 +51,7 @@
         for (int n = 0; n < 16; n++)
             [self.dwellTime addObject:@"2000"];
         //For CS463, disable all ports except port 0
+        self.isPortEnabled = [NSMutableArray array];
         [self.isPortEnabled addObject:[[NSNumber alloc] initWithBool:TRUE]];
         for (int n = 1 ; n < 4; n++)
             [self.isPortEnabled addObject:[[NSNumber alloc] initWithBool:FALSE]];

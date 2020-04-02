@@ -1957,8 +1957,10 @@
     recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
     if (([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"]) ||
         ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] && [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0000"])
-        )
+        ) {
+        self.lastMacErrorCode=0x0000;
         NSLog(@"Receive HST_CMD 0x19 command-begin response: OK");
+    }
     else
     {
         NSLog(@"Receive HST_CMD 0x19 command-begin response: FAILED");
@@ -1972,11 +1974,14 @@
     if (([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] || [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"]) &&
         ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0180"] || [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0100"]) &&
         ((Byte *)[recvPacket.payload bytes])[14] == 0x00 &&
-        ((Byte *)[recvPacket.payload bytes])[15] == 0x00)
+        ((Byte *)[recvPacket.payload bytes])[15] == 0x00) {
+        self.lastMacErrorCode=(((Byte *)[recvPacket.payload bytes])[15] << 8) + (((Byte *)[recvPacket.payload bytes])[14]);
         NSLog(@"Receive HST_CMD 0x19 command-end response: OK");
+    }
     else
     {
         NSLog(@"Receive HST_CMD 0x19 command-end response: FAILED");
+        self.lastMacErrorCode=(((Byte *)[recvPacket.payload bytes])[15] << 8) + (((Byte *)[recvPacket.payload bytes])[14]);
         connectStatus=CONNECTED;
         [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
         return FALSE;
@@ -2222,6 +2227,7 @@
                         ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0000"])
                         ) {
                         NSLog(@"[decodePacketsInBufferAsync] Command-begin response recieved: %@", rfidPacketBufferInHexString);
+                        self.lastMacErrorCode=0x0000;
                         //return packet directly to the API for decoding
                         [cmdRespQueue enqObject:packet];
                         [rfidPacketBuffer setLength:0];
@@ -2238,6 +2244,7 @@
                         ) {
                         NSLog(@"[decodePacketsInBufferAsync] Command-end response recieved: %@", rfidPacketBufferInHexString);
                         //return packet directly to the API for decoding
+                        self.lastMacErrorCode=(((Byte *)[rfidPacketBuffer bytes])[15] << 8) + (((Byte *)[rfidPacketBuffer bytes])[14]);
                         [cmdRespQueue enqObject:packet];
                         [rfidPacketBuffer setLength:0];
                         connectStatus=CONNECTED;
@@ -2436,6 +2443,7 @@
                                         ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, 2)] isEqualToString:@"01"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr+2) * 2, 4)] isEqualToString:@"0100"])
                                         ) {
                                         
+                                        self.lastMacErrorCode=(((Byte *)[rfidPacketBuffer bytes])[ptr+13] << 8) + (((Byte *)[rfidPacketBuffer bytes])[ptr+12]);
                                         //partial command-end packet received
                                         //remove decoded data from rfid buffer and leave the partial packet on the buffer with 8100 appended to the beginning
                                         
@@ -2548,6 +2556,18 @@
                                 NSLog(@"[decodePacketsInBufferAsync] Decoding the data appended to the end of the 8100 packet: %@", [rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] );
                                 if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] containsString:@"4003BFFCBFFCBFFC"]) {
                                     NSLog(@"[decodePacketsInBufferAsync] Abort command received.  All operations ended");
+                                    [cmdRespQueue enqObject:packet];
+                                    [rfidPacketBuffer setLength:0];
+                                    connectStatus=CONNECTED;
+                                    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+                                    break;
+                                }
+                                //for the case where command-end appended to the packet as the radio stopped unexpectedly
+                                else if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] containsString:@"0101010002000000"]) {
+                                    NSLog(@"[decodePacketsInBufferAsync] Unexpected command-end received.  All operations ended");
+                                    //get mac error code
+                                    int startOfCmdEnd=(int)[[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] rangeOfString:@"0101010002000000"].location / 2;
+                                    self.lastMacErrorCode=(((Byte *)[rfidPacketBuffer bytes])[ptr+startOfCmdEnd+13] << 8) + (((Byte *)[rfidPacketBuffer bytes])[ptr+startOfCmdEnd+12]);
                                     [cmdRespQueue enqObject:packet];
                                     [rfidPacketBuffer setLength:0];
                                     connectStatus=CONNECTED;
@@ -2671,6 +2691,18 @@
                                 NSLog(@"[decodePacketsInBufferAsync] Decoding the data appended to the end of the 8100 packet: %@", [rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] );
                                 if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] containsString:@"4003BFFCBFFCBFFC"]) {
                                     NSLog(@"[decodePacketsInBufferAsync] Abort command received.  All operations ended");
+                                    [cmdRespQueue enqObject:packet];
+                                    [rfidPacketBuffer setLength:0];
+                                    connectStatus=CONNECTED;
+                                    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+                                    break;
+                                }
+                                //for the case where command-end appended to the packet as the radio stopped unexpectedly
+                                else if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] containsString:@"0101010002000000"]) {
+                                    NSLog(@"[decodePacketsInBufferAsync] Unexpected command-end received.  All operations ended");
+                                    //get mac error code
+                                    int startOfCmdEnd=(int)[[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] rangeOfString:@"0101010002000000"].location / 2;
+                                    self.lastMacErrorCode=(((Byte *)[rfidPacketBuffer bytes])[ptr+startOfCmdEnd+13] << 8) + (((Byte *)[rfidPacketBuffer bytes])[ptr+startOfCmdEnd+12]);
                                     [cmdRespQueue enqObject:packet];
                                     [rfidPacketBuffer setLength:0];
                                     connectStatus=CONNECTED;
