@@ -27,6 +27,11 @@
 @property (weak, nonatomic) IBOutlet UISwitch *swSound;
 @property (weak, nonatomic) IBOutlet UIButton *btnPowerLevel;
 @property (weak, nonatomic) IBOutlet UIButton *btnAntennaSettings;
+@property (weak, nonatomic) IBOutlet UIButton *btnRfLna;
+@property (weak, nonatomic) IBOutlet UIButton *btnIfLna;
+@property (weak, nonatomic) IBOutlet UIButton *btnAgcGain;
+@property (weak, nonatomic) IBOutlet UISwitch *swLnaHighComp;
+@property (weak, nonatomic) IBOutlet UISwitch *swTagFocus;
 
 - (IBAction)btnSessionPressed:(id)sender;
 - (IBAction)btnAlgorithmPressed:(id)sender;
@@ -39,6 +44,9 @@
 - (IBAction)btnSaveConfigPressed:(id)sender;
 - (IBAction)btnPowerLevelPressed:(id)sender;
 - (IBAction)btnAntennaSettingsPressed:(id)sender;
+- (IBAction)btnRfLnaPressed:(id)sender;
+- (IBAction)btnIfLnaPressed:(id)sender;
+- (IBAction)btnAgcGainPressed:(id)sender;
 
 
 @end

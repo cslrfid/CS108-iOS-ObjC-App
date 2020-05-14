@@ -167,6 +167,42 @@ Insertion/update of tag data is based on binary searching algorithm for better e
  */
 - (BOOL)readOEMData:(CSLBleInterface*)intf atAddr:(unsigned short)addr forData:(NSData*)data;
 /**
+Write LNA configurations to the reader
+@param intf CSLBleInterface that references to the current reader instance
+@param rflna_high_comp The rflna_gain setting generates the following RF-LNA gains
+0 = 1 dB
+2 = 7 dB
+3 = 13 dB
+@param rflna_gain The iflna_gain setting generates the following IF-LNA gains
+0 = 24 dB
+1 = 18 dB
+3 = 12 dB
+7 = 6 dB
+@param ifagc_gain The ifagc_gain setting generates the following AGC gain values
+0 = -12 dB
+4 = -6 dB
+6 = 0 dB
+7 = 6 dB
+@return TRUE if the operation is successful
+*/
+- (BOOL)setLNAParameters:(CSLBleInterface*)intf rflnaHighComp:(Byte)rflna_high_comp rflnaGain:(Byte)rflna_gain iflnaGain:(Byte)iflna_gain ifagcGain:(Byte)ifagc_gain;
+/**
+Write Impinj Extensions register
+@param tag_Focus If this feature is enabled, once a tag has been singulated it will remain out of the tag population (the tag's session 1 inventoried flag remains in B state) until the inventory operation is complete.
+0=disabled
+1=enabled
+@param fast_id If this feature is enabled and a M4 tag is in the field, then the 6-word M4 TID will be returned along with the EPC when the tag is singulated.
+0=disabled
+1=enabled
+@param blockwrite_mode Determines the maximum number of words to write per BlockWrite transaction with the tag.
+0 = Auto-detect (Default). One or two word BlockWrite will be determined automatically.
+1 = Force one word BlockWrite. Unconditionally use one word BlockWrites in all cases.
+2 = Force two word BlockWrite. Unconditionally use two word BlockWrites in all cases. A protocol error will occur if the tags in the field do not support this feature.
+3-15 = Reserved for future use
+@return TRUE if the operation is successful
+*/
+- (BOOL)setImpinjExtension:(Byte)tag_Focus fastId:(Byte)fast_id blockWriteMode:(Byte)blockwrite_mode;
+/**
  Enable/disable barcode reader
  @param enable TRUE/FALSE for turning on/off the barcode reader module
  @return TRUE if the operation is successful

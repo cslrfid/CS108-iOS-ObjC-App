@@ -34,6 +34,16 @@
 @property (assign) LINKPROFILE linkProfile;
 ///Define whether sound alert is enabled/disabled
 @property (assign) BOOL enableSound;
+///Impinj Extension - Tag Focus
+@property (assign) Byte tagFocus;
+///LNA Settings: RF-LNA High Compression Mode
+@property (assign) Byte rfLnaHighComp;
+///LNA Settings: RF-LNA
+@property (assign) Byte rfLna;
+///LNA Settings: IF-LNA
+@property (assign) Byte ifLna;
+///LNA Settings: IF-LNA AGC
+@property (assign) Byte ifAgc;
 ///Enable/disable multibank bank 1
 @property (assign) BOOL isMultibank1Enabled;
 ///Define multibank bank1
