@@ -34,6 +34,7 @@
 @synthesize lbClear;
 @synthesize lbMode;
 @synthesize uivSendTagData;
+@synthesize lbElapsedTime;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -113,6 +114,9 @@
             lbUniqueTagRate.text = [NSString stringWithFormat: @"%ld", ((long)[CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount)];
             [CSLRfidAppEngine sharedAppEngine].reader.rangingTagCount =0;
             [CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount =0;
+            
+            //incrememt elapse time
+            lbElapsedTime.text = [NSString stringWithFormat: @"%d", [lbElapsedTime.text intValue] + 1];
             
         }
         else if ([CSLRfidAppEngine sharedAppEngine].isBarcodeMode) {
@@ -323,6 +327,8 @@
     //clear UI
     lbTagRate.text=@"0";
     lbTagCount.text=@"0";
+    lbElapsedTime.text=@"0";
+    lbUniqueTagRate.text=@"0";
     [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer removeAllObjects];
     [tblTagList reloadData];
 }

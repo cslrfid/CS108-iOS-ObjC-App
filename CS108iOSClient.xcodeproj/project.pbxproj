@@ -34,6 +34,7 @@
 		CA7873822155F59C009B7FE6 /* CSLReaderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7873812155F59C009B7FE6 /* CSLReaderInfo.m */; };
 		CA8212BA236B1C4000911EF2 /* CSLPowerLevelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8212B9236B1C4000911EF2 /* CSLPowerLevelVC.m */; };
 		CAA89F45223D23D50066B601 /* CSLTemperatureUploadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA89F44223D23D50066B601 /* CSLTemperatureUploadVC.m */; };
+		CAAD99C4246EE75D002B76F6 /* CSLReaderFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAD99C3246EE75D002B76F6 /* CSLReaderFrequency.m */; };
 		CAB31377221A75330048DA62 /* CSLTagListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB31375221A75330048DA62 /* CSLTagListCell.m */; };
 		CAB31378221A75330048DA62 /* CSLTagListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB31376221A75330048DA62 /* CSLTagListCell.xib */; };
 		CAB3137B221BE17D0048DA62 /* CSLMoreFunctionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3137A221BE17D0048DA62 /* CSLMoreFunctionsVC.m */; };
@@ -128,6 +129,8 @@
 		CA8212B9236B1C4000911EF2 /* CSLPowerLevelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLPowerLevelVC.m; sourceTree = "<group>"; };
 		CAA89F43223D23D50066B601 /* CSLTemperatureUploadVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureUploadVC.h; sourceTree = "<group>"; };
 		CAA89F44223D23D50066B601 /* CSLTemperatureUploadVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureUploadVC.m; sourceTree = "<group>"; };
+		CAAD99C2246EE75D002B76F6 /* CSLReaderFrequency.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLReaderFrequency.h; sourceTree = "<group>"; };
+		CAAD99C3246EE75D002B76F6 /* CSLReaderFrequency.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderFrequency.m; sourceTree = "<group>"; };
 		CAB31374221A75330048DA62 /* CSLTagListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagListCell.h; sourceTree = "<group>"; };
 		CAB31375221A75330048DA62 /* CSLTagListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTagListCell.m; sourceTree = "<group>"; };
 		CAB31376221A75330048DA62 /* CSLTagListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CSLTagListCell.xib; sourceTree = "<group>"; };
@@ -297,6 +300,8 @@
 				CA5C059F21E4736700E68E44 /* CSLMQTTSettings.m */,
 				CAF7FFF622376AB00016F6E7 /* CSLTemperatureTagSettings.h */,
 				CAF7FFF722376AB00016F6E7 /* CSLTemperatureTagSettings.m */,
+				CAAD99C2246EE75D002B76F6 /* CSLReaderFrequency.h */,
+				CAAD99C3246EE75D002B76F6 /* CSLReaderFrequency.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -511,6 +516,7 @@
 				CA7873822155F59C009B7FE6 /* CSLReaderInfo.m in Sources */,
 				CA5C059421E4517D00E68E44 /* CSLMQTTClientSettings.m in Sources */,
 				CA4E78E6213528FC0035F075 /* CSLBleReader.m in Sources */,
+				CAAD99C4246EE75D002B76F6 /* CSLReaderFrequency.m in Sources */,
 				CA78737F21543B6F009B7FE6 /* CSLReaderSettings.m in Sources */,
 				CA8212BA236B1C4000911EF2 /* CSLPowerLevelVC.m in Sources */,
 				CA78736A214CCA47009B7FE6 /* CSLSettingsVC.m in Sources */,

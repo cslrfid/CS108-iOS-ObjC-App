@@ -27,6 +27,8 @@
 @synthesize btnAgcGain;
 @synthesize swLnaHighComp;
 @synthesize swTagFocus;
+@synthesize btnRegion;
+@synthesize btnFrequencyChannel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -75,6 +77,14 @@
     btnAgcGain.layer.borderWidth=1.0f;
     btnAgcGain.layer.borderColor=[UIColor lightGrayColor].CGColor;
     btnAgcGain.layer.cornerRadius=5.0f;
+    
+    btnRegion.layer.borderWidth=1.0f;
+    btnRegion.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnRegion.layer.cornerRadius=5.0f;
+    
+    btnFrequencyChannel.layer.borderWidth=1.0f;
+    btnFrequencyChannel.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnFrequencyChannel.layer.cornerRadius=5.0f;
     
     [txtQValue setDelegate:self];
     [txtTagPopulation setDelegate:self];
@@ -454,6 +464,12 @@
     }
     
     
+}
+
+- (IBAction)btnFrequencyChannelPressed:(id)sender {
+}
+
+- (IBAction)btnRegionPressed:(id)sender {
 }
 
 - (IBAction)btnAgcGainPressed:(id)sender {
