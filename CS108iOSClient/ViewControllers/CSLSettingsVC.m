@@ -29,6 +29,7 @@
 @synthesize swTagFocus;
 @synthesize btnRegion;
 @synthesize btnFrequencyChannel;
+@synthesize btnFrequencyOrder;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -86,6 +87,10 @@
     btnFrequencyChannel.layer.borderColor=[UIColor lightGrayColor].CGColor;
     btnFrequencyChannel.layer.cornerRadius=5.0f;
     
+    btnFrequencyOrder.layer.borderWidth=1.0f;
+    btnFrequencyOrder.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnFrequencyOrder.layer.cornerRadius=5.0f;
+    
     [txtQValue setDelegate:self];
     [txtTagPopulation setDelegate:self];
     [txtPower setDelegate:self];
@@ -97,6 +102,27 @@
         [btnAntennaSettings setHidden:true];
     }
     
+    //pre-populate the region and frequency info
+    int channel=[[CSLRfidAppEngine sharedAppEngine].settings.channel intValue];
+    NSString* region=[CSLRfidAppEngine sharedAppEngine].settings.region;
+    [self.btnRegion setTitle:[CSLRfidAppEngine sharedAppEngine].settings.region forState:UIControlStateNormal];
+    [self.btnFrequencyChannel setTitle:[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.TableOfFrequencies[region][channel]
+                              forState:UIControlStateNormal];
+    if ([CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.isFixed) {
+        [self.btnFrequencyOrder setTitle:@"Fixed" forState:UIControlStateNormal];
+        [self.btnFrequencyChannel setEnabled:true];
+    }
+    else {
+        [self.btnFrequencyOrder setTitle:@"Hopping" forState:UIControlStateNormal];
+        [self.btnFrequencyChannel setEnabled:false];
+    }
+    
+    if ([CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.FreqModFlag) {
+        [self.btnRegion setEnabled:false];
+    }
+    else {
+        [self.btnRegion setEnabled:true];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -442,6 +468,15 @@
     if ([btnAgcGain.titleLabel.text compare:@"6 dB"] == NSOrderedSame)
         [CSLRfidAppEngine sharedAppEngine].settings.ifAgc = 7;
     
+    NSString* channel=btnFrequencyChannel.titleLabel.text;
+    NSString* region=btnRegion.titleLabel.text;
+    
+    [CSLRfidAppEngine sharedAppEngine].settings.region=region;
+    for (int i=0;i<[(NSArray*)[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.TableOfFrequencies[region] count];i++) {
+        if ([(NSString*)[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.TableOfFrequencies[region][i] isEqualToString:channel]) {
+            [CSLRfidAppEngine sharedAppEngine].settings.channel=[NSString stringWithFormat:@"%d", i];
+        }
+    }
     
     [[CSLRfidAppEngine sharedAppEngine] saveSettingsToUserDefaults];
     
@@ -466,10 +501,43 @@
     
 }
 
+- (IBAction)btnFrequencyOrderPressed:(id)sender {
+    //do nothing
+}
+
 - (IBAction)btnFrequencyChannelPressed:(id)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Channel"
+                                                                   message:@"Please select"
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    for (NSString* channel in [CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.TableOfFrequencies[btnRegion.titleLabel.text]) {
+        UIAlertAction *listItem = [UIAlertAction actionWithTitle:channel style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+        { [self.btnFrequencyChannel setTitle:channel forState:UIControlStateNormal];}];
+        [alert addAction:listItem];
+    }
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]; // cancel
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)btnRegionPressed:(id)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Region"
+                                                                   message:@"Please select"
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    for (NSString* region in [CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.RegionList) {
+        UIAlertAction *listItem = [UIAlertAction actionWithTitle:region style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+        { [self.btnRegion setTitle:region forState:UIControlStateNormal];
+            [self.btnFrequencyChannel setTitle:[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.TableOfFrequencies[region][0]
+                                      forState:UIControlStateNormal];  
+        }];
+        [alert addAction:listItem];
+    }
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]; // cancel
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)btnAgcGainPressed:(id)sender {

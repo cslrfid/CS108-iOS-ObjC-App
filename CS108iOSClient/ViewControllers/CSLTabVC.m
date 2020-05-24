@@ -296,6 +296,17 @@
                                                       iflnaGain:[CSLRfidAppEngine sharedAppEngine].settings.ifLna
                                                       ifagcGain:[CSLRfidAppEngine sharedAppEngine].settings.ifAgc];
     
+    //frequency configurations
+    if ([CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.isFixed) {
+        [[CSLRfidAppEngine sharedAppEngine].reader SetFixedChannel:[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency
+                                                        RegionCode:[CSLRfidAppEngine sharedAppEngine].settings.region
+                                                      channelIndex:[[CSLRfidAppEngine sharedAppEngine].settings.channel intValue]];
+    }
+    else {
+        [[CSLRfidAppEngine sharedAppEngine].reader SetHoppingChannel:[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency
+                                                          RegionCode:[CSLRfidAppEngine sharedAppEngine].settings.region];
+    }
+    
     // if multibank read is enabled
     if (tagRead) {
         [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_BANK:[CSLRfidAppEngine sharedAppEngine].settings.multibank1 acc_bank2:[CSLRfidAppEngine sharedAppEngine].settings.multibank2];

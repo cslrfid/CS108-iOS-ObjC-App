@@ -79,6 +79,7 @@ CSLRfidAppEngine * appEngine;
         temperatureSettings = [[CSLTemperatureTagSettings alloc] init];
         [self reloadTemperatureTagSettingsFromUserDefaults];
         readerInfo = [[CSLReaderInfo alloc] init];
+        self.readerRegionFrequency = [[CSLReaderFrequency alloc] init];
     }
     
     return self;
@@ -144,6 +145,10 @@ CSLRfidAppEngine * appEngine;
         settings.ifLna = (Byte)[defaults integerForKey:@"ifLna"];
     if([defaults objectForKey:@"ifAgc"])
         settings.ifAgc = (Byte)[defaults integerForKey:@"ifAgc"];
+    if([defaults objectForKey:@"region"])
+        settings.region = (NSString*)[defaults stringForKey:@"region"];
+    if([defaults objectForKey:@"channel"])
+        settings.channel = (NSString*)[defaults stringForKey:@"channel"];
     
 }
 -(void)saveSettingsToUserDefaults {
@@ -175,7 +180,8 @@ CSLRfidAppEngine * appEngine;
     [defaults setInteger:settings.rfLna forKey:@"rfLna"];
     [defaults setInteger:settings.ifLna forKey:@"ifLna"];
     [defaults setInteger:settings.ifAgc forKey:@"ifAgc"];
-    
+    [defaults setObject:settings.region forKey:@"region"];
+    [defaults setObject:settings.channel forKey:@"channel"];
     
     [defaults synchronize];
     

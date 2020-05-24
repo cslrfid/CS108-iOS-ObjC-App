@@ -44,6 +44,10 @@
 @property (assign) Byte ifLna;
 ///LNA Settings: IF-LNA AGC
 @property (assign) Byte ifAgc;
+///Frequency Settings: Region
+@property NSString* region;
+///Frequency Settings: Channel
+@property NSString* channel;
 ///Enable/disable multibank bank 1
 @property (assign) BOOL isMultibank1Enabled;
 ///Define multibank bank1

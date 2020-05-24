@@ -34,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *swTagFocus;
 @property (weak, nonatomic) IBOutlet UIButton *btnRegion;
 @property (weak, nonatomic) IBOutlet UIButton *btnFrequencyChannel;
+@property (weak, nonatomic) IBOutlet UIButton *btnFrequencyOrder;
 
 - (IBAction)btnSessionPressed:(id)sender;
 - (IBAction)btnAlgorithmPressed:(id)sender;
@@ -51,6 +52,7 @@
 - (IBAction)btnAgcGainPressed:(id)sender;
 - (IBAction)btnRegionPressed:(id)sender;
 - (IBAction)btnFrequencyChannelPressed:(id)sender;
+- (IBAction)btnFrequencyOrderPressed:(id)sender;
 
 
 @end

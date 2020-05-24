@@ -99,25 +99,26 @@
 -(id)init {
     
     //set default values to CS108 FCC fixed
-    self = [self initWithOEMData:2 specialCountryVerison:0 FreqModFlag:0xAA ModelCode:0x0B];
+    self = [self initWithOEMData:2 specialCountryVerison:0 FreqModFlag:0xAA ModelCode:0x0B isFixed:0x00];
     return self;
 }
 
--(id)initWithOEMData:(UInt32)countryCode specialCountryVerison:(UInt32)special_country FreqModFlag:(UInt32)freq_mod_flag ModelCode:(UInt32)model_code {
+-(id)initWithOEMData:(UInt32)countryCode specialCountryVerison:(UInt32)special_country FreqModFlag:(UInt32)freq_mod_flag ModelCode:(UInt32)model_code isFixed:(UInt32)is_fixed {
     if (self = [super init])  {
         //set default values
         _CountryCode=countryCode;
         _SpecialCountryVerison=special_country;
         _FreqModFlag=freq_mod_flag;
         _ModelCode=model_code;
-        [self generateRegionList];
+        _isFixed=is_fixed;
+        [self generateTableOfFreq];
     }
     return self;
 }
 
 -(void)generateRegionList {
     
-    self.RegionList = [[NSMutableArray init] alloc];
+    self.RegionList = [[NSMutableArray alloc] init];
 
     switch (self.CountryCode)
     {
@@ -752,8 +753,9 @@
     
     
     
-    self.TableOfFrequencies = [[NSDictionary init] alloc];
-    self.FrequencyValues = [[NSDictionary init] alloc];
+    self.TableOfFrequencies = [[NSMutableDictionary alloc] init];
+    self.FrequencyValues = [[NSMutableDictionary alloc] init];
+    self.FrequencyIndex = [[NSMutableDictionary alloc] init];
     [self generateRegionList];
     
     for (NSString* region in self.RegionList) {

@@ -11,13 +11,14 @@
 #import "CSLBleTag.h"
 #import "CSLReaderBattery.h"
 #import "CSLReaderBarcode.h"
+#import "CSLReaderFrequency.h"
 
-#define COMMAND_TIMEOUT_1S 10
-#define COMMAND_TIMEOUT_2S 20
-#define COMMAND_TIMEOUT_3S 30
-#define COMMAND_TIMEOUT_4S 40
-#define COMMAND_TIMEOUT_5S 50
-#define COMMAND_TIMEOUT_10S 100
+#define COMMAND_TIMEOUT_1S 1000
+#define COMMAND_TIMEOUT_2S 2000
+#define COMMAND_TIMEOUT_3S 3000
+#define COMMAND_TIMEOUT_4S 4000
+#define COMMAND_TIMEOUT_5S 5000
+#define COMMAND_TIMEOUT_10S 10000
 
 #define COMMAND_ANTCYCLE_CONTINUOUS 0xFFFF
 
@@ -162,10 +163,40 @@ Insertion/update of tag data is based on binary searching algorithm for better e
  Read OEM data that contains product-specific information such as country code, antenna version and frequency channel information
  @param intf CSLBleInterface that references to the current reader instance
  @param addr Address of the memory location
- @param data Pointer to the NSData object that holds the value of the data address
+ @param data UInt32 that holds the value of the data address
  @return TRUE if the operation is successful
  */
-- (BOOL)readOEMData:(CSLBleInterface*)intf atAddr:(unsigned short)addr forData:(NSData*)data;
+- (BOOL)readOEMData:(CSLBleInterface*)intf atAddr:(unsigned short)addr forData:(UInt32*)data;
+/**
+Set frequency band based on the region selected
+@param frequencySelector channel number selected
+@param config channel enable/disable
+@param mult_div frequncy multdiv
+@param pll_cc pllcc
+@return TRUE if the operation is successful
+*/
+- (BOOL)setFrequencyBand:(UInt32)frequencySelector bandState:(BOOL) config multdiv:(UInt32)mult_div pllcc:(UInt32) pll_cc;
+/**
+Set hopping frequency based on region selected
+@param frequencyInfo CSLReaderFrequency object that initialized baesd ont he OEM data from the reader
+@param region Code of the region being selected
+@return TRUE if the operation is successful
+*/
+- (BOOL) SetHoppingChannel:(CSLReaderFrequency*) frequencyInfo RegionCode:(NSString*)region;
+/**
+Set fixed frequency based on region and channel selected
+@param frequencyInfo CSLReaderFrequency object that initialized baesd ont he OEM data from the reader
+@param region Code of the region being selected
+@param index Index of the selected frequency channel
+@return TRUE if the operation is successful
+*/
+- (BOOL) SetFixedChannel:(CSLReaderFrequency*) frequencyInfo RegionCode:(NSString*)region channelIndex:(UInt32)index;
+/**
+Set PLLCC based on the region selected
+@param region Code of the region being selected
+@return PLLCC value of the selected region
+*/
+- (UInt32) GetPllcc:(NSString*) region;
 /**
 Write LNA configurations to the reader
 @param intf CSLBleInterface that references to the current reader instance

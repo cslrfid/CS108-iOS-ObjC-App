@@ -19,6 +19,8 @@
 @synthesize QValue;
 @synthesize isQOverride;
 @synthesize enableSound;
+@synthesize region;
+@synthesize channel;
 
 -(id)init {
     if (self = [super init])  {
@@ -47,6 +49,8 @@
         self.multibank2Offset=0;
         self.multibank2Length=2;
         self.numberOfPowerLevel=0;
+        self.region=@"";
+        self.channel=@"";
         self.powerLevel = [NSMutableArray array];
         //300, 290, 280....
         for (int n = 0; n < 16; n++)

@@ -20,14 +20,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, readonly) UInt32 FreqModFlag;
 ///Device model code (OEM address 0xA4)
 @property (assign, readonly) UInt32 ModelCode;
+///Hopping/Fixed frequency (OEM address 0x9D)
+@property (assign, readonly) UInt32 isFixed;
 ///List of Regions based on the OEM data
 @property NSMutableArray* RegionList;
 ///Provide a key with the region code and get an array of frequencies
-@property NSDictionary* TableOfFrequencies;
+@property NSMutableDictionary* TableOfFrequencies;
 ///Provide a key with the region code and get an array of frequency values
-@property NSDictionary* FrequencyValues;
+@property NSMutableDictionary* FrequencyValues;
 ///Provide a key with the region code and get an array of frequency index
-@property NSDictionary* FrequencyIndex;
+@property NSMutableDictionary* FrequencyIndex;
+
+-(id)initWithOEMData:(UInt32)countryCode specialCountryVerison:(UInt32)special_country FreqModFlag:(UInt32)freq_mod_flag ModelCode:(UInt32)model_code isFixed:(UInt32)is_fixed;
 
 @end
 

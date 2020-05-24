@@ -323,6 +323,17 @@
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryCycleDelay:0];
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:tagRead crcErrorRead:true QTMode:0 tagDelay:(tagRead ? 30 : 0) inventoryMode:(tagRead ? 0 : 1)];
     
+    //frequency configurations
+    if ([CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.isFixed) {
+        [[CSLRfidAppEngine sharedAppEngine].reader SetFixedChannel:[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency
+                                                        RegionCode:[CSLRfidAppEngine sharedAppEngine].settings.region
+                                                      channelIndex:[[CSLRfidAppEngine sharedAppEngine].settings.channel intValue]];
+    }
+    else {
+        [[CSLRfidAppEngine sharedAppEngine].reader SetHoppingChannel:[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency
+                                                          RegionCode:[CSLRfidAppEngine sharedAppEngine].settings.region];
+    }
+    
     // if multibank read is enabled
     if (tagRead) {
         [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_BANK:[CSLRfidAppEngine sharedAppEngine].settings.multibank1 acc_bank2:[CSLRfidAppEngine sharedAppEngine].settings.multibank2];
