@@ -552,7 +552,7 @@
     NSLog(@"Write HST_MBP_DATA (address: 0x0401)...");
     NSLog(@"----------------------------------------------------------------------");
     //Write address 0x0405 for ANA_RX_GAIN_NORM
-    unsigned int data = (ifagc_gain & 0x07) || ((iflna_gain & 0x07) << 3) || ((rflna_gain & 0x03) << 6) || ((rflna_high_comp & 0x1) << 7);
+    unsigned int data = (ifagc_gain & 0x07) | ((iflna_gain & 0x07) << 3) | ((rflna_gain & 0x03) << 6) | ((rflna_high_comp & 0x1) << 8);
     unsigned char MBPData[] = {0x80, 0x02, 0x70, 0x01, 0x01, 0x04, data & 0x000000FF, (data & 0x0000FF00) >> 8, (data & 0x00FF0000) >> 16, (data & 0xFF000000) >> 24};
     packet.prefix=0xA7;
     packet.connection = Bluetooth;
@@ -665,7 +665,7 @@
     NSLog(@"Set Impinj extension register 0x0203");
     NSLog(@"----------------------------------------------------------------------");
     
-    unsigned int value=(blockwrite_mode & 0x0F) || ((tag_Focus & 0x01) << 4) || ((fast_id & 0x01) << 5);
+    unsigned int value=(blockwrite_mode & 0x0F) | ((tag_Focus & 0x01) << 4) | ((fast_id & 0x01) << 5);
     unsigned char IMPJ_EXT[] = {0x80, 0x02, 0x70, 0x01, 0x03, 0x02, value & 0xFF, 0x00, 0x00, 0x00};
     packet.prefix=0xA7;
     packet.connection = Bluetooth;

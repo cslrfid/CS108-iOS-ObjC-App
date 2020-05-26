@@ -285,17 +285,6 @@
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:tagRead crcErrorRead:(tagRead ? 0 : 1) QTMode:0 tagDelay:(tagRead ? 30 : 0) inventoryMode:(tagRead ? 0 : 1)];
     [[CSLRfidAppEngine sharedAppEngine].reader setLinkProfile:[CSLRfidAppEngine sharedAppEngine].settings.linkProfile];
     
-    //Impinj Extension
-    [[CSLRfidAppEngine sharedAppEngine].reader setImpinjExtension:[CSLRfidAppEngine sharedAppEngine].settings.tagFocus
-                                                           fastId:0
-                                                   blockWriteMode:0];
-    //LNA settings
-    [[CSLRfidAppEngine sharedAppEngine].reader setLNAParameters:[CSLRfidAppEngine sharedAppEngine].reader
-                                                  rflnaHighComp:[CSLRfidAppEngine sharedAppEngine].settings.rfLnaHighComp
-                                                      rflnaGain:[CSLRfidAppEngine sharedAppEngine].settings.rfLna
-                                                      iflnaGain:[CSLRfidAppEngine sharedAppEngine].settings.ifLna
-                                                      ifagcGain:[CSLRfidAppEngine sharedAppEngine].settings.ifAgc];
-    
     //frequency configurations
     if ([CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.isFixed) {
         [[CSLRfidAppEngine sharedAppEngine].reader SetFixedChannel:[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency
@@ -313,6 +302,19 @@
         [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_PTR:([CSLRfidAppEngine sharedAppEngine].settings.multibank2Offset << 16) + [CSLRfidAppEngine sharedAppEngine].settings.multibank1Offset];
         [[CSLRfidAppEngine sharedAppEngine].reader TAGACC_CNT:(tagRead ? [CSLRfidAppEngine sharedAppEngine].settings.multibank1Length : 0) secondBank:(tagRead==2 ? [CSLRfidAppEngine sharedAppEngine].settings.multibank2Length : 0)];
     }
+    
+    NSLog(@"Tag focus value: %d", [CSLRfidAppEngine sharedAppEngine].settings.tagFocus);
+    //Impinj Extension
+    [[CSLRfidAppEngine sharedAppEngine].reader setImpinjExtension:[CSLRfidAppEngine sharedAppEngine].settings.tagFocus
+                                                           fastId:0
+                                                   blockWriteMode:0];
+    //LNA settings
+    [[CSLRfidAppEngine sharedAppEngine].reader setLNAParameters:[CSLRfidAppEngine sharedAppEngine].reader
+                                                  rflnaHighComp:[CSLRfidAppEngine sharedAppEngine].settings.rfLnaHighComp
+                                                      rflnaGain:[CSLRfidAppEngine sharedAppEngine].settings.rfLna
+                                                      iflnaGain:[CSLRfidAppEngine sharedAppEngine].settings.ifLna
+                                                      ifagcGain:[CSLRfidAppEngine sharedAppEngine].settings.ifAgc];
+    
 }
 
 @end
