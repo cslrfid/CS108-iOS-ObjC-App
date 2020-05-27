@@ -1347,8 +1347,12 @@
     
                 
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if ([cmdRespQueue count] !=0)
+        if ([cmdRespQueue count] >= 2 )
         {
+            recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+            if (![[recvPacket getPacketPayloadInHexString] containsString:@"800200"]) {
+                break;
+            }
             recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
             if ([[recvPacket getPacketPayloadInHexString] containsString:@"4003BFFCBFFCBFFC"]) {
                 isAborted=true;
@@ -1357,7 +1361,7 @@
             
         }
         else
-            [NSThread sleepForTimeInterval:0.1f];
+            [NSThread sleepForTimeInterval:0.001f];
     }
     
     if (isAborted) {
