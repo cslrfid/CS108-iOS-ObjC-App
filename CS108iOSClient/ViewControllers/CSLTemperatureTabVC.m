@@ -276,13 +276,13 @@
     [[CSLRfidAppEngine sharedAppEngine].reader selectAlgorithmParameter:DYNAMICQ];
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters0:[CSLRfidAppEngine sharedAppEngine].settings.QValue maximumQ:15 minimumQ:0 ThresholdMultiplier:4];   //0x0903
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters1:5];
-    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters2:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? true : false) RunTillZero:false];     //x0905
+    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters2:true /*hardcoding toggle A/B*/ RunTillZero:false];     //x0905
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:DYNAMICQ MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:0 crcErrorRead:0 QTMode:0 tagDelay:0 inventoryMode:0]; //0x0901
     
     [[CSLRfidAppEngine sharedAppEngine].reader selectAlgorithmParameter:FIXEDQ];
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters0:[CSLRfidAppEngine sharedAppEngine].settings.QValue maximumQ:0 minimumQ:0 ThresholdMultiplier:0];   //0x0903
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters1:5];
-    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters2:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? true : false) RunTillZero:false];     //x0905
+    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters2:true /*hardcoding toggle A/B*/ RunTillZero:false];     //x0905
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:FIXEDQ MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:0 crcErrorRead:0 QTMode:0 tagDelay:0 inventoryMode:0]; //0x0901
     
     [[CSLRfidAppEngine sharedAppEngine].reader setQueryConfigurations:A querySession:S1 querySelect:SL];

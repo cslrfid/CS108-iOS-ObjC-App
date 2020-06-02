@@ -333,6 +333,38 @@
     [tblTagList reloadData];
 }
 
+- (IBAction)btnSaveData:(id)sender {
+    
+    NSString* fileContent = @"TIMESTAMP,EPC,DATA1,DATA2,RSSI\n";
+
+    for (CSLBleTag* tag in [CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer) {
+        
+        //tag read timestamp
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd/MM/YY HH:mm:ss"];
+        NSDate* date=tag.timestamp;
+        NSString *stringFromDate = [dateFormatter stringFromDate:date];
+        
+
+        fileContent=[fileContent stringByAppendingString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@\n", stringFromDate, tag.EPC, tag.DATA1, tag.DATA2, [NSString stringWithFormat:@"%d",tag.rssi]]];
+    }
+    
+    NSArray *objectsToShare = @[fileContent];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+    
+    NSArray *excludeActivities = @[UIActivityTypeAssignToContact,
+                                   UIActivityTypeSaveToCameraRoll,
+                                   UIActivityTypeAddToReadingList,
+                                   UIActivityTypePostToFlickr,
+                                   UIActivityTypePostToVimeo];
+    
+    activityVC.excludedActivityTypes = excludeActivities;
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
+    
+}
+
 - (IBAction)btnSendTagData:(id)sender {
     //check MQTT settings.  Connect to broker and send tag data
     __block BOOL allTagPublishedSuccess=true;

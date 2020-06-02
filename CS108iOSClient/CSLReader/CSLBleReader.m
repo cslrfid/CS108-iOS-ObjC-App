@@ -3187,6 +3187,7 @@
                             [self.readerDelegate didReceiveTagResponsePacket:self tagReceived:tag]; //this will call the method for handling the tag response.
                             
                             NSLog(@"[decodePacketsInBufferAsync] Tag data found: PC=%04X EPC=%@ rssi=%d", tag.PC, tag.EPC, tag.rssi);
+                            tag.timestamp = [NSDate date];
                             rangingTagCount++;
                             
                             @synchronized(filteredBuffer) {
@@ -3280,6 +3281,13 @@
                                 break;
                             }
                         }
+                    }
+                    else if (
+                    ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0780"]) ||
+                    ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0700"])
+                             ) {
+                        NSLog(@"[decodePacketsInBufferAsync] Antenna cycle over");
+                        [rfidPacketBuffer setLength:0];
                     }
                     else {
                         //unknown 8100 rfid packet.  Dropping the data

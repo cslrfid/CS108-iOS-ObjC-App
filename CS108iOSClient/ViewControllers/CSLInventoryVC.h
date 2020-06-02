@@ -30,6 +30,7 @@
 - (IBAction)btnInventoryPressed:(id)sender;
 - (IBAction)btnClearTable:(id)sender;
 - (IBAction)btnSendTagData:(id)sender;
+- (IBAction)btnSaveData:(id)sender;
 
 
 
