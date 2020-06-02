@@ -3061,7 +3061,7 @@
                                 NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
                                 NSUInteger findIndex = [filteredBuffer indexOfObject:tag
                                                                        inSortedRange:searchRange
-                                                                             options:NSBinarySearchingInsertionIndex
+                                                                             options:NSBinarySearchingInsertionIndex | NSBinarySearchingFirstEqual
                                                                      usingComparator:^(id obj1, id obj2)
                                                         {
                                                             NSString* str1=((CSLBleTag*)obj1).EPC;
@@ -3196,7 +3196,7 @@
                                 NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
                                 NSUInteger findIndex = [filteredBuffer indexOfObject:tag
                                                                     inSortedRange:searchRange
-                                                                          options:NSBinarySearchingInsertionIndex
+                                                                          options:NSBinarySearchingInsertionIndex | NSBinarySearchingFirstEqual
                                                                   usingComparator:^(id obj1, id obj2)
                                                                     {
                                                                         NSString* str1=((CSLBleTag*)obj1).EPC;
@@ -3381,7 +3381,7 @@
                             NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
                             NSUInteger findIndex = [filteredBuffer indexOfObject:barcode
                                                                    inSortedRange:searchRange
-                                                                         options:NSBinarySearchingInsertionIndex
+                                                                         options:NSBinarySearchingInsertionIndex | NSBinarySearchingFirstEqual
                                                                  usingComparator:^(id obj1, id obj2)
                                                     {
                                                         NSString* str1=((CSLReaderBarcode*)obj1).barcodeValue;
