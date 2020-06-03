@@ -435,7 +435,7 @@
     //Disable channels
     for (UInt32 i = channelCount; i < 50; i++)
     {
-        if (![self setFrequencyBand:channelCount
+        if (![self setFrequencyBand:i
                      bandState:false
                        multdiv:0
                          pllcc:0])
