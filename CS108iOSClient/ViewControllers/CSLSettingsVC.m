@@ -501,6 +501,20 @@
     
 }
 
+- (IBAction)swTagFocusChanged:(id)sender {
+    if (self.swTagFocus.isOn) {
+        [self.btnSession setTitle:@"S1" forState:UIControlStateNormal];
+        self.btnSession.enabled=false;
+        
+        [self.btnTarget setTitle:@"A" forState:UIControlStateNormal];
+        self.btnTarget.enabled=false;
+    }
+    else {
+        self.btnSession.enabled=true;
+        self.btnTarget.enabled=true;
+    }
+}
+
 - (IBAction)btnFrequencyOrderPressed:(id)sender {
     //do nothing
 }

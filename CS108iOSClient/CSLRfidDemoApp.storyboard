@@ -861,6 +861,9 @@
                                                             <constraint firstAttribute="width" constant="50" id="tc8-Ra-JCT"/>
                                                         </constraints>
                                                         <color key="onTintColor" red="0.0" green="0.68235294117647061" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <connections>
+                                                            <action selector="swTagFocusChanged:" destination="D4r-Hh-STj" eventType="valueChanged" id="V2K-GR-RcY"/>
+                                                        </connections>
                                                     </switch>
                                                 </subviews>
                                             </stackView>

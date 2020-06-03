@@ -53,6 +53,7 @@
 - (IBAction)btnRegionPressed:(id)sender;
 - (IBAction)btnFrequencyChannelPressed:(id)sender;
 - (IBAction)btnFrequencyOrderPressed:(id)sender;
+- (IBAction)swTagFocusChanged:(id)sender;
 
 
 @end

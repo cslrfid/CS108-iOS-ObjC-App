@@ -117,6 +117,10 @@
             //iterate through all the power level
             for (int i=0;i<16;i++) {
                 int dwell=[[CSLRfidAppEngine sharedAppEngine].settings.dwellTime[i] intValue];
+                //enforcing dwell time != 0 when tag focus is enabled
+                if ([CSLRfidAppEngine sharedAppEngine].settings.tagFocus) {
+                    dwell=2000;
+                }
                 [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
                 NSLog(@"Power level %d: %@", i, (i >= [CSLRfidAppEngine sharedAppEngine].settings.numberOfPowerLevel) ? @"OFF" : @"ON");
                 [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:((i >= [CSLRfidAppEngine sharedAppEngine].settings.numberOfPowerLevel) ? FALSE : TRUE)
@@ -138,6 +142,10 @@
         //iterate through all the power level
         for (int i=0;i<4;i++) {
             int dwell=[[CSLRfidAppEngine sharedAppEngine].settings.dwellTime[i] intValue];
+            //enforcing dwell time != 0 when tag focus is enabled
+            if ([CSLRfidAppEngine sharedAppEngine].settings.tagFocus) {
+                dwell=2000;
+            }
             [[CSLRfidAppEngine sharedAppEngine].reader selectAntennaPort:i];
             NSLog(@"Antenna %d: %@", i, [(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.isPortEnabled[i] boolValue] ? @"ON" : @"OFF");
             [[CSLRfidAppEngine sharedAppEngine].reader setAntennaConfig:[(NSNumber*)[CSLRfidAppEngine sharedAppEngine].settings.isPortEnabled[i] boolValue]
@@ -277,12 +285,18 @@
     else
         tagRead=0;
     
+    Byte tagDelay=0;
+    if (![CSLRfidAppEngine sharedAppEngine].settings.tagFocus && tagRead) {
+        tagDelay=30;
+    }
+
+    
     [[CSLRfidAppEngine sharedAppEngine].reader setQueryConfigurations:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? A : [CSLRfidAppEngine sharedAppEngine].settings.target) querySession:[CSLRfidAppEngine sharedAppEngine].settings.session querySelect:ALL];
     [[CSLRfidAppEngine sharedAppEngine].reader selectAlgorithmParameter:[CSLRfidAppEngine sharedAppEngine].settings.algorithm];
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters0:[CSLRfidAppEngine sharedAppEngine].settings.QValue maximumQ:15 minimumQ:0 ThresholdMultiplier:4];
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters1:0];
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters2:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? true : false) RunTillZero:false];
-    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:tagRead crcErrorRead:(tagRead ? 0 : 1) QTMode:0 tagDelay:(tagRead ? 30 : 0) inventoryMode:(tagRead ? 0 : 1)];
+    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:tagRead crcErrorRead:(tagRead ? 0 : 1) QTMode:0 tagDelay:tagDelay inventoryMode:(tagRead ? 0 : 1)];
     [[CSLRfidAppEngine sharedAppEngine].reader setLinkProfile:[CSLRfidAppEngine sharedAppEngine].settings.linkProfile];
     
     //frequency configurations
