@@ -79,6 +79,7 @@ CSLRfidAppEngine * appEngine;
         temperatureSettings = [[CSLTemperatureTagSettings alloc] init];
         [self reloadTemperatureTagSettingsFromUserDefaults];
         readerInfo = [[CSLReaderInfo alloc] init];
+        self.readerRegionFrequency = [[CSLReaderFrequency alloc] init];
     }
     
     return self;
@@ -134,6 +135,20 @@ CSLRfidAppEngine * appEngine;
         settings.dwellTime = (NSMutableArray*)[defaults arrayForKey:@"dwellTime"];
     if([defaults objectForKey:@"isPortEnabled"])
         settings.isPortEnabled = (NSMutableArray*)[defaults arrayForKey:@"isPortEnabled"];
+    if([defaults objectForKey:@"tagFocus"])
+        settings.tagFocus = (Byte)[defaults integerForKey:@"tagFocus"];
+    if([defaults objectForKey:@"rfLnaHighComp"])
+        settings.rfLnaHighComp = (Byte)[defaults integerForKey:@"rfLnaHighComp"];
+    if([defaults objectForKey:@"rfLna"])
+        settings.rfLna = (Byte)[defaults integerForKey:@"rfLna"];
+    if([defaults objectForKey:@"ifLna"])
+        settings.ifLna = (Byte)[defaults integerForKey:@"ifLna"];
+    if([defaults objectForKey:@"ifAgc"])
+        settings.ifAgc = (Byte)[defaults integerForKey:@"ifAgc"];
+    if([defaults objectForKey:@"region"])
+        settings.region = (NSString*)[defaults stringForKey:@"region"];
+    if([defaults objectForKey:@"channel"])
+        settings.channel = (NSString*)[defaults stringForKey:@"channel"];
     
 }
 -(void)saveSettingsToUserDefaults {
@@ -160,6 +175,14 @@ CSLRfidAppEngine * appEngine;
     [defaults setObject:settings.powerLevel forKey:@"powerLevel"];
     [defaults setObject:settings.dwellTime forKey:@"dwellTime"];
     [defaults setObject:settings.isPortEnabled forKey:@"isPortEnabled"];
+    [defaults setInteger:settings.tagFocus forKey:@"tagFocus"];
+    [defaults setInteger:settings.rfLnaHighComp forKey:@"rfLnaHighComp"];
+    [defaults setInteger:settings.rfLna forKey:@"rfLna"];
+    [defaults setInteger:settings.ifLna forKey:@"ifLna"];
+    [defaults setInteger:settings.ifAgc forKey:@"ifAgc"];
+    [defaults setObject:settings.region forKey:@"region"];
+    [defaults setObject:settings.channel forKey:@"channel"];
+    
     [defaults synchronize];
     
 }

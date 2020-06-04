@@ -51,7 +51,7 @@
     
 }
 
-- (BOOL)readOEMData:(CSLBleInterface*)intf atAddr:(unsigned short)addr forData:(NSData*)data
+- (BOOL)readOEMData:(CSLBleInterface*)intf atAddr:(unsigned short)addr forData:(UInt32*)data
 {
     @synchronized(self) {
         if (self.connectStatus!=CONNECTED)
@@ -68,6 +68,8 @@
     
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
     CSLBlePacket * recvPacket;
+    
+    UInt32 OEMData=0;
     
     NSLog(@"----------------------------------------------------------------------");
     NSLog(@"Read OEM data (address: 0x%X)...", addr);
@@ -90,7 +92,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] !=0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
 
     if ([cmdRespQueue count] != 0)
@@ -132,7 +134,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] >= 2)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] >= 2)
@@ -144,27 +146,491 @@
         [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
         return false;
     }
-    
-
-    if (memcmp([recvPacket.payload bytes], OEMHSTCMD, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
-        NSLog(@"Receive HST_CMD 0x03 response: OK");
+        
+    //command-begin
+    recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
+    if (([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] &&
+         [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"]) ||
+        ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] &&
+         [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0000"])
+        ) {
+        NSLog(@"Receive HST_CMD 0x03 command-begin response: OK");
+    }
     else
     {
-        NSLog(@"Receive HST_CMD 0x03 response: FAILED");
+        NSLog(@"Receive HST_CMD 0x03 command-begin response: FAILED");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    //OEM read response
+    if ([recvPacket.payload length] < 50) {
+        NSLog(@"Receive HST_CMD 0x03 response (length check): FAILED");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    if (([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(36, 2)] isEqualToString:@"01"] &&
+         [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(40, 4)] isEqualToString:@"0730"])) {
+
+        OEMData = ((Byte *)[recvPacket.payload bytes])[30] +
+        (((Byte *)[recvPacket.payload bytes])[31] << 8) +
+        (((Byte *)[recvPacket.payload bytes])[32] << 16) +
+        (((Byte *)[recvPacket.payload bytes])[33] << 24);
+        
+        *data = OEMData;
+
+
+    }
+    else
+    {
+        NSLog(@"Receive HST_CMD 0x03 command-begin response: FAILED");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+
+    
+    //command-end
+    //recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
+    if (([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(68, 2)] isEqualToString:@"02"] ||
+         [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(68, 2)] isEqualToString:@"01"]) &&
+        ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(72, 4)] isEqualToString:@"0180"] ||
+         [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(72, 4)] isEqualToString:@"0100"]) &&
+        ((Byte *)[recvPacket.payload bytes])[46] == 0x00 &&
+        ((Byte *)[recvPacket.payload bytes])[47] == 0x00) {
+        self.lastMacErrorCode=(((Byte *)[recvPacket.payload bytes])[15] << 8) + (((Byte *)[recvPacket.payload bytes])[14]);
+        NSLog(@"Receive HST_CMD 0x03 command-end response: OK");
+    }
+    else
+    {
+        NSLog(@"Receive HST_CMD 0x03 command-end response: FAILED");
+        self.lastMacErrorCode=(((Byte *)[recvPacket.payload bytes])[15] << 8) + (((Byte *)[recvPacket.payload bytes])[14]);
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    return true;
+    
+}
+
+- (BOOL)setFrequencyBand:(UInt32)frequencySelector bandState:(BOOL) config multdiv:(UInt32)mult_div pllcc:(UInt32) pll_cc {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    CSLBlePacket * recvPacket;
+    
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Write selector address to register RFTC_FRQCH_SEL 0x0C01");
+    NSLog(@"----------------------------------------------------------------------");
+    
+    unsigned char FRQCH_SEL[] = {0x80, 0x02, 0x70, 0x01, 0x01, 0x0C, frequencySelector & 0xFF, 0x00, 0x00, 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:FRQCH_SEL length:sizeof(FRQCH_SEL)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if([cmdRespQueue count] != 0)
+            break;
+        [NSThread sleepForTimeInterval:0.001f];
+    }
+    
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+        if (memcmp([recvPacket.payload bytes], FRQCH_SEL, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+            NSLog(@"Set FRQCH_SEL: OK");
+        else {
+            NSLog(@"Set FRQCH_SEL: FAILED");
+            connectStatus=CONNECTED;
+            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+            return false;
+        }
+    }
+    else {
+        NSLog(@"Command response failure.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    packet= [[CSLBlePacket alloc] init];
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Write config address to register RFTC_FRQCH_CFG 0x0C02");
+    NSLog(@"----------------------------------------------------------------------");
+    
+    unsigned char FRQCH_CFG[] = {0x80, 0x02, 0x70, 0x01, 0x02, 0x0C, config ? 1 : 0, 0x00, 0x00, 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:FRQCH_CFG length:sizeof(FRQCH_CFG)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if([cmdRespQueue count] != 0)
+            break;
+        [NSThread sleepForTimeInterval:0.001f];
+    }
+    
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+        if (memcmp([recvPacket.payload bytes], FRQCH_CFG, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+            NSLog(@"Set FRQCH_CFG: OK");
+        else {
+            NSLog(@"Set FRQCH_CFG: FAILED");
+            connectStatus=CONNECTED;
+            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+            return false;
+        }
+    }
+    else {
+        NSLog(@"Command response failure.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    if (config) {
+        packet= [[CSLBlePacket alloc] init];
+        NSLog(@"----------------------------------------------------------------------");
+        NSLog(@"Write multdiv address to register RFTC_FRQCH_DESC_PLLDIVMULT 0x0C03");
+        NSLog(@"----------------------------------------------------------------------");
+        
+        unsigned char PLLDIVMULT[] = {0x80, 0x02, 0x70, 0x01, 0x03, 0x0C, mult_div & 0x000000FF, (mult_div & 0x0000FF00) >> 8, (mult_div & 0x00FF0000) >> 16, (mult_div & 0xFF000000) >> 24};
+        packet.prefix=0xA7;
+        packet.connection = Bluetooth;
+        packet.payloadLength=0x0A;
+        packet.deviceId=RFID;
+        packet.Reserve=0x82;
+        packet.direction=Downlink;
+        packet.crc1=0;
+        packet.crc2=0;
+        packet.payload=[NSData dataWithBytes:PLLDIVMULT length:sizeof(PLLDIVMULT)];
+        
+        NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+        [self sendPackets:packet];
+        
+        for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+            if([cmdRespQueue count] != 0)
+                break;
+            [NSThread sleepForTimeInterval:0.001f];
+        }
+        
+        if ([cmdRespQueue count] != 0) {
+            recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+            if (memcmp([recvPacket.payload bytes], PLLDIVMULT, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+                NSLog(@"Set PLLDIVMULT: OK");
+            else {
+                NSLog(@"Set PLLDIVMULT: FAILED");
+                connectStatus=CONNECTED;
+                [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+                return false;
+            }
+        }
+        else {
+            NSLog(@"Command response failure.");
+            connectStatus=CONNECTED;
+            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+            return false;
+        }
+        
+        packet= [[CSLBlePacket alloc] init];
+        NSLog(@"----------------------------------------------------------------------");
+        NSLog(@"Write PLLCC address to register RFTC_FRQCH_DESC_PLLDACCTL 0x0C04");
+        NSLog(@"----------------------------------------------------------------------");
+        
+        unsigned char PLLCC[] = {0x80, 0x02, 0x70, 0x01, 0x04, 0x0C, pll_cc & 0x000000FF, (pll_cc & 0x0000FF00) >> 8, (pll_cc & 0x00FF0000) >> 16, (pll_cc & 0xFF000000) >> 24};
+        packet.prefix=0xA7;
+        packet.connection = Bluetooth;
+        packet.payloadLength=0x0A;
+        packet.deviceId=RFID;
+        packet.Reserve=0x82;
+        packet.direction=Downlink;
+        packet.crc1=0;
+        packet.crc2=0;
+        packet.payload=[NSData dataWithBytes:PLLCC length:sizeof(PLLCC)];
+        
+        NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+        [self sendPackets:packet];
+        
+        for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+            if([cmdRespQueue count] != 0)
+                break;
+            [NSThread sleepForTimeInterval:0.001f];
+        }
+        
+        if ([cmdRespQueue count] != 0) {
+            recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+            if (memcmp([recvPacket.payload bytes], PLLCC, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+                NSLog(@"Set PLLCC: OK");
+            else {
+                NSLog(@"Set PLLCC: FAILED");
+                connectStatus=CONNECTED;
+                [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+                return false;
+            }
+        }
+        else {
+            NSLog(@"Command response failure.");
+            connectStatus=CONNECTED;
+            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+            return false;
+        }
+    }
+    
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    return true;
+
+}
+
+- (BOOL) SetHoppingChannel:(CSLReaderFrequency*) frequencyInfo RegionCode:(NSString*)region {
+    
+    UInt32 channelCount=(UInt32)[(NSArray*)frequencyInfo.FrequencyValues[region] count];
+    
+    //Enable channels
+    for (UInt32 i = 0; i < channelCount; i++)
+    {
+        
+        if (![self setFrequencyBand:i
+                     bandState:true
+                       multdiv:[[((NSArray*)[frequencyInfo.FrequencyValues objectForKey:region]) objectAtIndex:i] unsignedIntValue]
+                         pllcc:[self GetPllcc:region]])
+            return false;
+
+    }
+
+    //Disable channels
+    for (UInt32 i = channelCount; i < 50; i++)
+    {
+        if (![self setFrequencyBand:i
+                     bandState:false
+                       multdiv:0
+                         pllcc:0])
+            return false;
+    }
+    return true;
+}
+
+- (BOOL) SetFixedChannel:(CSLReaderFrequency*) frequencyInfo RegionCode:(NSString*)region channelIndex:(UInt32)index {
+    
+    //get the frequncy value of the selected index
+    int ind=[[((NSArray*)[frequencyInfo.FrequencyIndex objectForKey:region]) objectAtIndex:index] unsignedIntValue];
+    UInt32 frequencyValue=[[((NSArray*)[frequencyInfo.FrequencyValues objectForKey:region]) objectAtIndex:ind] unsignedIntValue];
+    
+    
+    //Enable channel
+    if(![self setFrequencyBand:0
+                 bandState:true
+                   multdiv:frequencyValue
+                     pllcc:[self GetPllcc:region]])
+        return false;
+
+    //Disable channels
+    for (uint i = 1; i < 50; i++)
+    {
+        if(![self setFrequencyBand:i
+                     bandState:false
+                       multdiv:0
+                         pllcc:0])
+            return false;
+    }
+
+    return true;
+}
+
+- (UInt32) GetPllcc:(NSString*) region {
+
+
+     if ([region isEqualToString:@"G800"] ||
+         [region isEqualToString:@"ETSI"] ||
+         [region isEqualToString:@"IN"]) {
+         
+         return 0x14070400;
+     }
+            
+     return 0x14070200;
+}
+         
+- (BOOL)setLNAParameters:(CSLBleInterface*)intf rflnaHighComp:(Byte)rflna_high_comp rflnaGain:(Byte)rflna_gain iflnaGain:(Byte)iflna_gain ifagcGain:(Byte)ifagc_gain
+{
+    @synchronized(self) {
+        if (self.connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+    
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
+    
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    CSLBlePacket * recvPacket;
+    
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Write HST_MBP_ADDR (address: 0x0400)...");
+    NSLog(@"----------------------------------------------------------------------");
+    //Write address 0x0405 for ANA_RX_GAIN_NORM
+    unsigned int addr = 0x0405;
+    unsigned char MBPAddr[] = {0x80, 0x02, 0x70, 0x01, 0x00, 0x04, addr & 0x000000FF, (addr & 0x0000FF00) >> 8, (addr & 0x00FF0000) >> 16, (addr & 0xFF000000) >> 24};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:MBPAddr length:sizeof(MBPAddr)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [intf sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if ([cmdRespQueue count] !=0)
+            break;
+        [NSThread sleepForTimeInterval:0.001f];
+    }
+
+    if ([cmdRespQueue count] != 0)
+        recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
+    else
+    {
+        NSLog(@"Command timed out.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+
+    if (memcmp([recvPacket.payload bytes], MBPAddr, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+        NSLog(@"Set MBP address: OK");
+    else
+    {
+        NSLog(@"Set MBP address: FAILED");
         connectStatus=CONNECTED;
         [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
         return FALSE;
     }
     
-    recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
-    if (((Byte *)[recvPacket.payload bytes])[0] == 0x81 && ((Byte *)[recvPacket.payload bytes])[1] == 0x00)
-    {
-        NSLog(@"Read OEM data: OK");
-        data = recvPacket.payload;
+    packet= [[CSLBlePacket alloc] init];
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Write HST_MBP_DATA (address: 0x0401)...");
+    NSLog(@"----------------------------------------------------------------------");
+    //Write address 0x0405 for ANA_RX_GAIN_NORM
+    unsigned int data = (ifagc_gain & 0x07) | ((iflna_gain & 0x07) << 3) | ((rflna_gain & 0x03) << 6) | ((rflna_high_comp & 0x1) << 8);
+    unsigned char MBPData[] = {0x80, 0x02, 0x70, 0x01, 0x01, 0x04, data & 0x000000FF, (data & 0x0000FF00) >> 8, (data & 0x00FF0000) >> 16, (data & 0xFF000000) >> 24};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:MBPData length:sizeof(MBPData)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [intf sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if ([cmdRespQueue count] !=0)
+            break;
+        [NSThread sleepForTimeInterval:0.001f];
     }
+
+    if ([cmdRespQueue count] != 0)
+        recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
     else
     {
-        NSLog(@"Read OEM data: FAILED");
+        NSLog(@"Command timed out.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+
+    if (memcmp([recvPacket.payload bytes], MBPData, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+        NSLog(@"Set MBP data: OK");
+    else
+    {
+        NSLog(@"Set MBP data: FAILED");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return FALSE;
+    }
+    
+    NSLog(@"Send HST_CMD 0x00000006 to write to tilden register...");
+    //Send HST_CMD
+    unsigned char TILHSTCMD[] = {0x80, 0x02, 0x70, 0x01, 0x0, 0xF0, 0x06, 0x00, 0x00, 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:TILHSTCMD length:sizeof(TILHSTCMD)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [intf sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if ([cmdRespQueue count] >= 2)
+            break;
+        [NSThread sleepForTimeInterval:0.001f];
+    }
+    
+    if ([cmdRespQueue count] >= 1)
+        recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
+    else
+    {
+        NSLog(@"Command timed out.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+
+    if (memcmp([recvPacket.payload bytes], TILHSTCMD, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+        NSLog(@"Receive HST_CMD 0x06 response: OK");
+    else
+    {
+        NSLog(@"Receive HST_CMD 0x06 response: FAILED");
         connectStatus=CONNECTED;
         [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
         return FALSE;
@@ -173,6 +639,74 @@
     connectStatus=CONNECTED;
     [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
     return TRUE;
+}
+
+- (BOOL)setImpinjExtension:(Byte)tag_Focus fastId:(Byte)fast_id blockWriteMode:(Byte)blockwrite_mode  {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    CSLBlePacket * recvPacket;
+    
+    //Set Impinj extension register
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Set Impinj extension register 0x0203");
+    NSLog(@"----------------------------------------------------------------------");
+    
+    unsigned int value=(blockwrite_mode & 0x0F) | ((tag_Focus & 0x01) << 4) | ((fast_id & 0x01) << 5);
+    unsigned char IMPJ_EXT[] = {0x80, 0x02, 0x70, 0x01, 0x03, 0x02, value & 0xFF, 0x00, 0x00, 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:IMPJ_EXT length:sizeof(IMPJ_EXT)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if([cmdRespQueue count] != 0)
+            break;
+        [NSThread sleepForTimeInterval:0.001f];
+    }
+    
+    if ([cmdRespQueue count] != 0) {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+        if (memcmp([recvPacket.payload bytes], IMPJ_EXT, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+            NSLog(@"Set Impinj extension: OK");
+        else {
+            NSLog(@"Set Impinj extension: FAILED");
+            connectStatus=CONNECTED;
+            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+            return false;
+        }
+    }
+    else {
+        NSLog(@"Command response failure.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    return true;
 }
 
 - (BOOL)barcodeReader:(BOOL)enable
@@ -218,7 +752,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     if ([cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -287,7 +821,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] > 1)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     if ([cmdRespQueue count] > 1)
         payloadData = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -365,7 +899,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     if ([cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -450,7 +984,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     if ([cmdRespQueue count] != 0)
         payloadData = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -512,7 +1046,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
        if([cmdRespQueue count] != 0)
            break;
-           [NSThread sleepForTimeInterval:0.1f];
+           [NSThread sleepForTimeInterval:0.001f];
     }
     if ([cmdRespQueue count] != 0)
         versionInfo = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -572,7 +1106,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-            [NSThread sleepForTimeInterval:0.1f];
+            [NSThread sleepForTimeInterval:0.001f];
     }
         
     if ([cmdRespQueue count] != 0) {
@@ -631,7 +1165,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     if ([cmdRespQueue count] != 0) {
         NSData * versionInfo = ((CSLBlePacket *)[cmdRespQueue deqObject]).payload;
@@ -690,7 +1224,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -752,7 +1286,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -813,8 +1347,12 @@
     
                 
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-        if ([cmdRespQueue count] !=0)
+        if ([cmdRespQueue count] >= 2 )
         {
+            recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+            if (![[recvPacket getPacketPayloadInHexString] containsString:@"800200"]) {
+                break;
+            }
             recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
             if ([[recvPacket getPacketPayloadInHexString] containsString:@"4003BFFCBFFCBFFC"]) {
                 isAborted=true;
@@ -823,7 +1361,7 @@
             
         }
         else
-            [NSThread sleepForTimeInterval:0.1f];
+            [NSThread sleepForTimeInterval:0.001f];
     }
     
     if (isAborted) {
@@ -873,7 +1411,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] !=0)
@@ -934,7 +1472,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] !=0)
@@ -1000,7 +1538,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] >= 2)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] >= 2) {
@@ -1073,7 +1611,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1140,7 +1678,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1207,7 +1745,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1274,7 +1812,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1349,7 +1887,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1416,7 +1954,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1488,7 +2026,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1555,7 +2093,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1622,7 +2160,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1688,7 +2226,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1756,7 +2294,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1824,7 +2362,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -1888,7 +2426,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] !=0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0)
@@ -1930,7 +2468,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
         if ([cmdRespQueue count] >= 3) //command response + command begin + command end
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] >= 3)
@@ -2036,7 +2574,7 @@
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
         if([cmdRespQueue count] != 0)
             break;
-        [NSThread sleepForTimeInterval:0.1f];
+        [NSThread sleepForTimeInterval:0.001f];
     }
     
     if ([cmdRespQueue count] != 0) {
@@ -2523,7 +3061,7 @@
                                 NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
                                 NSUInteger findIndex = [filteredBuffer indexOfObject:tag
                                                                        inSortedRange:searchRange
-                                                                             options:NSBinarySearchingInsertionIndex
+                                                                             options:NSBinarySearchingInsertionIndex | NSBinarySearchingFirstEqual
                                                                      usingComparator:^(id obj1, id obj2)
                                                         {
                                                             NSString* str1=((CSLBleTag*)obj1).EPC;
@@ -2649,6 +3187,7 @@
                             [self.readerDelegate didReceiveTagResponsePacket:self tagReceived:tag]; //this will call the method for handling the tag response.
                             
                             NSLog(@"[decodePacketsInBufferAsync] Tag data found: PC=%04X EPC=%@ rssi=%d", tag.PC, tag.EPC, tag.rssi);
+                            tag.timestamp = [NSDate date];
                             rangingTagCount++;
                             
                             @synchronized(filteredBuffer) {
@@ -2658,7 +3197,7 @@
                                 NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
                                 NSUInteger findIndex = [filteredBuffer indexOfObject:tag
                                                                     inSortedRange:searchRange
-                                                                          options:NSBinarySearchingInsertionIndex
+                                                                          options:NSBinarySearchingInsertionIndex | NSBinarySearchingFirstEqual
                                                                   usingComparator:^(id obj1, id obj2)
                                                                     {
                                                                         NSString* str1=((CSLBleTag*)obj1).EPC;
@@ -2742,6 +3281,13 @@
                                 break;
                             }
                         }
+                    }
+                    else if (
+                    ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0780"]) ||
+                    ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0700"])
+                             ) {
+                        NSLog(@"[decodePacketsInBufferAsync] Antenna cycle over");
+                        [rfidPacketBuffer setLength:0];
                     }
                     else {
                         //unknown 8100 rfid packet.  Dropping the data
@@ -2843,7 +3389,7 @@
                             NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
                             NSUInteger findIndex = [filteredBuffer indexOfObject:barcode
                                                                    inSortedRange:searchRange
-                                                                         options:NSBinarySearchingInsertionIndex
+                                                                         options:NSBinarySearchingInsertionIndex | NSBinarySearchingFirstEqual
                                                                  usingComparator:^(id obj1, id obj2)
                                                     {
                                                         NSString* str1=((CSLReaderBarcode*)obj1).barcodeValue;

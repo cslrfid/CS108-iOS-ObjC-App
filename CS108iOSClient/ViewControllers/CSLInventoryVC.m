@@ -34,6 +34,7 @@
 @synthesize lbClear;
 @synthesize lbMode;
 @synthesize uivSendTagData;
+@synthesize lbElapsedTime;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -113,6 +114,9 @@
             lbUniqueTagRate.text = [NSString stringWithFormat: @"%ld", ((long)[CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount)];
             [CSLRfidAppEngine sharedAppEngine].reader.rangingTagCount =0;
             [CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount =0;
+            
+            //incrememt elapse time
+            lbElapsedTime.text = [NSString stringWithFormat: @"%d", [lbElapsedTime.text intValue] + 1];
             
         }
         else if ([CSLRfidAppEngine sharedAppEngine].isBarcodeMode) {
@@ -323,8 +327,42 @@
     //clear UI
     lbTagRate.text=@"0";
     lbTagCount.text=@"0";
+    lbElapsedTime.text=@"0";
+    lbUniqueTagRate.text=@"0";
     [[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer removeAllObjects];
     [tblTagList reloadData];
+}
+
+- (IBAction)btnSaveData:(id)sender {
+    
+    NSString* fileContent = @"TIMESTAMP,EPC,DATA1,DATA2,RSSI\n";
+
+    for (CSLBleTag* tag in [CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer) {
+        
+        //tag read timestamp
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd/MM/YY HH:mm:ss"];
+        NSDate* date=tag.timestamp;
+        NSString *stringFromDate = [dateFormatter stringFromDate:date];
+        
+
+        fileContent=[fileContent stringByAppendingString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@\n", stringFromDate, tag.EPC, tag.DATA1, tag.DATA2, [NSString stringWithFormat:@"%d",tag.rssi]]];
+    }
+    
+    NSArray *objectsToShare = @[fileContent];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+    
+    NSArray *excludeActivities = @[UIActivityTypeAssignToContact,
+                                   UIActivityTypeSaveToCameraRoll,
+                                   UIActivityTypeAddToReadingList,
+                                   UIActivityTypePostToFlickr,
+                                   UIActivityTypePostToVimeo];
+    
+    activityVC.excludedActivityTypes = excludeActivities;
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
+    
 }
 
 - (IBAction)btnSendTagData:(id)sender {

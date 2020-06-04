@@ -22,6 +22,14 @@
 @synthesize swSound;
 @synthesize btnPowerLevel;
 @synthesize btnAntennaSettings;
+@synthesize btnRfLna;
+@synthesize btnIfLna;
+@synthesize btnAgcGain;
+@synthesize swLnaHighComp;
+@synthesize swTagFocus;
+@synthesize btnRegion;
+@synthesize btnFrequencyChannel;
+@synthesize btnFrequencyOrder;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,6 +67,30 @@
     btnAntennaSettings.layer.borderColor=[UIColor lightGrayColor].CGColor;
     btnAntennaSettings.layer.cornerRadius=5.0f;
     
+    btnRfLna.layer.borderWidth=1.0f;
+    btnRfLna.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnRfLna.layer.cornerRadius=5.0f;
+    
+    btnIfLna.layer.borderWidth=1.0f;
+    btnIfLna.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnIfLna.layer.cornerRadius=5.0f;
+    
+    btnAgcGain.layer.borderWidth=1.0f;
+    btnAgcGain.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnAgcGain.layer.cornerRadius=5.0f;
+    
+    btnRegion.layer.borderWidth=1.0f;
+    btnRegion.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnRegion.layer.cornerRadius=5.0f;
+    
+    btnFrequencyChannel.layer.borderWidth=1.0f;
+    btnFrequencyChannel.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnFrequencyChannel.layer.cornerRadius=5.0f;
+    
+    btnFrequencyOrder.layer.borderWidth=1.0f;
+    btnFrequencyOrder.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    btnFrequencyOrder.layer.cornerRadius=5.0f;
+    
     [txtQValue setDelegate:self];
     [txtTagPopulation setDelegate:self];
     [txtPower setDelegate:self];
@@ -70,6 +102,27 @@
         [btnAntennaSettings setHidden:true];
     }
     
+    //pre-populate the region and frequency info
+    int channel=[[CSLRfidAppEngine sharedAppEngine].settings.channel intValue];
+    NSString* region=[CSLRfidAppEngine sharedAppEngine].settings.region;
+    [self.btnRegion setTitle:[CSLRfidAppEngine sharedAppEngine].settings.region forState:UIControlStateNormal];
+    [self.btnFrequencyChannel setTitle:[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.TableOfFrequencies[region][channel]
+                              forState:UIControlStateNormal];
+    if ([CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.isFixed) {
+        [self.btnFrequencyOrder setTitle:@"Fixed" forState:UIControlStateNormal];
+        [self.btnFrequencyChannel setEnabled:true];
+    }
+    else {
+        [self.btnFrequencyOrder setTitle:@"Hopping" forState:UIControlStateNormal];
+        [self.btnFrequencyChannel setEnabled:false];
+    }
+    
+    if ([CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.FreqModFlag) {
+        [self.btnRegion setEnabled:false];
+    }
+    else {
+        [self.btnRegion setEnabled:true];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -129,6 +182,55 @@
             break;
         case MAX_THROUGHPUT :
             [btnLinkProfile setTitle:@"3. Max Throughput" forState:UIControlStateNormal];
+            break;
+    }
+    
+    if ([CSLRfidAppEngine sharedAppEngine].settings.tagFocus)
+        [swTagFocus setOn:true];
+    else
+        [swTagFocus setOn:false];
+    if ([CSLRfidAppEngine sharedAppEngine].settings.rfLnaHighComp)
+        [swLnaHighComp setOn:true];
+    else
+        [swLnaHighComp setOn:false];
+    
+    switch([CSLRfidAppEngine sharedAppEngine].settings.rfLna) {
+        case 0 :
+            [btnRfLna setTitle:@"1 dB" forState:UIControlStateNormal];
+            break;
+        case 2 :
+            [btnRfLna setTitle:@"7 dB" forState:UIControlStateNormal];
+            break;
+        case 3 :
+            [btnRfLna setTitle:@"13 dB" forState:UIControlStateNormal];
+            break;
+    }
+    switch([CSLRfidAppEngine sharedAppEngine].settings.ifLna) {
+        case 0 :
+            [btnIfLna setTitle:@"24 dB" forState:UIControlStateNormal];
+            break;
+        case 1 :
+            [btnIfLna setTitle:@"18 dB" forState:UIControlStateNormal];
+            break;
+        case 3 :
+            [btnIfLna setTitle:@"12 dB" forState:UIControlStateNormal];
+            break;
+        case 7 :
+            [btnIfLna setTitle:@"6 dB" forState:UIControlStateNormal];
+            break;
+    }
+    switch([CSLRfidAppEngine sharedAppEngine].settings.ifAgc) {
+        case 0 :
+            [btnAgcGain setTitle:@"-12 dB" forState:UIControlStateNormal];
+            break;
+        case 4 :
+            [btnAgcGain setTitle:@"-6 dB" forState:UIControlStateNormal];
+            break;
+        case 6 :
+            [btnAgcGain setTitle:@"0 dB" forState:UIControlStateNormal];
+            break;
+        case 7 :
+            [btnAgcGain setTitle:@"6 dB" forState:UIControlStateNormal];
             break;
     }
     
@@ -331,6 +433,51 @@
         [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MAX_THROUGHPUT;
     [CSLRfidAppEngine sharedAppEngine].settings.enableSound=swSound.isOn;
     
+    if (swTagFocus.isOn)
+        [CSLRfidAppEngine sharedAppEngine].settings.tagFocus = 1;
+    else
+        [CSLRfidAppEngine sharedAppEngine].settings.tagFocus = 0;
+    
+    if (swLnaHighComp.isOn)
+        [CSLRfidAppEngine sharedAppEngine].settings.rfLnaHighComp = 1;
+    else
+        [CSLRfidAppEngine sharedAppEngine].settings.rfLnaHighComp = 0;
+    
+    if ([btnRfLna.titleLabel.text compare:@"1 dB"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.rfLna = 0;
+    if ([btnRfLna.titleLabel.text compare:@"7 dB"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.rfLna = 2;
+    if ([btnRfLna.titleLabel.text compare:@"13 dB"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.rfLna = 3;
+    
+    if ([btnIfLna.titleLabel.text compare:@"24 dB"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.ifLna = 0;
+    if ([btnIfLna.titleLabel.text compare:@"18 dB"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.ifLna = 1;
+    if ([btnIfLna.titleLabel.text compare:@"12 dB"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.ifLna = 3;
+    if ([btnIfLna.titleLabel.text compare:@"6 dB"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.ifLna = 7;
+    
+    if ([btnAgcGain.titleLabel.text compare:@"-12 dB"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.ifAgc = 0;
+    if ([btnAgcGain.titleLabel.text compare:@"-6 dB"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.ifAgc = 4;
+    if ([btnAgcGain.titleLabel.text compare:@"0 dB"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.ifAgc = 6;
+    if ([btnAgcGain.titleLabel.text compare:@"6 dB"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.ifAgc = 7;
+    
+    NSString* channel=btnFrequencyChannel.titleLabel.text;
+    NSString* region=btnRegion.titleLabel.text;
+    
+    [CSLRfidAppEngine sharedAppEngine].settings.region=region;
+    for (int i=0;i<[(NSArray*)[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.TableOfFrequencies[region] count];i++) {
+        if ([(NSString*)[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.TableOfFrequencies[region][i] isEqualToString:channel]) {
+            [CSLRfidAppEngine sharedAppEngine].settings.channel=[NSString stringWithFormat:@"%d", i];
+        }
+    }
+    
     [[CSLRfidAppEngine sharedAppEngine] saveSettingsToUserDefaults];
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Settings" message:@"Settings saved." preferredStyle:UIAlertControllerStyleAlert];
@@ -351,6 +498,134 @@
         [[self navigationController] pushViewController:powerLevelVC animated:YES];
     }
     
+    
+}
+
+- (IBAction)swTagFocusChanged:(id)sender {
+    if (self.swTagFocus.isOn) {
+        [self.btnSession setTitle:@"S1" forState:UIControlStateNormal];
+        self.btnSession.enabled=false;
+        
+        [self.btnTarget setTitle:@"A" forState:UIControlStateNormal];
+        self.btnTarget.enabled=false;
+    }
+    else {
+        self.btnSession.enabled=true;
+        self.btnTarget.enabled=true;
+    }
+}
+
+- (IBAction)btnFrequencyOrderPressed:(id)sender {
+    //do nothing
+}
+
+- (IBAction)btnFrequencyChannelPressed:(id)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Channel"
+                                                                   message:@"Please select"
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    for (NSString* channel in [CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.TableOfFrequencies[btnRegion.titleLabel.text]) {
+        UIAlertAction *listItem = [UIAlertAction actionWithTitle:channel style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+        { [self.btnFrequencyChannel setTitle:channel forState:UIControlStateNormal];}];
+        [alert addAction:listItem];
+    }
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]; // cancel
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (IBAction)btnRegionPressed:(id)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Region"
+                                                                   message:@"Please select"
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    for (NSString* region in [CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.RegionList) {
+        UIAlertAction *listItem = [UIAlertAction actionWithTitle:region style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+        { [self.btnRegion setTitle:region forState:UIControlStateNormal];
+            [self.btnFrequencyChannel setTitle:[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.TableOfFrequencies[region][0]
+                                      forState:UIControlStateNormal];  
+        }];
+        [alert addAction:listItem];
+    }
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]; // cancel
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (IBAction)btnAgcGainPressed:(id)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"IF-AGC"
+                                                                   message:@"Please select"
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *dBm12 = [UIAlertAction actionWithTitle:@"-12 dB" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                        { [self.btnAgcGain setTitle:@"-12 dB" forState:UIControlStateNormal]; }]; // -12 dB
+    UIAlertAction *dBm6 = [UIAlertAction actionWithTitle:@"-6 dB" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                        { [self.btnAgcGain setTitle:@"-6 dB" forState:UIControlStateNormal]; }]; // -6 dB
+    UIAlertAction *dB0 = [UIAlertAction actionWithTitle:@"0 dB" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                        { [self.btnAgcGain setTitle:@"0 dB" forState:UIControlStateNormal]; }]; // 0 dB
+    UIAlertAction *dB6 = [UIAlertAction actionWithTitle:@"6 dB" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                        { [self.btnAgcGain setTitle:@"6 dB" forState:UIControlStateNormal]; }]; // 6 dB
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]; // cancel
+    
+    [alert addAction:dBm12];
+    [alert addAction:dBm6];
+    [alert addAction:dB0];
+    [alert addAction:dB6];
+    
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+- (IBAction)btnIfLnaPressed:(id)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"IF-LNA"
+                                                                   message:@"Please select"
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *dB24 = [UIAlertAction actionWithTitle:@"24 dB" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                        { [self.btnIfLna setTitle:@"24 dB" forState:UIControlStateNormal]; }]; // 24 dB
+    UIAlertAction *dB18 = [UIAlertAction actionWithTitle:@"18 dB" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                        { [self.btnIfLna setTitle:@"18 dB" forState:UIControlStateNormal]; }]; // 18 dB
+    UIAlertAction *dB12 = [UIAlertAction actionWithTitle:@"12 dB" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                        { [self.btnIfLna setTitle:@"12 dB" forState:UIControlStateNormal]; }]; // 12 dB
+    UIAlertAction *dB6 = [UIAlertAction actionWithTitle:@"6 dB" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                        { [self.btnIfLna setTitle:@"6 dB" forState:UIControlStateNormal]; }]; // 6 dB
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]; // cancel
+    
+    [alert addAction:dB24];
+    [alert addAction:dB18];
+    [alert addAction:dB12];
+    [alert addAction:dB6];
+    
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+- (IBAction)btnRfLnaPressed:(id)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"RF-LNA"
+                                                                   message:@"Please select"
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *dB1 = [UIAlertAction actionWithTitle:@"1 dB" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                          { [self.btnRfLna setTitle:@"1 dB" forState:UIControlStateNormal]; }]; // 1 dB
+    UIAlertAction *dB7 = [UIAlertAction actionWithTitle:@"7 dB" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                          { [self.btnRfLna setTitle:@"7 dB" forState:UIControlStateNormal]; }]; // 7 dB
+    UIAlertAction *dB13 = [UIAlertAction actionWithTitle:@"13 dB" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                          { [self.btnRfLna setTitle:@"13 dB" forState:UIControlStateNormal]; }]; // 13 dB
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]; // cancel
+    
+    [alert addAction:dB1];
+    [alert addAction:dB7];
+    [alert addAction:dB13];
+    
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
     
 }
 

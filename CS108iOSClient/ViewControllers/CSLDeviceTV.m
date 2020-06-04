@@ -130,21 +130,41 @@
             [CSLRfidAppEngine sharedAppEngine].readerInfo.appVersion=appVersion;
             
              //read OEM data: to be implemented for getting reader regional settings and parameters
-             //NSData* OEMData;
-            //[[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000002 forData:OEMData];
-            /*
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000008 forData:OEMData];
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000008E forData:OEMData];
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000008F forData:OEMData];
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000009D forData:OEMData];
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x000000A3 forData:OEMData];
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x000000A4 forData:OEMData];
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000004 forData:OEMData];
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000005 forData:OEMData];
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000006 forData:OEMData];
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000007 forData:OEMData];
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x000000A5 forData:OEMData];
-             */
+            UInt32 OEMData;
+            
+            //device country code
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000002 forData:&OEMData];
+            [CSLRfidAppEngine sharedAppEngine].readerInfo.countryCode=OEMData;
+            NSLog(@"OEM data address 0x%08X: 0x%08X", 0x02, OEMData);
+            //special country version
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000008E forData:&OEMData];
+            [CSLRfidAppEngine sharedAppEngine].readerInfo.specialCountryVerison=OEMData;
+            NSLog(@"OEM data address 0x%08X: 0x%08X", 0x8E, OEMData);
+            //freqency modification flag
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000008F forData:&OEMData];
+            [CSLRfidAppEngine sharedAppEngine].readerInfo.freqModFlag=OEMData;
+            NSLog(@"OEM data address 0x%08X: 0x%08X", 0x8F, OEMData);
+            //model code
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x000000A4 forData:&OEMData];
+            [CSLRfidAppEngine sharedAppEngine].readerInfo.modelCode=OEMData;
+            NSLog(@"OEM data address 0x%08X: 0x%08X", 0xA4, OEMData);
+            //hopping/fixed frequency
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000009D forData:&OEMData];
+            [CSLRfidAppEngine sharedAppEngine].readerInfo.isFxied=OEMData;
+            NSLog(@"OEM data address 0x%08X: 0x%08X", 0x9D, OEMData);
+
+            [CSLRfidAppEngine sharedAppEngine].readerRegionFrequency = [[CSLReaderFrequency alloc] initWithOEMData:[CSLRfidAppEngine sharedAppEngine].readerInfo.countryCode
+                                                                                             specialCountryVerison:[CSLRfidAppEngine sharedAppEngine].readerInfo.specialCountryVerison
+                                                                                                       FreqModFlag:[CSLRfidAppEngine sharedAppEngine].readerInfo.freqModFlag
+                                                                                                         ModelCode:[CSLRfidAppEngine sharedAppEngine].readerInfo.modelCode
+                                                                                                           isFixed:[CSLRfidAppEngine sharedAppEngine].readerInfo.isFxied];
+
+            if([CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.TableOfFrequencies[[CSLRfidAppEngine sharedAppEngine].settings.region] == nil) {
+                //the region being stored is not valid, reset to default region and frequency channel
+                [CSLRfidAppEngine sharedAppEngine].settings.region=[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.RegionList[0];
+                [CSLRfidAppEngine sharedAppEngine].settings.channel=@"0";
+                [[CSLRfidAppEngine sharedAppEngine] saveSettingsToUserDefaults];
+            }
             
             if ([btFwVersion length]>=5)
             {

@@ -276,13 +276,13 @@
     [[CSLRfidAppEngine sharedAppEngine].reader selectAlgorithmParameter:DYNAMICQ];
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters0:[CSLRfidAppEngine sharedAppEngine].settings.QValue maximumQ:15 minimumQ:0 ThresholdMultiplier:4];   //0x0903
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters1:5];
-    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters2:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? true : false) RunTillZero:false];     //x0905
+    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters2:true /*hardcoding toggle A/B*/ RunTillZero:false];     //x0905
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:DYNAMICQ MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:0 crcErrorRead:0 QTMode:0 tagDelay:0 inventoryMode:0]; //0x0901
     
     [[CSLRfidAppEngine sharedAppEngine].reader selectAlgorithmParameter:FIXEDQ];
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters0:[CSLRfidAppEngine sharedAppEngine].settings.QValue maximumQ:0 minimumQ:0 ThresholdMultiplier:0];   //0x0903
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters1:5];
-    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters2:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? true : false) RunTillZero:false];     //x0905
+    [[CSLRfidAppEngine sharedAppEngine].reader setInventoryAlgorithmParameters2:true /*hardcoding toggle A/B*/ RunTillZero:false];     //x0905
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:FIXEDQ MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:0 crcErrorRead:0 QTMode:0 tagDelay:0 inventoryMode:0]; //0x0901
     
     [[CSLRfidAppEngine sharedAppEngine].reader setQueryConfigurations:A querySession:S1 querySelect:SL];
@@ -322,6 +322,17 @@
     }
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryCycleDelay:0];
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:tagRead crcErrorRead:true QTMode:0 tagDelay:(tagRead ? 30 : 0) inventoryMode:(tagRead ? 0 : 1)];
+    
+    //frequency configurations
+    if ([CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.isFixed) {
+        [[CSLRfidAppEngine sharedAppEngine].reader SetFixedChannel:[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency
+                                                        RegionCode:[CSLRfidAppEngine sharedAppEngine].settings.region
+                                                      channelIndex:[[CSLRfidAppEngine sharedAppEngine].settings.channel intValue]];
+    }
+    else {
+        [[CSLRfidAppEngine sharedAppEngine].reader SetHoppingChannel:[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency
+                                                          RegionCode:[CSLRfidAppEngine sharedAppEngine].settings.region];
+    }
     
     // if multibank read is enabled
     if (tagRead) {
