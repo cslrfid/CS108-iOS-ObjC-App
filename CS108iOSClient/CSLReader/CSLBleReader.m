@@ -2609,7 +2609,7 @@
         [self performSelectorInBackground:@selector(stopInventoryBlocking) withObject:(nil)];
         
         for (int i=0;i<COMMAND_TIMEOUT_3S;i++) {  //receive data or time out in 3 seconds
-            ([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]]);
+            ([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]]);
             if(connectStatus == CONNECTED)
                 break;
         }

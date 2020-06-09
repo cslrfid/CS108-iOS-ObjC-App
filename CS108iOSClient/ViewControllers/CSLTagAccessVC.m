@@ -287,7 +287,7 @@
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
                 if([self.txtEPC.text length] != 0 || [self.txtPC.text length] != 0 || [self.txtTidUid.text length] != 0)
                     break;
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
             }
             if([self.txtEPC.text length] == 0 && [self.swEPC isOn]) {
                 [self.txtEPC setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
@@ -317,7 +317,7 @@
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
                 if([self.txtAccPwd.text length] != 0)
                     break;
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
             }
             if([self.txtAccPwd.text length] == 0 && [self.swAccPwd isOn]) {
                 [self.txtAccPwd setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
@@ -335,7 +335,7 @@
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
                 if([self.txtKillPwd.text length] != 0)
                     break;
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
             }
             if([self.txtKillPwd.text length] == 0 && [self.swKillPwd isOn]) {
                 [self.txtKillPwd setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
@@ -354,7 +354,7 @@
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
                 if([self.txtUser.text length] != 0)
                     break;
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
             }
             if([self.txtUser.text length] == 0 && [self.swUser isOn]) {
                 [self.txtUser setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
@@ -436,7 +436,7 @@
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
                 if(![[self.txtPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
                     break;
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
             }
             //set UI color to red if no tag access reponse returned
             if([[self.txtPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
@@ -455,7 +455,7 @@
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
                 if(![[self.txtEPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
                     break;
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
             }
             //set UI color to red if no tag access reponse returned
             if([[self.txtEPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
@@ -474,7 +474,7 @@
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
                 if(![[self.txtAccPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
                     break;
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
             }
             //set UI color to red if no tag access reponse returned
             if([[self.txtAccPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
@@ -493,7 +493,7 @@
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
                 if(![[self.txtKillPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
                     break;
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
             }
             //set UI color to red if no tag access reponse returned
             if([[self.txtKillPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
@@ -512,7 +512,7 @@
             for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
                 if(![[self.txtUser backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
                     break;
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
             }
             //set UI color to red if no tag access reponse returned
             if([[self.txtUser backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {

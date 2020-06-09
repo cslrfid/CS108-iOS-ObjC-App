@@ -89,7 +89,7 @@
         for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
             if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus == CONNECTED)
                 break;
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
         }
         
         if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus != CONNECTED) {
