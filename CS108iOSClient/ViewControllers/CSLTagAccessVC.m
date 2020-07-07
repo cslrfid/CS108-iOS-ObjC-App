@@ -384,6 +384,8 @@
         BOOL result=true;
         Byte userWordCount = [[[self.btnUserWord titleLabel].text substringFromIndex:5] intValue];
         Byte userOffset = [[[self.btnUserOffset titleLabel].text substringFromIndex:7] intValue];
+        Byte tidWordCount = [[[self.btnTidUidWord titleLabel].text substringFromIndex:5] intValue];
+        Byte tidOffset = [[[self.btnTidUidOffset titleLabel].text substringFromIndex:7] intValue];
         NSString* validationMsg=@"";
         UIAlertController *alert;
         UIAlertAction *ok;
@@ -395,6 +397,8 @@
             validationMsg=[validationMsg stringByAppendingString:@"EPC "];
         if ([self.swUser isOn] && ([[self.txtUser text] length] != (userWordCount * 4) || ([[self.txtUser text] length] == 0)))
             validationMsg=[validationMsg stringByAppendingString:@"USER "];
+        if ([self.swTidUid isOn] && ([[self.txtTidUid text] length] != (tidWordCount * 4) || ([[self.txtTidUid text] length] == 0) || (tidOffset < 2) ))
+            validationMsg=[validationMsg stringByAppendingString:@"TID-UID "];
         if ([self.swAccPwd isOn] && [[self.txtAccPwd text] length] != 8)
             validationMsg=[validationMsg stringByAppendingString:@"AccPWD "];
         if ([self.swKillPwd isOn] && [[self.txtKillPwd text] length] != 8)
@@ -498,6 +502,25 @@
             //set UI color to red if no tag access reponse returned
             if([[self.txtKillPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
                 [self.txtKillPwd setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
+            }
+            //refresh UI
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+        }
+        
+        //write TID (bank2)
+        if ([self.swTidUid isOn]) {
+            bankSelected=TID;
+            memItem=mTID;
+            result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:TID dataOffset:tidOffset dataCount:tidWordCount writeData:[CSLBleReader convertHexStringToData:[self.txtTidUid text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+            
+            for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
+                if(![[self.txtTidUid backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
+                    break;
+                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
+            }
+            //set UI color to red if no tag access reponse returned
+            if([[self.txtTidUid backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
+                [self.txtTidUid setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
             }
             //refresh UI
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
@@ -763,6 +786,15 @@
                     !tag.ACKTimeout &&
                     !tag.CRCError) {
                     [self.txtUser setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
+                }
+            }
+            else if (self->bankSelected == TID && self->memItem == mTID) {
+                if ((tag.AccessError == 0xFF) &&
+                    !tag.CRCError &&
+                    tag.BackScatterError == 0xFF &&
+                    !tag.ACKTimeout &&
+                    !tag.CRCError) {
+                    [self.txtTidUid setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
                 }
             }
         }
