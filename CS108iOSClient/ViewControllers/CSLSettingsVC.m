@@ -27,6 +27,7 @@
 @synthesize btnAgcGain;
 @synthesize swLnaHighComp;
 @synthesize swTagFocus;
+@synthesize swFastId;
 @synthesize btnRegion;
 @synthesize btnFrequencyChannel;
 @synthesize btnFrequencyOrder;
@@ -189,6 +190,10 @@
         [swTagFocus setOn:true];
     else
         [swTagFocus setOn:false];
+    if ([CSLRfidAppEngine sharedAppEngine].settings.FastId)
+        [swFastId setOn:true];
+    else
+        [swFastId setOn:false];
     if ([CSLRfidAppEngine sharedAppEngine].settings.rfLnaHighComp)
         [swLnaHighComp setOn:true];
     else
@@ -437,6 +442,10 @@
         [CSLRfidAppEngine sharedAppEngine].settings.tagFocus = 1;
     else
         [CSLRfidAppEngine sharedAppEngine].settings.tagFocus = 0;
+    if (swFastId.isOn)
+        [CSLRfidAppEngine sharedAppEngine].settings.FastId = 1;
+    else
+        [CSLRfidAppEngine sharedAppEngine].settings.FastId = 0;
     
     if (swLnaHighComp.isOn)
         [CSLRfidAppEngine sharedAppEngine].settings.rfLnaHighComp = 1;
@@ -499,6 +508,9 @@
     }
     
     
+}
+
+- (IBAction)swFastIdChanged:(id)sender {
 }
 
 - (IBAction)swTagFocusChanged:(id)sender {

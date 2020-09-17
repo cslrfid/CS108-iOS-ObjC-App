@@ -137,6 +137,8 @@ CSLRfidAppEngine * appEngine;
         settings.isPortEnabled = (NSMutableArray*)[defaults arrayForKey:@"isPortEnabled"];
     if([defaults objectForKey:@"tagFocus"])
         settings.tagFocus = (Byte)[defaults integerForKey:@"tagFocus"];
+    if([defaults objectForKey:@"FastId"])
+        settings.FastId = (Byte)[defaults integerForKey:@"FastId"];
     if([defaults objectForKey:@"rfLnaHighComp"])
         settings.rfLnaHighComp = (Byte)[defaults integerForKey:@"rfLnaHighComp"];
     if([defaults objectForKey:@"rfLna"])
@@ -176,6 +178,7 @@ CSLRfidAppEngine * appEngine;
     [defaults setObject:settings.dwellTime forKey:@"dwellTime"];
     [defaults setObject:settings.isPortEnabled forKey:@"isPortEnabled"];
     [defaults setInteger:settings.tagFocus forKey:@"tagFocus"];
+    [defaults setInteger:settings.FastId forKey:@"FastId"];
     [defaults setInteger:settings.rfLnaHighComp forKey:@"rfLnaHighComp"];
     [defaults setInteger:settings.rfLna forKey:@"rfLna"];
     [defaults setInteger:settings.ifLna forKey:@"ifLna"];

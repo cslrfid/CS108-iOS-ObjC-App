@@ -36,6 +36,8 @@
 @property (assign) BOOL enableSound;
 ///Impinj Extension - Tag Focus
 @property (assign) Byte tagFocus;
+///Impinj Extension - Fast ID
+@property (assign) Byte FastId;
 ///LNA Settings: RF-LNA High Compression Mode
 @property (assign) Byte rfLnaHighComp;
 ///LNA Settings: RF-LNA
