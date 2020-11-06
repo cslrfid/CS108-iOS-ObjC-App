@@ -81,6 +81,18 @@
         barcodeHexString=[barcodeHexString substringFromIndex:12];      //remove self-prefix
         barcodeHexString=[barcodeHexString substringToIndex:[barcodeHexString length]-14];  //remove self-suffix
     }
+    else if ([[barcodeHexString substringToIndex:12] containsString:@"020007101713"] &&
+        [barcodeHexString containsString:@"050111160304"]) {
+        NSLog(@"Corrupted barcode data returned.  Clearing buffer - %@", barcodeHexString);
+        barcodeHexString=@"";
+        return nil;
+    }
+    else if ([barcodeHexString containsString:@"020007101713"] &&
+        [[barcodeHexString substringFromIndex:[barcodeHexString length]-14] containsString:@"050111160304"]) {
+        NSLog(@"Corrupted barcode data returned.  Clearing buffer - %@", barcodeHexString);
+        barcodeHexString=@"";
+        return nil;
+    }
     else
     {
         NSLog(@"Incomplete barcode data received - %@", barcodeHexString);
