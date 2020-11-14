@@ -1436,6 +1436,69 @@
     return true;
 }
 
+- (BOOL)getSingleBatteryReport  {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED && connectStatus!=TAG_OPERATIONS)  //reader is not idling for downlink command and not performing inventory
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+    }
+    [cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    //CSLBlePacket* recvPacket;
+    
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Get single battery report command...");
+    NSLog(@"----------------------------------------------------------------------");
+    //Send abort command
+    unsigned char getSingleBatteryReport[] = {0xA0, 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x02;
+    packet.deviceId=Notification;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:getSingleBatteryReport length:sizeof(getSingleBatteryReport)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    /*
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if([cmdRespQueue count] != 0)
+            break;
+        [NSThread sleepForTimeInterval:0.001f];
+    }
+    
+    if ([cmdRespQueue count] !=0)
+    {
+        recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
+        if (memcmp([recvPacket.payload bytes], getSingleBatteryReport, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+            NSLog(@"Get single battery report sent: OK");
+        else {
+            NSLog(@"Get single battery report sent: FAILED");
+            connectStatus=CONNECTED;
+            return false;
+        }
+        
+    }
+    else {
+        NSLog(@"Command timed out.");
+        NSLog(@"Get single battery report: FAILED");
+        connectStatus=CONNECTED;
+        return false;
+    }
+     */
+    connectStatus=CONNECTED;
+    return true;
+}
+
 - (BOOL)stopBatteryAutoReporting {
     
     @synchronized(self) {
@@ -1455,16 +1518,16 @@
     NSLog(@"Stop battery auto reporting command...");
     NSLog(@"----------------------------------------------------------------------");
     //Send abort command
-    unsigned char startBattReporting[] = {0xA0, 0x03};
+    unsigned char stopBattReporting[] = {0xA0, 0x03};
     packet.prefix=0xA7;
     packet.connection = Bluetooth;
     packet.payloadLength=0x02;
-    packet.deviceId=RFID;
+    packet.deviceId=Notification;
     packet.Reserve=0x82;
     packet.direction=Downlink;
     packet.crc1=0;
     packet.crc2=0;
-    packet.payload=[NSData dataWithBytes:startBattReporting length:sizeof(startBattReporting)];
+    packet.payload=[NSData dataWithBytes:stopBattReporting length:sizeof(stopBattReporting)];
     
     NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
     [self sendPackets:packet];
@@ -1478,7 +1541,7 @@
     if ([cmdRespQueue count] !=0)
     {
         recvPacket=((CSLBlePacket *)[cmdRespQueue deqObject]);
-        if (memcmp([recvPacket.payload bytes], startBattReporting, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+        if (memcmp([recvPacket.payload bytes], stopBattReporting, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
             NSLog(@"Stop battery auto reporting sent: OK");
         else {
             NSLog(@"Stop battery auto reporting sent: FAILED");
@@ -3355,6 +3418,11 @@
             }
             else if ([eventCode isEqualToString:@"A002"]) {
                 NSLog(@"[decodePacketsInBufferAsync] Battery auto reporting: ON");
+                [rfidPacketBuffer setLength:0];
+                [cmdRespQueue enqObject:packet];
+            }
+            else if ([eventCode isEqualToString:@"A003"]) {
+                NSLog(@"[decodePacketsInBufferAsync] Battery auto reporting: OFF");
                 [rfidPacketBuffer setLength:0];
                 [cmdRespQueue enqObject:packet];
             }

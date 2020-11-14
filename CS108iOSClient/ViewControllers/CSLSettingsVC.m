@@ -31,6 +31,8 @@
 @synthesize btnRegion;
 @synthesize btnFrequencyChannel;
 @synthesize btnFrequencyOrder;
+@synthesize swCustomNotifications;
+@synthesize txtCustomNotifications;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -95,6 +97,7 @@
     [txtQValue setDelegate:self];
     [txtTagPopulation setDelegate:self];
     [txtPower setDelegate:self];
+    [txtCustomNotifications setDelegate:self];
     
     if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS463) {
         [btnAntennaSettings setHidden:false];
@@ -238,6 +241,16 @@
             [btnAgcGain setTitle:@"6 dB" forState:UIControlStateNormal];
             break;
     }
+    
+    if ([CSLRfidAppEngine sharedAppEngine].settings.isCustomBatteryReporting) {
+        [swCustomNotifications setOn:true];
+        [txtCustomNotifications setEnabled:true];
+    }
+    else {
+        [swCustomNotifications setOn:false];
+        [txtCustomNotifications setEnabled:false];
+    }
+
     
 }
 
@@ -438,6 +451,9 @@
         [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MAX_THROUGHPUT;
     [CSLRfidAppEngine sharedAppEngine].settings.enableSound=swSound.isOn;
     
+    [CSLRfidAppEngine sharedAppEngine].settings.isCustomBatteryReporting=swCustomNotifications.isOn;
+    [CSLRfidAppEngine sharedAppEngine].settings.customBatteryReportingInterval=[txtCustomNotifications.text doubleValue];
+    
     if (swTagFocus.isOn)
         [CSLRfidAppEngine sharedAppEngine].settings.tagFocus = 1;
     else
@@ -508,6 +524,28 @@
     }
     
     
+}
+
+- (IBAction)txtCustomNotificationsChanged:(id)sender {
+    NSScanner* scan = [NSScanner scannerWithString:txtCustomNotifications.text];
+    int val;
+    if ([scan scanInt:&val] && [scan isAtEnd] && [txtCustomNotifications.text intValue] >= 5 && [txtCustomNotifications.text intValue] <= 65535)
+    {
+        NSLog(@"Notf interval value entered: OK");
+    }
+    else    //invalid input.  reset to stored configurations
+        txtCustomNotifications.text=[NSString stringWithFormat:@"%d", (int)[CSLRfidAppEngine sharedAppEngine].settings.customBatteryReportingInterval];
+    
+    
+}
+
+- (IBAction)swCustomNotificationsChanged:(id)sender {
+    if (self.swCustomNotifications.isOn) {
+        self.txtCustomNotifications.enabled=true;
+    }
+    else {
+        self.txtCustomNotifications.enabled=false;
+    }
 }
 
 - (IBAction)swFastIdChanged:(id)sender {

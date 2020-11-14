@@ -12,6 +12,7 @@
 @interface CSLInventoryVC ()
 {
     NSTimer * scrRefreshTimer;
+    NSTimer * scrCustomBatteryReporting;
     UISwipeGestureRecognizer* swipeGestureRecognizer;
     UIImageView *tempImageView;
     MQTTCFSocketTransport *transport;
@@ -95,6 +96,14 @@
         }
     }
 }
+
+//Selector for timer event on updating UI
+- (void)triggerCustomBatteryReporting {
+    @autoreleasepool {
+        [[CSLRfidAppEngine sharedAppEngine].reader getSingleBatteryReport];
+    }
+}
+
 
 //Selector for timer event on updating UI
 - (void)refreshTagListing {
@@ -219,6 +228,20 @@
                 [self->uivSendTagData setHidden:true];
     }
     
+    if ([CSLRfidAppEngine sharedAppEngine].settings.isCustomBatteryReporting) {
+        [[CSLRfidAppEngine sharedAppEngine].reader stopBatteryAutoReporting];
+        //timer event on custom battery reporting
+        scrCustomBatteryReporting = [NSTimer scheduledTimerWithTimeInterval:[CSLRfidAppEngine sharedAppEngine].settings.customBatteryReportingInterval
+                                                           target:self
+                                                         selector:@selector(triggerCustomBatteryReporting)
+                                                         userInfo:nil
+                                                          repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:scrCustomBatteryReporting forMode:NSRunLoopCommonModes];
+    }
+    else {
+        [[CSLRfidAppEngine sharedAppEngine].reader startBatteryAutoReporting];
+    }
+    
     // Do any additional setup after loading the view.
     [((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTags];
     [((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
@@ -247,6 +270,10 @@
     
     [scrRefreshTimer invalidate];
     scrRefreshTimer=nil;
+    
+    [scrCustomBatteryReporting invalidate];
+    scrCustomBatteryReporting=nil;
+    [[CSLRfidAppEngine sharedAppEngine].reader startBatteryAutoReporting];
     
     [CSLRfidAppEngine sharedAppEngine].isBarcodeMode=false;
     [self.view removeGestureRecognizer:swipeGestureRecognizer];
@@ -301,6 +328,11 @@
 
         //start inventory
         tagRangingStartTime=[NSDate date];
+        if ([CSLRfidAppEngine sharedAppEngine].settings.isCustomBatteryReporting) {
+            [scrCustomBatteryReporting invalidate];
+            scrCustomBatteryReporting=nil;
+            [[CSLRfidAppEngine sharedAppEngine].reader startBatteryAutoReporting];
+        }
         [[CSLRfidAppEngine sharedAppEngine].reader startInventory];
         [btnInventory setTitle:@"Stop" forState:UIControlStateNormal];
         btnInventory.enabled=true;
@@ -317,6 +349,18 @@
         {
             [btnInventory setTitle:@"Stop" forState:UIControlStateNormal];
             btnInventory.enabled=true;
+        }
+        if ([CSLRfidAppEngine sharedAppEngine].settings.isCustomBatteryReporting) {
+            [scrCustomBatteryReporting invalidate];
+            scrCustomBatteryReporting=nil;
+            [[CSLRfidAppEngine sharedAppEngine].reader stopBatteryAutoReporting];
+            //timer event on custom battery reporting
+            scrCustomBatteryReporting = [NSTimer scheduledTimerWithTimeInterval:[CSLRfidAppEngine sharedAppEngine].settings.customBatteryReportingInterval
+                                                               target:self
+                                                             selector:@selector(triggerCustomBatteryReporting)
+                                                             userInfo:nil
+                                                              repeats:YES];
+            [[NSRunLoop mainRunLoop] addTimer:scrCustomBatteryReporting forMode:NSRunLoopCommonModes];
         }
     }
     

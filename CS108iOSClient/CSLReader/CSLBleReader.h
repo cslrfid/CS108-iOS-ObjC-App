@@ -312,6 +312,11 @@ Once it is started, the delegate will be triggered everytime when a battery leve
  Stop battery level reporting (notification every 5 seconds)
  @return TRUE if the operation is successful
  */
+- (BOOL)getSingleBatteryReport;
+/**
+ Get single battery reporting
+ @return TRUE if the operation is successful
+ */
 - (BOOL)stopBatteryAutoReporting;
 /**
  Obtain RFID module firmware version
