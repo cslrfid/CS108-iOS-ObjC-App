@@ -276,6 +276,7 @@
         
         //read PC+EPC if TID is not needed.  Otherwise, read PC+EPC+TID all in one shot
         if ([self.swEPC isOn] || [self.swPC isOn] || [self.swTidUid isOn]) {
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
             bankSelected=TID;
             if ([self.swTidUid isOn]) {
                 result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:TID dataOffset:tidOffset dataCount:tidWordCount ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
@@ -306,10 +307,12 @@
             }
             //refresh UI
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
         }
 
         //read access password and kill password
         if ([self.swAccPwd isOn]) {
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
             bankSelected=RESERVED;
             memItem=mACCPWD;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:RESERVED dataOffset:2 dataCount:2 ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
@@ -326,8 +329,10 @@
             }
             //refresh UI
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
         }
         if ([self.swKillPwd isOn]) {
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
             bankSelected=RESERVED;
             memItem=mKILLPWD;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:RESERVED dataOffset:0 dataCount:2 ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
@@ -344,10 +349,12 @@
             }
             //refresh UI
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
         }
         
         //read USER
         if ([self.swUser isOn]) {
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
             bankSelected=USER;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryRead:USER dataOffset:userOffset dataCount:userWordCount ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
         
@@ -363,6 +370,7 @@
             }
             //refresh UI
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
         }
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Tag Read" message:@"Completed" preferredStyle:UIAlertControllerStyleAlert];
@@ -433,6 +441,7 @@
         
         //write PC if it is enabled
         if ([self.swPC isOn]) {
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
             bankSelected=EPC;
             memItem=mPC;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:EPC dataOffset:1 dataCount:((UInt32)[self.txtPC text].length / 4) writeData:[CSLBleReader convertHexStringToData:[self.txtPC text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
@@ -448,10 +457,12 @@
             }
             //refresh UI
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
         }
         
         //write EPC if it is enabled
         if ([self.swEPC isOn]) {
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
             bankSelected=EPC;
             memItem=mEPC;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:EPC dataOffset:2 dataCount:((UInt32)[self.txtEPC text].length / 4) writeData:[CSLBleReader convertHexStringToData:[self.txtEPC text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
@@ -467,10 +478,12 @@
             }
             //refresh UI
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
         }
         
         //write access password
         if ([self.swAccPwd isOn]) {
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
             bankSelected=RESERVED;
             memItem=mACCPWD;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:RESERVED dataOffset:2 dataCount:2 writeData:[CSLBleReader convertHexStringToData:[self.txtAccPwd text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
@@ -486,10 +499,12 @@
             }
             //refresh UI
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
         }
         
         //write kill password
         if ([self.swKillPwd isOn]) {
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
             bankSelected=RESERVED;
             memItem=mKILLPWD;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:RESERVED dataOffset:0 dataCount:2 writeData:[CSLBleReader convertHexStringToData:[self.txtKillPwd text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
@@ -505,10 +520,12 @@
             }
             //refresh UI
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
         }
         
         //write TID (bank2)
         if ([self.swTidUid isOn]) {
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
             bankSelected=TID;
             memItem=mTID;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:TID dataOffset:tidOffset dataCount:tidWordCount writeData:[CSLBleReader convertHexStringToData:[self.txtTidUid text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
@@ -524,10 +541,12 @@
             }
             //refresh UI
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
         }
         
         //write USER
         if ([self.swUser isOn]) {
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
             bankSelected=USER;
             memItem=mUSER;
             result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryWrite:USER dataOffset:userOffset dataCount:userWordCount writeData:[CSLBleReader convertHexStringToData:[self.txtUser text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
@@ -543,6 +562,7 @@
             }
             //refresh UI
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
         }
         
         alert = [UIAlertController alertControllerWithTitle:@"Tag Write" message:@"Completed" preferredStyle:UIAlertControllerStyleAlert];

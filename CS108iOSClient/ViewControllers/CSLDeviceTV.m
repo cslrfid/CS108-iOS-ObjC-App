@@ -177,7 +177,9 @@
                     [[CSLRfidAppEngine sharedAppEngine].reader startBatteryAutoReporting];
                 }
             }
-
+            
+            //set low power mode
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
             
             [self->actSpinner stopAnimating];
         }

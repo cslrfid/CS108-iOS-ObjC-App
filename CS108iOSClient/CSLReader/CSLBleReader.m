@@ -2725,6 +2725,174 @@
 
 }
 
+- (BOOL)setPowerMode:(BOOL)isLowPowerMode
+{
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [cmdRespQueue removeAllObjects];
+    
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    CSLBlePacket * recvPacket;
+    
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Set HST_PWRMGMT addr:0x0200");
+    NSLog(@"----------------------------------------------------------------------");
+    //read OEM Address
+    unsigned char HST_PWRMGMT[] = {0x80, 0x02, 0x70, 0x01, 0x00, 0x02, isLowPowerMode ? 0x01 : 0x00, 0x00, 0x00, 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:HST_PWRMGMT length:sizeof(HST_PWRMGMT)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if ([cmdRespQueue count] !=0)
+            break;
+        [NSThread sleepForTimeInterval:0.001f];
+    }
+    
+    if ([cmdRespQueue count] != 0)
+        recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
+    else
+    {
+        NSLog(@"Command timed out.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    if (memcmp([recvPacket.payload bytes], HST_PWRMGMT, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+        NSLog(@"Set HST_PWRMGMT: OK");
+    else
+    {
+        NSLog(@"Set HST_PWRMGMT: FAILED");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return FALSE;
+    }
+    
+    NSLog(@"Send HST_CMD 0x00000014 to set power mode...");
+    //Send HST_CMD
+    unsigned char PWRMGMTHSTCMD[] = {0x80, 0x02, 0x70, 0x01, 0x0, 0xF0, 0x14, 0x00, 0x00, 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:PWRMGMTHSTCMD length:sizeof(PWRMGMTHSTCMD)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if ([cmdRespQueue count] >= 2) //command response + command begin + command end
+            break;
+        [NSThread sleepForTimeInterval:0.001f];
+    }
+    
+    if ([cmdRespQueue count] >= 2)
+        recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
+    else
+    {
+        NSLog(@"Command timed out.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    if (memcmp([recvPacket.payload bytes], PWRMGMTHSTCMD, 2) == 0 && ((Byte *)[recvPacket.payload bytes])[2] == 0x00)
+        NSLog(@"Receive HST_PWRMGMT 0x14 response: OK");
+    else
+    {
+        NSLog(@"Receive HST_PWRMGMT 0x14 response: FAILED");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return FALSE;
+    }
+    
+    //command-begin
+    recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
+    if (([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"]) ||
+        ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] && [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0000"])
+        ) {
+        self.lastMacErrorCode=0x0000;
+        NSLog(@"Receive HST_CMD 0x14 command-begin response: OK");
+    }
+    else
+    {
+        NSLog(@"Receive HST_CMD 0x14 command-begin response: FAILED");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return FALSE;
+    }
+    
+    if ([recvPacket.payload length] > 18)
+    {
+        NSMutableData* data = [recvPacket.payload mutableCopy];
+        [data replaceBytesInRange:NSMakeRange(2, 16) withBytes:NULL length:0];
+        recvPacket.payload=data;
+        
+    }
+    else
+    {
+        for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+            if ([cmdRespQueue count] !=0)
+                break;
+            [NSThread sleepForTimeInterval:0.001f];
+        }
+        
+        if ([cmdRespQueue count] != 0)
+            recvPacket = ((CSLBlePacket *)[cmdRespQueue deqObject]);
+        else
+        {
+            NSLog(@"Command timed out.");
+            connectStatus=CONNECTED;
+            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+            return false;
+        }
+    }
+    
+    //command-end
+    if (([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] || [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"]) &&
+        ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0180"] || [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0100"]) &&
+        ((Byte *)[recvPacket.payload bytes])[14] == 0x00 &&
+        ((Byte *)[recvPacket.payload bytes])[15] == 0x00) {
+        self.lastMacErrorCode=(((Byte *)[recvPacket.payload bytes])[15] << 8) + (((Byte *)[recvPacket.payload bytes])[14]);
+        NSLog(@"Receive HST_CMD 0x14 command-end response: OK");
+    }
+    else
+    {
+        NSLog(@"Receive HST_CMD 0x19 command-end response: FAILED");
+        self.lastMacErrorCode=(((Byte *)[recvPacket.payload bytes])[15] << 8) + (((Byte *)[recvPacket.payload bytes])[14]);
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return FALSE;
+    }
+    
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    return TRUE;
+}
+
 - (void)decodePacketsInBufferAsync;
 {
     CSLBlePacket* packet;

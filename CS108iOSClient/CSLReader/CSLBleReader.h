@@ -464,6 +464,12 @@ Select which set of algorithm parameter registers to access.
  */
 - (BOOL)stopInventory;
 /**
+ Set power mode of the device
+ @param isLowPowerMode Normal Mode = 0, low power standby mode = 1
+ @return TRUE if the operation is successful
+ */
+- (BOOL)setPowerMode:(BOOL)isLowPowerMode;
+/**
  Start the data packet decoding routine, where a selector will be running on a background thread and decode the received packet if commands were being sent out previously.  Results will be returned to the recvQueue (for asynchornous commands)  and to cmdRespQueue (for synchronous commands)
  */
 - (void)decodePacketsInBufferAsync;

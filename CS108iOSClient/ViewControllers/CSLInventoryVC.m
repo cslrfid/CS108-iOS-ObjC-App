@@ -333,6 +333,7 @@
             scrCustomBatteryReporting=nil;
             [[CSLRfidAppEngine sharedAppEngine].reader startBatteryAutoReporting];
         }
+        [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
         [[CSLRfidAppEngine sharedAppEngine].reader startInventory];
         [btnInventory setTitle:@"Stop" forState:UIControlStateNormal];
         btnInventory.enabled=true;
@@ -344,6 +345,7 @@
         {
             [btnInventory setTitle:@"Start" forState:UIControlStateNormal];
             btnInventory.enabled=true;
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
         }
         else
         {
