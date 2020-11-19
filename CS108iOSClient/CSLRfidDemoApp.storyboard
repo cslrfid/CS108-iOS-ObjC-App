@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uy9-1K-dab">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uy9-1K-dab">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -57,7 +56,7 @@
                                                         <rect key="frame" x="8" y="8" width="152" height="115"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Read Sensors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huf-M0-haL">
-                                                                <rect key="frame" x="22.5" y="85" width="107" height="22"/>
+                                                                <rect key="frame" x="25.5" y="86" width="101.5" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="huf-M0-haL" secondAttribute="height" multiplier="97:20" id="QR7-iW-mzg"/>
                                                                 </constraints>
@@ -66,7 +65,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4b-VQ-L5K" userLabel="Read Temperature">
-                                                                <rect key="frame" x="39.5" y="11" width="73" height="73.5"/>
+                                                                <rect key="frame" x="38.5" y="11" width="75" height="74.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="v4b-VQ-L5K" secondAttribute="height" multiplier="1:1" id="tO8-km-qMT"/>
                                                                 </constraints>
@@ -101,7 +100,7 @@
                                                         <rect key="frame" x="8" y="8" width="144" height="115"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inventory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9u-vK-5Ya" userLabel="Inventory">
-                                                                <rect key="frame" x="37" y="87" width="70.5" height="20"/>
+                                                                <rect key="frame" x="35" y="86.5" width="74.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -112,7 +111,7 @@
                                                                     <constraint firstAttribute="width" secondItem="OVN-EW-9iv" secondAttribute="height" multiplier="1:1" id="ZjB-4f-V1i"/>
                                                                 </constraints>
                                                                 <state key="normal" image="Inventory">
-                                                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="btnInventoryPressed:" destination="fVS-GJ-XIB" eventType="touchUpInside" id="bnw-Ob-cnG"/>
@@ -418,7 +417,6 @@
                                 <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="bQ7-37-eQw"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4T3-Qs-EDw" firstAttribute="centerX" secondItem="9GR-iC-bpe" secondAttribute="centerX" id="6QV-dv-1r9"/>
@@ -432,6 +430,7 @@
                             <constraint firstItem="4T3-Qs-EDw" firstAttribute="centerY" secondItem="9GR-iC-bpe" secondAttribute="centerY" id="k3X-4o-oei"/>
                             <constraint firstItem="Uid-YZ-2hb" firstAttribute="top" secondItem="bQ7-37-eQw" secondAttribute="top" id="uxa-rN-v1o"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="bQ7-37-eQw"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="RVF-uS-j3F">
                         <barButtonItem key="rightBarButtonItem" title="About" id="gBr-iU-lFF">
@@ -468,13 +467,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EPC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MoO-FG-klp" userLabel="EPC">
-                                                <rect key="frame" x="0.0" y="0.0" width="34" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="32" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDx-ql-S6S" userLabel="EPC Text">
-                                                <rect key="frame" x="39" y="0.0" width="271" height="20.5"/>
+                                                <rect key="frame" x="37" y="0.0" width="273" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -501,7 +500,7 @@
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaP-TP-hj6" userLabel="Start ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaP-TP-hj6" userLabel="Start ">
                                         <rect key="frame" x="0.0" y="465" width="310" height="30"/>
                                         <color key="backgroundColor" red="0.29411764705882354" green="0.46666666666666667" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -522,7 +521,6 @@
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="Zg4-Ym-14B"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Zg4-Ym-14B" firstAttribute="bottom" secondItem="TXi-8X-gJt" secondAttribute="bottom" constant="4" id="4j5-FO-Z8j"/>
@@ -532,6 +530,7 @@
                             <constraint firstAttribute="trailing" secondItem="TXi-8X-gJt" secondAttribute="trailing" constant="5" id="bNN-m2-7M2"/>
                             <constraint firstItem="TXi-8X-gJt" firstAttribute="leading" secondItem="kuj-AL-YiZ" secondAttribute="leading" constant="5" id="zlJ-2i-Ple"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="Zg4-Ym-14B"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Find your Item" image="Search-icon" landscapeImage="Search-icon" largeContentSizeImage="Search-icon" id="txS-lV-5CQ"/>
                     <connections>
@@ -552,7 +551,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="4wQ-5s-Yjz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="SKt-Ko-cfU">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
@@ -583,7 +582,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="2ci-gg-415">
-                                        <rect key="frame" x="8" y="3" width="304" height="875"/>
+                                        <rect key="frame" x="8" y="3" width="304" height="792"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XAI-4l-0sl" userLabel="Region">
                                                 <rect key="frame" x="0.0" y="0.0" width="304" height="30"/>
@@ -594,14 +593,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1oE-K2-Ja7">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1oE-K2-Ja7">
                                                         <rect key="frame" x="154" y="0.0" width="150" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="150" id="r5e-Av-Hpb"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                         <state key="normal" title="FCC">
-                                                            <color key="titleColor" systemColor="darkTextColor"/>
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="btnRegionPressed:" destination="D4r-Hh-STj" eventType="touchUpInside" id="mrY-Oa-MLp"/>
@@ -618,14 +617,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azz-tG-Vno">
+                                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azz-tG-Vno">
                                                         <rect key="frame" x="154" y="0.0" width="150" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="150" id="tuj-CD-kgP"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                         <state key="normal" title="Hopping">
-                                                            <color key="titleColor" systemColor="darkTextColor"/>
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="btnFrequencyOrderPressed:" destination="D4r-Hh-STj" eventType="touchUpInside" id="6k0-CG-xlb"/>
@@ -642,14 +641,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zij-v6-riN">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zij-v6-riN">
                                                         <rect key="frame" x="154" y="0.0" width="150" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="150" id="wpn-1g-KiO"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                         <state key="normal" title="-">
-                                                            <color key="titleColor" systemColor="darkTextColor"/>
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="btnFrequencyChannelPressed:" destination="D4r-Hh-STj" eventType="touchUpInside" id="Et7-D6-LXP"/>
@@ -742,14 +741,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rE-fh-szq">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rE-fh-szq">
                                                         <rect key="frame" x="104" y="0.0" width="200" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="200" id="pMG-Vr-s6v"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                         <state key="normal" title="A">
-                                                            <color key="titleColor" systemColor="darkTextColor"/>
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="btnTargetPressed:" destination="D4r-Hh-STj" eventType="touchUpInside" id="Va2-yb-W1V"/>
@@ -766,14 +765,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Al8-UR-NAN">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Al8-UR-NAN">
                                                         <rect key="frame" x="104" y="0.0" width="200" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="200" id="D9K-hg-lRd"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                         <state key="normal" title="S0">
-                                                            <color key="titleColor" systemColor="darkTextColor"/>
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="btnSessionPressed:" destination="D4r-Hh-STj" eventType="touchUpInside" id="L6f-nz-quG"/>
@@ -790,14 +789,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOF-yf-zif">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOF-yf-zif">
                                                         <rect key="frame" x="104" y="0.0" width="200" height="36"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="200" id="aVT-0C-fur"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                         <state key="normal" title="DynamicQ">
-                                                            <color key="titleColor" systemColor="darkTextColor"/>
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="btnAlgorithmPressed:" destination="D4r-Hh-STj" eventType="touchUpInside" id="sme-iV-odz"/>
@@ -814,14 +813,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYb-uQ-pYe">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYb-uQ-pYe">
                                                         <rect key="frame" x="104" y="0.0" width="200" height="27"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="200" id="42d-Dk-y0m" userLabel="width = 300"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                         <state key="normal" title="2. Range/Throughput/Dense Reader">
-                                                            <color key="titleColor" systemColor="darkTextColor"/>
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="btnLinkProfilePressed:" destination="D4r-Hh-STj" eventType="touchUpInside" id="DeH-ur-GDk"/>
@@ -843,52 +842,12 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="50" id="MhX-Sk-7Zr"/>
                                                         </constraints>
-                                                        <color key="onTintColor" red="0.0" green="0.71371340750000001" blue="0.99704176190000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="onTintColor" red="0.0" green="0.68235294117647061" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </switch>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BOR-hu-hvp">
-                                                <rect key="frame" x="0.0" y="447" width="304" height="31"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom Battery Reporting:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaW-iw-Vaf">
-                                                        <rect key="frame" x="0.0" y="0.0" width="255" height="31"/>
-                                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="elA-XJ-dfD">
-                                                        <rect key="frame" x="255" y="0.0" width="51" height="31"/>
-                                                        <color key="onTintColor" red="0.0" green="0.71371340750000001" blue="0.99704176190000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <connections>
-                                                            <action selector="swCustomNotificationsChanged:" destination="D4r-Hh-STj" eventType="valueChanged" id="GZg-gZ-yPR"/>
-                                                        </connections>
-                                                    </switch>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNq-3Q-T8q">
-                                                <rect key="frame" x="0.0" y="487" width="304" height="34"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interval (s):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRV-Xe-Fnn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="154" height="34"/>
-                                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wsJ-be-gro">
-                                                        <rect key="frame" x="154" y="0.0" width="150" height="34"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="150" id="lPV-H8-tGN"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                        <connections>
-                                                            <action selector="txtCustomNotificationsChanged:" destination="D4r-Hh-STj" eventType="editingDidEnd" id="Gyo-Qh-AJt"/>
-                                                        </connections>
-                                                    </textField>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1kP-M6-fWy">
-                                                <rect key="frame" x="0.0" y="530" width="304" height="31"/>
+                                                <rect key="frame" x="0.0" y="447" width="304" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag Focus (Impinj Extension)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lA-Gx-0m3">
                                                         <rect key="frame" x="0.0" y="0.0" width="254" height="31"/>
@@ -909,7 +868,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7cR-4F-e4Y">
-                                                <rect key="frame" x="0.0" y="570" width="304" height="31"/>
+                                                <rect key="frame" x="0.0" y="487" width="304" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fast ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6d-91-JcE">
                                                         <rect key="frame" x="0.0" y="0.0" width="255" height="31"/>
@@ -927,7 +886,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ld-6M-ESq">
-                                                <rect key="frame" x="0.0" y="610" width="304" height="31"/>
+                                                <rect key="frame" x="0.0" y="527" width="304" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LNA High Compression Mode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVz-rP-C47">
                                                         <rect key="frame" x="0.0" y="0.0" width="254" height="31"/>
@@ -945,7 +904,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="hQf-BD-xv8">
-                                                <rect key="frame" x="0.0" y="650" width="304" height="30"/>
+                                                <rect key="frame" x="0.0" y="567" width="304" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="RF-LNA: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8X-nk-TWB">
                                                         <rect key="frame" x="0.0" y="0.0" width="104" height="30"/>
@@ -953,14 +912,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRs-V0-HWY">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRs-V0-HWY">
                                                         <rect key="frame" x="104" y="0.0" width="200" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="200" id="A18-zr-IPO"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                         <state key="normal" title="1 dB">
-                                                            <color key="titleColor" systemColor="darkTextColor"/>
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="btnRfLnaPressed:" destination="D4r-Hh-STj" eventType="touchUpInside" id="wvP-VH-CKr"/>
@@ -969,7 +928,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Uf-B3-IZM">
-                                                <rect key="frame" x="0.0" y="689" width="304" height="30"/>
+                                                <rect key="frame" x="0.0" y="606" width="304" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IF-LNA: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3g-2Q-BvJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="104" height="30"/>
@@ -977,14 +936,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BgK-Op-nkU">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BgK-Op-nkU">
                                                         <rect key="frame" x="104" y="0.0" width="200" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="200" id="tbA-kr-hUT"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                         <state key="normal" title="24 dB">
-                                                            <color key="titleColor" systemColor="darkTextColor"/>
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="btnIfLnaPressed:" destination="D4r-Hh-STj" eventType="touchUpInside" id="o0A-sw-ErE"/>
@@ -993,7 +952,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="28A-UB-07l">
-                                                <rect key="frame" x="0.0" y="728" width="304" height="30"/>
+                                                <rect key="frame" x="0.0" y="645" width="304" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AGC Gain: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUU-uq-7XV">
                                                         <rect key="frame" x="0.0" y="0.0" width="104" height="30"/>
@@ -1001,14 +960,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JpC-Eh-vSg">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JpC-Eh-vSg">
                                                         <rect key="frame" x="104" y="0.0" width="200" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="200" id="uyK-rD-a4R"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                         <state key="normal" title="-6 dB">
-                                                            <color key="titleColor" systemColor="darkTextColor"/>
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="btnAgcGainPressed:" destination="D4r-Hh-STj" eventType="touchUpInside" id="idR-5j-fmv"/>
@@ -1017,9 +976,9 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0a-La-EeK">
-                                                <rect key="frame" x="0.0" y="767" width="304" height="30"/>
+                                                <rect key="frame" x="0.0" y="684" width="304" height="30"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZn-Dt-0mq">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZn-Dt-0mq">
                                                         <rect key="frame" x="0.0" y="0.0" width="304" height="30"/>
                                                         <color key="backgroundColor" red="0.29411764709999999" green="0.46666666670000001" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -1035,9 +994,9 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tAW-bh-UF6">
-                                                <rect key="frame" x="0.0" y="806" width="304" height="30"/>
+                                                <rect key="frame" x="0.0" y="723" width="304" height="30"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vm0-tP-Uy9">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vm0-tP-Uy9">
                                                         <rect key="frame" x="0.0" y="0.0" width="304" height="30"/>
                                                         <color key="backgroundColor" red="0.29411764705882354" green="0.46666666666666667" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -1053,9 +1012,9 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nur-3L-wde" userLabel="Save Config">
-                                                <rect key="frame" x="0.0" y="845" width="304" height="30"/>
+                                                <rect key="frame" x="0.0" y="762" width="304" height="30"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GrJ-gh-Nj9">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GrJ-gh-Nj9">
                                                         <rect key="frame" x="0.0" y="0.0" width="304" height="30"/>
                                                         <color key="backgroundColor" red="0.29411764705882354" green="0.46666666666666667" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -1082,7 +1041,6 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="XrQ-IT-Qq4"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="r3a-cK-MCh" firstAttribute="top" secondItem="XrQ-IT-Qq4" secondAttribute="top" id="3FL-uE-tYF"/>
@@ -1090,6 +1048,7 @@
                             <constraint firstItem="r3a-cK-MCh" firstAttribute="trailing" secondItem="XrQ-IT-Qq4" secondAttribute="trailing" id="fAc-4a-Ou1"/>
                             <constraint firstItem="r3a-cK-MCh" firstAttribute="leading" secondItem="XrQ-IT-Qq4" secondAttribute="leading" id="lFr-Yw-dWZ"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="XrQ-IT-Qq4"/>
                     </view>
                     <navigationItem key="navigationItem" id="Qho-w1-lfN"/>
                     <connections>
@@ -1107,12 +1066,10 @@
                         <outlet property="btnSaveConfig" destination="GrJ-gh-Nj9" id="c88-pH-vL2"/>
                         <outlet property="btnSession" destination="Al8-UR-NAN" id="Ex3-zm-pnO"/>
                         <outlet property="btnTarget" destination="8rE-fh-szq" id="PZE-GQ-s32"/>
-                        <outlet property="swCustomNotifications" destination="elA-XJ-dfD" id="S8y-mv-1wW"/>
                         <outlet property="swFastId" destination="aHL-7Y-b8t" id="YDF-va-Kgj"/>
                         <outlet property="swLnaHighComp" destination="AtX-DC-pBB" id="Q8h-KF-4ne"/>
                         <outlet property="swSound" destination="EWm-49-5td" id="Yia-IQ-48D"/>
                         <outlet property="swTagFocus" destination="3B7-6h-zxn" id="Tkc-uJ-dGf"/>
-                        <outlet property="txtCustomNotifications" destination="wsJ-be-gro" id="0qp-zu-vZu"/>
                         <outlet property="txtPower" destination="d5y-O8-4jJ" id="2wG-LG-eKl"/>
                         <outlet property="txtQValue" destination="67m-KF-yjA" id="m52-kq-NwV"/>
                         <outlet property="txtTagPopulation" destination="4ea-G0-hCn" id="Mce-wl-e4M"/>
@@ -1315,7 +1272,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yKh-8G-Gpx">
                                         <rect key="frame" x="0.0" y="398" width="310" height="32"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXi-Ax-BIt">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXi-Ax-BIt">
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="32"/>
                                                 <color key="backgroundColor" red="0.29411764705882354" green="0.46666666666666667" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
@@ -1330,13 +1287,13 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="a98-eF-o16"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="bWT-FV-gqc" firstAttribute="leading" secondItem="a98-eF-o16" secondAttribute="leading" constant="5" id="SEV-xv-xJR"/>
                             <constraint firstItem="a98-eF-o16" firstAttribute="trailing" secondItem="bWT-FV-gqc" secondAttribute="trailing" constant="5" id="mwC-Z7-PTZ"/>
                             <constraint firstItem="bWT-FV-gqc" firstAttribute="top" secondItem="a98-eF-o16" secondAttribute="top" constant="20" id="xEs-KA-fqa"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="a98-eF-o16"/>
                     </view>
                     <connections>
                         <outlet property="btnSave" destination="RXi-Ax-BIt" id="obJ-Tz-FXO"/>
@@ -1377,7 +1334,7 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZL8-Cc-yta" userLabel="Tag Count Result">
                                                                 <rect key="frame" x="5" y="50" width="96.5" height="50"/>
-                                                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                                 <fontDescription key="fontDescription" name="Digital-7Mono" family="Digital-7 Mono" pointSize="30"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1408,7 +1365,7 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvw-l1-c1p" userLabel="Tag Rate Result">
                                                                 <rect key="frame" x="5" y="50" width="97" height="50"/>
-                                                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                                 <fontDescription key="fontDescription" name="Digital-7Mono" family="Digital-7 Mono" pointSize="30"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1439,7 +1396,7 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owy-fP-hkz" userLabel="Unique Tag Rate Result">
                                                                 <rect key="frame" x="5" y="50" width="96.5" height="50"/>
-                                                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="dpW-Z9-lNk"/>
                                                                 </constraints>
@@ -1448,7 +1405,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Tags (t/s)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gb-ol-8OR">
-                                                                <rect key="frame" x="9" y="8" width="95" height="32"/>
+                                                                <rect key="frame" x="9" y="8" width="91.5" height="32"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1480,7 +1437,7 @@
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="JYT-nT-n1P">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="284"/>
-                                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             </tableView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1498,13 +1455,13 @@
                                                 <rect key="frame" x="8" y="0.0" width="304" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Elapsed: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dmn-Q7-3fA">
-                                                        <rect key="frame" x="0.0" y="0.0" width="99.5" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5X-mj-m0w">
-                                                        <rect key="frame" x="99.5" y="0.0" width="84.5" height="30"/>
+                                                        <rect key="frame" x="94" y="0.0" width="90" height="30"/>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1518,7 +1475,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USI-BZ-cjc">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USI-BZ-cjc">
                                                         <rect key="frame" x="204" y="0.0" width="100" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="dGt-35-Eet"/>
@@ -1532,7 +1489,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="BfB-F8-umQ" firstAttribute="top" secondItem="SJK-b3-0DR" secondAttribute="top" id="9O4-Li-j7x"/>
                                             <constraint firstAttribute="trailing" secondItem="BfB-F8-umQ" secondAttribute="trailing" constant="8" id="GXa-6d-Pvn"/>
@@ -1559,7 +1516,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qV1-w8-8Lj" userLabel="Clear Button">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qV1-w8-8Lj" userLabel="Clear Button">
                                                         <rect key="frame" x="213.5" y="0.0" width="106.5" height="30"/>
                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                                         <state key="normal" title="Clear">
@@ -1584,7 +1541,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ntH-np-Bqs" userLabel="Send Tag">
                                         <rect key="frame" x="0.0" y="454" width="320" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yq9-DT-wii" userLabel="Send Tag Data">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yq9-DT-wii" userLabel="Send Tag Data">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                                 <state key="normal" title="Send Tag Data">
@@ -1609,7 +1566,7 @@
                                     <constraint firstItem="qLb-9p-wlo" firstAttribute="top" secondItem="PQo-0I-wbG" secondAttribute="top" constant="110" id="lIS-f1-9N0"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kdx-wm-fgK" userLabel="Start/Stop button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kdx-wm-fgK" userLabel="Start/Stop button">
                                 <rect key="frame" x="5" y="484" width="310" height="30"/>
                                 <color key="backgroundColor" red="0.29411764705882354" green="0.46666666666666667" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1630,7 +1587,6 @@
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="V2E-Qu-ppL"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="PQo-0I-wbG" firstAttribute="leading" secondItem="V2E-Qu-ppL" secondAttribute="leading" id="0q3-QY-KEq"/>
@@ -1641,6 +1597,7 @@
                             <constraint firstItem="PQo-0I-wbG" firstAttribute="leading" secondItem="Kdx-wm-fgK" secondAttribute="leading" constant="-5" id="wfL-Ho-qIj"/>
                             <constraint firstItem="PQo-0I-wbG" firstAttribute="trailing" secondItem="Kdx-wm-fgK" secondAttribute="trailing" constant="5" id="xir-pK-Cwa"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="V2E-Qu-ppL"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Inventory" image="inventory-icon" landscapeImage="inventory-icon" largeContentSizeImage="inventory-icon" id="Nr8-2d-yit"/>
                     <connections>
@@ -1709,7 +1666,7 @@
                                                         <rect key="frame" x="8" y="8" width="152" height="134"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multibank Access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfY-fY-ntx" userLabel="Multibank Inventory">
-                                                                <rect key="frame" x="9" y="94.5" width="135" height="20"/>
+                                                                <rect key="frame" x="9" y="94.5" width="134.5" height="20.5"/>
                                                                 <color key="tintColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1761,7 +1718,7 @@
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rG-AM-uL5" userLabel="Filters">
-                                                                <rect key="frame" x="46" y="95" width="46" height="20"/>
+                                                                <rect key="frame" x="44.5" y="95" width="49" height="20.5"/>
                                                                 <color key="tintColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1798,7 +1755,7 @@
                                                         <rect key="frame" x="8" y="8" width="152" height="134"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MQTT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qe3-Yv-TsS">
-                                                                <rect key="frame" x="52.5" y="93" width="47.5" height="20"/>
+                                                                <rect key="frame" x="51.5" y="93" width="49" height="20.5"/>
                                                                 <color key="tintColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1848,7 +1805,6 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="YGM-98-bLp"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="v3Y-fT-zmB" firstAttribute="top" secondItem="YGM-98-bLp" secondAttribute="top" id="0CX-FH-DAc"/>
@@ -1856,6 +1812,7 @@
                             <constraint firstItem="YGM-98-bLp" firstAttribute="bottom" secondItem="v3Y-fT-zmB" secondAttribute="bottom" id="Hlx-WI-tph"/>
                             <constraint firstItem="YGM-98-bLp" firstAttribute="trailing" secondItem="v3Y-fT-zmB" secondAttribute="trailing" id="Xp2-Od-U8P"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="YGM-98-bLp"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RJQ-H1-cMr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1889,12 +1846,12 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJg-Du-tG7">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJg-Du-tG7">
                                                 <rect key="frame" x="160" y="0.0" width="150" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="G5S-bn-z6K"/>
                                                 </constraints>
-                                                <color key="tintColor" systemColor="darkTextColor"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <state key="normal" title="TID"/>
                                                 <connections>
                                                     <action selector="btnMultibank1SelectPressed:" destination="vTg-gF-cDw" eventType="touchUpInside" id="OYj-aK-n6r"/>
@@ -1951,12 +1908,12 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVb-ID-5Hw" userLabel="USER">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVb-ID-5Hw" userLabel="USER">
                                                 <rect key="frame" x="160" y="0.0" width="150" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="U1y-yf-fmq"/>
                                                 </constraints>
-                                                <color key="tintColor" systemColor="darkTextColor"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <state key="normal" title="USER"/>
                                                 <connections>
                                                     <action selector="btnMultibank2SelectPressed:" destination="vTg-gF-cDw" eventType="touchUpInside" id="pRB-dH-u8g"/>
@@ -2000,7 +1957,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMW-iB-UJ6" userLabel="Save">
                                         <rect key="frame" x="0.0" y="180" width="310" height="35"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UsI-aa-9Gf" userLabel="Save Button">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UsI-aa-9Gf" userLabel="Save Button">
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="35"/>
                                                 <color key="backgroundColor" red="0.29411764705882354" green="0.46666666666666667" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
@@ -2029,13 +1986,13 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="UUj-YS-sTb"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="g9t-Ha-LAI" firstAttribute="centerX" secondItem="iDI-5E-BpG" secondAttribute="centerX" id="6Wt-BL-ca0"/>
                             <constraint firstItem="g9t-Ha-LAI" firstAttribute="top" secondItem="UUj-YS-sTb" secondAttribute="top" constant="10" id="N8l-01-mgM"/>
                             <constraint firstItem="g9t-Ha-LAI" firstAttribute="leading" secondItem="UUj-YS-sTb" secondAttribute="leading" constant="5" id="yZ4-gz-QCX"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="UUj-YS-sTb"/>
                     </view>
                     <connections>
                         <outlet property="btnMultibank1Select" destination="WJg-Du-tG7" id="LiL-SF-SGc"/>
@@ -2149,8 +2106,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="f6e-wo-tWK"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="f6e-wo-tWK"/>
                     </view>
                     <navigationItem key="navigationItem" title="About" id="h0q-iH-Zd3" userLabel="Navigation Item"/>
                     <connections>
@@ -2181,7 +2138,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhB-1P-HUE">
-                                                <rect key="frame" x="95.5" y="18.5" width="129.5" height="23.5"/>
+                                                <rect key="frame" x="97" y="18" width="126" height="24"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2216,7 +2173,7 @@
                                         <rect key="frame" x="0.0" y="125" width="320" height="50"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1iW-kt-UyC">
-                                                <rect key="frame" x="51" y="0.0" width="218" height="50"/>
+                                                <rect key="frame" x="47.5" y="0.0" width="225" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNm-DZ-6Eg" userLabel="Tag">
                                                         <rect key="frame" x="0.0" y="12.5" width="25" height="25"/>
@@ -2227,7 +2184,7 @@
                                                         <state key="normal" image="tag"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E20034120123464853154756" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2H5-XM-QH7" userLabel="Tag Id">
-                                                        <rect key="frame" x="30" y="17" width="188" height="16.5"/>
+                                                        <rect key="frame" x="30" y="16.5" width="195" height="17"/>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2263,7 +2220,7 @@
                                                         </constraints>
                                                         <state key="normal" image="Temperature-2"/>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoc-Xs-gcJ" userLabel="Temperature Status">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoc-Xs-gcJ" userLabel="Temperature Status">
                                                         <rect key="frame" x="30" y="2" width="150" height="30"/>
                                                         <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -2332,7 +2289,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="48"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Valid Sensor Reading:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpG-wq-An4" userLabel="Last Sensor Reading">
-                                                                        <rect key="frame" x="18" y="15" width="180.5" height="17.5"/>
+                                                                        <rect key="frame" x="18" y="15" width="171.5" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -2348,7 +2305,7 @@
                                                                 <rect key="frame" x="0.0" y="48" width="310" height="47.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calibration:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZX-bq-qCz">
-                                                                        <rect key="frame" x="18" y="15" width="140" height="17.5"/>
+                                                                        <rect key="frame" x="18" y="14.5" width="140" height="18"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="140" id="CZV-8S-cTu"/>
                                                                         </constraints>
@@ -2357,7 +2314,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000000000000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5RB-lZ-CeS" userLabel="Calibration Value">
-                                                                        <rect key="frame" x="158" y="15" width="133.5" height="17.5"/>
+                                                                        <rect key="frame" x="158" y="14.5" width="139.5" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -2375,7 +2332,7 @@
                                                                 <rect key="frame" x="0.0" y="95.5" width="310" height="48"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor Code:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BgV-Vn-QRH">
-                                                                        <rect key="frame" x="18" y="15.5" width="140" height="17.5"/>
+                                                                        <rect key="frame" x="18" y="15" width="140" height="18"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="140" id="Oag-7U-DU8"/>
                                                                         </constraints>
@@ -2384,7 +2341,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPn-Iw-r1a" userLabel="Sensor Code Value">
-                                                                        <rect key="frame" x="158" y="15.5" width="33.5" height="17.5"/>
+                                                                        <rect key="frame" x="158" y="15" width="35" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -2403,7 +2360,7 @@
                                                                 <rect key="frame" x="0.0" y="143.5" width="310" height="47.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor RSSI Code:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="948-ey-PMB">
-                                                                        <rect key="frame" x="18" y="15" width="140" height="17.5"/>
+                                                                        <rect key="frame" x="18" y="15" width="140" height="18"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="140" id="dpP-4l-T3y"/>
                                                                         </constraints>
@@ -2412,7 +2369,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdq-WW-u4w" userLabel="Sensor RSSI Value">
-                                                                        <rect key="frame" x="158" y="15" width="33.5" height="17.5"/>
+                                                                        <rect key="frame" x="158" y="15" width="35" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -2431,7 +2388,7 @@
                                                                 <rect key="frame" x="0.0" y="191" width="310" height="48"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature Code:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuV-Tg-ixX">
-                                                                        <rect key="frame" x="18" y="15.5" width="140" height="17.5"/>
+                                                                        <rect key="frame" x="18" y="15" width="140" height="18"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="140" id="i2m-DI-0DD"/>
                                                                         </constraints>
@@ -2440,7 +2397,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDg-Ow-7Jj" userLabel="Temperature Code Value">
-                                                                        <rect key="frame" x="158" y="15.5" width="33.5" height="17.5"/>
+                                                                        <rect key="frame" x="158" y="15" width="35" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -2482,7 +2439,6 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="nb1-lp-MPG"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="nb1-lp-MPG" firstAttribute="trailing" secondItem="J2e-ap-EWu" secondAttribute="trailing" id="87n-ZN-k5F"/>
@@ -2490,6 +2446,7 @@
                             <constraint firstItem="nb1-lp-MPG" firstAttribute="bottom" secondItem="J2e-ap-EWu" secondAttribute="bottom" id="eVH-as-Bp8"/>
                             <constraint firstItem="J2e-ap-EWu" firstAttribute="top" secondItem="nb1-lp-MPG" secondAttribute="top" id="q4a-QC-H7M"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="nb1-lp-MPG"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Details" image="rfm-info" landscapeImage="rfm-info" largeContentSizeImage="rfm-info" id="7wf-zs-H5N"/>
                     <connections>
@@ -2522,21 +2479,21 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sh9-IV-vbJ">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="42.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bz-yd-agg">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bz-yd-agg">
                                                 <rect key="frame" x="102" y="7.5" width="210" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="210" id="MSa-x5-c4t"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <state key="normal" title="Axzon Magnus S3 - Temperature">
-                                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="btnSensorTypePressed:" destination="j72-cb-617" eventType="touchUpInside" id="SJ1-zx-h5m"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFM-MJ-Ihe">
-                                                <rect key="frame" x="8" y="12.5" width="83" height="17.5"/>
+                                                <rect key="frame" x="8" y="12.5" width="79.5" height="18"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2558,7 +2515,7 @@
                                                 <color key="onTintColor" red="0.0" green="0.68235294117647061" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Alert" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9AD-2K-82U">
-                                                <rect key="frame" x="231" y="12.5" width="81" height="17.5"/>
+                                                <rect key="frame" x="230.5" y="12.5" width="81.5" height="18"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2576,7 +2533,7 @@
                                         <rect key="frame" x="0.0" y="85" width="320" height="43"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Low Temperature Threshold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2x-nv-phg">
-                                                <rect key="frame" x="8" y="12.5" width="187" height="17.5"/>
+                                                <rect key="frame" x="8" y="12.5" width="184.5" height="18"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2605,7 +2562,7 @@
                                         <rect key="frame" x="0.0" y="128" width="320" height="42.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Temperature Threshold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NbP-47-njx">
-                                                <rect key="frame" x="8" y="12.5" width="189.5" height="17.5"/>
+                                                <rect key="frame" x="8" y="12" width="188.5" height="18"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2634,18 +2591,18 @@
                                         <rect key="frame" x="0.0" y="170.5" width="320" height="42.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moisture Alert" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Uy-sj-Zmb">
-                                                <rect key="frame" x="8" y="12.5" width="93.5" height="17.5"/>
+                                                <rect key="frame" x="8" y="12" width="97" height="18"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4S-IZ-oUc">
-                                                <rect key="frame" x="109.5" y="6" width="49" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4S-IZ-oUc">
+                                                <rect key="frame" x="113" y="6" width="49" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="49" id="4iG-sT-4Rx"/>
                                                 </constraints>
                                                 <state key="normal" title="&gt;">
-                                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="btnMoistureComparePressed:" destination="j72-cb-617" eventType="touchUpInside" id="3mW-hy-sNp"/>
@@ -2677,7 +2634,7 @@
                                         <rect key="frame" x="0.0" y="213" width="320" height="42.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min. On-chip RSSI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xL0-RG-nzV">
-                                                <rect key="frame" x="8" y="12.5" width="125.5" height="17.5"/>
+                                                <rect key="frame" x="8" y="12" width="118.5" height="18"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2706,7 +2663,7 @@
                                         <rect key="frame" x="0.0" y="255.5" width="320" height="42.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max. On-chip RSSI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vL6-6w-djH">
-                                                <rect key="frame" x="8" y="12.5" width="129.5" height="17.5"/>
+                                                <rect key="frame" x="8" y="12.5" width="121.5" height="18"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2735,7 +2692,7 @@
                                         <rect key="frame" x="0.0" y="298" width="320" height="42.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature Averaging" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btr-zX-KiD">
-                                                <rect key="frame" x="8" y="12.5" width="155" height="18"/>
+                                                <rect key="frame" x="8" y="12.5" width="153.5" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="18" id="Z2I-yl-Jal"/>
                                                 </constraints>
@@ -2767,7 +2724,7 @@
                                         <rect key="frame" x="0.0" y="340.5" width="320" height="43"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature Unit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMF-PD-oSe">
-                                                <rect key="frame" x="8" y="12.5" width="115.5" height="17.5"/>
+                                                <rect key="frame" x="8" y="12.5" width="116.5" height="18"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2796,19 +2753,19 @@
                                         <rect key="frame" x="0.0" y="383.5" width="320" height="42.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Power Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZf-G3-THT">
-                                                <rect key="frame" x="8" y="12.5" width="82.5" height="17.5"/>
+                                                <rect key="frame" x="8" y="12" width="80" height="18"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JUy-yY-ql5" userLabel="Power Level Selection">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JUy-yY-ql5" userLabel="Power Level Selection">
                                                 <rect key="frame" x="132" y="6" width="180" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="180" id="NBr-Wm-MF7"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <state key="normal" title="Follow System Setting">
-                                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="btnPowerLevelChanged:" destination="j72-cb-617" eventType="touchUpInside" id="xYP-gK-0cf"/>
@@ -2831,7 +2788,7 @@
                                                 <color key="onTintColor" red="0.0" green="0.68235294117647061" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display Tag ID in ASCII" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VyR-yi-VWT">
-                                                <rect key="frame" x="158" y="12.5" width="154" height="17.5"/>
+                                                <rect key="frame" x="163.5" y="12" width="148.5" height="18"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2848,8 +2805,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8M-lb-kDO">
                                         <rect key="frame" x="0.0" y="468.5" width="320" height="42.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wyG-mq-nM8">
-                                                <rect key="frame" x="8" y="8" width="304" height="32"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wyG-mq-nM8">
+                                                <rect key="frame" x="8" y="8" width="304" height="33"/>
                                                 <color key="backgroundColor" red="0.29411764705882354" green="0.46666666666666667" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                                 <color key="tintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2873,7 +2830,6 @@
                                 <color key="color" red="0.63921568627450975" green="0.63921568627450975" blue="0.63921568627450975" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="lwF-qp-vNt"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="lwF-qp-vNt" firstAttribute="trailing" secondItem="sZY-Z6-7z5" secondAttribute="trailing" id="Coq-8d-MMs"/>
@@ -2883,6 +2839,7 @@
                             <constraint firstItem="lwF-qp-vNt" firstAttribute="bottom" secondItem="sZY-Z6-7z5" secondAttribute="bottom" constant="8" id="Z22-H4-eym"/>
                             <constraint firstItem="sZY-Z6-7z5" firstAttribute="top" secondItem="lwF-qp-vNt" secondAttribute="top" id="mGc-Vn-L9t"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="lwF-qp-vNt"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="rfm-settings" landscapeImage="rfm-settings" largeContentSizeImage="rfm-settings" id="1o7-aw-0ht"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -2915,7 +2872,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSd-N2-8Sh" userLabel="MQTT Status Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSd-N2-8Sh" userLabel="MQTT Status Button">
                                 <rect key="frame" x="85" y="188" width="150" height="30"/>
                                 <color key="backgroundColor" red="0.63921568627450975" green="0.63921568627450975" blue="0.63921568627450975" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -2927,7 +2884,7 @@
                                 <state key="normal" title="OFFLINE"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Records: -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkm-Tr-lhN">
-                                <rect key="frame" x="77.5" y="238" width="165.5" height="20"/>
+                                <rect key="frame" x="81" y="238" width="158" height="20"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2938,13 +2895,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Publish to Topic:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izk-vN-mQS">
-                                <rect key="frame" x="104.5" y="273" width="111.5" height="18"/>
+                                <rect key="frame" x="106.5" y="273" width="107" height="18"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tYY-tp-tY8">
-                                <rect key="frame" x="20" y="341" width="280" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tYY-tp-tY8">
+                                <rect key="frame" x="20" y="341" width="280" height="33"/>
                                 <color key="backgroundColor" red="0.29411764705882354" green="0.46666666666666667" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                 <color key="tintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2975,8 +2932,8 @@
                                     <constraint firstAttribute="bottom" secondItem="hJV-Ao-sxN" secondAttribute="bottom" id="yoZ-AT-Y0i"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjw-Xx-9N2">
-                                <rect key="frame" x="85" y="403" width="150" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjw-Xx-9N2">
+                                <rect key="frame" x="85" y="404" width="150" height="33"/>
                                 <color key="backgroundColor" red="0.63921568627450975" green="0.63921568627450975" blue="0.63921568627450975" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="equ-qw-vrU"/>
@@ -2989,7 +2946,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="r7x-TT-Fdx"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="wjw-Xx-9N2" firstAttribute="centerX" secondItem="LvH-Ge-MiT" secondAttribute="centerX" id="7ao-oF-ShI"/>
@@ -3010,6 +2966,7 @@
                             <constraint firstItem="izk-vN-mQS" firstAttribute="centerX" secondItem="tYY-tp-tY8" secondAttribute="centerX" id="q8j-lS-1JO"/>
                             <constraint firstItem="r7x-TT-Fdx" firstAttribute="trailing" secondItem="tYY-tp-tY8" secondAttribute="trailing" constant="20" id="uF9-s5-V6Z"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="r7x-TT-Fdx"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Upload" image="rfm-upload" landscapeImage="rfm-upload" largeContentSizeImage="rfm-upload" id="4jA-Ts-ujx" userLabel="Upload"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -3064,7 +3021,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="vbJ-fe-XH0" firstAttribute="top" secondItem="3KT-89-MQt" secondAttribute="bottom" constant="4" id="IHS-xU-zpG"/>
                                                     <constraint firstItem="3KT-89-MQt" firstAttribute="centerX" secondItem="vbJ-fe-XH0" secondAttribute="centerX" id="diF-HB-QUU"/>
@@ -3081,7 +3038,7 @@
                                                 <rect key="frame" x="64" y="0.0" width="64" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1Q-Jl-age">
-                                                        <rect key="frame" x="29.5" y="0.0" width="5" height="15"/>
+                                                        <rect key="frame" x="30" y="0.0" width="4.5" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="QW6-aC-AmA"/>
                                                         </constraints>
@@ -3097,7 +3054,7 @@
                                                         <state key="normal" image="Battery-icon"/>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="d1Q-Jl-age" firstAttribute="top" secondItem="Gq9-uy-oGZ" secondAttribute="top" id="3lQ-uQ-vOn"/>
                                                     <constraint firstItem="cBl-7b-hKS" firstAttribute="top" secondItem="d1Q-Jl-age" secondAttribute="bottom" constant="5" id="MDk-Vh-wmH"/>
@@ -3112,7 +3069,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDq-jn-Sda">
                                                         <rect key="frame" x="5" y="20" width="54" height="24"/>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
-                                                        <color key="textColor" systemColor="groupTableViewBackgroundColor"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Count" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idq-07-e3o">
@@ -3121,7 +3078,7 @@
                                                             <constraint firstAttribute="height" constant="15" id="3ce-jb-bDS"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
-                                                        <color key="textColor" systemColor="groupTableViewBackgroundColor"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -3140,7 +3097,7 @@
                                                 <rect key="frame" x="192" y="0.0" width="64" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lu-fV-QLv">
-                                                        <rect key="frame" x="25.5" y="0.0" width="13.5" height="15"/>
+                                                        <rect key="frame" x="25" y="0.0" width="14.5" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="vNl-zq-8Vl"/>
                                                         </constraints>
@@ -3159,7 +3116,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="6lu-fV-QLv" firstAttribute="centerX" secondItem="2zK-1O-NHL" secondAttribute="centerX" id="OqV-BR-H2g"/>
                                                     <constraint firstAttribute="bottom" secondItem="2zK-1O-NHL" secondAttribute="bottom" constant="6" id="X12-d5-CFT"/>
@@ -3175,7 +3132,7 @@
                                                 <rect key="frame" x="256" y="0.0" width="64" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remove" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDZ-IZ-m4U">
-                                                        <rect key="frame" x="10" y="0.0" width="44.5" height="15"/>
+                                                        <rect key="frame" x="10.5" y="0.0" width="43" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="HQb-WB-Cle"/>
                                                         </constraints>
@@ -3194,7 +3151,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="Rfd-tG-F8O" firstAttribute="top" secondItem="PDZ-IZ-m4U" secondAttribute="bottom" constant="5" id="7IE-Iv-Ysz"/>
                                                     <constraint firstItem="PDZ-IZ-m4U" firstAttribute="top" secondItem="qH8-l0-usL" secondAttribute="top" id="Itr-O3-I5G"/>
@@ -3213,7 +3170,7 @@
                                         <subviews>
                                             <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="KBI-jG-A7L" userLabel="Tag Table">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="469"/>
-                                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             </tableView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3236,7 +3193,6 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="BIT-1P-B7u"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="BIT-1P-B7u" firstAttribute="trailing" secondItem="ECd-sd-ZFW" secondAttribute="trailing" id="3t1-fK-ee6"/>
@@ -3244,6 +3200,7 @@
                             <constraint firstItem="ECd-sd-ZFW" firstAttribute="leading" secondItem="BIT-1P-B7u" secondAttribute="leading" id="bwW-Re-ve2"/>
                             <constraint firstItem="BIT-1P-B7u" firstAttribute="bottom" secondItem="ECd-sd-ZFW" secondAttribute="bottom" id="ze0-sN-jtJ"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="BIT-1P-B7u"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Read" image="rfm-temperature" landscapeImage="rfm-temperature" largeContentSizeImage="rfm-temperature" id="rpW-jG-YPk"/>
                     <connections>
@@ -3302,13 +3259,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Power Level:    " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGm-yw-6et" userLabel="Text Number of Power Level:">
-                                                <rect key="frame" x="0.0" y="0.0" width="198.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F5y-PS-9Ln">
-                                                <rect key="frame" x="198.5" y="0.0" width="111.5" height="30"/>
+                                                <rect key="frame" x="200" y="0.0" width="110" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -4012,7 +3969,7 @@
                                             <constraint firstItem="exw-r0-8EV" firstAttribute="centerX" secondItem="hjP-4V-DoG" secondAttribute="centerX" id="ybe-PG-vuy"/>
                                         </constraints>
                                     </scrollView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zE6-Ws-iQ9">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zE6-Ws-iQ9">
                                         <rect key="frame" x="0.0" y="483" width="310" height="35"/>
                                         <color key="backgroundColor" red="0.29411764705882354" green="0.46666666666666667" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -4032,7 +3989,6 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="Vtq-cF-aqf"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Vtq-cF-aqf" firstAttribute="bottom" secondItem="enK-Zw-kHV" secondAttribute="bottom" constant="20" id="1C4-ih-YvB"/>
@@ -4040,6 +3996,7 @@
                             <constraint firstItem="enK-Zw-kHV" firstAttribute="leading" secondItem="Vtq-cF-aqf" secondAttribute="leading" constant="5" id="cQq-dS-7aX"/>
                             <constraint firstItem="enK-Zw-kHV" firstAttribute="top" secondItem="Fad-tZ-qGD" secondAttribute="top" constant="30" id="csF-PX-ToQ"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="Vtq-cF-aqf"/>
                     </view>
                     <connections>
                         <outlet property="btnSetPowerLevel" destination="zE6-Ws-iQ9" id="Sdl-Vs-BDa"/>
@@ -4201,7 +4158,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jdn-uF-9LV">
                                         <rect key="frame" x="0.0" y="140" width="300" height="323"/>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V97-ui-qyU">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V97-ui-qyU">
                                         <rect key="frame" x="0.0" y="463" width="300" height="35"/>
                                         <color key="backgroundColor" red="0.29411764705882354" green="0.46666666666666667" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -4217,7 +4174,6 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="aeR-3K-K8Q"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="2FQ-Zz-yEA" firstAttribute="top" secondItem="aeR-3K-K8Q" secondAttribute="top" constant="50" id="9Ne-aJ-7dU"/>
@@ -4225,6 +4181,7 @@
                             <constraint firstItem="aeR-3K-K8Q" firstAttribute="trailing" secondItem="2FQ-Zz-yEA" secondAttribute="trailing" constant="10" id="u2W-Z1-Iu6"/>
                             <constraint firstItem="2FQ-Zz-yEA" firstAttribute="leading" secondItem="aeR-3K-K8Q" secondAttribute="leading" constant="10" id="v1I-2v-G7W"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="aeR-3K-K8Q"/>
                     </view>
                     <connections>
                         <outlet property="btnAntennaPorts" destination="V97-ui-qyU" id="y6q-4k-S27"/>
@@ -4270,13 +4227,13 @@
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Port: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tau-k0-QNH">
-                                                <rect key="frame" x="206.5" y="0.0" width="50" height="34"/>
+                                                <rect key="frame" x="206.5" y="0.0" width="50.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zFU-6I-IfX">
-                                                <rect key="frame" x="256.5" y="0.0" width="53.5" height="34"/>
+                                                <rect key="frame" x="257" y="0.0" width="53" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -4298,13 +4255,13 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="310" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected EPC:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Dvj-ma-wpX" userLabel="Selected EPC">
-                                                                <rect key="frame" x="0.0" y="0.0" width="97" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="91.5" height="34"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OI8-4u-aK4" userLabel="Selected EPC Text">
-                                                                <rect key="frame" x="102" y="0.0" width="208" height="34"/>
+                                                                <rect key="frame" x="96.5" y="0.0" width="213.5" height="34"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <connections>
@@ -4321,13 +4278,13 @@
                                                         <rect key="frame" x="0.0" y="41" width="310" height="34"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Access PWD:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Np-QF-PWQ" userLabel="Access PWD">
-                                                                <rect key="frame" x="0.0" y="0.0" width="91.5" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="88" height="34"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="00000000" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dRS-Y3-KlV" userLabel="Access PWD Text">
-                                                                <rect key="frame" x="96.5" y="0.0" width="213.5" height="34"/>
+                                                                <rect key="frame" x="93" y="0.0" width="217" height="34"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <connections>
@@ -4352,13 +4309,13 @@
                                                                 </connections>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PC:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJS-E3-0wt" userLabel="PC">
-                                                                <rect key="frame" x="54" y="0.0" width="25" height="31"/>
+                                                                <rect key="frame" x="54" y="0.0" width="23.5" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m4Q-TP-bMC" userLabel="PC Text">
-                                                                <rect key="frame" x="84" y="0.0" width="226" height="31"/>
+                                                                <rect key="frame" x="82.5" y="0.0" width="227.5" height="31"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <connections>
@@ -4383,13 +4340,13 @@
                                                                 </connections>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EPC:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLf-if-GDe" userLabel="EPC">
-                                                                <rect key="frame" x="54" y="0.0" width="34" height="31"/>
+                                                                <rect key="frame" x="54" y="0.0" width="32" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbL-tJ-qBi" userLabel="EPC Text">
-                                                                <rect key="frame" x="93" y="0.0" width="217" height="31"/>
+                                                                <rect key="frame" x="91" y="0.0" width="219" height="31"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <connections>
@@ -4414,13 +4371,13 @@
                                                                 </connections>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACC PWD:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gRm-Zf-ZkG" userLabel="ACC PWD">
-                                                                <rect key="frame" x="54" y="0.0" width="74" height="31"/>
+                                                                <rect key="frame" x="54" y="0.0" width="73" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="00000000" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d9S-Mq-RhR" userLabel="ACC PWD Text">
-                                                                <rect key="frame" x="133" y="0.0" width="177" height="31"/>
+                                                                <rect key="frame" x="132" y="0.0" width="178" height="31"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <connections>
@@ -4445,13 +4402,13 @@
                                                                 </connections>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KILL PWD:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EtC-vz-bSQ" userLabel="KILL PWD">
-                                                                <rect key="frame" x="54" y="0.0" width="73.5" height="31"/>
+                                                                <rect key="frame" x="54" y="0.0" width="73" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="00000000" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eYC-0U-eqn" userLabel="KILL PWD Text">
-                                                                <rect key="frame" x="132.5" y="0.0" width="177.5" height="31"/>
+                                                                <rect key="frame" x="132" y="0.0" width="178" height="31"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <connections>
@@ -4476,13 +4433,13 @@
                                                                 </connections>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TID-UID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBe-ub-OvU" userLabel="TID-UID">
-                                                                <rect key="frame" x="54" y="0.0" width="58.5" height="31"/>
+                                                                <rect key="frame" x="54" y="0.0" width="61" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Dz-fH-AUX" userLabel="Offset=0">
-                                                                <rect key="frame" x="117.5" y="0.0" width="134.5" height="31"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Dz-fH-AUX" userLabel="Offset=0">
+                                                                <rect key="frame" x="120" y="0.0" width="129" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                 <state key="normal" title="Offset=0"/>
                                                                 <connections>
@@ -4490,8 +4447,8 @@
                                                                     <action selector="btnTidUidOffsetPressed:" destination="a6d-Bo-Txe" eventType="touchUpInside" id="zB0-un-CJK"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBW-4B-c9S" userLabel="Word=2">
-                                                                <rect key="frame" x="257" y="0.0" width="53" height="31"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBW-4B-c9S" userLabel="Word=2">
+                                                                <rect key="frame" x="254" y="0.0" width="56" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                 <state key="normal" title="Word=2"/>
                                                                 <connections>
@@ -4536,13 +4493,13 @@
                                                                 </connections>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USER:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nz-3o-j1k" userLabel="USER">
-                                                                <rect key="frame" x="54" y="0.0" width="44.5" height="31"/>
+                                                                <rect key="frame" x="54" y="0.0" width="41.5" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="15O-wC-ouU" userLabel="Offset=0">
-                                                                <rect key="frame" x="103.5" y="0.0" width="148.5" height="31"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="15O-wC-ouU" userLabel="Offset=0">
+                                                                <rect key="frame" x="100.5" y="0.0" width="148.5" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                 <state key="normal" title="Offset=0"/>
                                                                 <connections>
@@ -4550,8 +4507,8 @@
                                                                     <action selector="btnUserOffsetPressed:" destination="E7F-yr-253" eventType="touchUpInside" id="gXE-Kc-nQm"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MIV-LG-7rP" userLabel="Word=2">
-                                                                <rect key="frame" x="257" y="0.0" width="53" height="31"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MIV-LG-7rP" userLabel="Word=2">
+                                                                <rect key="frame" x="254" y="0.0" width="56" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                                 <state key="normal" title="Word=2"/>
                                                                 <connections>
@@ -4594,7 +4551,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LNt-Jc-Lqq" userLabel="Read Write Button">
                                         <rect key="frame" x="0.0" y="434" width="310" height="35"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yX4-Bg-c1f" userLabel="Read">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yX4-Bg-c1f" userLabel="Read">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
                                                 <color key="backgroundColor" red="0.29411764705882354" green="0.46666666666666667" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
@@ -4605,7 +4562,7 @@
                                                     <action selector="btnReadPressed:" destination="a6d-Bo-Txe" eventType="touchUpInside" id="h9H-60-zOQ"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CpE-Vt-OqX" userLabel="Write">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CpE-Vt-OqX" userLabel="Write">
                                                 <rect key="frame" x="160" y="0.0" width="150" height="35"/>
                                                 <color key="backgroundColor" red="0.29411764705882354" green="0.46666666666666667" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
@@ -4624,7 +4581,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfp-lf-YXJ" userLabel="Security">
                                         <rect key="frame" x="0.0" y="474" width="310" height="35"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCP-cA-sdM">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCP-cA-sdM">
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="35"/>
                                                 <color key="backgroundColor" red="0.29411764705882354" green="0.46666666666666667" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
@@ -4652,7 +4609,6 @@
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="SVy-WQ-RDB"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="SVy-WQ-RDB" firstAttribute="bottom" secondItem="11u-9g-wtT" secondAttribute="bottom" id="8dN-AB-Q0v"/>
@@ -4662,6 +4618,7 @@
                             <constraint firstItem="11u-9g-wtT" firstAttribute="leading" secondItem="SVy-WQ-RDB" secondAttribute="leading" constant="5" id="q8Q-K7-34t"/>
                             <constraint firstItem="P1J-GM-jAZ" firstAttribute="centerY" secondItem="rQb-i9-LEN" secondAttribute="centerY" id="tRK-IV-Wqf"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="SVy-WQ-RDB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Access Control" image="Access-icon" landscapeImage="Access-icon" largeContentSizeImage="Access-icon" id="pt5-ES-tb6"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -4713,13 +4670,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="35"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected EPC: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBl-LQ-CtY" userLabel="Selected EPC">
-                                                <rect key="frame" x="0.0" y="0.0" width="101.5" height="35"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="94.5" height="35"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yyF-ix-1ux" userLabel="Selected EPC Text">
-                                                <rect key="frame" x="101.5" y="0.0" width="208.5" height="35"/>
+                                                <rect key="frame" x="94.5" y="0.0" width="215.5" height="35"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -4732,13 +4689,13 @@
                                         <rect key="frame" x="0.0" y="40" width="310" height="35"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Access PWD: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5y-4o-dAs">
-                                                <rect key="frame" x="0.0" y="0.0" width="96" height="35"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90.5" height="35"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="00000000" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZeT-YF-bSO">
-                                                <rect key="frame" x="96" y="0.0" width="214" height="35"/>
+                                                <rect key="frame" x="90.5" y="0.0" width="219.5" height="35"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -4756,14 +4713,14 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rh2-8S-FaT">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rh2-8S-FaT">
                                                 <rect key="frame" x="160" y="0.0" width="150" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="uZN-Nc-IAF"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <state key="normal" title="UNCHANGED">
-                                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="btnEPCSecurityPressed:" destination="b91-Xa-QNn" eventType="touchUpInside" id="eKu-9L-KhX"/>
@@ -4783,14 +4740,14 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKH-2w-0sr">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKH-2w-0sr">
                                                 <rect key="frame" x="160" y="0.0" width="150" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="8fd-CO-WeE"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <state key="normal" title="UNCHANGED">
-                                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="btnAccPwdSecurityPressed:" destination="b91-Xa-QNn" eventType="touchUpInside" id="Q3f-IT-Ns1"/>
@@ -4810,14 +4767,14 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZC5-aO-ncc">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZC5-aO-ncc">
                                                 <rect key="frame" x="160" y="0.0" width="150" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="BD9-vv-o2A"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <state key="normal" title="UNCHANGED">
-                                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="btnKillPwdSecurityPressed:" destination="b91-Xa-QNn" eventType="touchUpInside" id="iWH-Ty-V1Z"/>
@@ -4837,14 +4794,14 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4z2-LJ-Pxc">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4z2-LJ-Pxc">
                                                 <rect key="frame" x="160" y="0.0" width="150" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="kYG-L8-RwD"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <state key="normal" title="UNCHANGED">
-                                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="btnTidSecurityPressed:" destination="b91-Xa-QNn" eventType="touchUpInside" id="LOW-Nn-cad"/>
@@ -4864,14 +4821,14 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ccx-8d-ooX">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ccx-8d-ooX">
                                                 <rect key="frame" x="160" y="0.0" width="150" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="0Nh-CM-G6q"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <state key="normal" title="UNCHANGED">
-                                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="btnUserSecurityPressed:" destination="b91-Xa-QNn" eventType="touchUpInside" id="cXi-o2-B7x"/>
@@ -4885,7 +4842,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FPW-wG-ocM">
                                         <rect key="frame" x="0.0" y="280" width="310" height="35"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tW2-S1-Sg6">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tW2-S1-Sg6">
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="35"/>
                                                 <color key="backgroundColor" red="0.29411764705882354" green="0.46666666666666667" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
@@ -4903,13 +4860,13 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6cf-hA-8Ut"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6cf-hA-8Ut" firstAttribute="top" secondItem="kRH-ul-oKq" secondAttribute="top" constant="-20" id="QVo-EW-0O9" userLabel="Safe Area.top = Tag Lock Elements.top - 20"/>
                             <constraint firstItem="6cf-hA-8Ut" firstAttribute="trailing" secondItem="kRH-ul-oKq" secondAttribute="trailing" constant="5" id="Vah-c2-IKA"/>
                             <constraint firstItem="kRH-ul-oKq" firstAttribute="leading" secondItem="6cf-hA-8Ut" secondAttribute="leading" constant="5" id="ztp-To-BeK"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="6cf-hA-8Ut"/>
                     </view>
                     <connections>
                         <outlet property="btnAccPwdSecurity" destination="FKH-2w-0sr" id="zLj-Im-iXK"/>
@@ -4953,107 +4910,5 @@
         <image name="settings" width="512" height="512"/>
         <image name="tag" width="256" height="256"/>
         <image name="temperature" width="480" height="480"/>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="groupTableViewBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

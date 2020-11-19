@@ -111,11 +111,6 @@ CSLRfidAppEngine * appEngine;
         settings.linkProfile = (LINKPROFILE)[defaults integerForKey:@"linkProfile"];
     if([defaults objectForKey:@"isSoundEnabled"])
         settings.enableSound =[defaults boolForKey:@"isSoundEnabled"];
-    if([defaults objectForKey:@"isCustomBatteryReporting"])
-        settings.isCustomBatteryReporting =[defaults boolForKey:@"isCustomBatteryReporting"];
-    if([defaults objectForKey:@"customBatteryReportingInterval"])
-        settings.customBatteryReportingInterval =[defaults doubleForKey:@"customBatteryReportingInterval"];
-    
     if([defaults objectForKey:@"isEnableMultibank1"])
         settings.isMultibank1Enabled =[defaults boolForKey:@"isEnableMultibank1"];
     if([defaults objectForKey:@"multibank1Select"])
@@ -190,8 +185,6 @@ CSLRfidAppEngine * appEngine;
     [defaults setInteger:settings.ifAgc forKey:@"ifAgc"];
     [defaults setObject:settings.region forKey:@"region"];
     [defaults setObject:settings.channel forKey:@"channel"];
-    [defaults setBool:settings.isCustomBatteryReporting forKey:@"isCustomBatteryReporting"];
-    [defaults setDouble:settings.customBatteryReportingInterval forKey:@"customBatteryReportingInterval"];
     
     [defaults synchronize];
     

@@ -35,8 +35,6 @@
         self.algorithm = DYNAMICQ;
         self.linkProfile=RANGE_DRM;
         self.enableSound=true;
-        self.isCustomBatteryReporting=false;
-        self.customBatteryReportingInterval=10;
         self.tagFocus=0;    //tag focus disable by default
         self.FastId=0;    //fast id disable by default
         self.rfLnaHighComp = 1;

@@ -36,8 +36,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnRegion;
 @property (weak, nonatomic) IBOutlet UIButton *btnFrequencyChannel;
 @property (weak, nonatomic) IBOutlet UIButton *btnFrequencyOrder;
-@property (weak, nonatomic) IBOutlet UISwitch *swCustomNotifications;
-@property (weak, nonatomic) IBOutlet UITextField *txtCustomNotifications;
 
 - (IBAction)btnSessionPressed:(id)sender;
 - (IBAction)btnAlgorithmPressed:(id)sender;
@@ -58,8 +56,6 @@
 - (IBAction)btnFrequencyOrderPressed:(id)sender;
 - (IBAction)swTagFocusChanged:(id)sender;
 - (IBAction)swFastIdChanged:(id)sender;
-- (IBAction)swCustomNotificationsChanged:(id)sender;
-- (IBAction)txtCustomNotificationsChanged:(id)sender;
 
 
 @end

@@ -34,10 +34,6 @@
 @property (assign) LINKPROFILE linkProfile;
 ///Define whether sound alert is enabled/disabled
 @property (assign) BOOL enableSound;
-///Define whether custom battery reporting inventory
-@property (assign) BOOL isCustomBatteryReporting;
-///Define custom battery reporting interval
-@property (assign) double customBatteryReportingInterval;
 ///Impinj Extension - Tag Focus
 @property (assign) Byte tagFocus;
 ///Impinj Extension - Fast ID
