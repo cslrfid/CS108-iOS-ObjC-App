@@ -312,6 +312,11 @@ Once it is started, the delegate will be triggered everytime when a battery leve
  Stop battery level reporting (notification every 5 seconds)
  @return TRUE if the operation is successful
  */
+- (BOOL)getSingleBatteryReport;
+/**
+ Get single battery reporting
+ @return TRUE if the operation is successful
+ */
 - (BOOL)stopBatteryAutoReporting;
 /**
  Obtain RFID module firmware version
@@ -458,6 +463,12 @@ Select which set of algorithm parameter registers to access.
  @return TRUE if the operation is successful
  */
 - (BOOL)stopInventory;
+/**
+ Set power mode of the device
+ @param isLowPowerMode Normal Mode = 0, low power standby mode = 1
+ @return TRUE if the operation is successful
+ */
+- (BOOL)setPowerMode:(BOOL)isLowPowerMode;
 /**
  Start the data packet decoding routine, where a selector will be running on a background thread and decode the received packet if commands were being sent out previously.  Results will be returned to the recvQueue (for asynchornous commands)  and to cmdRespQueue (for synchronous commands)
  */

@@ -48,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) TAGMSK_PTR:(UInt16)ptr;
 - (BOOL) TAGMSK_LEN:(Byte)length;
 - (BOOL) setTAGMSK:(UInt16)TAGMSKAddr tagMask:(UInt32)mask;
+- (BOOL) TAGWRDAT_SEL:(UInt16)bank;
 
 - (BOOL) TAGACC_BANK:(MEMORYBANK)bank acc_bank2:(MEMORYBANK)bank2;
 - (BOOL) TAGACC_PTR:(UInt32)ptr;

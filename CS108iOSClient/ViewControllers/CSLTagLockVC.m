@@ -169,19 +169,22 @@
         else if([[self.btnUserSecurity currentTitle] isEqualToString:@"PERM_LOCK"]) {
             lockCommandConfigBits |= 0x00C03; //b'00000000110000000011
         }
-
+        
+        [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
         result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryLock:lockCommandConfigBits ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
         
         for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
             if (result && securityCommandAccepted)
                 break;
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
         }
         
         if (result && securityCommandAccepted)
             alert = [UIAlertController alertControllerWithTitle:@"Tag Security" message:@"ACCEPTED" preferredStyle:UIAlertControllerStyleAlert];
         else
             alert = [UIAlertController alertControllerWithTitle:@"Tag Security" message:@"FAILED" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
         
         ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:ok];

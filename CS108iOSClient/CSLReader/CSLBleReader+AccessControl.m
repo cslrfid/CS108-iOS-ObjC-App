@@ -890,6 +890,67 @@
     }
 }
 
+- (BOOL) TAGWRDAT_SEL:(UInt16)bank {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [self.cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    NSData * payloadData;
+    
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"TAGWRDAT_SEL - Used to access the tag write buffer.  The buffer is set up as a 16 register array.");
+    NSLog(@"----------------------------------------------------------------------");
+    unsigned char TAGWRDAT_SEL[] = {0x80, 0x02, 0x70, 0x01, 0x08, 0x0A, bank & 0x7, 0x00, 0x00, 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:TAGWRDAT_SEL length:sizeof(TAGWRDAT_SEL)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
+        if([self.cmdRespQueue count] != 0)
+            break;
+        [NSThread sleepForTimeInterval:0.001f];
+    }
+    if ([self.cmdRespQueue count] != 0)
+        payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
+    else
+    {
+        NSLog(@"Command timed out.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes
+        return false;
+    }
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    if (memcmp([payloadData bytes], TAGWRDAT_SEL, 2) == 0 && ((Byte *)[payloadData bytes])[2] == 0x00) {
+        NSLog(@"TAGWRDAT_SEL sent OK");
+        return true;
+    }
+    else {
+        NSLog(@"TAGWRDAT_SEL sent FAILED");
+        return false;
+    }
+}
+
 - (BOOL) sendHostCommandWrite {
     
     @synchronized(self) {
@@ -1534,14 +1595,17 @@
     
     result = [self TAGACC_DESC_CFG:true retryCount:7];
     result = [self TAGACC_BANK:bank acc_bank2:0];
-    result = [self TAGACC_PTR:0];
+    result = [self TAGACC_PTR:offset];
     result = [self TAGACC_CNT:count secondBank:0];
     result = [self TAGACC_ACCPWD:password];
 
+    
     ptr=0; ptr2=0;
-    ptr+=offset;
     while ([data length] > ptr2) {
-        if (count >= ptr) {
+        //set TAGWRDAT bank
+        [self TAGWRDAT_SEL:(ptr2/32)];
+        
+        if ([data length]  > ptr2) {
             result = [self setTAGWRDAT:0x0A09 data_word:((((Byte*)[data bytes])[ptr2] << 8)+((Byte*)[data bytes])[ptr2+1]) data_offset:ptr];
             ptr++; ptr2+=2;
         }
@@ -1570,58 +1634,90 @@
             ptr++; ptr2+=2;
         }
         if ([data length] > ptr2) {
-            result = [self setTAGWRDAT:0x0A0A data_word:((((Byte*)[data bytes])[ptr2] << 8)+((Byte*)[data bytes])[ptr2+1]) data_offset:ptr];
+            result = [self setTAGWRDAT:0x0A10 data_word:((((Byte*)[data bytes])[ptr2] << 8)+((Byte*)[data bytes])[ptr2+1]) data_offset:ptr];
             ptr++; ptr2+=2;
         }
-        
-        result = [self sendHostCommandWrite];
-        
-        //wait for the command-begin and command-end packet
-        for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
-            if ([self.cmdRespQueue count] >= 2)
-                break;
-            [NSThread sleepForTimeInterval:0.001f];
+        if ([data length] > ptr2) {
+            result = [self setTAGWRDAT:0x0A11 data_word:((((Byte*)[data bytes])[ptr2] << 8)+((Byte*)[data bytes])[ptr2+1]) data_offset:ptr];
+            ptr++; ptr2+=2;
         }
-        
-        if ([self.cmdRespQueue count] < 2) {
-            NSLog(@"Tag read command timed out.");
-            connectStatus=CONNECTED;
-            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-            return false;
+        if ([data length] > ptr2) {
+            result = [self setTAGWRDAT:0x0A12 data_word:((((Byte*)[data bytes])[ptr2] << 8)+((Byte*)[data bytes])[ptr2+1]) data_offset:ptr];
+            ptr++; ptr2+=2;
         }
-        
-        //command-begin
-        recvPacket = ((CSLBlePacket *)[self.cmdRespQueue deqObject]);
-        if (([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] &&
-             [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"]) ||
-            ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] &&
-             [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0000"])
-            ) {
-            self.lastMacErrorCode=0x0000;
-            NSLog(@"Receive read command-begin response: OK");
+        if ([data length] > ptr2) {
+            result = [self setTAGWRDAT:0x0A13 data_word:((((Byte*)[data bytes])[ptr2] << 8)+((Byte*)[data bytes])[ptr2+1]) data_offset:ptr];
+            ptr++; ptr2+=2;
         }
-        else
-        {
-            NSLog(@"Receive read command-begin response: FAILED");
-            connectStatus=CONNECTED;
-            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-            return FALSE;
+        if ([data length] > ptr2) {
+            result = [self setTAGWRDAT:0x0A14 data_word:((((Byte*)[data bytes])[ptr2] << 8)+((Byte*)[data bytes])[ptr2+1]) data_offset:ptr];
+            ptr++; ptr2+=2;
         }
-        
-        //decode command-end
-        recvPacket = ((CSLBlePacket *)[self.cmdRespQueue deqObject]);
-        if (
-            ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0180"] && ((Byte *)[recvPacket.payload bytes])[14] == 0x00 && ((Byte *)[recvPacket.payload bytes])[15] == 0x00) ||
-            ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] && [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0100"] && ((Byte *)[recvPacket.payload bytes])[14] == 0x00 && ((Byte *)[recvPacket.payload bytes])[15] == 0x00)
-            )
-            NSLog(@"Receive read command-end response: OK");
-        else
-        {
-            NSLog(@"Receive read command-end response: FAILED");
-            connectStatus=CONNECTED;
-            [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-            return FALSE;
+        if ([data length] > ptr2) {
+            result = [self setTAGWRDAT:0x0A15 data_word:((((Byte*)[data bytes])[ptr2] << 8)+((Byte*)[data bytes])[ptr2+1]) data_offset:ptr];
+            ptr++; ptr2+=2;
         }
+        if ([data length] > ptr2) {
+            result = [self setTAGWRDAT:0x0A16 data_word:((((Byte*)[data bytes])[ptr2] << 8)+((Byte*)[data bytes])[ptr2+1]) data_offset:ptr];
+            ptr++; ptr2+=2;
+        }
+        if ([data length] > ptr2) {
+            result = [self setTAGWRDAT:0x0A17 data_word:((((Byte*)[data bytes])[ptr2] << 8)+((Byte*)[data bytes])[ptr2+1]) data_offset:ptr];
+            ptr++; ptr2+=2;
+        }
+        if ([data length] > ptr2) {
+            result = [self setTAGWRDAT:0x0A18 data_word:((((Byte*)[data bytes])[ptr2] << 8)+((Byte*)[data bytes])[ptr2+1]) data_offset:ptr];
+            ptr++; ptr2+=2;
+        }
+    }
+    
+    result = [self sendHostCommandWrite];
+    
+    //wait for the command-begin and command-end packet
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) { //receive data or time out in 5 seconds
+        if ([self.cmdRespQueue count] >= 2)
+            break;
+        [NSThread sleepForTimeInterval:0.001f];
+    }
+    
+    if ([self.cmdRespQueue count] < 2) {
+        NSLog(@"Tag read command timed out.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return false;
+    }
+    
+    //command-begin
+    recvPacket = ((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if (([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] &&
+         [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0080"]) ||
+        ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] &&
+         [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0000"])
+        ) {
+        self.lastMacErrorCode=0x0000;
+        NSLog(@"Receive read command-begin response: OK");
+    }
+    else
+    {
+        NSLog(@"Receive read command-begin response: FAILED");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return FALSE;
+    }
+    
+    //decode command-end
+    recvPacket = ((CSLBlePacket *)[self.cmdRespQueue deqObject]);
+    if (
+        ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0180"] && ((Byte *)[recvPacket.payload bytes])[14] == 0x00 && ((Byte *)[recvPacket.payload bytes])[15] == 0x00) ||
+        ([[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"01"] && [[recvPacket.getPacketPayloadInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0100"] && ((Byte *)[recvPacket.payload bytes])[14] == 0x00 && ((Byte *)[recvPacket.payload bytes])[15] == 0x00)
+        )
+        NSLog(@"Receive read command-end response: OK");
+    else
+    {
+        NSLog(@"Receive read command-end response: FAILED");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        return FALSE;
     }
 
     connectStatus=CONNECTED;
@@ -1687,7 +1783,7 @@
         [self performSelectorInBackground:@selector(stopTagSearchBlocking) withObject:(nil)];
         
         for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 3 seconds
-            ([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]]);
+            ([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]]);
             if(connectStatus == CONNECTED)
                 break;
         }

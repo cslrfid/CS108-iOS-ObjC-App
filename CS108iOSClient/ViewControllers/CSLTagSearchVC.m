@@ -207,6 +207,7 @@
         //reader configurations before search
 
         //start tag search
+        [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
         result=[[CSLRfidAppEngine sharedAppEngine].reader startTagSearch:EPC maskPointer:32 maskLength:((UInt32)[self.txtEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtEPC text]]];
 
         
@@ -225,6 +226,7 @@
         {
             [self.btnSearch setTitle:@"Start" forState:UIControlStateNormal];
             self.btnSearch.enabled=true;
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
         }
         else
         {

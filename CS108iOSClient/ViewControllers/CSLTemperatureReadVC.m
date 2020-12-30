@@ -173,6 +173,7 @@
         self.btnInventory.enabled=false;
         
         //start inventory
+        [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
         [[CSLRfidAppEngine sharedAppEngine].reader startInventory];
         [self.btnInventory setImage:[UIImage imageNamed:@"Stop-icon.png"] forState:UIControlStateNormal];
         self.lbInventory.text=@"Stop";
@@ -188,6 +189,7 @@
             [self.btnInventory setImage:[UIImage imageNamed:@"Start-icon.png"] forState:UIControlStateNormal];
             self.lbInventory.text=@"Start";
             self.btnInventory.enabled=true;
+            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
             
             @synchronized ([CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer) {
 

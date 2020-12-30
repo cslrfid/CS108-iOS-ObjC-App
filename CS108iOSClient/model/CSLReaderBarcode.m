@@ -63,31 +63,42 @@
 
 - (NSString*) extractBarcodeFromSerialData {
     
-    NSString* barcodeHexString=[CSLReaderBarcode convertDataToHexString:serialData];
-
+    static NSString* barcodeHexString = @"";
+    if ([barcodeHexString isEqualToString:@""])
+        barcodeHexString=[CSLReaderBarcode convertDataToHexString:serialData];
+    else {
+        barcodeHexString=[barcodeHexString stringByAppendingString:[CSLReaderBarcode convertDataToHexString:serialData]];
+    }
+    
     if ([barcodeHexString length] < 32 ){
         NSLog(@"Invalid barcode serial data - %@", barcodeHexString);
         return nil;
     }
     
-    //self-prefix
-    if ([[barcodeHexString substringToIndex:12] containsString:@"020007101713"]) {
-        barcodeHexString=[barcodeHexString substringFromIndex:12];
+    //check if we have received complete data
+    if ([[barcodeHexString substringToIndex:12] containsString:@"020007101713"] &&
+        [[barcodeHexString substringFromIndex:[barcodeHexString length]-14] containsString:@"050111160304"]) {
+        barcodeHexString=[barcodeHexString substringFromIndex:12];      //remove self-prefix
+        barcodeHexString=[barcodeHexString substringToIndex:[barcodeHexString length]-14];  //remove self-suffix
     }
-    else {
-        NSLog(@"Invalid barcode self-prefix - %@", barcodeHexString);
+    else if ([[barcodeHexString substringToIndex:12] containsString:@"020007101713"] &&
+        [barcodeHexString containsString:@"050111160304"]) {
+        NSLog(@"Corrupted barcode data returned.  Clearing buffer - %@", barcodeHexString);
+        barcodeHexString=@"";
         return nil;
     }
-    
-    //self-suffix
-    if ([[barcodeHexString substringFromIndex:[barcodeHexString length]-14] containsString:@"050111160304"]) {
-        barcodeHexString=[barcodeHexString substringToIndex:[barcodeHexString length]-14];
-    }
-    else {
-        NSLog(@"Invalid barcode self-suffix - %@", barcodeHexString);
+    else if ([barcodeHexString containsString:@"020007101713"] &&
+        [[barcodeHexString substringFromIndex:[barcodeHexString length]-14] containsString:@"050111160304"]) {
+        NSLog(@"Corrupted barcode data returned.  Clearing buffer - %@", barcodeHexString);
+        barcodeHexString=@"";
         return nil;
     }
-    
+    else
+    {
+        NSLog(@"Incomplete barcode data received - %@", barcodeHexString);
+        return nil;
+    }
+
     NSLog(@"Barcode extracted - %@", barcodeHexString);
     codeId=[codeIdDescriptons objectForKey:[CSLReaderBarcode convertHexStringToAscii:[barcodeHexString substringToIndex:2]]];
     barcodeHexString=[barcodeHexString substringFromIndex:2];
@@ -95,8 +106,9 @@
     barcodeHexString=[barcodeHexString substringFromIndex:6];
     
     barcodeValue=[CSLReaderBarcode convertHexStringToAscii:barcodeHexString];
+    barcodeHexString=@"";
     
-    return barcodeHexString;
+    return barcodeValue;
 }
 
 + (NSString*) convertDataToHexString:(NSData*) data {

@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnAgcGain;
 @property (weak, nonatomic) IBOutlet UISwitch *swLnaHighComp;
 @property (weak, nonatomic) IBOutlet UISwitch *swTagFocus;
+@property (weak, nonatomic) IBOutlet UISwitch *swFastId;
 @property (weak, nonatomic) IBOutlet UIButton *btnRegion;
 @property (weak, nonatomic) IBOutlet UIButton *btnFrequencyChannel;
 @property (weak, nonatomic) IBOutlet UIButton *btnFrequencyOrder;
@@ -54,6 +55,7 @@
 - (IBAction)btnFrequencyChannelPressed:(id)sender;
 - (IBAction)btnFrequencyOrderPressed:(id)sender;
 - (IBAction)swTagFocusChanged:(id)sender;
+- (IBAction)swFastIdChanged:(id)sender;
 
 
 @end

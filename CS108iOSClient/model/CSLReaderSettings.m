@@ -36,6 +36,7 @@
         self.linkProfile=RANGE_DRM;
         self.enableSound=true;
         self.tagFocus=0;    //tag focus disable by default
+        self.FastId=0;    //fast id disable by default
         self.rfLnaHighComp = 1;
         self.rfLna=0;   //1 dB
         self.ifLna=0;   //24 dB

@@ -299,6 +299,15 @@
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:tagRead crcErrorRead:(tagRead ? 0 : 1) QTMode:0 tagDelay:tagDelay inventoryMode:(tagRead ? 0 : 1)];
     [[CSLRfidAppEngine sharedAppEngine].reader setLinkProfile:[CSLRfidAppEngine sharedAppEngine].settings.linkProfile];
     
+    if ([CSLRfidAppEngine sharedAppEngine].settings.FastId) {
+        [[CSLRfidAppEngine sharedAppEngine].reader setQueryConfigurations:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? A : [CSLRfidAppEngine sharedAppEngine].settings.target) querySession:[CSLRfidAppEngine sharedAppEngine].settings.session querySelect:SL];
+        [[CSLRfidAppEngine sharedAppEngine].reader clearAllTagSelect];
+        [[CSLRfidAppEngine sharedAppEngine].reader TAGMSK_DESC_SEL:0];
+        [[CSLRfidAppEngine sharedAppEngine].reader selectTagForInventory:TID maskPointer:0 maskLength:24 maskData:[CSLBleReader convertHexStringToData:@"E2801100"] sel_action:0];
+        [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:1 /* force tag_select */ disableInventory:0 tagRead:tagRead crcErrorRead:true QTMode:0 tagDelay:(tagRead ? 30 : 0) inventoryMode:(tagRead ? 0 : 1)];
+    }
+    
+    
     //frequency configurations
     if ([CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.isFixed) {
         [[CSLRfidAppEngine sharedAppEngine].reader SetFixedChannel:[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency
@@ -320,7 +329,7 @@
     NSLog(@"Tag focus value: %d", [CSLRfidAppEngine sharedAppEngine].settings.tagFocus);
     //Impinj Extension
     [[CSLRfidAppEngine sharedAppEngine].reader setImpinjExtension:[CSLRfidAppEngine sharedAppEngine].settings.tagFocus
-                                                           fastId:0
+                                                           fastId:[CSLRfidAppEngine sharedAppEngine].settings.FastId
                                                    blockWriteMode:0];
     //LNA settings
     [[CSLRfidAppEngine sharedAppEngine].reader setLNAParameters:[CSLRfidAppEngine sharedAppEngine].reader
