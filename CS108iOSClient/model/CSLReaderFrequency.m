@@ -37,6 +37,8 @@
     NSArray* LH1TableOfFreq;
     NSArray* LH2TableOfFreq;
     NSArray* VNTableOfFreq;
+    NSArray* JP4CHTableOfFreq;
+    NSArray* JP6CHTableOfFreq;
     
     NSArray* FCCFreqValues;
     NSArray* AUFreqValues;
@@ -65,6 +67,8 @@
     NSArray* LH1FreqValues;
     NSArray* LH2FreqValues;
     NSArray* VNFreqValues;
+    NSArray* JP4CHFreqValues;
+    NSArray* JP6CHFreqValues;
 
     NSArray* FCCFreqIndex;
     NSArray* AUFreqIndex;
@@ -93,6 +97,8 @@
     NSArray* LH1FreqIndex;
     NSArray* LH2FreqIndex;
     NSArray* VNFreqIndex;
+    NSArray* JP4CHFreqIndex;
+    NSArray* JP6CHFreqIndex;
     
 }
 
@@ -203,7 +209,12 @@
             [self.RegionList addObject:@"TH"];
             break;
         case 8:
-            [self.RegionList addObject:@"JP"];
+            if (self.SpecialCountryVerison == 0x2A4A5036) {
+                [self.RegionList addObject:@"JP-6CH"];
+            }
+            else {
+                [self.RegionList addObject:@"JP-4CH"];
+            }
             break;
         case 9:
             [self.RegionList addObject:@"ETSIUPPERBAND"];
@@ -282,6 +293,10 @@
     LH2TableOfFreq = @[@"909.75", @"910.25", @"910.75", @"911.25", @"911.75", @"912.25", @"912.75", @"913.25", @"913.75", @"914.25", @"914.75"];
     
     VNTableOfFreq  = @[@"922.75", @"923.25", @"923.75", @"924.25", @"924.75", @"925.25", @"925.75", @"926.25", @"926.75", @"927.25"];
+    
+    JP4CHTableOfFreq = @[@"916.80", @"918.00", @"919.20", @"920.40"];
+    
+    JP6CHTableOfFreq = @[@"916.80", @"918.00", @"919.20", @"920.40", @"920.60", @"920.80"];
     
     FCCFreqValues = [NSArray arrayWithObjects:[NSNumber numberWithUnsignedInt:0x00180E1F], /*903.75 MHz  2 */
                      [NSNumber numberWithUnsignedInt:0x00180E41], /*912.25 MHz  19 */
@@ -677,6 +692,21 @@
                   [NSNumber numberWithUnsignedInt:0x00180E71], /*924.25 MHz  3 */
                   nil];
     
+    JP4CHFreqValues=[NSArray arrayWithObjects:[NSNumber numberWithUnsignedInt:0x003C23D0], /*916.800MHz   Channel 1*/
+                     [NSNumber numberWithUnsignedInt:0x003C23DC], /*918.000MHz   Channel 2*/
+                     [NSNumber numberWithUnsignedInt:0x003C23E8], /*919.200MHz   Channel 3*/
+                     [NSNumber numberWithUnsignedInt:0x003C23F4], /*920.400MHz   Channel 4*/
+                     nil];
+    
+    
+    JP6CHFreqValues=[NSArray arrayWithObjects:[NSNumber numberWithUnsignedInt:0x003C23D0], /*916.800MHz   Channel 1*/
+                     [NSNumber numberWithUnsignedInt:0x003C23DC], /*918.000MHz   Channel 2*/
+                     [NSNumber numberWithUnsignedInt:0x003C23E8], /*919.200MHz   Channel 3*/
+                     [NSNumber numberWithUnsignedInt:0x003C23F4], /*920.400MHz   Channel 4*/
+                     [NSNumber numberWithUnsignedInt:0x003C23F6], /*920.600MHz   Channel 5*/
+                     [NSNumber numberWithUnsignedInt:0x003C23F8], /*920.800MHz   Channel 6*/
+                     nil];
+    
     FCCFreqIndex = @[@2, @19, @10, @15, @40,
                      @41, @42, @25, @13, @20,
                      @16, @22, @14, @5, @18,
@@ -750,7 +780,8 @@
     LH1FreqIndex = @[@0, @13, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12];
     LH2FreqIndex = @[@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10];
     VNFreqIndex = @[@6, @0, @9, @5, @1, @8, @4, @2, @7, @3];
-    
+    JP4CHFreqIndex = @[@0, @1, @2, @3];
+    JP6CHFreqIndex = @[@0, @1, @2, @3, @4, @5];
     
     
     self.TableOfFrequencies = [[NSMutableDictionary alloc] init];
@@ -932,10 +963,15 @@
             [self.FrequencyValues setValue:TWFreqValues forKey:@"TW"];
             [self.FrequencyIndex setValue:TWFreqIndex forKey:@"TW"];
         }
-        else if ([region isEqualToString:@"JP"]) {
-            [self.TableOfFrequencies setValue:JPTableOfFreq forKey:@"JP"];
-            [self.FrequencyValues setValue:JPFreqValues forKey:@"JP"];
-            [self.FrequencyIndex setValue:JPFreqIndex forKey:@"JP"];
+        else if ([region isEqualToString:@"JP-4CH"]) {
+            [self.TableOfFrequencies setValue:JP4CHTableOfFreq forKey:@"JP-4CH"];
+            [self.FrequencyValues setValue:JP4CHFreqValues forKey:@"JP-4CH"];
+            [self.FrequencyIndex setValue:JP4CHFreqIndex forKey:@"JP-4CH"];
+        }
+        else if ([region isEqualToString:@"JP-6CH"]) {
+            [self.TableOfFrequencies setValue:JP6CHTableOfFreq forKey:@"JP-6CH"];
+            [self.FrequencyValues setValue:JP6CHFreqValues forKey:@"JP-6CH"];
+            [self.FrequencyIndex setValue:JP6CHFreqIndex forKey:@"JP-6CH"];
         }
         else if ([region isEqualToString:@"ETSIUPPERBAND"]) {
             [self.TableOfFrequencies setValue:ETSIUPPERBANDTableOfFreq forKey:@"ETSIUPPERBAND"];
