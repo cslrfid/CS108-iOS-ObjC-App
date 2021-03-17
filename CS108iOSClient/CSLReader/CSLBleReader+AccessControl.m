@@ -1225,7 +1225,7 @@
     return result;
 }
 
-- (BOOL) setEpcMatchConfiguration:(BOOL)match_enable matchOn:(BOOL)epc_notEpc matchLength:(UInt16)match_length matchOffset:(UInt16)match_offset {
+- (BOOL) setEpcMatchSelect:(Byte)idx {
     
     @synchronized(self) {
         if (connectStatus!=CONNECTED)
@@ -1244,9 +1244,75 @@
     NSData * payloadData;
     
     NSLog(@"----------------------------------------------------------------------");
+    NSLog(@" INV_EPC_MATCH_SEL - select EPC match       ");
+    NSLog(@"----------------------------------------------------------------------");
+    unsigned char INV_EPC_MATCH_SEL[] = {0x80, 0x02, 0x70, 0x01, 0x10, 0x09, idx & 0xFF, 0x00, 0x00, 0x00};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x0A;
+    packet.deviceId=RFID;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:INV_EPC_MATCH_SEL length:sizeof(INV_EPC_MATCH_SEL)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
+        if([self.cmdRespQueue count] != 0)
+            break;
+        [NSThread sleepForTimeInterval:0.001f];
+    }
+    if ([self.cmdRespQueue count] != 0)
+        payloadData = ((CSLBlePacket *)[self.cmdRespQueue deqObject]).payload;
+    else
+    {
+        NSLog(@"Command timed out.");
+        connectStatus=CONNECTED;
+        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes
+        return false;
+    }
+    connectStatus=CONNECTED;
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    if (memcmp([payloadData bytes], INV_EPC_MATCH_SEL, 2) == 0 && ((Byte *)[payloadData bytes])[2] == 0x00) {
+        NSLog(@"INV_EPC_MATCH_SEL sent OK");
+        return true;
+    }
+    else {
+        NSLog(@"INV_EPC_MATCH_SEL sent FAILED");
+        return false;
+    }
+}
+
+- (BOOL) setEpcMatchConfiguration:(BOOL)match_enable matchOn:(BOOL)epc_notEpc matchLength:(UInt16)match_length matchOffset:(UInt16)match_offset {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED)
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+        connectStatus=BUSY;
+    }
+    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+    [self.recvQueue removeAllObjects];
+    [self.cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    NSData * payloadData;
+    
+    UInt32 registerValue = (UInt32)(match_enable ? 1 : 0) |
+                            (UInt32)(epc_notEpc ? 2 : 0) |
+                            (UInt32)(match_length << 2) |
+                            (UInt32)(match_offset << 11);
+    
+    NSLog(@"----------------------------------------------------------------------");
     NSLog(@"INV_EPC_MATCH_CFG - Epc match configuration register .");
     NSLog(@"----------------------------------------------------------------------");
-    unsigned char INV_EPC_MATCH_CFG[] = {0x80, 0x02, 0x70, 0x01, 0x11, 0x09, match_enable + ((epc_notEpc & 0x02) << 1) + ((match_length & 0x3F) << 2) , ((match_length & 0x01C0) >> 6) + ((match_offset & 0x1F) << 3), ((match_length & 0x01E0) >> 5), 0x00};
+    unsigned char INV_EPC_MATCH_CFG[] = {0x80, 0x02, 0x70, 0x01, 0x11, 0x09, registerValue & 0xFF, (registerValue >> 8) & 0xFF , (registerValue >> 16) & 0xFF, (registerValue >> 24) & 0xFF};
     packet.prefix=0xA7;
     packet.connection = Bluetooth;
     packet.payloadLength=0x0A;
@@ -1285,6 +1351,41 @@
         return false;
     }
 
+}
+
+- (BOOL) setEpcMatchMask:(UInt32)maskLength maskData:(NSData*)mask  {
+    
+    BOOL result=true;
+    
+    NSLog(@"EPC match mask in hex: %@", [CSLBleReader convertDataToHexString:mask] );
+    
+
+    if (maskLength > 0 && mask.length > 0) {
+        result=[self setTAGMSK:INV_EPC_MSK_0_3 tagMask:((UInt32)(((Byte *)[mask bytes])[0] << 24)) + ((UInt32)(((Byte *)[mask bytes])[1] << 16)) + ((UInt32)(((Byte *)[mask bytes])[2] << 8)) + ((UInt32)((Byte *)[mask bytes])[3])];
+    }
+    if (maskLength > 32 && mask.length > 4) {
+        result=[self setTAGMSK:INV_EPC_MSK_4_7 tagMask:((UInt32)(((Byte *)[mask bytes])[4] << 24)) + ((UInt32)(((Byte *)[mask bytes])[5] << 16)) + ((UInt32)(((Byte *)[mask bytes])[6] << 8)) + ((UInt32)((Byte *)[mask bytes])[7])];
+    }
+    if (maskLength > 64 && mask.length > 8) {
+        result=[self setTAGMSK:INV_EPC_MSK_8_11 tagMask:((UInt32)(((Byte *)[mask bytes])[8] << 24)) + ((UInt32)(((Byte *)[mask bytes])[9] << 16)) + ((UInt32)(((Byte *)[mask bytes])[10] << 8)) + ((UInt32)((Byte *)[mask bytes])[11])];
+    }
+    if (maskLength > 96 && mask.length > 12) {
+        result=[self setTAGMSK:INV_EPC_MSK_12_15 tagMask:((UInt32)(((Byte *)[mask bytes])[12] << 24)) + ((UInt32)(((Byte *)[mask bytes])[13] << 16)) + ((UInt32)(((Byte *)[mask bytes])[14] << 8)) + ((UInt32)((Byte *)[mask bytes])[15])];
+    }
+    if (maskLength > 128 && mask.length > 16) {
+        result=[self setTAGMSK:INV_EPC_MSK_16_19 tagMask:((UInt32)(((Byte *)[mask bytes])[16] << 24)) + ((UInt32)(((Byte *)[mask bytes])[17] << 16)) + ((UInt32)(((Byte *)[mask bytes])[18] << 8)) + ((UInt32)((Byte *)[mask bytes])[19])];
+    }
+    if (maskLength > 160 && mask.length > 20) {
+        result=[self setTAGMSK:INV_EPC_MSK_20_23 tagMask:((UInt32)(((Byte *)[mask bytes])[20] << 24)) + ((UInt32)(((Byte *)[mask bytes])[21] << 16)) + ((UInt32)(((Byte *)[mask bytes])[22] << 8)) + ((UInt32)((Byte *)[mask bytes])[23])];
+    }
+    if (maskLength > 192 && mask.length > 24) {
+        result=[self setTAGMSK:INV_EPC_MSK_24_27 tagMask:((UInt32)(((Byte *)[mask bytes])[24] << 24)) + ((UInt32)(((Byte *)[mask bytes])[25] << 16)) + ((UInt32)(((Byte *)[mask bytes])[26] << 8)) + ((UInt32)((Byte *)[mask bytes])[27])];
+    }
+    if (maskLength > 224 && mask.length > 28) {
+        result=[self setTAGMSK:INV_EPC_MSK_28_31 tagMask:((UInt32)(((Byte *)[mask bytes])[28] << 24)) + ((UInt32)(((Byte *)[mask bytes])[29] << 16)) + ((UInt32)(((Byte *)[mask bytes])[30] << 8)) + ((UInt32)((Byte *)[mask bytes])[31])];
+    }
+    
+    return result;
 }
 
 - (BOOL) setInventoryCycleDelay:(UInt32) cycle_delay {

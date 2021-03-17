@@ -299,6 +299,53 @@
     [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:0 disableInventory:0 tagRead:tagRead crcErrorRead:(tagRead ? 0 : 1) QTMode:0 tagDelay:tagDelay inventoryMode:(tagRead ? 0 : 1)];
     [[CSLRfidAppEngine sharedAppEngine].reader setLinkProfile:[CSLRfidAppEngine sharedAppEngine].settings.linkProfile];
     
+    //prefilter
+    if ([CSLRfidAppEngine sharedAppEngine].settings.prefilterIsEnabled) {
+        
+        int maskOffset=0;
+        if ([CSLRfidAppEngine sharedAppEngine].settings.prefilterBank == EPC)
+            maskOffset=32;
+        [[CSLRfidAppEngine sharedAppEngine].reader setQueryConfigurations:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? A : [CSLRfidAppEngine sharedAppEngine].settings.target) querySession:[CSLRfidAppEngine sharedAppEngine].settings.session querySelect:SL];
+        [[CSLRfidAppEngine sharedAppEngine].reader clearAllTagSelect];
+        [[CSLRfidAppEngine sharedAppEngine].reader TAGMSK_DESC_SEL:0];
+        [[CSLRfidAppEngine sharedAppEngine].reader selectTagForInventory:[CSLRfidAppEngine sharedAppEngine].settings.prefilterBank
+                                                             maskPointer:[CSLRfidAppEngine sharedAppEngine].settings.prefilterOffset + maskOffset
+                                                              maskLength:((UInt32)([[CSLRfidAppEngine sharedAppEngine].settings.prefilterMask length] * 4))
+                                                                maskData:(NSData*)[CSLBleReader convertHexStringToData:[CSLRfidAppEngine sharedAppEngine].settings.prefilterMask]
+                                                              sel_action:0];
+        [[CSLRfidAppEngine sharedAppEngine].reader setInventoryConfigurations:[CSLRfidAppEngine sharedAppEngine].settings.algorithm MatchRepeats:0 tagSelect:1 /* force tag_select */ disableInventory:0 tagRead:tagRead crcErrorRead:true QTMode:0 tagDelay:(tagRead ? 30 : 0) inventoryMode:(tagRead ? 0 : 1)];
+    }
+    else {
+        [[CSLRfidAppEngine sharedAppEngine].reader clearAllTagSelect];
+    }
+    
+    //postfilter
+    if ([CSLRfidAppEngine sharedAppEngine].settings.postfilterIsEnabled) {
+        
+        //Pad one hex digit if mask length is odd
+        NSString* maskString = [CSLRfidAppEngine sharedAppEngine].settings.postfilterMask;
+        if ([[CSLRfidAppEngine sharedAppEngine].settings.postfilterMask length] % 2 != 0) {
+            maskString = [NSString stringWithFormat:@"%@%@", [CSLRfidAppEngine sharedAppEngine].settings.postfilterMask, @"0"];
+        }
+        
+        [[CSLRfidAppEngine sharedAppEngine].reader setEpcMatchSelect:0x00];
+        [[CSLRfidAppEngine sharedAppEngine].reader setEpcMatchConfiguration:true
+                                                                    matchOn:[CSLRfidAppEngine sharedAppEngine].settings.postfilterIsNotMatchMaskEnabled
+                                                                matchLength:[[CSLRfidAppEngine sharedAppEngine].settings.postfilterMask length] * 4
+                                                                matchOffset:[CSLRfidAppEngine sharedAppEngine].settings.postfilterOffset];
+        [[CSLRfidAppEngine sharedAppEngine].reader setEpcMatchMask:((UInt32)([[CSLRfidAppEngine sharedAppEngine].settings.postfilterMask length] * 4))
+                                                          maskData:(NSData*)[CSLBleReader convertHexStringToData:maskString]];
+        
+    }
+    else {
+        [[CSLRfidAppEngine sharedAppEngine].reader setEpcMatchSelect:0x00];
+        [[CSLRfidAppEngine sharedAppEngine].reader setEpcMatchConfiguration:false
+                                                                    matchOn:false
+                                                                matchLength:0x0000
+                                                                matchOffset:0x0000];
+    }
+    
+    
     if ([CSLRfidAppEngine sharedAppEngine].settings.FastId) {
         [[CSLRfidAppEngine sharedAppEngine].reader setQueryConfigurations:([CSLRfidAppEngine sharedAppEngine].settings.target == ToggleAB ? A : [CSLRfidAppEngine sharedAppEngine].settings.target) querySession:[CSLRfidAppEngine sharedAppEngine].settings.session querySelect:SL];
         [[CSLRfidAppEngine sharedAppEngine].reader clearAllTagSelect];

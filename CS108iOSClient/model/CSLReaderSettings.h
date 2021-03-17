@@ -75,4 +75,22 @@
 ///Antenna port enable/disable (for CS463 only)
 @property NSMutableArray* isPortEnabled;
 
+///Pre-filter - mask
+@property NSString* prefilterMask;
+///Pre-filter - bank
+@property (assign) MEMORYBANK prefilterBank;
+///Pre-filter - offset
+@property (assign) int prefilterOffset;
+///Pre-filter - enabled
+@property (assign) BOOL prefilterIsEnabled;
+
+///Post-filter - mask
+@property NSString* postfilterMask;
+///Post-filter - bank
+@property (assign) BOOL postfilterIsNotMatchMaskEnabled;
+///Post-filter - offset
+@property (assign) int postfilterOffset;
+///Post-filter - enabled
+@property (assign) BOOL postfilterIsEnabled;
+
 @end
