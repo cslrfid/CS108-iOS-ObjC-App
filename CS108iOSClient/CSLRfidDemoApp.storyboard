@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uy9-1K-dab">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uy9-1K-dab">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -553,9 +553,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
-                        <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="SKt-Ko-cfU">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                        <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="SKt-Ko-cfU">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                            <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </activityIndicatorView>
                         <connections>
                             <outlet property="dataSource" destination="yuX-ds-zWc" id="hu2-uj-kEv"/>
@@ -1041,6 +1042,10 @@
                                     <constraint firstItem="2ci-gg-415" firstAttribute="top" secondItem="r3a-cK-MCh" secondAttribute="top" constant="3" id="kV0-jE-5wk"/>
                                 </constraints>
                             </scrollView>
+                            <activityIndicatorView hidden="YES" opaque="NO" tag="99" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="jmU-1y-Tq6">
+                                <rect key="frame" x="141.5" y="265.5" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XrQ-IT-Qq4"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1048,11 +1053,14 @@
                             <constraint firstItem="r3a-cK-MCh" firstAttribute="top" secondItem="XrQ-IT-Qq4" secondAttribute="top" id="3FL-uE-tYF"/>
                             <constraint firstItem="r3a-cK-MCh" firstAttribute="bottom" secondItem="XrQ-IT-Qq4" secondAttribute="bottom" id="QYK-ly-CZA"/>
                             <constraint firstItem="r3a-cK-MCh" firstAttribute="trailing" secondItem="XrQ-IT-Qq4" secondAttribute="trailing" id="fAc-4a-Ou1"/>
+                            <constraint firstItem="jmU-1y-Tq6" firstAttribute="centerY" secondItem="r3a-cK-MCh" secondAttribute="centerY" id="kSh-Ye-3X5"/>
                             <constraint firstItem="r3a-cK-MCh" firstAttribute="leading" secondItem="XrQ-IT-Qq4" secondAttribute="leading" id="lFr-Yw-dWZ"/>
+                            <constraint firstItem="jmU-1y-Tq6" firstAttribute="centerX" secondItem="r3a-cK-MCh" secondAttribute="centerX" id="rdt-IG-RVd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Qho-w1-lfN"/>
                     <connections>
+                        <outlet property="actSettingSpinner" destination="jmU-1y-Tq6" id="UAH-8b-zoh"/>
                         <outlet property="btnAgcGain" destination="JpC-Eh-vSg" id="nO9-oc-TfH"/>
                         <outlet property="btnAlgorithm" destination="iOF-yf-zif" id="0Rm-8D-Shg"/>
                         <outlet property="btnAntennaSettings" destination="aZn-Dt-0mq" id="W3y-Nu-Tei"/>

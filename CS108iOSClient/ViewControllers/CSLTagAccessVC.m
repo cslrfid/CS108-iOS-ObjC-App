@@ -92,8 +92,10 @@
     self.txtPower.text=[NSString stringWithFormat:@"%d", [CSLRfidAppEngine sharedAppEngine].settings.power];
     
     // Do any additional setup after loading the view.
-    [((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTagAccess];
-    [((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
+    //[((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTagAccess];
+    //[((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
+    [CSLReaderConfigurations setAntennaPortsAndPowerForTagAccess:false];
+    [CSLReaderConfigurations setConfigurationsForTags];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

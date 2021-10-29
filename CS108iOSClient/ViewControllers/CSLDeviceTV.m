@@ -181,6 +181,10 @@
             //set low power mode
             [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
             
+            [CSLReaderConfigurations setReaderRegionAndFrequencies];
+            [CSLReaderConfigurations setAntennaPortsAndPowerForTags:true];
+            [CSLReaderConfigurations setConfigurationsForTags];
+            
             [self->actSpinner stopAnimating];
         }
         

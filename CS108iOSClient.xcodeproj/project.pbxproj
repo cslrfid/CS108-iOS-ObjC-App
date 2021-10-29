@@ -51,6 +51,7 @@
 		CACFBBBB21C8E4D0001161F6 /* CSLTagSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CACFBBBA21C8E4D0001161F6 /* CSLTagSearchVC.m */; };
 		CAD168572175AD6600DC218E /* CSLTagAccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD168562175AD6600DC218E /* CSLTagAccessVC.m */; };
 		CADDF6AA21DDF41E00E05D75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */; };
+		CAE6E6E4272A5976002A3143 /* CSLReaderConfigurations.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE6E6E3272A5976002A3143 /* CSLReaderConfigurations.m */; };
 		CAE95309222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE95308222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m */; };
 		CAECD0C1214973EF003321CF /* CSLRfidDemoApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */; };
 		CAF5CC2821626F1500C420EF /* CSLReaderBattery.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF5CC2721626F1500C420EF /* CSLReaderBattery.m */; };
@@ -162,6 +163,8 @@
 		CAD168552175AD6600DC218E /* CSLTagAccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagAccessVC.h; sourceTree = "<group>"; };
 		CAD168562175AD6600DC218E /* CSLTagAccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTagAccessVC.m; sourceTree = "<group>"; };
 		CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CAE6E6E2272A5976002A3143 /* CSLReaderConfigurations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLReaderConfigurations.h; sourceTree = "<group>"; };
+		CAE6E6E3272A5976002A3143 /* CSLReaderConfigurations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLReaderConfigurations.m; sourceTree = "<group>"; };
 		CAE95307222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureDetailsVC.h; sourceTree = "<group>"; };
 		CAE95308222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureDetailsVC.m; sourceTree = "<group>"; };
 		CAECD0C0214973EF003321CF /* CSLRfidDemoApp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CSLRfidDemoApp.storyboard; sourceTree = "<group>"; };
@@ -317,6 +320,8 @@
 				CAF7FFF722376AB00016F6E7 /* CSLTemperatureTagSettings.m */,
 				CAAD99C2246EE75D002B76F6 /* CSLReaderFrequency.h */,
 				CAAD99C3246EE75D002B76F6 /* CSLReaderFrequency.m */,
+				CAE6E6E2272A5976002A3143 /* CSLReaderConfigurations.h */,
+				CAE6E6E3272A5976002A3143 /* CSLReaderConfigurations.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -505,6 +510,7 @@
 				CAFF2698221D3F7000D89112 /* CSLMultibankAccessVC.m in Sources */,
 				CAF7FFF822376AB00016F6E7 /* CSLTemperatureTagSettings.m in Sources */,
 				CAE95309222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m in Sources */,
+				CAE6E6E4272A5976002A3143 /* CSLReaderConfigurations.m in Sources */,
 				CA78737C21514E61009B7FE6 /* CSLRfidAppEngine.m in Sources */,
 				CA5066412157889C00C3C9C8 /* CSLAboutVC.m in Sources */,
 				CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */,
