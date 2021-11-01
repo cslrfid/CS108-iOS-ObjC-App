@@ -4517,7 +4517,7 @@
                                         </constraints>
                                     </stackView>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WZd-XQ-IIr" userLabel="SV Parent">
-                                        <rect key="frame" x="0.0" y="39" width="310" height="390"/>
+                                        <rect key="frame" x="0.0" y="39" width="310" height="350"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="ybA-H1-AJK">
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="448"/>
@@ -4820,7 +4820,7 @@
                                         </constraints>
                                     </scrollView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LNt-Jc-Lqq" userLabel="Read Write Button">
-                                        <rect key="frame" x="0.0" y="434" width="310" height="35"/>
+                                        <rect key="frame" x="0.0" y="394" width="310" height="35"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yX4-Bg-c1f" userLabel="Read">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
@@ -4850,7 +4850,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfp-lf-YXJ" userLabel="Security">
-                                        <rect key="frame" x="0.0" y="474" width="310" height="35"/>
+                                        <rect key="frame" x="0.0" y="434" width="310" height="35"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCP-cA-sdM">
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="35"/>
@@ -4866,6 +4866,27 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="xlJ-FY-oyj"/>
                                         </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S17-Ce-cod">
+                                        <rect key="frame" x="0.0" y="474" width="310" height="35"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acu-2K-cez">
+                                                <rect key="frame" x="0.0" y="0.0" width="310" height="35"/>
+                                                <color key="backgroundColor" red="0.29411764709999999" green="0.46666666670000001" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="uzO-Th-Tdg"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Kill Tag"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Kill">
+                                                    <fontDescription key="titleFontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="btnKillPressed:" destination="E7F-yr-253" eventType="touchUpInside" id="ipr-wi-iL5"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -4895,6 +4916,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="actTagAccessSpinner" destination="P1J-GM-jAZ" id="LrA-fo-d3V"/>
+                        <outlet property="btnKill" destination="acu-2K-cez" id="EGG-Qx-AaM"/>
                         <outlet property="btnRead" destination="yX4-Bg-c1f" id="3NP-zy-LxH"/>
                         <outlet property="btnSecurity" destination="QCP-cA-sdM" id="Tkk-Lv-hpa"/>
                         <outlet property="btnTidUidOffset" destination="5Dz-fH-AUX" id="GQn-ZL-GL9"/>
@@ -4925,6 +4947,103 @@
                 <exit id="a6d-Bo-Txe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1485" y="676.05633802816897"/>
+        </scene>
+        <!--CslRfid TagKillVC-->
+        <scene sceneID="x8v-sc-CIQ">
+            <objects>
+                <viewController storyboardIdentifier="ID_TagKillVC" id="fUz-r3-rV2" userLabel="CslRfid TagKillVC" customClass="CSLTagKillVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kv1-O0-iLK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zR0-L6-yA9" userLabel="Tag Lock Elements">
+                                <rect key="frame" x="5" y="11" width="309" height="115"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZi-9P-Q5q" userLabel="Selected EPC">
+                                        <rect key="frame" x="0.0" y="0.0" width="309" height="35"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected EPC: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1J-0d-vYz" userLabel="Selected EPC">
+                                                <rect key="frame" x="0.0" y="0.0" width="94.5" height="35"/>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evd-2U-8nr" userLabel="Selected EPC Text">
+                                                <rect key="frame" x="94.5" y="0.0" width="214.5" height="35"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="txtSelectedEPCEdited:" destination="fUz-r3-rV2" eventType="editingDidEnd" id="O8u-aG-kZn"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="IY6-nK-cDi"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sdk-5b-1lM">
+                                        <rect key="frame" x="0.0" y="40" width="309" height="35"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KILL PWD: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbM-nG-OhH">
+                                                <rect key="frame" x="0.0" y="0.0" width="76" height="35"/>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="00000000" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RUS-Yp-wsl">
+                                                <rect key="frame" x="76" y="0.0" width="233" height="35"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="txtKillPwdEditied:" destination="fUz-r3-rV2" eventType="editingDidEnd" id="NcN-Ml-TCD"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="KWc-eT-C7Z"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxP-tI-LMd">
+                                        <rect key="frame" x="0.0" y="80" width="309" height="35"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ear-wX-qVD">
+                                                <rect key="frame" x="0.0" y="0.0" width="309" height="35"/>
+                                                <color key="backgroundColor" red="0.29411764709999999" green="0.46666666670000001" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Kill Tag"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Kill Tag">
+                                                    <fontDescription key="titleFontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="btnKillTagPressed:" destination="fUz-r3-rV2" eventType="touchUpInside" id="w9s-CL-g0w"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="y5J-6b-QKd"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="g5a-XP-KzX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="g5a-XP-KzX" firstAttribute="trailing" secondItem="zR0-L6-yA9" secondAttribute="trailing" constant="6" id="2Y5-YT-411"/>
+                            <constraint firstItem="zR0-L6-yA9" firstAttribute="leading" secondItem="g5a-XP-KzX" secondAttribute="leading" constant="5" id="DLX-bC-9yN"/>
+                            <constraint firstItem="zR0-L6-yA9" firstAttribute="top" secondItem="g5a-XP-KzX" secondAttribute="top" constant="11" id="Dvg-w9-dQk"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnKillTag" destination="ear-wX-qVD" id="iuz-8z-N3J"/>
+                        <outlet property="txtKillPwd" destination="RUS-Yp-wsl" id="h8V-r1-Eg3"/>
+                        <outlet property="txtSelectedEPC" destination="evd-2U-8nr" id="Gq0-UQ-rG7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9ci-b7-BFs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1485" y="1349"/>
         </scene>
         <!--CslRfid TagLockVC-->
         <scene sceneID="JQM-20-rtl">

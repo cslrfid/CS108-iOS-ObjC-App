@@ -48,6 +48,7 @@
 		CABA71662132631F00D15BB1 /* CSLCircularQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71602132631F00D15BB1 /* CSLCircularQueue.m */; };
 		CABA71672132631F00D15BB1 /* CSLBlePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71642132631F00D15BB1 /* CSLBlePacket.m */; };
 		CABA71682132631F00D15BB1 /* CSLBleInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA71652132631F00D15BB1 /* CSLBleInterface.m */; };
+		CAC0A62A272CFB99000CD6DA /* CSLTagKillVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC0A629272CFB99000CD6DA /* CSLTagKillVC.m */; };
 		CACFBBBB21C8E4D0001161F6 /* CSLTagSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CACFBBBA21C8E4D0001161F6 /* CSLTagSearchVC.m */; };
 		CAD168572175AD6600DC218E /* CSLTagAccessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD168562175AD6600DC218E /* CSLTagAccessVC.m */; };
 		CADDF6AA21DDF41E00E05D75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADDF6A921DDF41E00E05D75 /* CoreGraphics.framework */; };
@@ -158,6 +159,8 @@
 		CABA71632132631F00D15BB1 /* CSLBleInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLBleInterface.h; sourceTree = "<group>"; };
 		CABA71642132631F00D15BB1 /* CSLBlePacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBlePacket.m; sourceTree = "<group>"; };
 		CABA71652132631F00D15BB1 /* CSLBleInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLBleInterface.m; sourceTree = "<group>"; };
+		CAC0A628272CFB99000CD6DA /* CSLTagKillVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagKillVC.h; sourceTree = "<group>"; };
+		CAC0A629272CFB99000CD6DA /* CSLTagKillVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTagKillVC.m; sourceTree = "<group>"; };
 		CACFBBB921C8E4D0001161F6 /* CSLTagSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagSearchVC.h; sourceTree = "<group>"; };
 		CACFBBBA21C8E4D0001161F6 /* CSLTagSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTagSearchVC.m; sourceTree = "<group>"; };
 		CAD168552175AD6600DC218E /* CSLTagAccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagAccessVC.h; sourceTree = "<group>"; };
@@ -246,6 +249,8 @@
 				CACFBBBA21C8E4D0001161F6 /* CSLTagSearchVC.m */,
 				CA411CDD21D8C59F0029E779 /* CSLTagLockVC.h */,
 				CA411CDE21D8C59F0029E779 /* CSLTagLockVC.m */,
+				CAC0A628272CFB99000CD6DA /* CSLTagKillVC.h */,
+				CAC0A629272CFB99000CD6DA /* CSLTagKillVC.m */,
 				CA5C059221E4517D00E68E44 /* CSLMQTTClientSettings.h */,
 				CA5C059321E4517D00E68E44 /* CSLMQTTClientSettings.m */,
 				CAB31374221A75330048DA62 /* CSLTagListCell.h */,
@@ -546,6 +551,7 @@
 				CA78736A214CCA47009B7FE6 /* CSLSettingsVC.m in Sources */,
 				CAD168572175AD6600DC218E /* CSLTagAccessVC.m in Sources */,
 				CA4E78E9213698DD0035F075 /* CSLBleTag.m in Sources */,
+				CAC0A62A272CFB99000CD6DA /* CSLTagKillVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,7 +695,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.3;
+				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.csl.CS108iOSClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -712,7 +718,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.3;
+				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.csl.CS108iOSClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -74,6 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) sendHostCommandWrite;
 - (BOOL) sendHostCommandSearch;
 - (BOOL) sendHostCommandLock;
+- (BOOL) sendHostCommandKill;
 
 /**
  Clear all tag select criteria (8 in total)
@@ -163,6 +164,16 @@ Select EPC match mask
  @return TRUE if the operation is successful
  */
 - (BOOL) startTagMemoryLock:(UInt32)lockCommandConfigBits ACCPWD:(UInt32)password maskBank:(MEMORYBANK)mask_bank maskPointer:(UInt16)mask_pointer maskLength:(UInt32)mask_Length maskData:(NSData*)mask_data;
+/**
+ Send singular tag kill command
+ @param password Access password for the tag
+ @param mask_bank Mask bank to be used for tag selection
+ @param mask_pointer Pointer to the start of the memory address, to be expressed by bits
+ @param mask_Length Size of the mask expressed in number of bits
+ @param mask_data mask value
+ @return TRUE if the operation is successful
+ */
+- (BOOL) startTagMemoryKill:(UInt32)password maskBank:(MEMORYBANK)mask_bank maskPointer:(UInt16)mask_pointer maskLength:(UInt32)mask_Length maskData:(NSData*)mask_data;
 /**
  Send singular tag search command
  @param mask_bank Mask bank to be used for tag selection
