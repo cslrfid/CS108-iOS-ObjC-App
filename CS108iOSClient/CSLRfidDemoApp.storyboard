@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uy9-1K-dab">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uy9-1K-dab">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -2114,12 +2114,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x0r-xr-gAQ">
+                                <rect key="frame" x="5" y="435" width="310" height="33"/>
+                                <color key="backgroundColor" red="0.29411764705882354" green="0.46666666666666667" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Privacy Statement"/>
+                                <connections>
+                                    <action selector="btnPrivacyStatementPressed:" destination="X0q-ZB-cO0" eventType="touchUpInside" id="59g-Nz-LFh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="f6e-wo-tWK"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="f6e-wo-tWK" firstAttribute="bottom" secondItem="x0r-xr-gAQ" secondAttribute="bottom" constant="100" id="jp3-eN-ZgM"/>
+                            <constraint firstItem="x0r-xr-gAQ" firstAttribute="leading" secondItem="f6e-wo-tWK" secondAttribute="leading" constant="5" id="qhX-Q8-fnM"/>
+                            <constraint firstItem="f6e-wo-tWK" firstAttribute="trailing" secondItem="x0r-xr-gAQ" secondAttribute="trailing" constant="5" id="xLg-Xo-JIb"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="About" id="h0q-iH-Zd3" userLabel="Navigation Item"/>
                     <connections>
+                        <outlet property="btnPrivacyStatement" destination="x0r-xr-gAQ" id="qlf-M9-LCP"/>
                         <outlet property="lbAppVersion" destination="uNQ-JF-Ip3" id="rBe-xy-Ouz"/>
                         <outlet property="lbBoardVersion" destination="oPS-5S-xIB" id="niL-fR-kJc"/>
                         <outlet property="lbBtFirmwareVersion" destination="vJt-qc-74z" id="M0Y-9o-mWr"/>
@@ -4878,10 +4895,8 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Kill Tag"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Kill">
-                                                    <fontDescription key="titleFontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
-                                                </buttonConfiguration>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Kill"/>
                                                 <connections>
                                                     <action selector="btnKillPressed:" destination="E7F-yr-253" eventType="touchUpInside" id="ipr-wi-iL5"/>
                                                 </connections>
@@ -5011,10 +5026,8 @@
                                                 <color key="backgroundColor" red="0.29411764709999999" green="0.46666666670000001" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Kill Tag"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Kill Tag">
-                                                    <fontDescription key="titleFontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
-                                                </buttonConfiguration>
                                                 <connections>
                                                     <action selector="btnKillTagPressed:" destination="fUz-r3-rV2" eventType="touchUpInside" id="w9s-CL-g0w"/>
                                                 </connections>

@@ -37,6 +37,10 @@
     lbSiLabIcFirmwareVersion.text=[CSLRfidAppEngine sharedAppEngine].readerInfo.SiLabICFirmwareVersion;
     lbSerialNumber.text=[CSLRfidAppEngine sharedAppEngine].readerInfo.deviceSerialNumber;
     lbBoardVersion.text=[CSLRfidAppEngine sharedAppEngine].readerInfo.pcbBoardVersion;
+    
+    self.btnPrivacyStatement.layer.borderWidth=1.0f;
+    self.btnPrivacyStatement.layer.borderColor=[UIColor clearColor].CGColor;
+    self.btnPrivacyStatement.layer.cornerRadius=5.0f;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,4 +58,10 @@
 }
 */
 
+- (IBAction)btnPrivacyStatementPressed:(id)sender {
+    
+    NSURL *url = [ [ NSURL alloc ] initWithString: @"https://www.convergence.com.hk/apps-privacy-policy/" ];
+
+    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+}
 @end

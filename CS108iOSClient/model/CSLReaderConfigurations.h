@@ -20,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) setConfigurationsForTags;
 + (void) setConfigurationsForTemperatureTags;
 + (void) setAntennaPortsAndPowerForTemperatureTags:(BOOL)isInitial;
-+ (void) setConfigurationsForTemperatureTags:(BOOL)isInitial;
 + (void) setReaderRegionAndFrequencies;
 
 @end
