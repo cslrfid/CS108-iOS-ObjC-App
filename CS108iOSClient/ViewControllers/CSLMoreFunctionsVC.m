@@ -9,6 +9,7 @@
 #import "CSLMoreFunctionsVC.h"
 #import "CSLMQTTClientSettings.h"
 #import "CSLMultibankAccessVC.h"
+#import "CSLFilterTabVC.h"
 
 @interface CSLMoreFunctionsVC ()
 
@@ -31,6 +32,13 @@
 }
 */
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.view.userInteractionEnabled=true;
+
+}
+
+
+
 - (IBAction)btnMultibankPressed:(id)sender {
     CSLMultibankAccessVC* multibank;
     multibank = (CSLMultibankAccessVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_MultibankVC"];
@@ -43,12 +51,15 @@
 }
 
 - (IBAction)btnFiltersPressed:(id)sender {
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Not Available" message:@"Feature to be implemented" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:ok];
-    [self presentViewController:alert animated:YES completion:nil];
+        
+    CSLFilterTabVC * tabVC = (CSLFilterTabVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_FilterTabVC"];
+   
+    [tabVC setActiveView:CSL_VC_RFIDTAB_PREFILTER_VC_IDX];
+    self.view.userInteractionEnabled=false;
+    if (tabVC != nil)
+    {
+        [[self navigationController] pushViewController:tabVC animated:YES];
+    }
     
 }
 

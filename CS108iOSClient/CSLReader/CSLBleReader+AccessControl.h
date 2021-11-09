@@ -25,6 +25,15 @@
 #define TAGWRDAT_6 0x0A0F
 #define TAGWRDAT_7 0x0A10
 
+#define INV_EPC_MSK_0_3 0x0912
+#define INV_EPC_MSK_4_7 0x0913
+#define INV_EPC_MSK_8_11 0x0914
+#define INV_EPC_MSK_12_15 0x0915
+#define INV_EPC_MSK_16_19 0x0916
+#define INV_EPC_MSK_20_23 0x0917
+#define INV_EPC_MSK_24_27 0x0918
+#define INV_EPC_MSK_28_31 0x0919
+
 ///Query sessions
 typedef NS_ENUM(Byte, MEMORYBANK)
 {
@@ -65,12 +74,19 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) sendHostCommandWrite;
 - (BOOL) sendHostCommandSearch;
 - (BOOL) sendHostCommandLock;
+- (BOOL) sendHostCommandKill;
 
 /**
  Clear all tag select criteria (8 in total)
  @return TRUE if the operation is successful
  */
 - (BOOL) clearAllTagSelect;
+/**
+Select EPC match index
+ @param idx Index of the selection
+ @return TRUE if the operation is successful
+ */
+- (BOOL) setEpcMatchSelect:(Byte)idx;
 /**
  EPC match configuration
  @param match_enable 1 = EPC matching enabled, 0 = EPC matching disabled
@@ -80,6 +96,13 @@ NS_ASSUME_NONNULL_BEGIN
  @return TRUE if the operation is successful
  */
 - (BOOL) setEpcMatchConfiguration:(BOOL)match_enable matchOn:(BOOL)epc_notEpc matchLength:(UInt16)match_length matchOffset:(UInt16)match_offset;
+/**
+Select EPC match mask
+ @param maskLength Length of mask
+ @param mask  Mask data
+ @return TRUE if the operation is successful
+ */
+- (BOOL) setEpcMatchMask:(UInt32)maskLength maskData:(NSData*)mask;
 /**
  Delay time between inventory cycle.
  @param cycle_delay Time delay in-between each inventory cycle in ms (use to reduce tag rate).  The values should be between 0 to 2000.  0 means fastest tag rate.
@@ -141,6 +164,16 @@ NS_ASSUME_NONNULL_BEGIN
  @return TRUE if the operation is successful
  */
 - (BOOL) startTagMemoryLock:(UInt32)lockCommandConfigBits ACCPWD:(UInt32)password maskBank:(MEMORYBANK)mask_bank maskPointer:(UInt16)mask_pointer maskLength:(UInt32)mask_Length maskData:(NSData*)mask_data;
+/**
+ Send singular tag kill command
+ @param password Access password for the tag
+ @param mask_bank Mask bank to be used for tag selection
+ @param mask_pointer Pointer to the start of the memory address, to be expressed by bits
+ @param mask_Length Size of the mask expressed in number of bits
+ @param mask_data mask value
+ @return TRUE if the operation is successful
+ */
+- (BOOL) startTagMemoryKill:(UInt32)password maskBank:(MEMORYBANK)mask_bank maskPointer:(UInt16)mask_pointer maskLength:(UInt32)mask_Length maskData:(NSData*)mask_data;
 /**
  Send singular tag search command
  @param mask_bank Mask bank to be used for tag selection

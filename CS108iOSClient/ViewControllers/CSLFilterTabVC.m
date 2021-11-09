@@ -1,15 +1,14 @@
 //
-//  CSLTabVC.m
+//  CSLFilterTabVC.m
 //  CS108iOSClient
 //
-//  Created by Lam Ka Shun on 15/9/2018.
-//  Copyright © 2018 Convergence Systems Limited. All rights reserved.
+//  Created by Lam Ka Shun on 2021-03-16.
+//  Copyright © 2021 Convergence Systems Limited. All rights reserved.
 //
 
-#import "CSLTabVC.h"
+#import "CSLFilterTabVC.h"
 
-@implementation CSLTabVC
-
+@implementation CSLFilterTabVC
 
 - (void)viewDidLoad
 {

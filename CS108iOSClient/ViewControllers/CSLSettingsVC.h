@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnRegion;
 @property (weak, nonatomic) IBOutlet UIButton *btnFrequencyChannel;
 @property (weak, nonatomic) IBOutlet UIButton *btnFrequencyOrder;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actSettingSpinner;
 
 - (IBAction)btnSessionPressed:(id)sender;
 - (IBAction)btnAlgorithmPressed:(id)sender;

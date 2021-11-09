@@ -52,6 +52,7 @@ typedef NS_ENUM(Byte, MEMORYITEM)
 @property (weak, nonatomic) IBOutlet UILabel *lbPort;
 @property (weak, nonatomic) IBOutlet UITextField *txtPort;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actTagAccessSpinner;
+@property (weak, nonatomic) IBOutlet UIButton *btnKill;
 
 - (IBAction)swPCPressed:(id)sender;
 - (IBAction)swEPCPressed:(id)sender;
@@ -68,6 +69,7 @@ typedef NS_ENUM(Byte, MEMORYITEM)
 - (IBAction)btnReadPressed:(id)sender;
 - (IBAction)btnWritePressed:(id)sender;
 - (IBAction)btnSecurityPressed:(id)sender;
+- (IBAction)btnKillPressed:(id)sender;
 
 
 - (IBAction)txtSelectedEPCChanged:(id)sender;

@@ -220,9 +220,10 @@
     }
     
     // Do any additional setup after loading the view.
-    [((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTags];
-    [((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
-    
+    //[((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTags];
+    //[((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
+    [CSLReaderConfigurations setAntennaPortsAndPowerForTags:false];
+    [CSLReaderConfigurations setConfigurationsForTags];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

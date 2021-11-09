@@ -489,6 +489,18 @@
     
     [[CSLRfidAppEngine sharedAppEngine] saveSettingsToUserDefaults];
     
+    [self.actSettingSpinner startAnimating];
+    self.view.userInteractionEnabled=false;
+    //refresh UI
+    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+    
+    [CSLReaderConfigurations setReaderRegionAndFrequencies];
+    [CSLReaderConfigurations setAntennaPortsAndPowerForTags:true];
+    [CSLReaderConfigurations setConfigurationsForTags];
+    
+    [self.actSettingSpinner stopAnimating];
+    self.view.userInteractionEnabled=true;
+    
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Settings" message:@"Settings saved." preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];

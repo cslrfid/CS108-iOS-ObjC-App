@@ -8,6 +8,7 @@
 
 #import "CSLTagAccessVC.h"
 #import "CSLTagLockVC.h"
+#import "CSLTagKillVC.h"
 
 @interface CSLTagAccessVC()
 
@@ -50,6 +51,8 @@
     self.btnSecurity.layer.borderWidth=1.0f;
     self.btnSecurity.layer.borderColor=[UIColor clearColor].CGColor;
     self.btnSecurity.layer.cornerRadius=5.0f;
+    self.btnKill.layer.borderColor=[UIColor clearColor].CGColor;
+    self.btnKill.layer.cornerRadius=5.0f;
     
 }
 
@@ -92,8 +95,10 @@
     self.txtPower.text=[NSString stringWithFormat:@"%d", [CSLRfidAppEngine sharedAppEngine].settings.power];
     
     // Do any additional setup after loading the view.
-    [((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTagAccess];
-    [((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
+    //[((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTagAccess];
+    //[((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
+    [CSLReaderConfigurations setAntennaPortsAndPowerForTagAccess:false];
+    [CSLReaderConfigurations setConfigurationsForTags];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -594,6 +599,17 @@
                               characterSetWithCharactersInString:@"0123456789ABCDEF"] invertedSet];
     if (([[self.txtSelectedEPC.text uppercaseString] rangeOfCharacterFromSet:chars].location != NSNotFound)) {
         self.txtSelectedEPC.text = @"";
+    }
+}
+
+- (IBAction)btnKillPressed:(id)sender {
+    
+    CSLTagKillVC* tagKillVC;
+    tagKillVC = (CSLTagKillVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_TagKillVC"];
+    
+    if (tagKillVC != nil)
+    {
+        [[self navigationController] pushViewController:tagKillVC animated:YES];
     }
 }
 

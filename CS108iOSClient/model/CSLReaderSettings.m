@@ -65,6 +65,15 @@
         [self.isPortEnabled addObject:[[NSNumber alloc] initWithBool:TRUE]];
         for (int n = 1 ; n < 4; n++)
             [self.isPortEnabled addObject:[[NSNumber alloc] initWithBool:FALSE]];
+        
+        self.prefilterBank=EPC;
+        self.prefilterMask=@"1234";
+        self.prefilterOffset=0;
+        self.prefilterIsEnabled=false;
+        self.postfilterMask=@"1234";
+        self.postfilterOffset=0;
+        self.postfilterIsNotMatchMaskEnabled=false;
+        self.postfilterIsEnabled=false;
     }
     return self;
 }

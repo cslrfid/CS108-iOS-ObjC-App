@@ -303,6 +303,11 @@ Send command to barcode reader
  */
 - (BOOL)sendAbortCommand;
 /**
+ Polling trigger key status
+ @return TRUE if the operation is successful
+ */
+- (BOOL)getTriggerKeyStatus;
+/**
  Start battery level reporting (notification every 5 seconds)
 Once it is started, the delegate will be triggered everytime when a battery level notification is being returned
  @return TRUE if the operation is successful

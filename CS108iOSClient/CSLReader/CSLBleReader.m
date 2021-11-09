@@ -1375,6 +1375,44 @@
 
 }
 
+- (BOOL)getTriggerKeyStatus {
+    
+    @synchronized(self) {
+        if (connectStatus!=CONNECTED && connectStatus!=TAG_OPERATIONS)  //reader is not idling for downlink command and not performing inventory
+        {
+            NSLog(@"Reader is not connected or busy. Access failure");
+            return false;
+        }
+    }
+    [cmdRespQueue removeAllObjects];
+    
+    //Initialize data
+    CSLBlePacket* packet= [[CSLBlePacket alloc] init];
+    //CSLBlePacket* recvPacket;
+    
+    NSLog(@"----------------------------------------------------------------------");
+    NSLog(@"Get trigger key status command...");
+    NSLog(@"----------------------------------------------------------------------");
+    //Send abort command
+    unsigned char getTriggerKeyStatus[] = {0xA0, 0x01};
+    packet.prefix=0xA7;
+    packet.connection = Bluetooth;
+    packet.payloadLength=0x02;
+    packet.deviceId=Notification;
+    packet.Reserve=0x82;
+    packet.direction=Downlink;
+    packet.crc1=0;
+    packet.crc2=0;
+    packet.payload=[NSData dataWithBytes:getTriggerKeyStatus length:sizeof(getTriggerKeyStatus)];
+    
+    NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
+    [self sendPackets:packet];
+    
+    connectStatus=CONNECTED;
+    return true;
+}
+
+
 - (BOOL)startBatteryAutoReporting {
     
     @synchronized(self) {
@@ -3602,6 +3640,14 @@
                     [batteryInfo setBatteryMode:IDLE];
                 [self.readerDelegate didReceiveBatteryLevelIndicator:self batteryPercentage:[batteryInfo getBatteryPercentageByVoltage:(double)((((Byte *)[rfidPacketBuffer bytes])[2] * 256) + ((Byte *)[rfidPacketBuffer bytes])[3]) / 1000.00f]];
                 [rfidPacketBuffer setLength:0];
+            }
+            else if ([eventCode isEqualToString:@"A001"]) {
+                NSLog(@"[decodePacketsInBufferAsync] Trigger key state Return: 0x%@", [rfidPacketBufferInHexString substringWithRange:NSMakeRange(4,2)]);
+                [rfidPacketBuffer setLength:0];
+                if (((Byte *)[rfidPacketBuffer bytes])[2])
+                    [self.readerDelegate didTriggerKeyChangedState:self keyState:true]; //this will call the method for handling the tag response.
+                else
+                    [self.readerDelegate didTriggerKeyChangedState:self keyState:false]; //this will call the method for handling the tag response.
             }
             else if ([eventCode isEqualToString:@"9003"]) {
                 NSLog(@"[decodePacketsInBufferAsync] Barcode command sent.");

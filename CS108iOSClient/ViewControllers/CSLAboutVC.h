@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbSiLabIcFirmwareVersion;
 @property (weak, nonatomic) IBOutlet UILabel *lbSerialNumber;
 @property (weak, nonatomic) IBOutlet UILabel *lbBoardVersion;
+@property (weak, nonatomic) IBOutlet UIButton *btnPrivacyStatement;
 
+- (IBAction)btnPrivacyStatementPressed:(id)sender;
 
 @end

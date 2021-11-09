@@ -151,6 +151,22 @@ CSLRfidAppEngine * appEngine;
         settings.region = (NSString*)[defaults stringForKey:@"region"];
     if([defaults objectForKey:@"channel"])
         settings.channel = (NSString*)[defaults stringForKey:@"channel"];
+    if([defaults objectForKey:@"prefilterBank"])
+        settings.prefilterBank = (MEMORYBANK)[defaults integerForKey:@"prefilterBank"];
+    if([defaults objectForKey:@"prefilterMask"])
+        settings.prefilterMask = (NSString*)[defaults stringForKey:@"prefilterMask"];
+    if([defaults objectForKey:@"prefilterOffset"])
+        settings.prefilterOffset = (int)[defaults integerForKey:@"prefilterOffset"];
+    if([defaults objectForKey:@"prefilterIsEnabled"])
+        settings.prefilterIsEnabled =[defaults boolForKey:@"prefilterIsEnabled"];
+    if([defaults objectForKey:@"postfilterMask"])
+        settings.postfilterMask = (NSString*)[defaults stringForKey:@"postfilterMask"];
+    if([defaults objectForKey:@"postfilterOffset"])
+        settings.postfilterOffset = (int)[defaults integerForKey:@"postfilterOffset"];
+    if([defaults objectForKey:@"postfilterIsNotMatchMaskEnabled"])
+        settings.postfilterIsNotMatchMaskEnabled =[defaults boolForKey:@"postfilterIsNotMatchMaskEnabled"];
+    if([defaults objectForKey:@"postfilterIsEnabled"])
+        settings.postfilterIsEnabled =[defaults boolForKey:@"postfilterIsEnabled"];
     
 }
 -(void)saveSettingsToUserDefaults {
@@ -185,6 +201,14 @@ CSLRfidAppEngine * appEngine;
     [defaults setInteger:settings.ifAgc forKey:@"ifAgc"];
     [defaults setObject:settings.region forKey:@"region"];
     [defaults setObject:settings.channel forKey:@"channel"];
+    [defaults setInteger:settings.prefilterBank forKey:@"prefilterBank"];
+    [defaults setObject:settings.prefilterMask forKey:@"prefilterMask"];
+    [defaults setInteger:settings.prefilterOffset forKey:@"prefilterOffset"];
+    [defaults setBool:settings.prefilterIsEnabled forKey:@"prefilterIsEnabled"];
+    [defaults setObject:settings.postfilterMask forKey:@"postfilterMask"];
+    [defaults setInteger:settings.postfilterOffset forKey:@"postfilterOffset"];
+    [defaults setBool:settings.postfilterIsNotMatchMaskEnabled forKey:@"postfilterIsNotMatchMaskEnabled"];
+    [defaults setBool:settings.postfilterIsEnabled forKey:@"postfilterIsEnabled"];
     
     [defaults synchronize];
     
