@@ -1376,7 +1376,7 @@
 }
 
 - (BOOL)getTriggerKeyStatus {
-    
+
     @synchronized(self) {
         if (connectStatus!=CONNECTED && connectStatus!=TAG_OPERATIONS)  //reader is not idling for downlink command and not performing inventory
         {
@@ -1385,11 +1385,11 @@
         }
     }
     [cmdRespQueue removeAllObjects];
-    
+
     //Initialize data
     CSLBlePacket* packet= [[CSLBlePacket alloc] init];
     //CSLBlePacket* recvPacket;
-    
+
     NSLog(@"----------------------------------------------------------------------");
     NSLog(@"Get trigger key status command...");
     NSLog(@"----------------------------------------------------------------------");
@@ -1404,10 +1404,10 @@
     packet.crc1=0;
     packet.crc2=0;
     packet.payload=[NSData dataWithBytes:getTriggerKeyStatus length:sizeof(getTriggerKeyStatus)];
-    
+
     NSLog(@"BLE packet sending: %@", [packet getPacketInHexString]);
     [self sendPackets:packet];
-    
+
     connectStatus=CONNECTED;
     return true;
 }
@@ -2985,7 +2985,10 @@
                     }
                 }
                 else
+                {
+                    [NSThread sleepForTimeInterval:0.001f];	
                     continue;
+                }
             }
             
             NSLog(@"[decodePacketsInBufferAsync] RFID Packet buffer before arrival for packet: %@", [rfidPacketBuffer length] == 0 ? @"(EMPTY)" : [CSLBleReader convertDataToHexString:rfidPacketBuffer]);
@@ -3331,12 +3334,12 @@
                                 NSUInteger findIndex = [filteredBuffer indexOfObject:tag
                                                                        inSortedRange:searchRange
                                                                              options:NSBinarySearchingInsertionIndex | NSBinarySearchingFirstEqual
-                                                                     usingComparator:^(id obj1, id obj2)
-                                                        {
-                                                            NSString* str1=((CSLBleTag*)obj1).EPC;
-                                                            NSString* str2=((CSLBleTag*)obj2).EPC;
-                                                            return [str1 compare:str2 options:NSCaseInsensitiveSearch];
-                                                        }];
+                                                                     usingComparator:^(id obj1, id obj2) {
+                                    NSString* str1; NSString* str2;
+                                    str1 = ([obj1 isKindOfClass:[CSLReaderBarcode class]]) ? ((CSLReaderBarcode*)obj1).barcodeValue : ((CSLBleTag*)obj1).EPC;
+                                    str2 = ([obj2 isKindOfClass:[CSLReaderBarcode class]]) ? ((CSLReaderBarcode*)obj2).barcodeValue : ((CSLBleTag*)obj2).EPC;
+                                    return [str1 compare:str2 options:NSCaseInsensitiveSearch];
+                                }];
                                 
                                 if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
                                 {
@@ -3344,7 +3347,7 @@
                                     uniqueTagCount++;
                                     
                                 }
-                                else if ( [((CSLBleTag*)filteredBuffer[findIndex]).EPC caseInsensitiveCompare:tag.EPC] != NSOrderedSame)
+                                else if ( [[filteredBuffer[findIndex] isKindOfClass:[CSLReaderBarcode class]] ? ((CSLReaderBarcode*)filteredBuffer[findIndex]).barcodeValue : ((CSLBleTag*)filteredBuffer[findIndex]).EPC caseInsensitiveCompare:tag.EPC] != NSOrderedSame)
                                 {
                                     //new tag found.  insert into buffer in sorted order
                                     [filteredBuffer insertObject:tag atIndex:findIndex];
@@ -3467,20 +3470,19 @@
                                 NSUInteger findIndex = [filteredBuffer indexOfObject:tag
                                                                     inSortedRange:searchRange
                                                                           options:NSBinarySearchingInsertionIndex | NSBinarySearchingFirstEqual
-                                                                  usingComparator:^(id obj1, id obj2)
-                                                                    {
-                                                                        NSString* str1=((CSLBleTag*)obj1).EPC;
-                                                                        NSString* str2=((CSLBleTag*)obj2).EPC;
-                                                                        return [str1 compare:str2 options:NSCaseInsensitiveSearch];
-                                                                    }];
+                                                                  usingComparator:^(id obj1, id obj2) {
+                                    NSString* str1; NSString* str2;
+                                    str1 = ([obj1 isKindOfClass:[CSLReaderBarcode class]]) ? ((CSLReaderBarcode*)obj1).barcodeValue : ((CSLBleTag*)obj1).EPC;
+                                    str2 = ([obj2 isKindOfClass:[CSLReaderBarcode class]]) ? ((CSLReaderBarcode*)obj2).barcodeValue : ((CSLBleTag*)obj2).EPC;
+                                    return [str1 compare:str2 options:NSCaseInsensitiveSearch];
+                                }];
                                 
                                 if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
                                 {
                                     [filteredBuffer insertObject:tag atIndex:findIndex];
                                     uniqueTagCount++;
-                                    
                                 }
-                                else if ( [((CSLBleTag*)filteredBuffer[findIndex]).EPC caseInsensitiveCompare:tag.EPC] != NSOrderedSame)
+                                else if ( [[filteredBuffer[findIndex] isKindOfClass:[CSLReaderBarcode class]] ? ((CSLReaderBarcode*)filteredBuffer[findIndex]).barcodeValue : ((CSLBleTag*)filteredBuffer[findIndex]).EPC caseInsensitiveCompare:tag.EPC] != NSOrderedSame)
                                 {
                                     //new tag found.  insert into buffer in sorted order
                                     [filteredBuffer insertObject:tag atIndex:findIndex];
@@ -3672,16 +3674,16 @@
                             NSUInteger findIndex = [filteredBuffer indexOfObject:barcode
                                                                    inSortedRange:searchRange
                                                                          options:NSBinarySearchingInsertionIndex | NSBinarySearchingFirstEqual
-                                                                 usingComparator:^(id obj1, id obj2)
-                                                    {
-                                                        NSString* str1=((CSLReaderBarcode*)obj1).barcodeValue;
-                                                        NSString* str2=((CSLReaderBarcode*)obj2).barcodeValue;
-                                                        return [str1 compare:str2 options:NSCaseInsensitiveSearch];
-                                                    }];
+                                                                 usingComparator:^(id obj1, id obj2) {
+                                NSString* str1; NSString* str2;
+                                str1 = ([obj1 isKindOfClass:[CSLReaderBarcode class]]) ? ((CSLReaderBarcode*)obj1).barcodeValue : ((CSLBleTag*)obj1).EPC;
+                                str2 = ([obj2 isKindOfClass:[CSLReaderBarcode class]]) ? ((CSLReaderBarcode*)obj2).barcodeValue : ((CSLBleTag*)obj2).EPC;
+                                return [str1 compare:str2 options:NSCaseInsensitiveSearch];
+                            }];
                             
                             if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
                                 [filteredBuffer insertObject:barcode atIndex:findIndex];
-                            else if ( [((CSLReaderBarcode*)filteredBuffer[findIndex]).barcodeValue caseInsensitiveCompare:barcode.barcodeValue] != NSOrderedSame)
+                            else if ( [[filteredBuffer[findIndex] isKindOfClass:[CSLReaderBarcode class]] ? ((CSLReaderBarcode*)filteredBuffer[findIndex]).barcodeValue : ((CSLBleTag*)filteredBuffer[findIndex]).EPC caseInsensitiveCompare:barcode.barcodeValue] != NSOrderedSame)
                                 //new tag found.  insert into buffer in sorted order
                                 [filteredBuffer insertObject:barcode atIndex:findIndex];
                             else    //tag is duplicated, but will replace the existing tag information with the new one for updating the RRSI value.
