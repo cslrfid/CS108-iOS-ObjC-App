@@ -1,0 +1,6 @@
+framework module CSL_CS108 {
+  umbrella header "CSL-CS108-umbrella.h"
+
+  export *
+  module * { export * }
+}
