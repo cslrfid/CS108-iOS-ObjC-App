@@ -1,5 +1,5 @@
 PODS:
-  - CSL-CS108 (1.0.3):
+  - CSL-CS108 (1.0.4):
     - MQTTClient
   - MQTTClient (0.15.2):
     - MQTTClient/Core (= 0.15.2)
@@ -15,7 +15,7 @@ DEPENDENCIES:
   - MQTTClient
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - MQTTClient
 
 EXTERNAL SOURCES:
@@ -23,7 +23,7 @@ EXTERNAL SOURCES:
     :path: "~/Documents/GitHub/CSL-CS108/"
 
 SPEC CHECKSUMS:
-  CSL-CS108: 0871e64fa04343585d48e34c2f723cb62c10bbc7
+  CSL-CS108: dc4f2e76e2f9e6472cfb7d49a4beebfff6f5ea05
   MQTTClient: 902c7bcac1501595f3d0b15178c7205b40331fb0
 
 PODFILE CHECKSUM: 7e4642d22330ad68a3333c86244eb1cf882d748c
