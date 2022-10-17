@@ -131,6 +131,11 @@
 }
 
 + (NSString*) convertHexStringToAscii:(NSString*) hexString {
+    //in the case where user provide hex string with odd length
+    if ([hexString length] % 2 != 0) {
+        return @"";
+    }
+        
     NSMutableString * newString = [[NSMutableString alloc] init];
     int i = 0;
     while (i < [hexString length])
