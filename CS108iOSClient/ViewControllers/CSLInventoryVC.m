@@ -35,6 +35,7 @@
 @synthesize lbMode;
 @synthesize uivSendTagData;
 @synthesize lbElapsedTime;
+@synthesize btnTagDisplay;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -326,7 +327,7 @@
     
 }
 
-- (IBAction)btnClearTable:(id)sender {    
+- (void)ClearTable {
     //clear UI
     lbTagRate.text=@"0";
     lbTagCount.text=@"0";
@@ -336,7 +337,24 @@
     [tblTagList reloadData];
 }
 
+- (IBAction)btnClearTable:(id)sender {
+    [self ClearTable];
+}
+
+- (IBAction)btnTagDispalyPressed:(id)sender {
+   if ([[self->btnTagDisplay currentTitle] containsString:@"HEX"]) {
+       [self ClearTable];
+       [btnTagDisplay setTitle:@"Display: ASCII" forState:UIControlStateNormal];
+   }
+   else {
+       [self ClearTable];
+       [btnTagDisplay setTitle:@"Display: HEX" forState:UIControlStateNormal];
+   }
+   
+}
+
 - (IBAction)btnSaveData:(id)sender {
+    bool IsAsciiDisplay = [[self->btnTagDisplay currentTitle] containsString:@"ASCII"];
     
     NSString* fileContent = @"TIMESTAMP,EPC,DATA1,DATA2,RSSI\n";
 
@@ -349,7 +367,7 @@
         NSString *stringFromDate = [dateFormatter stringFromDate:date];
         
 
-        fileContent=[fileContent stringByAppendingString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@\n", stringFromDate, tag.EPC, tag.DATA1, tag.DATA2, [NSString stringWithFormat:@"%d",tag.rssi]]];
+        fileContent=[fileContent stringByAppendingString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@\n", stringFromDate, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:tag.EPC] : tag.EPC), (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:tag.DATA1] : tag.DATA1), (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:tag.DATA2] : tag.DATA2), [NSString stringWithFormat:@"%d",tag.rssi]]];
     }
     
     NSArray *objectsToShare = @[fileContent];
@@ -452,7 +470,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    bool IsAsciiDisplay = [[self->btnTagDisplay currentTitle] containsString:@"ASCII"];
     CSLTagListCell * cell;
     //for rfid data
     if ([[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row] isKindOfClass:[CSLBleTag class]]) {
@@ -472,22 +490,22 @@
         }
               
         if (data1 != NULL && data2 != NULL ) {
-            cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), epc];
+            cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:epc] : epc)];
             if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS463)
-                cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\n%@=%@\nRSSI: %d | Port: %d", data1bank, data1, data2bank, data2, rssi, portNumber+1];
+                cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\n%@=%@\nRSSI: %d | Port: %d", data1bank, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:data1] : data1), data2bank, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:data2] : data2), rssi, portNumber+1];
             else
-                cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\n%@=%@\nRSSI: %d", data1bank, data1, data2bank, data2, rssi];
+                cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\n%@=%@\nRSSI: %d", data1bank, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:data1] : data1), data2bank, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:data2] : data2), rssi];
         }
         else if (data1 != NULL) {
-            cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), epc];
-            cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\nRSSI: %d", data1bank, data1, rssi];
+            cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:epc] : epc)];
+            cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\nRSSI: %d", data1bank, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:data1] : data1), rssi];
             if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS463)
-                cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\nRSSI: %d | Port: %d", data1bank, data1, rssi, portNumber+1];
+                cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\nRSSI: %d | Port: %d", data1bank, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:data1] : data1), rssi, portNumber+1];
             else
-                cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\nRSSI: %d", data1bank, data1, rssi];
+                cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\nRSSI: %d", data1bank, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:data1] : data1), rssi];
         }
         else {
-            cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), epc];
+            cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:epc] : epc)];
             if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS463)
                 cell.lbCellBank.text= [NSString stringWithFormat:@"RSSI: %d | Port: %d", rssi, portNumber+1];
             else
@@ -505,7 +523,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:@"TagCell"];
         }
 
-        cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), bc];
+        cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:bc] : bc)];
         cell.lbCellBank.text= [NSString stringWithFormat:@"[%@]", ((CSLReaderBarcode*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).codeId];
         
     }

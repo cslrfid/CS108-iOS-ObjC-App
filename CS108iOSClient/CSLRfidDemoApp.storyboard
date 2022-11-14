@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uy9-1K-dab">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uy9-1K-dab">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -41,7 +41,7 @@
             <objects>
                 <viewController storyboardIdentifier="ID_HomeVc" id="fVS-GJ-XIB" userLabel="Home" customClass="CSLHomeVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9GR-iC-bpe">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Uid-YZ-2hb" userLabel="Main Menu">
@@ -554,7 +554,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                         <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="SKt-Ko-cfU">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
+                            <rect key="frame" x="0.0" y="35" width="320" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                             <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </activityIndicatorView>
@@ -1442,10 +1442,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLb-9p-wlo" userLabel="Tag List">
-                                        <rect key="frame" x="0.0" y="110" width="320" height="284"/>
+                                        <rect key="frame" x="0.0" y="110" width="320" height="254"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="JYT-nT-n1P">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="284"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="254"/>
                                                 <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                                             </tableView>
                                         </subviews>
@@ -1455,6 +1455,27 @@
                                             <constraint firstAttribute="bottom" secondItem="JYT-nT-n1P" secondAttribute="bottom" id="bMA-JY-3Cz"/>
                                             <constraint firstAttribute="trailing" secondItem="JYT-nT-n1P" secondAttribute="trailing" id="cHO-bJ-Wbb"/>
                                             <constraint firstItem="JYT-nT-n1P" firstAttribute="leading" secondItem="qLb-9p-wlo" secondAttribute="leading" id="exp-ps-Cgt"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gA5-1h-7aD" userLabel="DisplayFormat">
+                                        <rect key="frame" x="0.0" y="364" width="320" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cif-dB-dug">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Dispaly: HEX"/>
+                                                <connections>
+                                                    <action selector="btnTagDispalyPressed:" destination="oNn-rS-311" eventType="touchUpInside" id="03F-hP-oFc"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="cif-dB-dug" firstAttribute="top" secondItem="gA5-1h-7aD" secondAttribute="top" id="0nF-Ib-EZM"/>
+                                            <constraint firstAttribute="height" constant="30" id="R0e-Vj-IR2"/>
+                                            <constraint firstAttribute="bottom" secondItem="cif-dB-dug" secondAttribute="bottom" id="YIz-Qk-4tz"/>
+                                            <constraint firstItem="cif-dB-dug" firstAttribute="leading" secondItem="gA5-1h-7aD" secondAttribute="leading" id="apl-fs-bWS"/>
+                                            <constraint firstAttribute="trailing" secondItem="cif-dB-dug" secondAttribute="trailing" id="wCC-wQ-FMa"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SJK-b3-0DR" userLabel="Time Elapse">
@@ -1612,6 +1633,7 @@
                     <connections>
                         <outlet property="actInventorySpinner" destination="Eiv-lT-vdL" id="ESq-2W-pw4"/>
                         <outlet property="btnInventory" destination="Kdx-wm-fgK" id="KHu-BW-ReQ"/>
+                        <outlet property="btnTagDisplay" destination="cif-dB-dug" id="BRg-4W-pjB"/>
                         <outlet property="lbClear" destination="qV1-w8-8Lj" id="EH1-n1-1HB"/>
                         <outlet property="lbElapsedTime" destination="A5X-mj-m0w" id="Zh4-ct-OFj"/>
                         <outlet property="lbMode" destination="2Dv-40-Mfg" id="EPI-sx-rr1"/>
@@ -1675,7 +1697,7 @@
                                                         <rect key="frame" x="8" y="8" width="152" height="134"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multibank Access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfY-fY-ntx" userLabel="Multibank Inventory">
-                                                                <rect key="frame" x="9" y="94.5" width="134.5" height="20.5"/>
+                                                                <rect key="frame" x="9" y="94.5" width="135" height="20"/>
                                                                 <color key="tintColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1727,7 +1749,7 @@
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rG-AM-uL5" userLabel="Filters">
-                                                                <rect key="frame" x="44.5" y="95" width="49" height="20.5"/>
+                                                                <rect key="frame" x="46" y="95" width="46" height="20"/>
                                                                 <color key="tintColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1764,7 +1786,7 @@
                                                         <rect key="frame" x="8" y="8" width="152" height="134"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MQTT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qe3-Yv-TsS">
-                                                                <rect key="frame" x="51.5" y="93" width="49" height="20.5"/>
+                                                                <rect key="frame" x="52.5" y="93" width="47.5" height="20"/>
                                                                 <color key="tintColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4515,13 +4537,13 @@
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Port: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tau-k0-QNH">
-                                                <rect key="frame" x="206.5" y="0.0" width="50" height="34"/>
+                                                <rect key="frame" x="206.5" y="0.0" width="49.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zFU-6I-IfX">
-                                                <rect key="frame" x="256.5" y="0.0" width="53.5" height="34"/>
+                                                <rect key="frame" x="256" y="0.0" width="54" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
