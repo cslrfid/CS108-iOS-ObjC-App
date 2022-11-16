@@ -21,6 +21,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [CSLRfidAppEngine sharedAppEngine].reader.scanDelegate = self;
     [[CSLRfidAppEngine sharedAppEngine].reader startScanDevice];
     
     self.navigationItem.title=@"Search for Devices...";
@@ -198,6 +199,26 @@
     
     [self presentViewController:alert animated:YES completion:nil];
 
+}
+
+- (void) deviceListWasUpdated: (CBPeripheral *) deviceDiscovered
+{
+    NSLog(@"New device discocvered: %@", deviceDiscovered.name);
+}
+
+- (void) didConnectToDevice: (CBPeripheral *) deviceConnected
+{
+    NSLog(@"Device connected: %@", deviceConnected.name);
+}
+
+- (void) didDisconnectDevice: (CBPeripheral *) deviceDisconnected
+{
+    NSLog(@"Device disconnected: %@", deviceDisconnected.name);
+}
+
+- (void) didFailedToConnect: (CBPeripheral *) deviceFailedToConnect
+{
+    NSLog(@"Device failed to connect: %@", deviceFailedToConnect.name);
 }
 
 /*

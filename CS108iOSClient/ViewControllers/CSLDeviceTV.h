@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CSLRfidAppEngine.h"
 
-@interface CSLDeviceTV : UITableViewController <UITableViewDelegate>
+@interface CSLDeviceTV : UITableViewController <UITableViewDelegate,CSLBleScanDelegate>
 {
     
     IBOutlet UITableView *tblDeviceList;
