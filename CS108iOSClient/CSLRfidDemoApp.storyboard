@@ -41,7 +41,7 @@
             <objects>
                 <viewController storyboardIdentifier="ID_HomeVc" id="fVS-GJ-XIB" userLabel="Home" customClass="CSLHomeVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9GR-iC-bpe">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Uid-YZ-2hb" userLabel="Main Menu">
@@ -1697,7 +1697,7 @@
                                                         <rect key="frame" x="8" y="8" width="152" height="134"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multibank Access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfY-fY-ntx" userLabel="Multibank Inventory">
-                                                                <rect key="frame" x="9" y="94.5" width="135" height="20"/>
+                                                                <rect key="frame" x="9" y="94.5" width="134.5" height="20.5"/>
                                                                 <color key="tintColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1749,7 +1749,7 @@
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rG-AM-uL5" userLabel="Filters">
-                                                                <rect key="frame" x="46" y="95" width="46" height="20"/>
+                                                                <rect key="frame" x="44.5" y="95" width="49" height="20.5"/>
                                                                 <color key="tintColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1786,7 +1786,7 @@
                                                         <rect key="frame" x="8" y="8" width="152" height="134"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MQTT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qe3-Yv-TsS">
-                                                                <rect key="frame" x="52.5" y="93" width="47.5" height="20"/>
+                                                                <rect key="frame" x="51.5" y="93" width="49" height="20.5"/>
                                                                 <color key="tintColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.25490196078431371" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
