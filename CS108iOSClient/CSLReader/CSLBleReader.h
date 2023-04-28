@@ -2,7 +2,7 @@
 //  CSLBleReader.h
 //  CS108iOSClient
 //
-//  Created by Lam Ka Shun on 28/8/2018.
+//  Created by Carlson Lam on 28/8/2018.
 //  Copyright © 2018 Convergence Systems Limited. All rights reserved.
 //
 
@@ -103,6 +103,12 @@ typedef NS_ENUM(Byte, READERTYPE)
  @param tag Reference to the CSLBleTag object being returned
  */
 - (void) didReceiveTagAccessData: (CSLBleReader *) sender tagReceived:(CSLBleTag*)tag;  //define delegate method to be implemented within another class
+@optional
+/**
+ This will be triggered when reader receives a command-end packet during its operations
+ @param sender CSLBleReader object of the connected reader
+ */
+- (void) didReceiveCommandEndResponse: (CSLBleReader *) sender;  //define delegate method to be implemented within another class
 @end //end protocol
 
 /**

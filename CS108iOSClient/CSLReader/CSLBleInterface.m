@@ -30,6 +30,7 @@
 @synthesize deviceListName;
 
 @synthesize delegate; //synthesize CSLBleInterfaceDelegate delegate
+@synthesize scanDelegate; //synthesize CSLBleScanDelegate delegate
 
 - (id) init
 {
@@ -240,6 +241,7 @@
         if( ![bleDeviceList containsObject:peripheral] ) {
             [deviceListName addObject:peripheralName];
             [peripherals addObject:peripheral];
+            [self.scanDelegate deviceListWasUpdated:peripheral];
         }
     }
 
@@ -279,6 +281,7 @@
     
     [peripheral setDelegate:self];
     [peripheral discoverServices:nil];
+    [self.scanDelegate didConnectToDevice:peripheral];
 }
 
 /*
@@ -291,6 +294,7 @@
     @synchronized(self) {
         connectStatus = NOT_CONNECTED;
         [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+        [self.scanDelegate didDisconnectDevice:peripheral];
         if( bleDevice )
         {
             [bleDevice setDelegate:nil];
@@ -304,7 +308,8 @@
  */
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    NSLog(@"Fail to connect to peripheral: %@ with error = %@", peripheral, [error localizedDescription]);\
+    NSLog(@"Fail to connect to peripheral: %@ with error = %@", peripheral, [error localizedDescription]);
+    [self.scanDelegate didFailedToConnect:peripheral];
     if( bleDevice )
     {
         [bleDevice setDelegate:nil];

@@ -39,6 +39,30 @@ typedef NS_ENUM(Byte, STATUS) {
 - (void) didInterfaceChangeConnectStatus: (CSLBleInterface *) sender;     //triggered when reader state chagnes
 @end //end protocol
 
+@protocol CSLBleScanDelegate <NSObject>   //define delegate protocol
+@optional
+/**
+ This will be triggered when a new device being discovered
+ @param deviceDiscovered CBPeripheral object of the device discovered
+ */
+- (void) deviceListWasUpdated: (CBPeripheral *) deviceDiscovered;     //triggered when reader state chagnes
+/**
+ This will be triggered when a device is being connected
+ @param deviceConnected CBPeripheral object of the device connected
+ */
+- (void) didConnectToDevice: (CBPeripheral *) deviceConnected;     //triggered when reader connect to device
+/**
+ This will be triggered when a  device being disconnected
+ @param deviceDisconnected CBPeripheral object of the device disconnected
+ */
+- (void) didDisconnectDevice: (CBPeripheral *) deviceDisconnected;     //triggered when reader connect to device
+/**
+ This will be triggered when a device failed to connect
+ @param deviceFailedToConnect CBPeripheral object of the device disconnected
+ */
+- (void) didFailedToConnect: (CBPeripheral *) deviceFailedToConnect;     //triggered when reader connect to device
+@end //end protocol
+
 /**
  Low-level Bluetooth LE communication using Apple Core Bluetooth framework
  */
@@ -63,6 +87,7 @@ typedef NS_ENUM(Byte, STATUS) {
 @property (readonly) STATUS connectStatus;
 ///instance of the CSLBleInterfaceDelegate delegate
 @property (nonatomic, weak) id <CSLBleInterfaceDelegate> delegate; //define CSLBleReaderDelegate as delegate
+@property (nonatomic, weak) id <CSLBleScanDelegate> scanDelegate; //define CSLBleScanDelegate as delegate
 
 /**
  initialization selector that:
