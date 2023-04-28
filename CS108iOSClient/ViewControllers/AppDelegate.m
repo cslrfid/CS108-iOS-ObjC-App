@@ -15,6 +15,18 @@
     
     [CSLRfidAppEngine sharedAppEngine];
     
+    //override default transparent background after iOS 15
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *appearance = [UINavigationBarAppearance new];
+        [appearance configureWithOpaqueBackground];
+        appearance.backgroundColor = UIColorFromRGB(0x1F4788);
+        appearance.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+        
+        [[UINavigationBar appearance] setStandardAppearance:appearance];
+        [[UINavigationBar appearance] setScrollEdgeAppearance:[[UINavigationBar appearance] standardAppearance]];
+    }
+
+    
     [[UIBarButtonItem appearance] setTintColor:UIColorFromRGB(0xFFFFFF)];
     
     [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x1F4788)];
