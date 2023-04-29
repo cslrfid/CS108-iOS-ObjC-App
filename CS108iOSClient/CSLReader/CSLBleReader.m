@@ -202,6 +202,7 @@
         ((Byte *)[recvPacket.payload bytes])[46] == 0x00 &&
         ((Byte *)[recvPacket.payload bytes])[47] == 0x00) {
         self.lastMacErrorCode=(((Byte *)[recvPacket.payload bytes])[15] << 8) + (((Byte *)[recvPacket.payload bytes])[14]);
+        [self.readerDelegate didReceiveCommandEndResponse:self];
         NSLog(@"Receive HST_CMD 0x03 command-end response: OK");
     }
     else
@@ -2710,7 +2711,8 @@
         [self performSelectorInBackground:@selector(stopInventoryBlocking) withObject:(nil)];
         
         for (int i=0;i<COMMAND_TIMEOUT_3S;i++) {  //receive data or time out in 3 seconds
-            ([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]]);
+            //([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]]);
+            [NSThread sleepForTimeInterval:0.001f];
             if(connectStatus == CONNECTED)
                 break;
         }
@@ -3433,125 +3435,135 @@
                         ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"04"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0500"])
                         )
                     {
-                        //start decode message
-                        datalen=((Byte *)[rfidPacketBuffer bytes])[6] + (((((Byte *)[rfidPacketBuffer bytes])[7] << 8) & 0xFF00)) ;
-                        
-                        //iterate through all the tag data
-                        int ptr=10;     //starting point of the tag data
-                        while(TRUE)
-                        {
-                            CSLBleTag* tag=[[CSLBleTag alloc] init];
+                        @try {
                             
-                            tag.PC =((((Byte *)[rfidPacketBuffer bytes])[ptr] << 8) & 0xFF00)+ ((Byte *)[rfidPacketBuffer bytes])[ptr+1];
+                            //start decode message
+                            datalen=((Byte *)[rfidPacketBuffer bytes])[6] + (((((Byte *)[rfidPacketBuffer bytes])[7] << 8) & 0xFF00)) ;
                             
-                            //for the case where we reaches to the end of the BLE packet but not the RFID response packet, where there will be partial packet to be returned from the next packet.  The partial tag data will be combined with the next packet being returned.
-                            //8100 (two bytes) + 8 bytes RFID packet header + payload length being calcuated ont he header
-                            if ((10 + datalen) > [rfidPacketBuffer length]) {
-                                //stop decoding and wait for the partial tag data to be appended in the next packet arrival
-                                NSLog(@"[decodePacketsInBufferAsync] partial tag data being returned.  Wait for next rfid response packet for complete tag data.");
-                                break;
-                            }
-                            
-                            tag.EPC=[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr*2)+4, ((tag.PC >> 11) * 2) * 2)];
-                            tag.rssi=(Byte)((Byte *)[rfidPacketBuffer bytes])[(ptr + 2) + ((tag.PC >> 11) * 2)];
-                            tag.portNumber=(Byte)((Byte *)[rfidPacketBuffer bytes])[8];
-                            ptr+= (2 + ((tag.PC >> 11) * 2) + 1);
-                            [self.readerDelegate didReceiveTagResponsePacket:self tagReceived:tag]; //this will call the method for handling the tag response.
-                            
-                            NSLog(@"[decodePacketsInBufferAsync] Tag data found: PC=%04X EPC=%@ rssi=%d", tag.PC, tag.EPC, tag.rssi);
-                            tag.timestamp = [NSDate date];
-                            rangingTagCount++;
-                            
-                            @synchronized(filteredBuffer) {
-                                //insert the tag data to the sorted filteredBuffer if not duplicated
-                                
-                                //check and see if epc exists on the array using binary search
-                                NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
-                                NSUInteger findIndex = [filteredBuffer indexOfObject:tag
-                                                                    inSortedRange:searchRange
-                                                                          options:NSBinarySearchingInsertionIndex | NSBinarySearchingFirstEqual
-                                                                  usingComparator:^(id obj1, id obj2) {
-                                    NSString* str1; NSString* str2;
-                                    str1 = ([obj1 isKindOfClass:[CSLReaderBarcode class]]) ? ((CSLReaderBarcode*)obj1).barcodeValue : ((CSLBleTag*)obj1).EPC;
-                                    str2 = ([obj2 isKindOfClass:[CSLReaderBarcode class]]) ? ((CSLReaderBarcode*)obj2).barcodeValue : ((CSLBleTag*)obj2).EPC;
-                                    return [str1 compare:str2 options:NSCaseInsensitiveSearch];
-                                }];
-                                
-                                if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
-                                {
-                                    [filteredBuffer insertObject:tag atIndex:findIndex];
-                                    uniqueTagCount++;
-                                }
-                                else if ( [[filteredBuffer[findIndex] isKindOfClass:[CSLReaderBarcode class]] ? ((CSLReaderBarcode*)filteredBuffer[findIndex]).barcodeValue : ((CSLBleTag*)filteredBuffer[findIndex]).EPC caseInsensitiveCompare:tag.EPC] != NSOrderedSame)
-                                {
-                                    //new tag found.  insert into buffer in sorted order
-                                    [filteredBuffer insertObject:tag atIndex:findIndex];
-                                    uniqueTagCount++;
-                                }
-                                else    //tag is duplicated, but will replace the existing tag information with the new one for updating the RRSI value.
-                                {
-                                    [filteredBuffer replaceObjectAtIndex:findIndex withObject:tag];
-                                }
-                            }
-                            
-                            //for the cases where we reaches the end of the RFID reponse packet but there are still data within the bluetooth reader packet.
-                            // (1) user is aborting the operation so that the abort command reponse
-                            if ((ptr >= (datalen + 10)) && ([rfidPacketBuffer length] >= (datalen + 10 /* 8 bytes of bluetooth packet header + 2 byte for the payload reply */ + 8 /* 8 bytes for the abort command response or other RFID command reponse*/)))
+                            //iterate through all the tag data
+                            int ptr=10;     //starting point of the tag data
+                            while(TRUE)
                             {
-                                NSLog(@"[decodePacketsInBufferAsync] Decoding the data appended to the end of the 8100 packet: %@", [rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] );
-                                if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] containsString:@"4003BFFCBFFCBFFC"]) {
-                                    NSLog(@"[decodePacketsInBufferAsync] Abort command received.  All operations ended");
-                                    [cmdRespQueue enqObject:packet];
-                                    [rfidPacketBuffer setLength:0];
-                                    connectStatus=CONNECTED;
-                                    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+                                CSLBleTag* tag=[[CSLBleTag alloc] init];
+                                
+                                tag.PC =((((Byte *)[rfidPacketBuffer bytes])[ptr] << 8) & 0xFF00)+ ((Byte *)[rfidPacketBuffer bytes])[ptr+1];
+                                
+                                //for the case where we reaches to the end of the BLE packet but not the RFID response packet, where there will be partial packet to be returned from the next packet.  The partial tag data will be combined with the next packet being returned.
+                                //8100 (two bytes) + 8 bytes RFID packet header + payload length being calcuated ont he header
+                                if ((10 + datalen) > [rfidPacketBuffer length]) {
+                                    //stop decoding and wait for the partial tag data to be appended in the next packet arrival
+                                    NSLog(@"[decodePacketsInBufferAsync] partial tag data being returned.  Wait for next rfid response packet for complete tag data.");
                                     break;
                                 }
-                                //for the case where command-end appended to the packet as the radio stopped unexpectedly
-                                else if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] containsString:@"0101010002000000"]) {
-                                    NSLog(@"[decodePacketsInBufferAsync] Unexpected command-end received.  All operations ended");
-                                    //get mac error code
-                                    int startOfCmdEnd=(int)[[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] rangeOfString:@"0101010002000000"].location / 2;
-                                    self.lastMacErrorCode=(((Byte *)[rfidPacketBuffer bytes])[ptr+startOfCmdEnd+13] << 8) + (((Byte *)[rfidPacketBuffer bytes])[ptr+startOfCmdEnd+12]);
-                                    [cmdRespQueue enqObject:packet];
-                                    [rfidPacketBuffer setLength:0];
-                                    connectStatus=CONNECTED;
-                                    [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
-                                    break;
+                                
+                                tag.EPC=[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr*2)+4, ((tag.PC >> 11) * 2) * 2)];
+                                tag.rssi=(Byte)((Byte *)[rfidPacketBuffer bytes])[(ptr + 2) + ((tag.PC >> 11) * 2)];
+                                tag.portNumber=(Byte)((Byte *)[rfidPacketBuffer bytes])[8];
+                                ptr+= (2 + ((tag.PC >> 11) * 2) + 1);
+                                [self.readerDelegate didReceiveTagResponsePacket:self tagReceived:tag]; //this will call the method for handling the tag response.
+                                
+                                NSLog(@"[decodePacketsInBufferAsync] Tag data found: PC=%04X EPC=%@ rssi=%d", tag.PC, tag.EPC, tag.rssi);
+                                tag.timestamp = [NSDate date];
+                                rangingTagCount++;
+                                
+                                @synchronized(filteredBuffer) {
+                                    //insert the tag data to the sorted filteredBuffer if not duplicated
+                                    
+                                    //check and see if epc exists on the array using binary search
+                                    NSRange searchRange = NSMakeRange(0, [filteredBuffer count]);
+                                    NSUInteger findIndex = [filteredBuffer indexOfObject:tag
+                                                                           inSortedRange:searchRange
+                                                                                 options:NSBinarySearchingInsertionIndex | NSBinarySearchingFirstEqual
+                                                                         usingComparator:^(id obj1, id obj2) {
+                                        NSString* str1; NSString* str2;
+                                        str1 = ([obj1 isKindOfClass:[CSLReaderBarcode class]]) ? ((CSLReaderBarcode*)obj1).barcodeValue : ((CSLBleTag*)obj1).EPC;
+                                        str2 = ([obj2 isKindOfClass:[CSLReaderBarcode class]]) ? ((CSLReaderBarcode*)obj2).barcodeValue : ((CSLBleTag*)obj2).EPC;
+                                        return [str1 compare:str2 options:NSCaseInsensitiveSearch];
+                                    }];
+                                    
+                                    if ( findIndex >= [filteredBuffer count] )  //tag to be the largest.  Append to the end.
+                                    {
+                                        [filteredBuffer insertObject:tag atIndex:findIndex];
+                                        uniqueTagCount++;
+                                    }
+                                    else if ( [[filteredBuffer[findIndex] isKindOfClass:[CSLReaderBarcode class]] ? ((CSLReaderBarcode*)filteredBuffer[findIndex]).barcodeValue : ((CSLBleTag*)filteredBuffer[findIndex]).EPC caseInsensitiveCompare:tag.EPC] != NSOrderedSame)
+                                    {
+                                        //new tag found.  insert into buffer in sorted order
+                                        [filteredBuffer insertObject:tag atIndex:findIndex];
+                                        uniqueTagCount++;
+                                    }
+                                    else    //tag is duplicated, but will replace the existing tag information with the new one for updating the RRSI value.
+                                    {
+                                        [filteredBuffer replaceObjectAtIndex:findIndex withObject:tag];
+                                    }
                                 }
-                                //check if we are getting the beginning of another 8100 packet but with no 8100 event code.  If so, add the event code back with the header response
-                                else if (![[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] containsString:@"8100"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2), 2)] isEqualToString:@"04"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)+4, 4)] isEqualToString:@"0580"]) {
-
-                                    NSLog(@"[decodePacketsInBufferAsync] Partial acket has not 8100 event code.  Append event code and leave it on the buffer");
-                                    //remove decoded data from rfid buffer and leave the partial packet on the buffer with 8100 appended to the beginning
-                                    rfidPacketBuffer=[[rfidPacketBuffer subdataWithRange:NSMakeRange(ptr, [rfidPacketBuffer length]-ptr)] mutableCopy];
-                                    tempMutableData=[NSMutableData data];
-                                    [tempMutableData appendData:[NSMutableData dataWithBytes:ecode length:sizeof(ecode)]];
-                                    [tempMutableData appendData:rfidPacketBuffer];
-                                    rfidPacketBuffer=tempMutableData;
-                                    break;
+                                
+                                //for the cases where we reaches the end of the RFID reponse packet but there are still data within the bluetooth reader packet.
+                                // (1) user is aborting the operation so that the abort command reponse
+                                if ((ptr >= (datalen + 10)) && ([rfidPacketBuffer length] >= (datalen + 10 /* 8 bytes of bluetooth packet header + 2 byte for the payload reply */ + 8 /* 8 bytes for the abort command response or other RFID command reponse*/)))
+                                {
+                                    NSLog(@"[decodePacketsInBufferAsync] Decoding the data appended to the end of the 8100 packet: %@", [rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] );
+                                    if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] containsString:@"4003BFFCBFFCBFFC"]) {
+                                        NSLog(@"[decodePacketsInBufferAsync] Abort command received.  All operations ended");
+                                        [cmdRespQueue enqObject:packet];
+                                        [rfidPacketBuffer setLength:0];
+                                        connectStatus=CONNECTED;
+                                        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+                                        break;
+                                    }
+                                    //for the case where command-end appended to the packet as the radio stopped unexpectedly
+                                    else if ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] containsString:@"0101010002000000"]) {
+                                        NSLog(@"[decodePacketsInBufferAsync] Unexpected command-end received.  All operations ended");
+                                        //get mac error code
+                                        int startOfCmdEnd=(int)[[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] rangeOfString:@"0101010002000000"].location / 2;
+                                        self.lastMacErrorCode=(((Byte *)[rfidPacketBuffer bytes])[ptr+startOfCmdEnd+13] << 8) + (((Byte *)[rfidPacketBuffer bytes])[ptr+startOfCmdEnd+12]);
+                                        [cmdRespQueue enqObject:packet];
+                                        [rfidPacketBuffer setLength:0];
+                                        connectStatus=CONNECTED;
+                                        [self.delegate didInterfaceChangeConnectStatus:self]; //this will call the method for connections status chagnes.
+                                        break;
+                                    }
+                                    //check if we are getting the beginning of another 8100 packet but with no 8100 event code.  If so, add the event code back with the header response
+                                    else if (![[rfidPacketBufferInHexString substringWithRange:NSMakeRange(ptr * 2, ([rfidPacketBuffer length] - ptr) * 2)] containsString:@"8100"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2), 2)] isEqualToString:@"04"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)+4, 4)] isEqualToString:@"0580"]) {
+                                        
+                                        NSLog(@"[decodePacketsInBufferAsync] Partial acket has not 8100 event code.  Append event code and leave it on the buffer");
+                                        //remove decoded data from rfid buffer and leave the partial packet on the buffer with 8100 appended to the beginning
+                                        rfidPacketBuffer=[[rfidPacketBuffer subdataWithRange:NSMakeRange(ptr, [rfidPacketBuffer length]-ptr)] mutableCopy];
+                                        tempMutableData=[NSMutableData data];
+                                        [tempMutableData appendData:[NSMutableData dataWithBytes:ecode length:sizeof(ecode)]];
+                                        [tempMutableData appendData:rfidPacketBuffer];
+                                        rfidPacketBuffer=tempMutableData;
+                                        break;
+                                        
+                                    }
+                                    //check if we are getting the beginning of another 8100 packet.  If so, extract header of the response
+                                    else if (
+                                             ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)  + 4, 2)] isEqualToString:@"04"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)+8, 4)] isEqualToString:@"0580"]) ||
+                                             ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)  + 4, 2)] isEqualToString:@"04"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)+8, 4)] isEqualToString:@"0500"])
+                                             ) {
+                                                 NSLog(@"[decodePacketsInBufferAsync] Remove decoded data from rfid buffer and leave the partial packet on the buffer");
+                                                 //remove decoded data from rfid buffer and leave the partial packet on the buffer
+                                                 rfidPacketBuffer=[[rfidPacketBuffer subdataWithRange:NSMakeRange(ptr, [rfidPacketBuffer length]-ptr)] mutableCopy];
+                                                 break;
+                                             }
                                     
                                 }
-                                //check if we are getting the beginning of another 8100 packet.  If so, extract header of the response
-                                else if (
-                                         ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)  + 4, 2)] isEqualToString:@"04"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)+8, 4)] isEqualToString:@"0580"]) ||
-                                        ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)  + 4, 2)] isEqualToString:@"04"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange((ptr * 2)+8, 4)] isEqualToString:@"0500"])
-                                        ) {
-                                    NSLog(@"[decodePacketsInBufferAsync] Remove decoded data from rfid buffer and leave the partial packet on the buffer");
-                                    //remove decoded data from rfid buffer and leave the partial packet on the buffer
-                                    rfidPacketBuffer=[[rfidPacketBuffer subdataWithRange:NSMakeRange(ptr, [rfidPacketBuffer length]-ptr)] mutableCopy];
+                                
+                                //return when pointer reaches the end of the RFID response packet.
+                                if (ptr >= (datalen + 10)) {
+                                    NSLog(@"[decodePacketsInBufferAsync] Finished decode all tags in packet.");
+                                    [rfidPacketBuffer setLength:0];
                                     break;
                                 }
-
                             }
                             
-                            //return when pointer reaches the end of the RFID response packet.
-                            if (ptr >= (datalen + 10)) {
-                                NSLog(@"[decodePacketsInBufferAsync] Finished decode all tags in packet.");
-                                [rfidPacketBuffer setLength:0];
-                                break;
-                            }
+                        } @catch (NSException *exception) {
+                            //discard data and continue
+                            NSLog(@"[decodePacketsInBufferAsync] Unexpected exception on compact response packet decoding.  Name: %@ Reason: %@", exception.name, exception.reason);
+                            [rfidPacketBuffer setLength:0];
+                            continue;
                         }
+                        
                     }
                     else if (
                     ([[rfidPacketBufferInHexString substringWithRange:NSMakeRange(4, 2)] isEqualToString:@"02"] && [[rfidPacketBufferInHexString substringWithRange:NSMakeRange(8, 4)] isEqualToString:@"0780"]) ||
