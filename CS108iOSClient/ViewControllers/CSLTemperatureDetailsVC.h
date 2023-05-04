@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *btnTagStatus;
 @property (weak, nonatomic) IBOutlet UILabel *lbTemperature;
 @property (weak, nonatomic) IBOutlet UILabel *lbTimestamp;
+@property (weak, nonatomic) IBOutlet UIView *uivSensorCode;
+@property (weak, nonatomic) IBOutlet UIView *uivOCRSSI;
 
 @property (weak, nonatomic) IBOutlet UIView *uivTemperatureDetails;
 @property (weak, nonatomic) IBOutlet UILabel *lbCalibration;

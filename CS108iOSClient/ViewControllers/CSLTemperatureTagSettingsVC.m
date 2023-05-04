@@ -67,6 +67,12 @@
     if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==XERXES) {
         [self.btnSensorType setTitle:@"Axzon Xerxes - Temperature" forState:UIControlStateNormal];
     }
+    else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==ASYGN) {
+        [self.btnSensorType setTitle:@"ASYGN - Temperature" forState:UIControlStateNormal];
+        [self.uivOcrssiMin setHidden:true];
+        [self.uivOcrssiMax setHidden:true];
+        [self.uivMoistureAlert setHidden:true];
+    }
     else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3 && [CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==TEMPERATURE)
         [self.btnSensorType setTitle:@"Axzon Magnus S3 - Temperature" forState:UIControlStateNormal];
     else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3 && [CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==MOISTURE)
@@ -126,6 +132,9 @@
     [CSLRfidAppEngine sharedAppEngine].temperatureSettings.unit=(TEMPERATUREUNIT)self.scTemperatureUnit.selectedSegmentIndex;
     if ([self.btnSensorType.currentTitle containsString:@"Xerxes"])
         [CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType=XERXES;
+    else if ([self.btnSensorType.currentTitle containsString:@"ASYGN"]) {
+        [CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType=ASYGN;
+    }
     else
         [CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType=[self.btnSensorType.currentTitle containsString:@"S3"] ? MAGNUSS3 : MAGNUSS2;
     [CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading=[self.btnSensorType.currentTitle containsString:@"Temperature"] ? TEMPERATURE : MOISTURE;
@@ -255,17 +264,41 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sensor Type"
                                                                    message:@"Please select"
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *s3Temp = [UIAlertAction actionWithTitle:@"Axzon Magnus S3 - Temperature" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                             { [self.btnSensorType setTitle:@"Axzon Magnus S3 - Temperature" forState:UIControlStateNormal]; }]; // S3 - temperature
-    UIAlertAction *s3Moist = [UIAlertAction actionWithTitle:@"Axzon Magnus S3 - Moisture" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                                  { [self.btnSensorType setTitle:@"Axzon Magnus S3 - Moisture" forState:UIControlStateNormal]; }]; // S3 - Moisture
-    UIAlertAction *s2Moist = [UIAlertAction actionWithTitle:@"Axzon Magnus S2 - Moisture" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                                { [self.btnSensorType setTitle:@"Axzon Magnus S2 - Moisture" forState:UIControlStateNormal]; }]; // Magnus - Moisture
-    UIAlertAction *xerxesTemp = [UIAlertAction actionWithTitle:@"Axzon Xerxes - Temperature" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                              { [self.btnSensorType setTitle:@"Axzon Xerxes - Temperature" forState:UIControlStateNormal]; }]; // S2 - Moisture
+    UIAlertAction *asygnTemp = [UIAlertAction actionWithTitle:@"ASYGN - Temperature" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [self.btnSensorType setTitle:@"ASYGN - Temperature" forState:UIControlStateNormal];
+        [self.uivOcrssiMin setHidden:true];
+        [self.uivOcrssiMax setHidden:true];
+        [self.uivMoistureAlert setHidden:true];
+    }]; // ASYGN - temperature
+    UIAlertAction *s3Temp = [UIAlertAction actionWithTitle:@"Axzon Magnus S3 - Temperature" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [self.btnSensorType setTitle:@"Axzon Magnus S3 - Temperature" forState:UIControlStateNormal];
+        [self.uivOcrssiMin setHidden:false];
+        [self.uivOcrssiMax setHidden:false];
+        [self.uivMoistureAlert setHidden:false];
+    }]; // S3 - temperature
+    
+    UIAlertAction *s3Moist = [UIAlertAction actionWithTitle:@"Axzon Magnus S3 - Moisture" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [self.btnSensorType setTitle:@"Axzon Magnus S3 - Moisture" forState:UIControlStateNormal];
+        [self.uivOcrssiMin setHidden:false];
+        [self.uivOcrssiMax setHidden:false];
+        [self.uivMoistureAlert setHidden:false];
+    }]; // S3 - Moisture
+    UIAlertAction *s2Moist = [UIAlertAction actionWithTitle:@"Axzon Magnus S2 - Moisture" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [self.btnSensorType setTitle:@"Axzon Magnus S2 - Moisture" forState:UIControlStateNormal];
+        [self.uivOcrssiMin setHidden:false];
+        [self.uivOcrssiMax setHidden:false];
+        [self.uivMoistureAlert setHidden:false];
+    }]; // Magnus - Moisture
+    UIAlertAction *xerxesTemp = [UIAlertAction actionWithTitle:@"Axzon Xerxes - Temperature" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [self.btnSensorType setTitle:@"Axzon Xerxes - Temperature" forState:UIControlStateNormal];
+        [self.uivOcrssiMin setHidden:false];
+        [self.uivOcrssiMax setHidden:false];
+        [self.uivMoistureAlert setHidden:false];
+    }]; // S2 - Moisture
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]; // cancel
     
+    [alert addAction:asygnTemp];
     [alert addAction:s3Temp];
     [alert addAction:s3Moist];
     [alert addAction:s2Moist];

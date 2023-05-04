@@ -471,6 +471,15 @@
         [CSLRfidAppEngine sharedAppEngine].settings.multibank2Offset=0x0A;
         [CSLRfidAppEngine sharedAppEngine].settings.multibank2Length=0x05;
     }
+    else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==ASYGN) {
+
+        [CSLRfidAppEngine sharedAppEngine].settings.multibank1=USER;
+        [CSLRfidAppEngine sharedAppEngine].settings.multibank1Offset=1;    //ACQ_TEMP
+        [CSLRfidAppEngine sharedAppEngine].settings.multibank1Length=1;
+        [CSLRfidAppEngine sharedAppEngine].settings.multibank2=USER;
+        [CSLRfidAppEngine sharedAppEngine].settings.multibank2Offset=5;    //CALIB_ACQ_TEMP
+        [CSLRfidAppEngine sharedAppEngine].settings.multibank2Length=2;
+    }
     else {
         //check and see if this is S2 or S3 chip for capturing sensor code
         [CSLRfidAppEngine sharedAppEngine].settings.multibank1=RESERVED;
@@ -533,6 +542,10 @@
         [[CSLRfidAppEngine sharedAppEngine].reader TAGMSK_DESC_SEL:1];
         [[CSLRfidAppEngine sharedAppEngine].reader selectTagForInventory:USER maskPointer:0x03B0 maskLength:8 maskData:[NSData dataWithBytes:emptyByte length:sizeof(emptyByte)] sel_action:5 delayTime:15];
     
+    }
+    else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==ASYGN) {
+        [[CSLRfidAppEngine sharedAppEngine].reader TAGMSK_DESC_SEL:0];
+        [[CSLRfidAppEngine sharedAppEngine].reader selectTagForInventory:TID maskPointer:0 maskLength:32 maskData:[CSLBleReader convertHexStringToData:[NSString stringWithFormat:@"%8X", ASYGN]] sel_action:0];
     }
     else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
         

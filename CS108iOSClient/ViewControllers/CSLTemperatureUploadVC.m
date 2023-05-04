@@ -185,26 +185,47 @@
             NSString *stringFromDate = [dateFormatter stringFromDate:date];
             
             //build an info object and convert to json
-            NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [[NSUUID UUID] UUIDString],
-                                  @"messageid",
-                                  tag.EPC,
-                                  @"epc",
-                                  [NSString stringWithFormat:@"%.1f",[[[CSLRfidAppEngine sharedAppEngine].temperatureSettings getTemperatureValueAveraging:tag.EPC] doubleValue]],
-                                  @"temperature",
-                                  lastGoodRead.DATA2,
-                                  @"calibration",
-                                  [lastGoodRead.DATA1 substringWithRange:NSMakeRange(0, 4)],
-                                  @"sensorcode",
-                                  [lastGoodRead.DATA1 substringWithRange:NSMakeRange(4, 4)],
-                                  @"ocrssi",
-                                  [lastGoodRead.DATA1 substringWithRange:NSMakeRange(8, 4)],
-                                  @"temperaturecode",
-                                  [NSString stringWithFormat:@"%d",tag.rssi],
-                                  @"rssi",
-                                  stringFromDate,
-                                  @"timestamp",
-                                  nil];
+            NSDictionary* info;
+            if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==ASYGN) {
+                info = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      [[NSUUID UUID] UUIDString],
+                                      @"messageid",
+                                      tag.EPC,
+                                      @"epc",
+                                      [NSString stringWithFormat:@"%.1f",[[[CSLRfidAppEngine sharedAppEngine].temperatureSettings getTemperatureValueAveraging:tag.EPC] doubleValue]],
+                                      @"temperature",
+                                      lastGoodRead.DATA1,
+                                      @"temperaturecode",
+                                      lastGoodRead.DATA2,
+                                      @"calibration",
+                                      [NSString stringWithFormat:@"%d",tag.rssi],
+                                      @"rssi",
+                                      stringFromDate,
+                                      @"timestamp",
+                                      nil];
+            }
+            else {
+                info = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      [[NSUUID UUID] UUIDString],
+                                      @"messageid",
+                                      tag.EPC,
+                                      @"epc",
+                                      [NSString stringWithFormat:@"%.1f",[[[CSLRfidAppEngine sharedAppEngine].temperatureSettings getTemperatureValueAveraging:tag.EPC] doubleValue]],
+                                      @"temperature",
+                                      lastGoodRead.DATA2,
+                                      @"calibration",
+                                      [lastGoodRead.DATA1 substringWithRange:NSMakeRange(0, 4)],
+                                      @"sensorcode",
+                                      [lastGoodRead.DATA1 substringWithRange:NSMakeRange(4, 4)],
+                                      @"ocrssi",
+                                      [lastGoodRead.DATA1 substringWithRange:NSMakeRange(8, 4)],
+                                      @"temperaturecode",
+                                      [NSString stringWithFormat:@"%d",tag.rssi],
+                                      @"rssi",
+                                      stringFromDate,
+                                      @"timestamp",
+                                      nil];
+            }
             
             NSError * err;
             NSData * jsonData = [NSJSONSerialization dataWithJSONObject:info options:NSJSONWritingPrettyPrinted error:&err];
@@ -236,6 +257,9 @@
 - (IBAction)btnSaveToFilePressed:(id)sender {
     
     NSString* fileContent = @"TIMESTAMP,EPC,TEMPERATURE,CALIBRATION,SENSORCODE,ON-CHIP RSSI,TEMPERATURE CODE,RSSI\n";
+    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==ASYGN) {
+        fileContent = @"TIMESTAMP,EPC,TEMPERATURE,TEMPERATURE CODE,CALIBRATION,RSSI\n";
+    }
 
     for (CSLBleTag* tag in [CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer) {
         CSLBleTag* lastGoodRead=[[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer objectForKey:tag.EPC];
@@ -253,7 +277,13 @@
             else
                 averageText = [NSString stringWithFormat:@"%3.1f\u00BA", [CSLTemperatureTagSettings convertCelciusToFahrenheit:[average doubleValue]]];
             //build the text file content
-            fileContent=[fileContent stringByAppendingString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@,%@,%@\n", stringFromDate, tag.EPC, averageText, lastGoodRead.DATA2, [lastGoodRead.DATA1 substringWithRange:NSMakeRange(0, 4)], [lastGoodRead.DATA1 substringWithRange:NSMakeRange(4, 4)], [lastGoodRead.DATA1 substringWithRange:NSMakeRange(8, 4)], [NSString stringWithFormat:@"%d",tag.rssi]]];
+            if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==ASYGN) {
+                fileContent=[fileContent stringByAppendingString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@\n", stringFromDate, tag.EPC, averageText, lastGoodRead.DATA1, lastGoodRead.DATA2, [NSString stringWithFormat:@"%d",tag.rssi]]];
+            }
+            else
+            {
+                fileContent=[fileContent stringByAppendingString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@,%@,%@\n", stringFromDate, tag.EPC, averageText, lastGoodRead.DATA2, [lastGoodRead.DATA1 substringWithRange:NSMakeRange(0, 4)], [lastGoodRead.DATA1 substringWithRange:NSMakeRange(4, 4)], [lastGoodRead.DATA1 substringWithRange:NSMakeRange(8, 4)], [NSString stringWithFormat:@"%d",tag.rssi]]];
+            }
         }
         else {
             if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3)

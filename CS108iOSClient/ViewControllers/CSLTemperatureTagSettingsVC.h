@@ -29,6 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *btnPowerLevel;
 @property (weak, nonatomic) IBOutlet UISwitch *swDisplayTagInAscii;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actSaveConfig;
+@property (weak, nonatomic) IBOutlet UIView *uivOcrssiMin;
+@property (weak, nonatomic) IBOutlet UIView *uivOcrssiMax;
+@property (weak, nonatomic) IBOutlet UIView *uivMoistureAlert;
 
 - (IBAction)btnSavePressed:(id)sender;
 - (IBAction)txtLowTemperatureThresholdChanged:(id)sender;

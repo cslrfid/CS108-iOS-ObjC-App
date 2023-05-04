@@ -356,6 +356,7 @@
             double temperatureValue = 0.0;
             int rssi;
             int portNumber;
+            int PWR_OK = 0;
             
             CSLBleTag* currentBleTag=(CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row];
             NSString* epc=currentBleTag.EPC;
@@ -372,7 +373,67 @@
             
             if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==TEMPERATURE)
             {
-                if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==XERXES) {
+                if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==ASYGN) {
+                    unsigned result = 0;
+                    NSScanner *scanner;
+                    int ACQ_TEMP, CALIB_ACQ_TEMP, ADC_NSMPL;
+                    double CALIB_TEMP = 0.0;
+                    double EXP_ACQ_TEMP = 0.0;
+                    double CALIB_OFFSET = 0.0;
+                    double ACQ_TEMP_CORRECTED = 0.00;
+                    
+                    scanner = [NSScanner scannerWithString:[data1 substringWithRange:NSMakeRange(0, 4)]];
+                    [scanner scanHexInt:&result];
+                    result &= 0x1FFF;
+                    ACQ_TEMP=result;
+                    
+                    scanner = [NSScanner scannerWithString:[data1 substringWithRange:NSMakeRange(0, 4)]];
+                    [scanner scanHexInt:&result];
+                    result = (result & 0x2000) >> 13;
+                    PWR_OK=result;
+                    
+                    scanner = [NSScanner scannerWithString:[data1 substringWithRange:NSMakeRange(0, 4)]];
+                    [scanner scanHexInt:&result];
+                    switch ((result & 0xE000) >> 14) {
+                        case 0:
+                            ADC_NSMPL=1;
+                            break;
+                        case 1:
+                            ADC_NSMPL=2;
+                            break;
+                        case 2:
+                            ADC_NSMPL=4;
+                            break;
+                        case 3:
+                            ADC_NSMPL=8;
+                            break;
+                        default:
+                            ADC_NSMPL=8;
+                            break;
+                    }
+                    
+                    scanner = [NSScanner scannerWithString:[data2 substringWithRange:NSMakeRange(0, 4)]];
+                    [scanner scanHexInt:&result];
+                    CALIB_TEMP = (double)(result / 100);
+                    
+                    scanner = [NSScanner scannerWithString:[data2 substringWithRange:NSMakeRange(4, 4)]];
+                    [scanner scanHexInt:&result];
+                    result &= 0x1FFF;
+                    CALIB_ACQ_TEMP=result;
+                    
+                    
+                    EXP_ACQ_TEMP = -1 / 0.669162 * (CALIB_TEMP - 398.54);
+                    CALIB_OFFSET = ADC_NSMPL * EXP_ACQ_TEMP - CALIB_ACQ_TEMP;
+                    ACQ_TEMP_CORRECTED = (ACQ_TEMP + CALIB_OFFSET) / ADC_NSMPL;
+                    
+                    //calculate calibrated temperature
+                    if (PWR_OK)
+                        temperatureValue=-0.669162 * ACQ_TEMP_CORRECTED + 398.54;
+                    else
+                        NSLog(@"Invalid ASYGN temperature reading (PWR_OK=FALSE)");
+                    
+                }
+                else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==XERXES) {
                     unsigned result = 0;
                     NSScanner *scanner;
                     int tempCode, tempCode2, temp2, tempCode1, temp1;
@@ -425,6 +486,9 @@
                 [scanner scanHexInt:&ocrssi];
                 ocrssi &= 0x0000001F;
             }
+            else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==ASYGN) {
+                //do nothing
+            }
             else {
                 if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
                     scanner = [NSScanner scannerWithString:[data1 substringWithRange:NSMakeRange(4, 4)]];
@@ -438,12 +502,22 @@
             
             //for temperature measurements
             if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.reading==TEMPERATURE) {
-                if (ocrssi >= [CSLRfidAppEngine sharedAppEngine].temperatureSettings.rssiLowerLimit &&  //when the last read packet in the buffer is with ocrssi limits
-                    ocrssi <= [CSLRfidAppEngine sharedAppEngine].temperatureSettings.rssiUpperLimit &&
-                    currentBleTag != [[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer objectForKey:epc] &&    //avoid decoding packet being processed before
-                    (temperatureValue > MIN_TEMP_VALUE && temperatureValue < MAX_TEMP_VALUE)) {         //filter out invalid packets that are out of temperature range on spec
-                    [[CSLRfidAppEngine sharedAppEngine].temperatureSettings setTemperatureValueForAveraging:[NSNumber numberWithDouble:temperatureValue] EPCID:epc];
-                    [[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer setObject:currentBleTag forKey:epc];
+                if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType!=ASYGN) {
+                    if (ocrssi >= [CSLRfidAppEngine sharedAppEngine].temperatureSettings.rssiLowerLimit &&  //when the last read packet in the buffer is with ocrssi limits
+                        ocrssi <= [CSLRfidAppEngine sharedAppEngine].temperatureSettings.rssiUpperLimit &&
+                        currentBleTag != [[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer objectForKey:epc] &&    //avoid decoding packet being processed before
+                        (temperatureValue > MIN_TEMP_VALUE && temperatureValue < MAX_TEMP_VALUE)) {         //filter out invalid packets that are out of temperature range on spec
+                        [[CSLRfidAppEngine sharedAppEngine].temperatureSettings setTemperatureValueForAveraging:[NSNumber numberWithDouble:temperatureValue] EPCID:epc];
+                        [[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer setObject:currentBleTag forKey:epc];
+                    }
+                }
+                else {
+                    if (currentBleTag != [[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer objectForKey:epc] &&    //avoid decoding packet being processed before
+                        (temperatureValue > MIN_TEMP_VALUE && temperatureValue < MAX_TEMP_VALUE) &&
+                        PWR_OK) {         //filter out invalid packets that are out of temperature range on spec
+                        [[CSLRfidAppEngine sharedAppEngine].temperatureSettings setTemperatureValueForAveraging:[NSNumber numberWithDouble:temperatureValue] EPCID:epc];
+                        [[CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer setObject:currentBleTag forKey:epc];
+                    }
                 }
             }
             else { //moisture measurements

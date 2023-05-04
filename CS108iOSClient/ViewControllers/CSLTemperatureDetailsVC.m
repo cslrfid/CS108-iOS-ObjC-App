@@ -38,6 +38,15 @@
     
     [self.tabBarController setTitle:@"Sensor Details"];
     
+    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==ASYGN) {
+        [self.uivSensorCode setHidden:true];
+        [self.uivOCRSSI setHidden:true];
+    }
+    else {
+        [self.uivSensorCode setHidden:false];
+        [self.uivOCRSSI setHidden:false];
+    }
+    
     if([CSLRfidAppEngine sharedAppEngine].CSLBleTagSelected != nil) {
         
         // Do any additional setup after loading the view.
@@ -150,6 +159,13 @@
                 self.lbSensorCode.text=[data2 substringWithRange:NSMakeRange(8, 4)];
                 self.lbOCRSSI.text=[data2 substringWithRange:NSMakeRange(12, 4)];
                 self.lbTemperatureCode.text=[data2 substringWithRange:NSMakeRange(16, 4)];
+            }
+        }
+        else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==ASYGN) {
+            if (data1.length >= 4)
+                self.lbTemperatureCode.text=[data1 substringWithRange:NSMakeRange(0, 4)];
+            if (data2.length >= 8) {
+                self.lbCalibration.text=[data2 substringWithRange:NSMakeRange(0, 8)];
             }
         }
         else if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
